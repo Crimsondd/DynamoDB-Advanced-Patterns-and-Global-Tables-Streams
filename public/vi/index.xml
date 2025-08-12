@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Thiết lập Tài Khoản AWS on Tạo mới tài khoản AWS</title>
-    <link>/vi/</link>
-    <description>Recent content in Thiết lập Tài Khoản AWS on Tạo mới tài khoản AWS</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="/vi/index.xml" rel="self" type="application/rss+xml" />
+    <title>Workshop DynamoDB Advanced Patterns on Tạo mới tài khoản AWS</title>
+    <link>http://localhost:1313/vi/</link>
+    <description>Recent content in Workshop DynamoDB Advanced Patterns on Tạo mới tài khoản AWS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/vi/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

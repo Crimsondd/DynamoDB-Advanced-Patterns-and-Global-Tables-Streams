@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="description" content="">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>1.1 Tổng quan AWS Free Tier :: Tạo mới tài khoản AWS</title>
+
+    
+    <link href="/css/nucleus.css?1755010309" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1755010309" rel="stylesheet">
+    <link href="/css/hybrid.css?1755010309" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1755010309" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1755010309" rel="stylesheet">
+    <link href="/css/auto-complete.css?1755010309" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1755010309" rel="stylesheet">
+    <link href="/css/theme.css?1755010309" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1755010309" rel="stylesheet">
+    
+    <link href="/css/theme-workshop.css?1755010309" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1755010309"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/vi/1-setup-infrastructure/1.1-aws-freetier-overview/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1755010309"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1755010309"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/\/vi";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1755010309"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/1-setup-infrastructure/" title="1. Thiết lập &amp; Triển khai Hạ tầng" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/vi/1-setup-infrastructure/">
+           <b> 1. </b> 1. Thiết lập &amp; Triển khai Hạ tầng
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/1-setup-infrastructure/1.1-aws-freetier-overview/" title="1.1 Tổng quan AWS Free Tier" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/vi/1-setup-infrastructure/1.1-aws-freetier-overview/">
+           <b> 1.1 </b> 1.1 Tổng quan AWS Free Tier
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/1-setup-infrastructure/1.2-architecture-overview/" title="1.2 Tổng quan Kiến trúc" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/1-setup-infrastructure/1.2-architecture-overview/">
+           <b> 1.2 </b> 1.2 Tổng quan Kiến trúc
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/1-setup-infrastructure/1.3-cloudformation-deployment/" title="1.3 Triển khai CloudFormation" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/1-setup-infrastructure/1.3-cloudformation-deployment/">
+           <b> 1.3 </b> 1.3 Triển khai CloudFormation
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/1-setup-infrastructure/1.4-infrastructure-verification/" title="1.4 Xác minh Hạ tầng" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/1-setup-infrastructure/1.4-infrastructure-verification/">
+           <b> 1.4 </b> 1.4 Xác minh Hạ tầng
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-single-table-design/" title="2. Triển khai Single Table Design" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-single-table-design/">
+           <b> 2. </b> 2. Triển khai Single Table Design
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-single-table-design/2.1-design-principles/" title="2.1 Nguyên tắc Thiết kế" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-single-table-design/2.1-design-principles/">
+           <b> 2.1 </b> 2.1 Nguyên tắc Thiết kế
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-single-table-design/2.2-console-navigation/" title="2.2 Điều hướng Console" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-single-table-design/2.2-console-navigation/">
+           <b> 2.2 </b> 2.2 Điều hướng Console
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-single-table-design/2.3-create-data-items/" title="2.3 Tạo Data Items" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-single-table-design/2.3-create-data-items/">
+           <b> 2.3 </b> 2.3 Tạo Data Items
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-single-table-design/2.4-query-patterns/" title="2.4 Query Patterns" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-single-table-design/2.4-query-patterns/">
+           <b> 2.4 </b> 2.4 Query Patterns
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-global-tables-setup/" title="3. Global Tables Multi-Region Setup" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-global-tables-setup/">
+           <b> 3. </b> 3. Global Tables Multi-Region Setup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-global-tables-setup/3.1-global-tables-overview/" title="3.1 Tổng quan Global Tables" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-global-tables-setup/3.1-global-tables-overview/">
+           <b> 3.1 </b> 3.1 Tổng quan Global Tables
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-global-tables-setup/3.2-verify-global-setup/" title="3.2 Xác minh Global Setup" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-global-tables-setup/3.2-verify-global-setup/">
+           <b> 3.2 </b> 3.2 Xác minh Global Setup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-global-tables-setup/3.3-multi-region-operations/" title="3.3 Multi-Region Operations" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-global-tables-setup/3.3-multi-region-operations/">
+           <b> 3.3 </b> 3.3 Multi-Region Operations
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-global-tables-setup/3.4-replication-monitoring/" title="3.4 Replication Monitoring" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-global-tables-setup/3.4-replication-monitoring/">
+           <b> 3.4 </b> 3.4 Replication Monitoring
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-streams-lambda-processing/" title="4. Streams &amp; Lambda Processing" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-streams-lambda-processing/">
+           <b> 4. </b> 4. Streams &amp; Lambda Processing
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-streams-lambda-processing/4.1-stream-configuration/" title="4.1 Stream Configuration" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-streams-lambda-processing/4.1-stream-configuration/">
+           <b> 4.1 </b> 4.1 Stream Configuration
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-streams-lambda-processing/4.2-lambda-function-setup/" title="4.2 Lambda Function Setup" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-streams-lambda-processing/4.2-lambda-function-setup/">
+           <b> 4.2 </b> 4.2 Lambda Function Setup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-streams-lambda-processing/4.3-event-processing-practice/" title="4.3 Event Processing Practice" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-streams-lambda-processing/4.3-event-processing-practice/">
+           <b> 4.3 </b> 4.3 Event Processing Practice
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-streams-lambda-processing/4.4-monitoring-debugging/" title="4.4 Monitoring &amp; Debugging" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-streams-lambda-processing/4.4-monitoring-debugging/">
+           <b> 4.4 </b> 4.4 Monitoring &amp; Debugging
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-monitoring-optimization/" title="5. Monitoring &amp; Optimization" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-monitoring-optimization/">
+           <b> 5. </b> 5. Monitoring &amp; Optimization
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Dashboards" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-monitoring-optimization/5.1-cloudwatch-dashboards/">
+           <b> </b> 5.1 CloudWatch Dashboards
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-monitoring-optimization/5.2-alerting-notifications/" title="5.2 Alerting &amp; Notifications" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-monitoring-optimization/5.2-alerting-notifications/">
+           <b> </b> 5.2 Alerting &amp; Notifications
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-monitoring-optimization/5.3-cost-analysis-optimization/" title="5.3 Cost Analysis &amp; Optimization" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-monitoring-optimization/5.3-cost-analysis-optimization/">
+           <b> </b> 5.3 Cost Analysis &amp; Optimization
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-monitoring-optimization/5.4-performance-tuning/" title="5.4 Performance Tuning" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-monitoring-optimization/5.4-performance-tuning/">
+           <b> </b> 5.4 Performance Tuning
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/6-advanced-patterns/" title="6. Advanced Patterns" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/6-advanced-patterns/">
+           <b> 6. </b> 6. Advanced Patterns
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/6-advanced-patterns/6.1-batch-operations/" title="6.1 Batch Operations" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/6-advanced-patterns/6.1-batch-operations/">
+           <b> </b> 6.1 Batch Operations
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/6-advanced-patterns/6.2-conditional-updates/" title="6.2 Conditional Updates" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/6-advanced-patterns/6.2-conditional-updates/">
+           <b> </b> 6.2 Conditional Updates
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/6-advanced-patterns/6.3-advanced-query-techniques/" title="6.3 Advanced Query Techniques" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/6-advanced-patterns/6.3-advanced-query-techniques/">
+           <b> </b> 6.3 Advanced Query Techniques
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/6-advanced-patterns/6.4-production-patterns/" title="6.4 Production Patterns" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/6-advanced-patterns/6.4-production-patterns/">
+           <b> </b> 6.4 Production Patterns
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/7-cleanup-resources/" title="7. Dọn dẹp Tài nguyên" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/7-cleanup-resources/">
+           <b> 7. </b> 7. Dọn dẹp Tài nguyên
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="http://awsstudygroup.com"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="http://localhost:1313/1-setup-infrastructure/1.1-aws-freetier-overview/">English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="http://localhost:1313/vi/1-setup-infrastructure/1.1-aws-freetier-overview/" selected>Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830891&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>26-11-2023</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Gia Hưng</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/vi/'>Workshop DynamoDB Advanced Patterns</a> > <a href='/vi/1-setup-infrastructure/'>1. Thiết lập & Triển khai Hạ tầng</a> > 1.1 Tổng quan AWS Free Tier
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#aws-free-tier-là-gì">AWS Free Tier là gì?</a>
+      <ul>
+        <li><a href="#1-miễn-phí-12-tháng">1. Miễn phí 12 Tháng</a></li>
+        <li><a href="#2-luôn-miễn-phí">2. Luôn Miễn phí</a></li>
+        <li><a href="#3-trials">3. Trials</a></li>
+      </ul>
+    </li>
+    <li><a href="#giới-hạn-free-tier-cho-workshop-này">Giới hạn Free Tier cho Workshop này</a></li>
+    <li><a href="#cân-nhắc-về-vùng">Cân nhắc về Vùng</a>
+      <ul>
+        <li><a href="#vùng-chính-us-east-n-virginia">Vùng Chính: US East (N. Virginia)</a></li>
+        <li><a href="#vùng-phụ-eu-west-ireland">Vùng Phụ: EU West (Ireland)</a></li>
+      </ul>
+    </li>
+    <li><a href="#giám-sát-sử-dụng-free-tier">Giám sát Sử dụng Free Tier</a>
+      <ul>
+        <li><a href="#aws-billing-dashboard">AWS Billing Dashboard</a></li>
+        <li><a href="#cloudwatch-billing-alarms">CloudWatch Billing Alarms</a></li>
+      </ul>
+    </li>
+    <li><a href="#thực-hành-tốt-nhất-free-tier">Thực hành Tốt nhất Free Tier</a>
+      <ul>
+        <li><a href="#1-giám-sát-thường-xuyên">1. Giám sát Thường xuyên</a></li>
+        <li><a href="#2-sử-dụng-capacity-thích-hợp">2. Sử dụng Capacity Thích hợp</a></li>
+        <li><a href="#3-dọn-dẹp-tài-nguyên">3. Dọn dẹp Tài nguyên</a></li>
+      </ul>
+    </li>
+    <li><a href="#những-bẫy-free-tier-thường-gặp-cần-tránh">Những Bẫy Free Tier Thường gặp cần Tránh</a>
+      <ul>
+        <li><a href="#lỗi-1-provisioned-vs-on-demand">Lỗi #1: Provisioned vs On-Demand</a></li>
+        <li><a href="#lỗi-2-nhân-tài-nguyên">Lỗi #2: Nhân Tài nguyên</a></li>
+      </ul>
+    </li>
+    <li><a href="#quy-trình-khẩn-cấp">Quy trình Khẩn cấp</a>
+      <ul>
+        <li><a href="#nếu-bạn-thấy-phí-xuất-hiện">Nếu Bạn Thấy Phí Xuất hiện</a></li>
+        <li><a href="#lệnh-audit-tài-nguyên-nhanh">Lệnh Audit Tài nguyên Nhanh</a></li>
+      </ul>
+    </li>
+    <li><a href="#checklist-trước-workshop">Checklist Trước Workshop</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              1.1 Tổng quan AWS Free Tier
+            </h1>
+          
+
+        
+
+
+
+	<h1 id="tổng-quan-aws-free-tier">Tổng quan AWS Free Tier</h1>
+<p>🆓 <strong>Hiểu giới hạn AWS Free Tier và đảm bảo trải nghiệm workshop không mất phí</strong></p>
+<h2 id="aws-free-tier-là-gì">AWS Free Tier là gì?</h2>
+<p>AWS Free Tier cung cấp cho khách hàng mới quyền truy cập vào các dịch vụ AWS miễn phí trong thời gian giới hạn. Nó bao gồm ba loại gói:</p>
+<h3 id="1-miễn-phí-12-tháng">1. Miễn phí 12 Tháng</h3>
+<p>Có sẵn trong 12 tháng sau ngày đăng ký AWS của bạn:</p>
+<ul>
+<li><strong>Amazon DynamoDB</strong>: 25 GB storage, 25 WCU, 25 RCU</li>
+<li><strong>AWS Lambda</strong>: 1 triệu requests mỗi tháng</li>
+<li><strong>Amazon CloudWatch</strong>: 10 metrics, 10 alarms, 1 triệu API requests</li>
+</ul>
+<h3 id="2-luôn-miễn-phí">2. Luôn Miễn phí</h3>
+<p>Có sẵn cho tất cả khách hàng AWS vô thời hạn:</p>
+<ul>
+<li><strong>DynamoDB</strong>: 25 GB storage (luôn miễn phí)</li>
+<li><strong>Lambda</strong>: 1 triệu requests, 400,000 GB-seconds compute time</li>
+<li><strong>CloudWatch</strong>: 10 custom metrics và 10 alarms</li>
+</ul>
+<h3 id="3-trials">3. Trials</h3>
+<p>Truy cập miễn phí ngắn hạn vào một số dịch vụ nhất định</p>
+<h2 id="giới-hạn-free-tier-cho-workshop-này">Giới hạn Free Tier cho Workshop này</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Phân tích Sử dụng Dịch vụ:
+┌─────────────────┬──────────────┬──────────────┬─────────────┐
+│ Dịch vụ         │ Free Tier    │ Sử dụng      │ An toàn %   │
+├─────────────────┼──────────────┼──────────────┼─────────────┤
+│ DynamoDB RCU    │ 25 units     │ 15 units     │ 60%         │
+│ DynamoDB WCU    │ 25 units     │ 15 units     │ 60%         │
+│ DynamoDB Storage│ 25 GB        │ &lt;1 GB        │ 4%          │
+│ Lambda Requests │ 1M/tháng     │ ~100/ngày    │ 0.3%        │
+│ Lambda Duration │ 400K GB-sec  │ &lt;1K GB-sec   │ 0.25%       │
+│ CloudWatch      │ 10 metrics   │ 6 metrics    │ 60%         │
+│ Data Transfer   │ 1 GB         │ &lt;100 MB      │ 10%         │
+└─────────────────┴──────────────┴──────────────┴─────────────┘
+
+Tổng Sử dụng Free Tier: ~50% = 100% AN TOÀN! 🛡️
+</code></pre></div>
+<div class="notices tip" ><p><strong>Bảo vệ Chi phí</strong>: Chúng ta chỉ sử dụng 50% giới hạn Free Tier có sẵn, đảm bảo không có phí phát sinh trong suốt workshop.</p>
+</div>
+
+<h2 id="cân-nhắc-về-vùng">Cân nhắc về Vùng</h2>
+<h3 id="vùng-chính-us-east-n-virginia">Vùng Chính: US East (N. Virginia)</h3>
+<ul>
+<li><strong>Tại sao được chọn</strong>: Giới hạn Free Tier cao nhất</li>
+<li><strong>DynamoDB</strong>: Đầy đủ 25 RCU/WCU có sẵn</li>
+<li><strong>Lambda</strong>: Đầy đủ 1M requests có sẵn</li>
+<li><strong>Tốt nhất cho</strong>: Workloads chính và testing</li>
+</ul>
+<h3 id="vùng-phụ-eu-west-ireland">Vùng Phụ: EU West (Ireland)</h3>
+<ul>
+<li><strong>Mục đích</strong>: Sao chép Global Tables</li>
+<li><strong>Free Tier</strong>: Giới hạn giống vùng chính</li>
+<li><strong>Sử dụng</strong>: Tối thiểu (chỉ replica table)</li>
+<li><strong>Tác động chi phí</strong>: Gần như bằng không</li>
+</ul>
+<h2 id="giám-sát-sử-dụng-free-tier">Giám sát Sử dụng Free Tier</h2>
+<h3 id="aws-billing-dashboard">AWS Billing Dashboard</h3>
+<ol>
+<li><strong>Điều hướng đến</strong>: AWS Console → Billing &amp; Cost Management</li>
+<li><strong>Free Tier usage</strong>: Theo dõi tiêu thụ hiện tại</li>
+<li><strong>Alerts</strong>: Thiết lập khi tiến gần 80% giới hạn</li>
+<li><strong>Forecasting</strong>: Dự đoán sử dụng hàng tháng</li>
+</ol>
+<h3 id="cloudwatch-billing-alarms">CloudWatch Billing Alarms</h3>
+<p>Cảnh báo tự động khi:</p>
+<ul>
+<li>DynamoDB consumed units &gt; 20 (80% giới hạn)</li>
+<li>Lambda invocations &gt; 800K/tháng (80% giới hạn)</li>
+<li>Tổng ước tính phí &gt; $1.00</li>
+</ul>
+<h2 id="thực-hành-tốt-nhất-free-tier">Thực hành Tốt nhất Free Tier</h2>
+<h3 id="1-giám-sát-thường-xuyên">1. Giám sát Thường xuyên</h3>
+<ul>
+<li>Kiểm tra Free Tier dashboard hàng ngày trong workshop</li>
+<li>Thiết lập cảnh báo billing trước khi triển khai</li>
+<li>Giám sát sử dụng tài nguyên trong CloudWatch</li>
+</ul>
+<h3 id="2-sử-dụng-capacity-thích-hợp">2. Sử dụng Capacity Thích hợp</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">DynamoDB Provisioned Capacity:
+- Read Capacity Units (RCU): 5 (dưới giới hạn 25)
+- Write Capacity Units (WCU): 5 (dưới giới hạn 25)
+- On-Demand: KHÔNG khuyến nghị (có thể vượt Free Tier)
+</code></pre></div><h3 id="3-dọn-dẹp-tài-nguyên">3. Dọn dẹp Tài nguyên</h3>
+<ul>
+<li>Xóa test data thường xuyên</li>
+<li>Loại bỏ Lambda functions không sử dụng</li>
+<li>Dọn dẹp CloudWatch logs cũ hơn 7 ngày</li>
+</ul>
+<h2 id="những-bẫy-free-tier-thường-gặp-cần-tránh">Những Bẫy Free Tier Thường gặp cần Tránh</h2>
+
+<div class="notices warning" ><p><strong>Tránh Những Lỗi Này</strong>:</p>
+<ol>
+<li><strong>On-Demand DynamoDB</strong>: Có thể nhanh chóng vượt Free Tier</li>
+<li><strong>Nhiều Vùng</strong>: Triển khai cùng tài nguyên trong &gt;2 vùng</li>
+<li><strong>Tập Dữ liệu Lớn</strong>: Upload &gt;25GB vào DynamoDB</li>
+<li><strong>Quên Dọn dẹp</strong>: Để tài nguyên chạy quá workshop</li>
+</ol>
+</div>
+
+<h3 id="lỗi-1-provisioned-vs-on-demand">Lỗi #1: Provisioned vs On-Demand</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">❌ SAI: DynamoDB On-Demand
+- Trả tiền theo request (có thể đắt)
+- Chi phí không dự đoán được
+- Không có bảo vệ Free Tier
+
+✅ ĐÚNG: DynamoDB Provisioned
+- Capacity units cố định
+- Chi phí dự đoán được
+- Được bảo vệ bởi giới hạn Free Tier
+</code></pre></div><h3 id="lỗi-2-nhân-tài-nguyên">Lỗi #2: Nhân Tài nguyên</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">❌ SAI: Triển khai đến 5 vùng
+- 5x tiêu thụ tài nguyên
+- 5x sử dụng Free Tier
+- Có khả năng vượt giới hạn
+
+✅ ĐÚNG: Triển khai tối đa 2 vùng
+- Sử dụng tài nguyên tối thiểu
+- Trong giới hạn Free Tier
+- Duy trì tính khả dụng toàn cầu
+</code></pre></div><h2 id="quy-trình-khẩn-cấp">Quy trình Khẩn cấp</h2>
+<h3 id="nếu-bạn-thấy-phí-xuất-hiện">Nếu Bạn Thấy Phí Xuất hiện</h3>
+<ol>
+<li><strong>DỪNG NGAY LẬP TỨC</strong>: Tạm dừng tất cả hoạt động workshop</li>
+<li><strong>Kiểm tra Billing Dashboard</strong>: Xác định nguồn phí</li>
+<li><strong>Xem lại Tài nguyên</strong>: Liệt kê tất cả tài nguyên đang hoạt động</li>
+<li><strong>Liên hệ Support</strong>: Sử dụng hỗ trợ AWS Free Tier nếu cần</li>
+<li><strong>Xóa Tài nguyên</strong>: Loại bỏ bất cứ thứ gì ngoài phạm vi workshop</li>
+</ol>
+<h3 id="lệnh-audit-tài-nguyên-nhanh">Lệnh Audit Tài nguyên Nhanh</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Liệt kê tất cả DynamoDB tables</span>
+aws dynamodb list-tables --region us-east-1
+
+<span style="color:#75715e"># Liệt kê tất cả Lambda functions  </span>
+aws lambda list-functions --region us-east-1
+
+<span style="color:#75715e"># Kiểm tra CloudFormation stacks</span>
+aws cloudformation list-stacks --region us-east-1
+</code></pre></div><h2 id="checklist-trước-workshop">Checklist Trước Workshop</h2>
+<p>Trước khi bắt đầu triển khai hạ tầng:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Tài khoản AWS được tạo và xác minh</li>
+<li><input disabled="" type="checkbox"> Tính đủ điều kiện Free Tier được xác nhận (tài khoản &lt;12 tháng tuổi)</li>
+<li><input disabled="" type="checkbox"> Cảnh báo billing được cấu hình</li>
+<li><input disabled="" type="checkbox"> Free Tier dashboard được bookmark</li>
+<li><input disabled="" type="checkbox"> Thông tin liên hệ khẩn cấp sẵn sàng</li>
+<li><input disabled="" type="checkbox"> Hiểu biết về giới hạn tài nguyên được xác nhận</li>
+</ul>
+
+<div class="notices info" ><p><strong>Sẵn sàng Tiếp tục</strong>: Sau khi bạn đã xem xét giới hạn Free Tier và hiểu các biện pháp an toàn, hãy tiến hành Tổng quan Kiến trúc để hiểu những gì chúng ta sẽ xây dựng.</p>
+</div>
+
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/vi/1-setup-infrastructure/" title="1. Thiết lập &amp; Triển khai Hạ tầng"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/vi/1-setup-infrastructure/1.2-architecture-overview/" title="1.2 Tổng quan Kiến trúc" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1755010309"></script>
+    <script src="/js/perfect-scrollbar.min.js?1755010309"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1755010309"></script>
+    <script src="/js/jquery.sticky.js?1755010309"></script>
+    <script src="/js/featherlight.min.js?1755010309"></script>
+    <script src="/js/highlight.pack.js?1755010309"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1755010309"></script>
+    <script src="/js/learn.js?1755010309"></script>
+    <script src="/js/hugo-learn.js?1755010309"></script>
+
+    <link href="/mermaid/mermaid.css?1755010309" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1755010309"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

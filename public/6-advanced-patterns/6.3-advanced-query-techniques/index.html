@@ -1,0 +1,2442 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="description" content="">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>6.3 Advanced Query Techniques :: Create a new AWS account.</title>
+
+    
+    <link href="/css/nucleus.css?1755010309" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1755010309" rel="stylesheet">
+    <link href="/css/hybrid.css?1755010309" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1755010309" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1755010309" rel="stylesheet">
+    <link href="/css/auto-complete.css?1755010309" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1755010309" rel="stylesheet">
+    <link href="/css/theme.css?1755010309" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1755010309" rel="stylesheet">
+    
+    <link href="/css/theme-workshop.css?1755010309" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1755010309"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/6-advanced-patterns/6.3-advanced-query-techniques/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1755010309"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1755010309"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1755010309"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-setup-infrastructure/" title="1. Setup &amp; Infrastructure Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-setup-infrastructure/">
+           <b> 1. </b> 1. Setup &amp; Infrastructure Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-setup-infrastructure/1.1-aws-freetier-overview/" title="1.1 AWS Free Tier Overview" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-setup-infrastructure/1.1-aws-freetier-overview/">
+           <b> 1.1 </b> 1.1 AWS Free Tier Overview
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-setup-infrastructure/1.2-architecture-overview/" title="1.2 Architecture Overview" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-setup-infrastructure/1.2-architecture-overview/">
+           <b> 1.2 </b> 1.2 Architecture Overview
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-setup-infrastructure/1.3-cloudformation-deployment/" title="1.3 CloudFormation Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-setup-infrastructure/1.3-cloudformation-deployment/">
+           <b> 1.3 </b> 1.3 CloudFormation Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-setup-infrastructure/1.4-infrastructure-verification/" title="1.4 Infrastructure Verification" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-setup-infrastructure/1.4-infrastructure-verification/">
+           <b> 1.4 </b> 1.4 Infrastructure Verification
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-single-table-design/" title="2. Single Table Design Implementation" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-single-table-design/">
+           <b> 2. </b> 2. Single Table Design Implementation
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-single-table-design/2.1-design-principles/" title="2.1 Design Principles" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-single-table-design/2.1-design-principles/">
+           <b> 2.1 </b> 2.1 Design Principles
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-single-table-design/2.2-console-navigation/" title="2.2 Console Navigation" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-single-table-design/2.2-console-navigation/">
+           <b> 2.2 </b> 2.2 Console Navigation
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-single-table-design/2.3-create-data-items/" title="2.3 Create Data Items" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-single-table-design/2.3-create-data-items/">
+           <b> 2.3 </b> 2.3 Create Data Items
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-single-table-design/2.4-query-patterns/" title="2.4 Query Patterns" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-single-table-design/2.4-query-patterns/">
+           <b> 2.4 </b> 2.4 Query Patterns
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-global-tables-setup/" title="3. Global Tables Multi-Region Setup" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-global-tables-setup/">
+           <b> 3. </b> 3. Global Tables Multi-Region Setup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-global-tables-setup/3.1-global-tables-overview/" title="3.1 Global Tables Overview" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-global-tables-setup/3.1-global-tables-overview/">
+           <b> 3.1 </b> 3.1 Global Tables Overview
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-global-tables-setup/3.2-verify-global-setup/" title="3.2 Verify Global Setup" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-global-tables-setup/3.2-verify-global-setup/">
+           <b> 3.2 </b> 3.2 Verify Global Setup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-global-tables-setup/3.3-multi-region-operations/" title="3.3 Multi-Region Operations" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-global-tables-setup/3.3-multi-region-operations/">
+           <b> 3.3 </b> 3.3 Multi-Region Operations
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-global-tables-setup/3.4-replication-monitoring/" title="3.4 Replication Monitoring" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-global-tables-setup/3.4-replication-monitoring/">
+           <b> 3.4 </b> 3.4 Replication Monitoring
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-streams-lambda-processing/" title="4. Streams &amp; Lambda Processing" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-streams-lambda-processing/">
+           <b> 4. </b> 4. Streams &amp; Lambda Processing
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-streams-lambda-processing/4.1-stream-configuration/" title="4.1 Stream Configuration" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-streams-lambda-processing/4.1-stream-configuration/">
+           <b> 4.1 </b> 4.1 Stream Configuration
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-streams-lambda-processing/4.2-lambda-function-setup/" title="4.2 Lambda Function Setup" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-streams-lambda-processing/4.2-lambda-function-setup/">
+           <b> 4.2 </b> 4.2 Lambda Function Setup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-streams-lambda-processing/4.3-event-processing-practice/" title="4.3 Event Processing Practice" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-streams-lambda-processing/4.3-event-processing-practice/">
+           <b> 4.3 </b> 4.3 Event Processing Practice
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-streams-lambda-processing/4.4-monitoring-debugging/" title="4.4 Monitoring &amp; Debugging" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-streams-lambda-processing/4.4-monitoring-debugging/">
+           <b> 4.4 </b> 4.4 Monitoring &amp; Debugging
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-monitoring-optimization/" title="5. Monitoring &amp; Optimization" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-monitoring-optimization/">
+           <b> 5. </b> 5. Monitoring &amp; Optimization
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Dashboards" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-monitoring-optimization/5.1-cloudwatch-dashboards/">
+           <b> 5.1 </b> 5.1 CloudWatch Dashboards
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-monitoring-optimization/5.2-alerting-notifications/" title="5.2 Alerting &amp; Notifications" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-monitoring-optimization/5.2-alerting-notifications/">
+           <b> 5.2 </b> 5.2 Alerting &amp; Notifications
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-monitoring-optimization/5.3-cost-analysis-optimization/" title="5.3 Cost Analysis &amp; Optimization" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-monitoring-optimization/5.3-cost-analysis-optimization/">
+           <b> 5.3 </b> 5.3 Cost Analysis &amp; Optimization
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-monitoring-optimization/5.4-performance-tuning/" title="5.4 Performance Tuning" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-monitoring-optimization/5.4-performance-tuning/">
+           <b> 5.4 </b> 5.4 Performance Tuning
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-advanced-patterns/" title="6. Advanced Patterns" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/6-advanced-patterns/">
+           <b> 6. </b> 6. Advanced Patterns
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-advanced-patterns/6.1-batch-operations/" title="6.1 Batch Operations" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-advanced-patterns/6.1-batch-operations/">
+           <b> 6.1 </b> 6.1 Batch Operations
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-advanced-patterns/6.2-conditional-updates/" title="6.2 Conditional Updates" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-advanced-patterns/6.2-conditional-updates/">
+           <b> 6.2 </b> 6.2 Conditional Updates
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-advanced-patterns/6.3-advanced-query-techniques/" title="6.3 Advanced Query Techniques" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/6-advanced-patterns/6.3-advanced-query-techniques/">
+           <b> 6.3 </b> 6.3 Advanced Query Techniques
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-advanced-patterns/6.4-production-patterns/" title="6.4 Production Patterns" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-advanced-patterns/6.4-production-patterns/">
+           <b> 6.4 </b> 6.4 Production Patterns
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/7-cleanup-resources/" title="7. Cleanup Resources" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/7-cleanup-resources/">
+           <b> 7. </b> 7. Cleanup Resources
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://aws.amazon.com/blogs"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="http://localhost:1313/6-advanced-patterns/6.3-advanced-query-techniques/" selected>English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="http://localhost:1313/vi/6-advanced-patterns/6.3-advanced-query-techniques/">Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830891&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>26-11-2023</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Gia Hưng</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>DynamoDB Advanced Patterns Workshop</a> > <a href='/6-advanced-patterns/'>6. Advanced Patterns</a> > 6.3 Advanced Query Techniques
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#performance-optimization-and-cost-efficiency">Performance Optimization and Cost Efficiency</a>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#query-optimization-fundamentals">Query Optimization Fundamentals</a></li>
+        <li><a href="#performance-vs-cost-balance">Performance vs Cost Balance</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-1-projection-expression-optimization">Exercise 1: Projection Expression Optimization</a>
+      <ul>
+        <li><a href="#step-1-full-item-query-baseline">Step 1: Full Item Query (Baseline)</a></li>
+        <li><a href="#step-2-optimized-projection-query">Step 2: Optimized Projection Query</a></li>
+        <li><a href="#step-3-gsi-projection-optimization">Step 3: GSI Projection Optimization</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-2-filter-expression-techniques">Exercise 2: Filter Expression Techniques</a>
+      <ul>
+        <li><a href="#step-1-basic-filter-expressions">Step 1: Basic Filter Expressions</a></li>
+        <li><a href="#step-2-complex-filter-conditions">Step 2: Complex Filter Conditions</a></li>
+        <li><a href="#step-3-function-based-filters">Step 3: Function-Based Filters</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-3-pagination-and-large-result-sets">Exercise 3: Pagination and Large Result Sets</a>
+      <ul>
+        <li><a href="#step-1-pagination-setup">Step 1: Pagination Setup</a></li>
+        <li><a href="#step-2-next-page-retrieval">Step 2: Next Page Retrieval</a></li>
+        <li><a href="#step-3-efficient-pagination-implementation">Step 3: Efficient Pagination Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-4-parallel-query-processing">Exercise 4: Parallel Query Processing</a>
+      <ul>
+        <li><a href="#step-1-single-vs-parallel-scan-comparison">Step 1: Single vs Parallel Scan Comparison</a></li>
+        <li><a href="#step-2-parallel-scan-implementation">Step 2: Parallel Scan Implementation</a></li>
+        <li><a href="#step-3-production-parallel-processing">Step 3: Production Parallel Processing</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-5-index-strategy-optimization">Exercise 5: Index Strategy Optimization</a>
+      <ul>
+        <li><a href="#step-1-query-pattern-analysis">Step 1: Query Pattern Analysis</a></li>
+        <li><a href="#step-2-gsi-optimization">Step 2: GSI Optimization</a></li>
+        <li><a href="#step-3-sparse-index-patterns">Step 3: Sparse Index Patterns</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-6-performance-monitoring-and-optimization">Exercise 6: Performance Monitoring and Optimization</a>
+      <ul>
+        <li><a href="#step-1-query-performance-metrics">Step 1: Query Performance Metrics</a></li>
+        <li><a href="#step-2-query-cost-analysis">Step 2: Query Cost Analysis</a></li>
+        <li><a href="#step-3-production-query-patterns">Step 3: Production Query Patterns</a></li>
+      </ul>
+    </li>
+    <li><a href="#advanced-query-best-practices">Advanced Query Best Practices</a>
+      <ul>
+        <li><a href="#optimization-guidelines">Optimization Guidelines</a></li>
+        <li><a href="#cost-efficiency">Cost Efficiency</a></li>
+        <li><a href="#performance-patterns">Performance Patterns</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-summary">Exercise Summary</a></li>
+    <li><a href="#next-steps">Next Steps</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              6.3 Advanced Query Techniques
+            </h1>
+          
+
+        
+
+
+
+	<h2 id="performance-optimization-and-cost-efficiency">Performance Optimization and Cost Efficiency</h2>
+<p>⚡ <strong>Master advanced querying techniques to optimize performance, reduce costs, and improve application responsiveness</strong></p>
+<h3 id="overview">Overview</h3>
+<p>Advanced query techniques are crucial for building high-performance, cost-effective DynamoDB applications. Learn how to minimize RCU consumption, reduce data transfer, and optimize query patterns for production workloads.</p>
+<h3 id="query-optimization-fundamentals">Query Optimization Fundamentals</h3>
+<p><strong>Key optimization areas</strong>:</p>
+<ul>
+<li><strong>Projection Expressions</strong>: Fetch only needed attributes</li>
+<li><strong>Filter Expressions</strong>: Refine results server-side</li>
+<li><strong>Pagination</strong>: Handle large result sets efficiently</li>
+<li><strong>Index Optimization</strong>: Choose the right index for each query</li>
+<li><strong>Parallel Processing</strong>: Scale query throughput</li>
+</ul>
+<h3 id="performance-vs-cost-balance">Performance vs Cost Balance</h3>
+<pre tabindex="0"><code>Query Optimization Impact:
+┌─────────────────────┬─────────────────────┬─────────────────┐
+│ Technique           │ Performance Gain    │ Cost Reduction  │
+├─────────────────────┼─────────────────────┼─────────────────┤
+│ Projection          │ Faster response     │ 50-80% RCU     │
+│ Proper indexing     │ 10x faster queries  │ Avoid scans     │
+│ Pagination          │ Consistent latency  │ Memory control  │
+│ Parallel queries    │ Higher throughput   │ Better scaling  │
+└─────────────────────┴─────────────────────┴─────────────────┘
+</code></pre><h2 id="exercise-1-projection-expression-optimization">Exercise 1: Projection Expression Optimization</h2>
+<h3 id="step-1-full-item-query-baseline">Step 1: Full Item Query (Baseline)</h3>
+<p><strong>Compare full item retrieval vs optimized projection</strong>:</p>
+<ol>
+<li><strong>AWS CloudShell</strong>: Open CloudShell from AWS Console</li>
+<li><strong>Query without projection</strong> (retrieves all attributes):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key-condition-expression <span style="color:#e6db74">&#34;PK = :pk&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;:pk&#34;: {&#34;S&#34;: &#34;PRODUCT#conditional-test&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><ol start="3">
+<li><strong>Note response size</strong>: Large payload with all attributes</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing full item query with complete response payload</p>
+</div>
+
+<h3 id="step-2-optimized-projection-query">Step 2: Optimized Projection Query</h3>
+<p><strong>Fetch only essential attributes</strong>:</p>
+<ol>
+<li><strong>Query with projection expression</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key-condition-expression <span style="color:#e6db74">&#34;PK = :pk&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --projection-expression <span style="color:#e6db74">&#34;PK, SK, #n, price, stock&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-names <span style="color:#e6db74">&#39;{&#34;#n&#34;: &#34;name&#34;}&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;:pk&#34;: {&#34;S&#34;: &#34;PRODUCT#conditional-test&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><ol start="2">
+<li><strong>Compare response sizes</strong>:
+<ul>
+<li><strong>Full query</strong>: All attributes returned</li>
+<li><strong>Projected query</strong>: Only specified attributes</li>
+<li><strong>RCU savings</strong>: Proportional to size reduction</li>
+</ul>
+</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot comparing full vs projected query responses</p>
+</div>
+
+<h3 id="step-3-gsi-projection-optimization">Step 3: GSI Projection Optimization</h3>
+<p><strong>Optimize GSI queries with smart projections</strong>:</p>
+<ol>
+<li><strong>Query GSI with projection</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --index-name GSI1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key-condition-expression <span style="color:#e6db74">&#34;GSI1PK = :gsi1pk&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --projection-expression <span style="color:#e6db74">&#34;GSI1PK, GSI1SK, #n, price&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-names <span style="color:#e6db74">&#39;{&#34;#n&#34;: &#34;name&#34;}&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;:gsi1pk&#34;: {&#34;S&#34;: &#34;CATEGORY#electronics&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><ol start="2">
+<li><strong>Performance benefits</strong>:
+<ul>
+<li><strong>Faster queries</strong>: Less data transfer</li>
+<li><strong>Lower RCU costs</strong>: Pay only for retrieved data</li>
+<li><strong>Better user experience</strong>: Quicker page loads</li>
+</ul>
+</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing GSI query with projection optimization</p>
+</div>
+
+<h2 id="exercise-2-filter-expression-techniques">Exercise 2: Filter Expression Techniques</h2>
+<h3 id="step-1-basic-filter-expressions">Step 1: Basic Filter Expressions</h3>
+<p><strong>Apply server-side filtering to refine results</strong>:</p>
+<ol>
+<li><strong>Query with price range filter</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --index-name GSI1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key-condition-expression <span style="color:#e6db74">&#34;GSI1PK = :gsi1pk&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --filter-expression <span style="color:#e6db74">&#34;price BETWEEN :min_price AND :max_price&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;:gsi1pk&#34;: {&#34;S&#34;: &#34;CATEGORY#electronics&#34;},
+</span><span style="color:#e6db74">    &#34;:min_price&#34;: {&#34;N&#34;: &#34;50&#34;},
+</span><span style="color:#e6db74">    &#34;:max_price&#34;: {&#34;N&#34;: &#34;200&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><ol start="2">
+<li><strong>Important</strong>: Filters don&rsquo;t reduce RCU (applied after reading)</li>
+<li><strong>Use case</strong>: When you need subset of results</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing filtered query results within price range</p>
+</div>
+
+<h3 id="step-2-complex-filter-conditions">Step 2: Complex Filter Conditions</h3>
+<p><strong>Combine multiple filter criteria</strong>:</p>
+<ol>
+<li><strong>Multi-condition filter</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --index-name GSI1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key-condition-expression <span style="color:#e6db74">&#34;GSI1PK = :gsi1pk&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --filter-expression <span style="color:#e6db74">&#34;price &lt; :max_price AND attribute_exists(stock) AND stock &gt; :min_stock&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;:gsi1pk&#34;: {&#34;S&#34;: &#34;CATEGORY#electronics&#34;},
+</span><span style="color:#e6db74">    &#34;:max_price&#34;: {&#34;N&#34;: &#34;300&#34;},
+</span><span style="color:#e6db74">    &#34;:min_stock&#34;: {&#34;N&#34;: &#34;0&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><ol start="2">
+<li><strong>Filter logic</strong>: Price &lt; $300 AND has stock attribute AND stock &gt; 0</li>
+</ol>
+<h3 id="step-3-function-based-filters">Step 3: Function-Based Filters</h3>
+<p><strong>Use DynamoDB filter functions</strong>:</p>
+<ol>
+<li><strong>Contains function filter</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --index-name GSI1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key-condition-expression <span style="color:#e6db74">&#34;GSI1PK = :gsi1pk&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --filter-expression <span style="color:#e6db74">&#34;contains(#n, :keyword)&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-names <span style="color:#e6db74">&#39;{&#34;#n&#34;: &#34;name&#34;}&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;:gsi1pk&#34;: {&#34;S&#34;: &#34;CATEGORY#electronics&#34;},
+</span><span style="color:#e6db74">    &#34;:keyword&#34;: {&#34;S&#34;: &#34;Gaming&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><ol start="2">
+<li><strong>Use case</strong>: Search for products with &ldquo;Gaming&rdquo; in the name</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing function-based filter results</p>
+</div>
+
+<h2 id="exercise-3-pagination-and-large-result-sets">Exercise 3: Pagination and Large Result Sets</h2>
+<h3 id="step-1-pagination-setup">Step 1: Pagination Setup</h3>
+<p><strong>Handle large result sets with pagination</strong>:</p>
+<ol>
+<li><strong>First page query</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --index-name GSI1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key-condition-expression <span style="color:#e6db74">&#34;GSI1PK = :gsi1pk&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --limit <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;:gsi1pk&#34;: {&#34;S&#34;: &#34;CATEGORY#electronics&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><ol start="2">
+<li><strong>Note LastEvaluatedKey</strong>: Used for next page</li>
+<li><strong>Limit parameter</strong>: Controls page size</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing first page with LastEvaluatedKey</p>
+</div>
+
+<h3 id="step-2-next-page-retrieval">Step 2: Next Page Retrieval</h3>
+<p><strong>Continue pagination with ExclusiveStartKey</strong>:</p>
+<ol>
+<li><strong>Second page query</strong> (use LastEvaluatedKey from previous response):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --index-name GSI1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key-condition-expression <span style="color:#e6db74">&#34;GSI1PK = :gsi1pk&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --limit <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --exclusive-start-key <span style="color:#e6db74">&#39;{&#34;GSI1PK&#34;:{&#34;S&#34;:&#34;CATEGORY#electronics&#34;},&#34;GSI1SK&#34;:{&#34;S&#34;:&#34;PRODUCT#batch-keyboard-003&#34;},&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#batch-keyboard-003&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;:gsi1pk&#34;: {&#34;S&#34;: &#34;CATEGORY#electronics&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><ol start="2">
+<li><strong>Pagination pattern</strong>: Continue until no LastEvaluatedKey returned</li>
+</ol>
+<h3 id="step-3-efficient-pagination-implementation">Step 3: Efficient Pagination Implementation</h3>
+<p><strong>Production pagination code pattern</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> boto3
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">paginated_query</span>(table_name, index_name, key_condition, page_size<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Efficiently paginate through large query results
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    dynamodb <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;dynamodb&#39;</span>)
+    
+    paginator <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>get_paginator(<span style="color:#e6db74">&#39;query&#39;</span>)
+    page_iterator <span style="color:#f92672">=</span> paginator<span style="color:#f92672">.</span>paginate(
+        TableName<span style="color:#f92672">=</span>table_name,
+        IndexName<span style="color:#f92672">=</span>index_name,
+        KeyConditionExpression<span style="color:#f92672">=</span>key_condition,
+        PaginationConfig<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;PageSize&#39;</span>: page_size}
+    )
+    
+    all_items <span style="color:#f92672">=</span> []
+    <span style="color:#66d9ef">for</span> page <span style="color:#f92672">in</span> page_iterator:
+        items <span style="color:#f92672">=</span> page<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;Items&#39;</span>, [])
+        all_items<span style="color:#f92672">.</span>extend(items)
+        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Retrieved </span><span style="color:#e6db74">{</span>len(items)<span style="color:#e6db74">}</span><span style="color:#e6db74"> items from this page&#34;</span>)
+    
+    <span style="color:#66d9ef">return</span> all_items
+
+<span style="color:#75715e"># Usage example</span>
+items <span style="color:#f92672">=</span> paginated_query(
+    <span style="color:#e6db74">&#39;demo-ecommerce-freetier&#39;</span>,
+    <span style="color:#e6db74">&#39;GSI1&#39;</span>,
+    <span style="color:#e6db74">&#39;GSI1PK = :pk&#39;</span>,
+    page_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
+)
+</code></pre></div><h2 id="exercise-4-parallel-query-processing">Exercise 4: Parallel Query Processing</h2>
+<h3 id="step-1-single-vs-parallel-scan-comparison">Step 1: Single vs Parallel Scan Comparison</h3>
+<p><strong>Compare sequential vs parallel processing</strong>:</p>
+<ol>
+<li><strong>Standard scan</strong> (single segment):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb scan <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --filter-expression <span style="color:#e6db74">&#34;attribute_exists(price)&#34;</span>
+</code></pre></div><ol start="2">
+<li><strong>Note scan time</strong>: Baseline performance measurement</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing single scan execution time</p>
+</div>
+
+<h3 id="step-2-parallel-scan-implementation">Step 2: Parallel Scan Implementation</h3>
+<p><strong>Use parallel scan for faster processing</strong>:</p>
+<ol>
+<li><strong>Parallel scan segment 1</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb scan <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --filter-expression <span style="color:#e6db74">&#34;attribute_exists(price)&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --segment <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --total-segments <span style="color:#ae81ff">2</span>
+</code></pre></div><ol start="2">
+<li><strong>Parallel scan segment 2</strong> (run simultaneously):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb scan <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --filter-expression <span style="color:#e6db74">&#34;attribute_exists(price)&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --segment <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --total-segments <span style="color:#ae81ff">2</span>
+</code></pre></div><ol start="3">
+<li><strong>Performance gain</strong>: 2x throughput with 2 segments</li>
+</ol>
+<h3 id="step-3-production-parallel-processing">Step 3: Production Parallel Processing</h3>
+<p><strong>Implement robust parallel query system</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> boto3
+<span style="color:#f92672">import</span> concurrent.futures
+<span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> List, Dict, Any
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ParallelQueryProcessor</span>:
+    <span style="color:#66d9ef">def</span> __init__(self, table_name: str):
+        self<span style="color:#f92672">.</span>table_name <span style="color:#f92672">=</span> table_name
+        self<span style="color:#f92672">.</span>dynamodb <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;dynamodb&#39;</span>)
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parallel_scan</span>(self, total_segments: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, filter_expression: str <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Execute parallel scan across multiple segments
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">scan_segment</span>(segment: int) <span style="color:#f92672">-&gt;</span> List[Dict]:
+            params <span style="color:#f92672">=</span> {
+                <span style="color:#e6db74">&#39;TableName&#39;</span>: self<span style="color:#f92672">.</span>table_name,
+                <span style="color:#e6db74">&#39;Segment&#39;</span>: segment,
+                <span style="color:#e6db74">&#39;TotalSegments&#39;</span>: total_segments
+            }
+            
+            <span style="color:#66d9ef">if</span> filter_expression:
+                params[<span style="color:#e6db74">&#39;FilterExpression&#39;</span>] <span style="color:#f92672">=</span> filter_expression
+            
+            response <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>dynamodb<span style="color:#f92672">.</span>scan(<span style="color:#f92672">**</span>params)
+            <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;Items&#39;</span>, [])
+        
+        <span style="color:#75715e"># Execute segments in parallel</span>
+        <span style="color:#66d9ef">with</span> concurrent<span style="color:#f92672">.</span>futures<span style="color:#f92672">.</span>ThreadPoolExecutor(max_workers<span style="color:#f92672">=</span>total_segments) <span style="color:#66d9ef">as</span> executor:
+            futures <span style="color:#f92672">=</span> [
+                executor<span style="color:#f92672">.</span>submit(scan_segment, i) 
+                <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(total_segments)
+            ]
+            
+            results <span style="color:#f92672">=</span> []
+            <span style="color:#66d9ef">for</span> future <span style="color:#f92672">in</span> concurrent<span style="color:#f92672">.</span>futures<span style="color:#f92672">.</span>as_completed(futures):
+                segment_results <span style="color:#f92672">=</span> future<span style="color:#f92672">.</span>result()
+                results<span style="color:#f92672">.</span>extend(segment_results)
+                print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Segment completed: </span><span style="color:#e6db74">{</span>len(segment_results)<span style="color:#e6db74">}</span><span style="color:#e6db74"> items&#34;</span>)
+        
+        <span style="color:#66d9ef">return</span> results
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parallel_query_by_partition</span>(self, partition_keys: List[str]):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Execute parallel queries across different partitions
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">query_partition</span>(pk: str) <span style="color:#f92672">-&gt;</span> List[Dict]:
+            response <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>dynamodb<span style="color:#f92672">.</span>query(
+                TableName<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>table_name,
+                KeyConditionExpression<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;PK = :pk&#39;</span>,
+                ExpressionAttributeValues<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;:pk&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: pk}}
+            )
+            <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;Items&#39;</span>, [])
+        
+        <span style="color:#66d9ef">with</span> concurrent<span style="color:#f92672">.</span>futures<span style="color:#f92672">.</span>ThreadPoolExecutor(max_workers<span style="color:#f92672">=</span>len(partition_keys)) <span style="color:#66d9ef">as</span> executor:
+            futures <span style="color:#f92672">=</span> [
+                executor<span style="color:#f92672">.</span>submit(query_partition, pk) 
+                <span style="color:#66d9ef">for</span> pk <span style="color:#f92672">in</span> partition_keys
+            ]
+            
+            results <span style="color:#f92672">=</span> []
+            <span style="color:#66d9ef">for</span> future <span style="color:#f92672">in</span> concurrent<span style="color:#f92672">.</span>futures<span style="color:#f92672">.</span>as_completed(futures):
+                partition_results <span style="color:#f92672">=</span> future<span style="color:#f92672">.</span>result()
+                results<span style="color:#f92672">.</span>extend(partition_results)
+        
+        <span style="color:#66d9ef">return</span> results
+
+<span style="color:#75715e"># Usage example</span>
+processor <span style="color:#f92672">=</span> ParallelQueryProcessor(<span style="color:#e6db74">&#39;demo-ecommerce-freetier&#39;</span>)
+
+<span style="color:#75715e"># Parallel scan with 4 segments</span>
+items <span style="color:#f92672">=</span> processor<span style="color:#f92672">.</span>parallel_scan(total_segments<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Total items retrieved: </span><span style="color:#e6db74">{</span>len(items)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+
+<span style="color:#75715e"># Parallel queries across partitions</span>
+partitions <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;PRODUCT#batch-laptop-001&#39;</span>, <span style="color:#e6db74">&#39;PRODUCT#batch-mouse-002&#39;</span>]
+items <span style="color:#f92672">=</span> processor<span style="color:#f92672">.</span>parallel_query_by_partition(partitions)
+</code></pre></div><h2 id="exercise-5-index-strategy-optimization">Exercise 5: Index Strategy Optimization</h2>
+<h3 id="step-1-query-pattern-analysis">Step 1: Query Pattern Analysis</h3>
+<p><strong>Analyze and optimize access patterns</strong>:</p>
+<ol>
+<li><strong>Inefficient table scan</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb scan <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --filter-expression <span style="color:#e6db74">&#34;#s = :status&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-names <span style="color:#e6db74">&#39;{&#34;#s&#34;: &#34;status&#34;}&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{&#34;:status&#34;: {&#34;S&#34;: &#34;pending&#34;}}&#39;</span>
+</code></pre></div><ol start="2">
+<li><strong>Performance issues</strong>: Scans entire table (expensive)</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing expensive scan operation</p>
+</div>
+
+<h3 id="step-2-gsi-optimization">Step 2: GSI Optimization</h3>
+<p><strong>Use appropriate GSI for efficient queries</strong>:</p>
+<ol>
+<li><strong>Create status-based GSI</strong> (if not exists):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Query using optimized GSI pattern instead</span>
+aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --index-name GSI2 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key-condition-expression <span style="color:#e6db74">&#34;GSI2PK = :status&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;:status&#34;: {&#34;S&#34;: &#34;STATUS#pending&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><ol start="2">
+<li><strong>Performance improvement</strong>: Direct key access vs full scan</li>
+</ol>
+<h3 id="step-3-sparse-index-patterns">Step 3: Sparse Index Patterns</h3>
+<p><strong>Implement sparse indexes for efficient filtering</strong>:</p>
+<ol>
+<li><strong>Query sparse index</strong> (only items with specific attributes):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --index-name GSI1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key-condition-expression <span style="color:#e6db74">&#34;GSI1PK = :category AND begins_with(GSI1SK, :prefix)&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;:category&#34;: {&#34;S&#34;: &#34;CATEGORY#electronics&#34;},
+</span><span style="color:#e6db74">    &#34;:prefix&#34;: {&#34;S&#34;: &#34;PRODUCT#&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><ol start="2">
+<li><strong>Sparse index benefit</strong>: Only indexed items appear in results</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing efficient GSI query results</p>
+</div>
+
+<h2 id="exercise-6-performance-monitoring-and-optimization">Exercise 6: Performance Monitoring and Optimization</h2>
+<h3 id="step-1-query-performance-metrics">Step 1: Query Performance Metrics</h3>
+<p><strong>Monitor query performance in CloudWatch</strong>:</p>
+<ol>
+<li>
+<p><strong>Key metrics to track</strong>:</p>
+<ul>
+<li><strong>SuccessfulRequestLatency</strong>: Query response time</li>
+<li><strong>ConsumedReadCapacityUnits</strong>: RCU usage per query</li>
+<li><strong>ThrottledRequests</strong>: Capacity exceeded events</li>
+<li><strong>ItemCount</strong>: Number of items processed</li>
+</ul>
+</li>
+<li>
+<p><strong>DynamoDB Console</strong>: Navigate to Metrics tab for performance data</p>
+</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch metrics showing query performance</p>
+</div>
+
+<h3 id="step-2-query-cost-analysis">Step 2: Query Cost Analysis</h3>
+<p><strong>Understand and optimize query costs</strong>:</p>
+<ol>
+<li><strong>RCU consumption analysis</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Compare RCU usage between operations</span>
+aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key-condition-expression <span style="color:#e6db74">&#34;PK = :pk&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --projection-expression <span style="color:#e6db74">&#34;PK, SK&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{&#34;:pk&#34;: {&#34;S&#34;: &#34;PRODUCT#conditional-test&#34;}}&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --return-consumed-capacity TOTAL
+</code></pre></div><ol start="2">
+<li><strong>Optimization strategies</strong>:
+<ul>
+<li><strong>Use projections</strong>: Reduce data transfer</li>
+<li><strong>Efficient key design</strong>: Minimize query scope</li>
+<li><strong>Proper indexing</strong>: Avoid scans</li>
+<li><strong>Batch operations</strong>: Reduce API calls</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-3-production-query-patterns">Step 3: Production Query Patterns</h3>
+<p><strong>Implement enterprise-grade query optimization</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> boto3
+<span style="color:#f92672">import</span> time
+<span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Dict, List, Optional
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OptimizedQueryManager</span>:
+    <span style="color:#66d9ef">def</span> __init__(self, table_name: str):
+        self<span style="color:#f92672">.</span>table_name <span style="color:#f92672">=</span> table_name
+        self<span style="color:#f92672">.</span>dynamodb <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;dynamodb&#39;</span>)
+        self<span style="color:#f92672">.</span>performance_stats <span style="color:#f92672">=</span> {}
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">optimized_query</span>(
+        self, 
+        key_condition: str,
+        projection: Optional[str] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>,
+        filter_expr: Optional[str] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>,
+        index_name: Optional[str] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+    ) <span style="color:#f92672">-&gt;</span> Dict:
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Execute optimized query with performance tracking
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        start_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+        
+        params <span style="color:#f92672">=</span> {
+            <span style="color:#e6db74">&#39;TableName&#39;</span>: self<span style="color:#f92672">.</span>table_name,
+            <span style="color:#e6db74">&#39;KeyConditionExpression&#39;</span>: key_condition,
+            <span style="color:#e6db74">&#39;ReturnConsumedCapacity&#39;</span>: <span style="color:#e6db74">&#39;TOTAL&#39;</span>
+        }
+        
+        <span style="color:#66d9ef">if</span> projection:
+            params[<span style="color:#e6db74">&#39;ProjectionExpression&#39;</span>] <span style="color:#f92672">=</span> projection
+        <span style="color:#66d9ef">if</span> filter_expr:
+            params[<span style="color:#e6db74">&#39;FilterExpression&#39;</span>] <span style="color:#f92672">=</span> filter_expr
+        <span style="color:#66d9ef">if</span> index_name:
+            params[<span style="color:#e6db74">&#39;IndexName&#39;</span>] <span style="color:#f92672">=</span> index_name
+        
+        <span style="color:#66d9ef">try</span>:
+            response <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>dynamodb<span style="color:#f92672">.</span>query(<span style="color:#f92672">**</span>params)
+            
+            <span style="color:#75715e"># Track performance metrics</span>
+            duration <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start_time
+            consumed_rcu <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;ConsumedCapacity&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;CapacityUnits&#39;</span>, <span style="color:#ae81ff">0</span>)
+            item_count <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;Count&#39;</span>, <span style="color:#ae81ff">0</span>)
+            
+            self<span style="color:#f92672">.</span>performance_stats <span style="color:#f92672">=</span> {
+                <span style="color:#e6db74">&#39;duration_ms&#39;</span>: round(duration <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>, <span style="color:#ae81ff">2</span>),
+                <span style="color:#e6db74">&#39;consumed_rcu&#39;</span>: consumed_rcu,
+                <span style="color:#e6db74">&#39;items_returned&#39;</span>: item_count,
+                <span style="color:#e6db74">&#39;efficiency&#39;</span>: round(item_count <span style="color:#f92672">/</span> max(consumed_rcu, <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">2</span>)
+            }
+            
+            <span style="color:#66d9ef">return</span> {
+                <span style="color:#e6db74">&#39;items&#39;</span>: response<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;Items&#39;</span>, []),
+                <span style="color:#e6db74">&#39;performance&#39;</span>: self<span style="color:#f92672">.</span>performance_stats,
+                <span style="color:#e6db74">&#39;last_key&#39;</span>: response<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;LastEvaluatedKey&#39;</span>)
+            }
+            
+        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+            <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#39;error&#39;</span>: str(e), <span style="color:#e6db74">&#39;performance&#39;</span>: <span style="color:#66d9ef">None</span>}
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">compare_query_strategies</span>(self, strategies: List[Dict]) <span style="color:#f92672">-&gt;</span> Dict:
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Compare multiple query strategies for performance
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        results <span style="color:#f92672">=</span> {}
+        
+        <span style="color:#66d9ef">for</span> strategy <span style="color:#f92672">in</span> strategies:
+            name <span style="color:#f92672">=</span> strategy<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#e6db74">&#39;unnamed&#39;</span>)
+            result <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>optimized_query(<span style="color:#f92672">**</span>strategy<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;params&#39;</span>, {}))
+            results[name] <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;performance&#39;</span>)
+        
+        <span style="color:#66d9ef">return</span> results
+
+<span style="color:#75715e"># Usage example</span>
+query_manager <span style="color:#f92672">=</span> OptimizedQueryManager(<span style="color:#e6db74">&#39;demo-ecommerce-freetier&#39;</span>)
+
+<span style="color:#75715e"># Compare different query approaches</span>
+strategies <span style="color:#f92672">=</span> [
+    {
+        <span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#e6db74">&#39;full_scan&#39;</span>,
+        <span style="color:#e6db74">&#39;params&#39;</span>: {
+            <span style="color:#e6db74">&#39;key_condition&#39;</span>: <span style="color:#e6db74">&#39;PK = :pk&#39;</span>,
+        }
+    },
+    {
+        <span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#e6db74">&#39;projected_query&#39;</span>,
+        <span style="color:#e6db74">&#39;params&#39;</span>: {
+            <span style="color:#e6db74">&#39;key_condition&#39;</span>: <span style="color:#e6db74">&#39;PK = :pk&#39;</span>,
+            <span style="color:#e6db74">&#39;projection&#39;</span>: <span style="color:#e6db74">&#39;PK, SK, name, price&#39;</span>
+        }
+    },
+    {
+        <span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#e6db74">&#39;gsi_query&#39;</span>,
+        <span style="color:#e6db74">&#39;params&#39;</span>: {
+            <span style="color:#e6db74">&#39;key_condition&#39;</span>: <span style="color:#e6db74">&#39;GSI1PK = :gsi1pk&#39;</span>,
+            <span style="color:#e6db74">&#39;index_name&#39;</span>: <span style="color:#e6db74">&#39;GSI1&#39;</span>,
+            <span style="color:#e6db74">&#39;projection&#39;</span>: <span style="color:#e6db74">&#39;name, price&#39;</span>
+        }
+    }
+]
+
+performance_comparison <span style="color:#f92672">=</span> query_manager<span style="color:#f92672">.</span>compare_query_strategies(strategies)
+</code></pre></div><h2 id="advanced-query-best-practices">Advanced Query Best Practices</h2>
+<h3 id="optimization-guidelines">Optimization Guidelines</h3>
+<p><strong>Query performance optimization</strong>:</p>
+<ul>
+<li><strong>Use projections</strong>: Fetch only needed attributes (50-80% RCU savings)</li>
+<li><strong>Choose right index</strong>: GSI vs table scan performance difference is 10x+</li>
+<li><strong>Implement pagination</strong>: Handle large result sets efficiently</li>
+<li><strong>Monitor RCU usage</strong>: Track consumption patterns</li>
+</ul>
+<h3 id="cost-efficiency">Cost Efficiency</h3>
+<p><strong>Free Tier optimization strategies</strong>:</p>
+<ul>
+<li><strong>Projection expressions</strong>: Minimize data transfer</li>
+<li><strong>Efficient key design</strong>: Reduce query scope</li>
+<li><strong>Batch related queries</strong>: Group similar operations</li>
+<li><strong>Use sparse indexes</strong>: Index only relevant items</li>
+</ul>
+<h3 id="performance-patterns">Performance Patterns</h3>
+<p><strong>Production-ready query patterns</strong>:</p>
+<h4 id="high-performance-queries">High-Performance Queries</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Efficient GSI query with projection</span>
+QUERY IndexName<span style="color:#f92672">=</span>GSI1 
+WHERE GSI1PK <span style="color:#f92672">=</span> :category 
+PROJECT name, price, stock
+</code></pre></div><h4 id="cost-optimized-queries">Cost-Optimized Queries</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Minimal data transfer</span>
+QUERY WHERE PK <span style="color:#f92672">=</span> :product 
+PROJECT PK, SK, name
+</code></pre></div><h4 id="scalable-pagination">Scalable Pagination</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Consistent page sizes</span>
+QUERY LIMIT <span style="color:#ae81ff">50</span> 
+CONTINUE WITH LastEvaluatedKey
+</code></pre></div>
+<div class="notices success" ><p><strong>Query Optimization Mastery</strong>: You&rsquo;ve mastered advanced query techniques! Your applications can now achieve optimal performance, minimize costs, and scale efficiently.</p>
+</div>
+
+<h2 id="exercise-summary">Exercise Summary</h2>
+<p>You&rsquo;ve mastered advanced query optimization:</p>
+<ul>
+<li>✅ <strong>Projection expressions</strong> for 50-80% RCU reduction</li>
+<li>✅ <strong>Filter expressions</strong> for precise result refinement</li>
+<li>✅ <strong>Pagination patterns</strong> for large dataset handling</li>
+<li>✅ <strong>Parallel processing</strong> for improved throughput</li>
+<li>✅ <strong>Index optimization</strong> for 10x+ performance gains</li>
+<li>✅ <strong>Performance monitoring</strong> for continuous improvement</li>
+</ul>
+<h2 id="next-steps">Next Steps</h2>
+<p>Continue to <a href="../6.4-production-patterns/">6.4 Production Patterns</a> to learn enterprise-grade implementation patterns and best practices for production DynamoDB applications.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/6-advanced-patterns/6.2-conditional-updates/" title="6.2 Conditional Updates"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/6-advanced-patterns/6.4-production-patterns/" title="6.4 Production Patterns" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1755010309"></script>
+    <script src="/js/perfect-scrollbar.min.js?1755010309"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1755010309"></script>
+    <script src="/js/jquery.sticky.js?1755010309"></script>
+    <script src="/js/featherlight.min.js?1755010309"></script>
+    <script src="/js/highlight.pack.js?1755010309"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1755010309"></script>
+    <script src="/js/learn.js?1755010309"></script>
+    <script src="/js/hugo-learn.js?1755010309"></script>
+
+    <link href="/mermaid/mermaid.css?1755010309" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1755010309"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

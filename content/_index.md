@@ -1,46 +1,46 @@
 ---
-title : "Setting up an AWS account"
-date :  "`r Sys.Date()`" 
+title : "DynamoDB Advanced Patterns Workshop"
+date : "2025-08-11"
 weight : 1 
 chapter : false
 ---
 
-# Creating your first AWS account
+# DynamoDB Advanced Patterns Building Multi-Region Architectures with Global Tables and Streams
 
 #### Overview
-In this first lab, you will be creating your new **AWS** account and use Multi-factor Authentication (**MFA**) to improve your account security. Next, you will create an **Administrator Group** and **Admin User** to manage access to resources in your account instead of using the root user. \
-Finally, we will step through account authentication with **AWS Support** in the event you experience authentication problems.
+In this comprehensive workshop, you will be building a **Multi-Region E-commerce Platform** using DynamoDB Advanced Patterns and AWS Free Tier. You will learn **Single Table Design**, implement **Global Tables** for multi-region replication, and build **real-time stream processing** with Lambda. \
+Finally, we will implement comprehensive **monitoring and optimization** strategies while maintaining strict cost control within Free Tier limits.
 
-#### AWS Account
-**An AWS account** is the basic container for all the AWS resources you can create as an AWS customer. By default, each AWS account will have a _root user_. The _root user_ has full access within your AWS account, and root user permissions cannot be limited. When you first create your AWS account, you will be assessing it as the _root user_.
+#### Single Table Design
+**Single Table Design** is a DynamoDB modeling approach where you store multiple entity types in one table using composite keys. This pattern optimizes for performance and cost by reducing the number of requests and leveraging DynamoDB's partition-based architecture. When implemented correctly, it provides sub-millisecond query performance while minimizing capacity consumption.
 
-![Create Account](/images/1/0001.png?featherlight=false&width=90pc)
+![DynamoDB Architecture](/images/1/Architectures.png?featherlight=false&width=90pc)
 
-{{% notice note%}}
-As a best practice, do not use the AWS account _root user_ for any task where it's not required. Instead, create a new IAM user for each person that requires administrator access. Thereafter, the users in the administrators user group should set up the user groups, users, and so on, for the AWS account. All future interaction should be through the AWS account's users and their own keys instead of the root user. However, to perform some account and service management tasks, you must log in using the root user credentials.
-{{% /notice%}}
+{{% notice note %}}
+As a best practice, design your access patterns first before creating your table structure. Single Table Design requires careful planning of partition keys (PK) and sort keys (SK) to support all your query patterns efficiently. This workshop uses a proven e-commerce data model that supports 6 optimized access patterns while staying within Free Tier limits.
+{{% /notice %}}
 
-#### Multi-Factor Authentication (MFA)
-**MFA** adds extra security because it requires users to provide unique authentication from an AWS supported MFA mechanism in addition to their regular sign-in credentials when they access AWS websites or services.
+#### Global Tables Multi-Region
+**Global Tables** provide fully managed multi-region, multi-active database replication. Data written to any region is automatically replicated to all other regions within seconds. This enables you to build globally distributed applications with local read and write access, improving performance and providing disaster recovery capabilities.
 
-#### IAM User Group 
-An **IAM user group** is a collection of IAM users. User groups let you specify permissions for multiple users, which can make it easier to manage the permissions for those users. Any user in that user group automatically has the permissions that are assigned to the user group. 
+#### DynamoDB Streams & Lambda
+**DynamoDB Streams** capture data modification events in your table in near real-time. When combined with **AWS Lambda**, you can build event-driven architectures that automatically process changes, update derived data, send notifications, or trigger business workflows. This pattern is essential for building reactive, scalable applications.
 
-#### IAM User
-An **IAM user** is an entity that you create in AWS to represent the person or application that uses it to interact with AWS. A user in AWS consists of a name and credentials. \
-Please note that an IAM user with administrator permissions is not the same thing as the AWS account root user.
+#### Global Secondary Indexes (GSI)
+**Global Secondary Indexes** allow you to query your data using different access patterns than your main table. GSIs have their own partition and sort keys, enabling efficient queries across different dimensions of your data. Proper GSI design is crucial for performance optimization and cost control.
 
+#### Monitoring & Cost Optimization
+**CloudWatch monitoring** provides real-time visibility into your DynamoDB performance, capacity utilization, and costs. Combined with **billing alerts** and **Free Tier tracking**, you can ensure optimal performance while maintaining strict cost control. This workshop implements comprehensive monitoring dashboards and automated alerting.
 
-#### AWS Support
-AWS Basic Support offers all AWS customers access to our Resource Center, Service Health Dashboard, Product FAQs, Discussion Forums, and Support for Health Checks – at no additional charge. Customers who desire a deeper level of support can subscribe to AWS Support at the Developer, Business, or Enterprise level.
-
-Customers who choose AWS Support gain one-on-one, fast-response support from AWS engineers. The service helps customers use AWS's products and features. With pay-by-the-month pricing and unlimited support cases, customers are freed from long-term commitments. Customers with operational issues or technical questions can contact a team of support engineers and receive predictable response times and personalized support.
-
+#### Free Tier Compliance
+**AWS Free Tier** provides generous limits for learning and experimentation. This workshop is designed to use only 60% of available Free Tier resources, ensuring zero cost while providing enterprise-grade learning experience. All participants will implement production-ready patterns without incurring any charges.
 
 #### Main Content
 
-1. [Creating a new AWS Account](1-create-new-aws-account/)
-2. [Setting up MFA for the AWS Account root user](2-MFA-Setup-For-AWS-User-(root))
-3. [Creating an Administrator Accounts and Groups](3-create-admin-user-and-group/)
-4. [Getting support for Account Authentication](4-verify-new-account/)
-<!-- need to remove parenthesis for path in Hugo 0.88.1 for Windows-->
+1. [Setup & Infrastructure Deployment](1-setup-infrastructure/)
+2. [Single Table Design Implementation](2-single-table-design/)
+3. [Global Tables Multi-Region Setup](3-global-tables-setup/)
+4. [DynamoDB Streams & Lambda Processing](4-streams-lambda-processing/)
+5. [Monitoring & Performance Optimization](5-monitoring-optimization/)
+6. [Advanced Patterns & Best Practices](6-advanced-patterns/)
+7. [Cleanup & Resource Management](7-cleanup-resources/)

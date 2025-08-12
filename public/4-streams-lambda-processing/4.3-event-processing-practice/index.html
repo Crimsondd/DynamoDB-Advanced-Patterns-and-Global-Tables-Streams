@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="description" content="">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>4.3 Event Processing Practice :: Create a new AWS account.</title>
+
+    
+    <link href="/css/nucleus.css?1755010308" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1755010308" rel="stylesheet">
+    <link href="/css/hybrid.css?1755010308" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1755010308" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1755010308" rel="stylesheet">
+    <link href="/css/auto-complete.css?1755010308" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1755010308" rel="stylesheet">
+    <link href="/css/theme.css?1755010308" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1755010308" rel="stylesheet">
+    
+    <link href="/css/theme-workshop.css?1755010308" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1755010308"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/4-streams-lambda-processing/4.3-event-processing-practice/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1755010308"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1755010308"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1755010308"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-setup-infrastructure/" title="1. Setup &amp; Infrastructure Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-setup-infrastructure/">
+           <b> 1. </b> 1. Setup &amp; Infrastructure Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-setup-infrastructure/1.1-aws-freetier-overview/" title="1.1 AWS Free Tier Overview" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-setup-infrastructure/1.1-aws-freetier-overview/">
+           <b> 1.1 </b> 1.1 AWS Free Tier Overview
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-setup-infrastructure/1.2-architecture-overview/" title="1.2 Architecture Overview" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-setup-infrastructure/1.2-architecture-overview/">
+           <b> 1.2 </b> 1.2 Architecture Overview
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-setup-infrastructure/1.3-cloudformation-deployment/" title="1.3 CloudFormation Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-setup-infrastructure/1.3-cloudformation-deployment/">
+           <b> 1.3 </b> 1.3 CloudFormation Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-setup-infrastructure/1.4-infrastructure-verification/" title="1.4 Infrastructure Verification" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-setup-infrastructure/1.4-infrastructure-verification/">
+           <b> 1.4 </b> 1.4 Infrastructure Verification
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-single-table-design/" title="2. Single Table Design Implementation" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-single-table-design/">
+           <b> 2. </b> 2. Single Table Design Implementation
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-single-table-design/2.1-design-principles/" title="2.1 Design Principles" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-single-table-design/2.1-design-principles/">
+           <b> 2.1 </b> 2.1 Design Principles
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-single-table-design/2.2-console-navigation/" title="2.2 Console Navigation" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-single-table-design/2.2-console-navigation/">
+           <b> 2.2 </b> 2.2 Console Navigation
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-single-table-design/2.3-create-data-items/" title="2.3 Create Data Items" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-single-table-design/2.3-create-data-items/">
+           <b> 2.3 </b> 2.3 Create Data Items
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-single-table-design/2.4-query-patterns/" title="2.4 Query Patterns" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-single-table-design/2.4-query-patterns/">
+           <b> 2.4 </b> 2.4 Query Patterns
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-global-tables-setup/" title="3. Global Tables Multi-Region Setup" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-global-tables-setup/">
+           <b> 3. </b> 3. Global Tables Multi-Region Setup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-global-tables-setup/3.1-global-tables-overview/" title="3.1 Global Tables Overview" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-global-tables-setup/3.1-global-tables-overview/">
+           <b> 3.1 </b> 3.1 Global Tables Overview
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-global-tables-setup/3.2-verify-global-setup/" title="3.2 Verify Global Setup" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-global-tables-setup/3.2-verify-global-setup/">
+           <b> 3.2 </b> 3.2 Verify Global Setup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-global-tables-setup/3.3-multi-region-operations/" title="3.3 Multi-Region Operations" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-global-tables-setup/3.3-multi-region-operations/">
+           <b> 3.3 </b> 3.3 Multi-Region Operations
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-global-tables-setup/3.4-replication-monitoring/" title="3.4 Replication Monitoring" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-global-tables-setup/3.4-replication-monitoring/">
+           <b> 3.4 </b> 3.4 Replication Monitoring
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-streams-lambda-processing/" title="4. Streams &amp; Lambda Processing" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/4-streams-lambda-processing/">
+           <b> 4. </b> 4. Streams &amp; Lambda Processing
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-streams-lambda-processing/4.1-stream-configuration/" title="4.1 Stream Configuration" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-streams-lambda-processing/4.1-stream-configuration/">
+           <b> 4.1 </b> 4.1 Stream Configuration
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-streams-lambda-processing/4.2-lambda-function-setup/" title="4.2 Lambda Function Setup" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-streams-lambda-processing/4.2-lambda-function-setup/">
+           <b> 4.2 </b> 4.2 Lambda Function Setup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-streams-lambda-processing/4.3-event-processing-practice/" title="4.3 Event Processing Practice" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/4-streams-lambda-processing/4.3-event-processing-practice/">
+           <b> 4.3 </b> 4.3 Event Processing Practice
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-streams-lambda-processing/4.4-monitoring-debugging/" title="4.4 Monitoring &amp; Debugging" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-streams-lambda-processing/4.4-monitoring-debugging/">
+           <b> 4.4 </b> 4.4 Monitoring &amp; Debugging
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-monitoring-optimization/" title="5. Monitoring &amp; Optimization" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-monitoring-optimization/">
+           <b> 5. </b> 5. Monitoring &amp; Optimization
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Dashboards" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-monitoring-optimization/5.1-cloudwatch-dashboards/">
+           <b> 5.1 </b> 5.1 CloudWatch Dashboards
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-monitoring-optimization/5.2-alerting-notifications/" title="5.2 Alerting &amp; Notifications" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-monitoring-optimization/5.2-alerting-notifications/">
+           <b> 5.2 </b> 5.2 Alerting &amp; Notifications
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-monitoring-optimization/5.3-cost-analysis-optimization/" title="5.3 Cost Analysis &amp; Optimization" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-monitoring-optimization/5.3-cost-analysis-optimization/">
+           <b> 5.3 </b> 5.3 Cost Analysis &amp; Optimization
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-monitoring-optimization/5.4-performance-tuning/" title="5.4 Performance Tuning" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-monitoring-optimization/5.4-performance-tuning/">
+           <b> 5.4 </b> 5.4 Performance Tuning
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-advanced-patterns/" title="6. Advanced Patterns" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-advanced-patterns/">
+           <b> 6. </b> 6. Advanced Patterns
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-advanced-patterns/6.1-batch-operations/" title="6.1 Batch Operations" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-advanced-patterns/6.1-batch-operations/">
+           <b> 6.1 </b> 6.1 Batch Operations
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-advanced-patterns/6.2-conditional-updates/" title="6.2 Conditional Updates" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-advanced-patterns/6.2-conditional-updates/">
+           <b> 6.2 </b> 6.2 Conditional Updates
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-advanced-patterns/6.3-advanced-query-techniques/" title="6.3 Advanced Query Techniques" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-advanced-patterns/6.3-advanced-query-techniques/">
+           <b> 6.3 </b> 6.3 Advanced Query Techniques
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-advanced-patterns/6.4-production-patterns/" title="6.4 Production Patterns" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-advanced-patterns/6.4-production-patterns/">
+           <b> 6.4 </b> 6.4 Production Patterns
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/7-cleanup-resources/" title="7. Cleanup Resources" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/7-cleanup-resources/">
+           <b> 7. </b> 7. Cleanup Resources
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://aws.amazon.com/blogs"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="http://localhost:1313/4-streams-lambda-processing/4.3-event-processing-practice/" selected>English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="http://localhost:1313/vi/4-streams-lambda-processing/4.3-event-processing-practice/">Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830891&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>26-11-2023</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Gia Hưng</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>DynamoDB Advanced Patterns Workshop</a> > <a href='/4-streams-lambda-processing/'>4. Streams & Lambda Processing</a> > 4.3 Event Processing Practice
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#hands-on-stream-processing">Hands-On Stream Processing</a>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#exercise-setup">Exercise Setup</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-1-insert-event-processing">Exercise 1: INSERT Event Processing</a>
+      <ul>
+        <li><a href="#step-1-setup-monitoring-dashboard">Step 1: Setup Monitoring Dashboard</a></li>
+        <li><a href="#step-2-create-user-profile">Step 2: Create User Profile</a></li>
+        <li><a href="#step-3-monitor-insert-processing">Step 3: Monitor INSERT Processing</a></li>
+        <li><a href="#step-4-create-product-item">Step 4: Create Product Item</a></li>
+        <li><a href="#step-5-create-order-item">Step 5: Create Order Item</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-2-modify-event-processing">Exercise 2: MODIFY Event Processing</a>
+      <ul>
+        <li><a href="#step-1-update-order-status">Step 1: Update Order Status</a></li>
+        <li><a href="#step-2-monitor-modify-processing">Step 2: Monitor MODIFY Processing</a></li>
+        <li><a href="#step-3-update-product-price">Step 3: Update Product Price</a></li>
+        <li><a href="#step-4-multiple-field-updates">Step 4: Multiple Field Updates</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-3-remove-event-processing">Exercise 3: REMOVE Event Processing</a>
+      <ul>
+        <li><a href="#step-1-delete-test-product">Step 1: Delete Test Product</a></li>
+        <li><a href="#step-2-monitor-remove-processing">Step 2: Monitor REMOVE Processing</a></li>
+        <li><a href="#step-3-cleanup-remaining-items">Step 3: Cleanup Remaining Items</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-4-batch-processing-analysis">Exercise 4: Batch Processing Analysis</a>
+      <ul>
+        <li><a href="#step-1-create-multiple-items-rapidly">Step 1: Create Multiple Items Rapidly</a></li>
+        <li><a href="#step-2-analyze-batch-processing">Step 2: Analyze Batch Processing</a></li>
+        <li><a href="#step-3-measure-processing-time">Step 3: Measure Processing Time</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-5-real-world-scenarios">Exercise 5: Real-World Scenarios</a>
+      <ul>
+        <li><a href="#scenario-1-e-commerce-order-flow">Scenario 1: E-commerce Order Flow</a></li>
+        <li><a href="#scenario-2-inventory-management">Scenario 2: Inventory Management</a></li>
+        <li><a href="#scenario-3-user-activity-tracking">Scenario 3: User Activity Tracking</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-6-error-handling-testing">Exercise 6: Error Handling Testing</a>
+      <ul>
+        <li><a href="#step-1-test-large-item-processing">Step 1: Test Large Item Processing</a></li>
+        <li><a href="#step-2-rapid-fire-testing">Step 2: Rapid Fire Testing</a></li>
+        <li><a href="#step-3-recovery-testing">Step 3: Recovery Testing</a></li>
+      </ul>
+    </li>
+    <li><a href="#performance-metrics-analysis">Performance Metrics Analysis</a>
+      <ul>
+        <li><a href="#key-metrics-to-track">Key Metrics to Track</a></li>
+        <li><a href="#optimization-insights">Optimization Insights</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-summary">Exercise Summary</a>
+      <ul>
+        <li><a href="#business-logic-patterns-demonstrated">Business Logic Patterns Demonstrated</a></li>
+      </ul>
+    </li>
+    <li><a href="#next-steps">Next Steps</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              4.3 Event Processing Practice
+            </h1>
+          
+
+        
+
+
+
+	<h2 id="hands-on-stream-processing">Hands-On Stream Processing</h2>
+<p>🎯 <strong>Practice real-time event processing with various data changes and business scenarios</strong></p>
+<h3 id="overview">Overview</h3>
+<p>Put your stream processing setup to work with realistic scenarios. You&rsquo;ll create, modify, and delete items while monitoring how Lambda processes each event in real-time.</p>
+<h3 id="exercise-setup">Exercise Setup</h3>
+<p><strong>Preparation checklist</strong>:</p>
+<ul>
+<li>✅ DynamoDB Streams enabled</li>
+<li>✅ Lambda function deployed</li>
+<li>✅ Event source mapping active</li>
+<li>✅ CloudWatch logs accessible</li>
+</ul>
+<h2 id="exercise-1-insert-event-processing">Exercise 1: INSERT Event Processing</h2>
+<h3 id="step-1-setup-monitoring-dashboard">Step 1: Setup Monitoring Dashboard</h3>
+<p><strong>Open multiple browser tabs</strong>:</p>
+<ol>
+<li><strong>Tab 1</strong>: DynamoDB Console (Items view)</li>
+<li><strong>Tab 2</strong>: Lambda Console (Monitor tab)</li>
+<li><strong>Tab 3</strong>: CloudWatch Logs (your function&rsquo;s log group)</li>
+<li><strong>Tab 4</strong>: CloudWatch Metrics (for real-time metrics)</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing browser tabs setup for monitoring</p>
+</div>
+
+<h3 id="step-2-create-user-profile">Step 2: Create User Profile</h3>
+<p><strong>Test user creation event</strong>:</p>
+<ol>
+<li><strong>DynamoDB tab</strong>: Navigate to Items</li>
+<li><strong>Create item</strong>: Click &ldquo;Create item&rdquo;</li>
+<li><strong>User data</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;PK&#34;</span>: <span style="color:#e6db74">&#34;USER#stream-user-001&#34;</span>,
+  <span style="color:#f92672">&#34;SK&#34;</span>: <span style="color:#e6db74">&#34;PROFILE&#34;</span>,
+  <span style="color:#f92672">&#34;GSI1PK&#34;</span>: <span style="color:#e6db74">&#34;USER#john.stream@example.com&#34;</span>,
+  <span style="color:#f92672">&#34;GSI1SK&#34;</span>: <span style="color:#e6db74">&#34;PROFILE&#34;</span>,
+  <span style="color:#f92672">&#34;user_id&#34;</span>: <span style="color:#e6db74">&#34;stream-user-001&#34;</span>,
+  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Stream&#34;</span>,
+  <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;john.stream@example.com&#34;</span>, 
+  <span style="color:#f92672">&#34;registration_date&#34;</span>: <span style="color:#e6db74">&#34;2025-08-11T16:45:00Z&#34;</span>,
+  <span style="color:#f92672">&#34;account_type&#34;</span>: <span style="color:#e6db74">&#34;standard&#34;</span>,
+  <span style="color:#f92672">&#34;stream_test&#34;</span>: <span style="color:#66d9ef">true</span>
+}
+</code></pre></div><ol start="4">
+<li><strong>Create</strong>: Save the item</li>
+<li><strong>Note time</strong>: Record when you clicked create</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of user creation in DynamoDB with stream test data</p>
+</div>
+
+<h3 id="step-3-monitor-insert-processing">Step 3: Monitor INSERT Processing</h3>
+<p><strong>Check Lambda execution</strong>:</p>
+<ol>
+<li><strong>Lambda tab</strong>: Refresh Monitor tab</li>
+<li><strong>Invocations</strong>: Should increase by 1</li>
+<li><strong>Duration</strong>: Note processing time</li>
+<li><strong>Success rate</strong>: Should be 100%</li>
+</ol>
+<p><strong>Check processing logs</strong>:</p>
+<ol>
+<li><strong>CloudWatch Logs tab</strong>: Refresh log stream</li>
+<li><strong>Look for</strong>: &ldquo;Processing INSERT for item: USER#stream-user-001#PROFILE&rdquo;</li>
+<li><strong>Business logic</strong>: &ldquo;New user created - could send welcome email&rdquo;</li>
+<li><strong>Success message</strong>: &ldquo;Successfully processed 1 records&rdquo;</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch logs showing INSERT event processing</p>
+</div>
+
+<h3 id="step-4-create-product-item">Step 4: Create Product Item</h3>
+<p><strong>Test product creation</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;PK&#34;</span>: <span style="color:#e6db74">&#34;PRODUCT#stream-prod-001&#34;</span>,
+  <span style="color:#f92672">&#34;SK&#34;</span>: <span style="color:#e6db74">&#34;DETAILS&#34;</span>,
+  <span style="color:#f92672">&#34;GSI1PK&#34;</span>: <span style="color:#e6db74">&#34;CATEGORY#electronics&#34;</span>,
+  <span style="color:#f92672">&#34;GSI1SK&#34;</span>: <span style="color:#e6db74">&#34;PRODUCT#stream-prod-001&#34;</span>,
+  <span style="color:#f92672">&#34;GSI2PK&#34;</span>: <span style="color:#e6db74">&#34;PRICE#100-500&#34;</span>,
+  <span style="color:#f92672">&#34;GSI2SK&#34;</span>: <span style="color:#e6db74">&#34;PRODUCT#stream-prod-001&#34;</span>,
+  <span style="color:#f92672">&#34;product_id&#34;</span>: <span style="color:#e6db74">&#34;stream-prod-001&#34;</span>,
+  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Stream Test Smartphone&#34;</span>,
+  <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Test product for stream processing&#34;</span>,
+  <span style="color:#f92672">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;electronics&#34;</span>,
+  <span style="color:#f92672">&#34;price&#34;</span>: <span style="color:#ae81ff">299</span>,
+  <span style="color:#f92672">&#34;stock&#34;</span>: <span style="color:#ae81ff">50</span>,
+  <span style="color:#f92672">&#34;created_date&#34;</span>: <span style="color:#e6db74">&#34;2025-08-11T16:50:00Z&#34;</span>,
+  <span style="color:#f92672">&#34;stream_test&#34;</span>: <span style="color:#66d9ef">true</span>
+}
+</code></pre></div><p><strong>Expected log output</strong>: &ldquo;New product created - could update search index&rdquo;</p>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of product creation and corresponding log entry</p>
+</div>
+
+<h3 id="step-5-create-order-item">Step 5: Create Order Item</h3>
+<p><strong>Test order creation</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;PK&#34;</span>: <span style="color:#e6db74">&#34;USER#stream-user-001&#34;</span>,
+  <span style="color:#f92672">&#34;SK&#34;</span>: <span style="color:#e6db74">&#34;ORDER#stream-order-001&#34;</span>,
+  <span style="color:#f92672">&#34;GSI1PK&#34;</span>: <span style="color:#e6db74">&#34;ORDER#stream-order-001&#34;</span>,
+  <span style="color:#f92672">&#34;GSI1SK&#34;</span>: <span style="color:#e6db74">&#34;DETAILS&#34;</span>,
+  <span style="color:#f92672">&#34;GSI2PK&#34;</span>: <span style="color:#e6db74">&#34;STATUS#pending&#34;</span>,
+  <span style="color:#f92672">&#34;GSI2SK&#34;</span>: <span style="color:#e6db74">&#34;ORDER#stream-order-001&#34;</span>,
+  <span style="color:#f92672">&#34;order_id&#34;</span>: <span style="color:#e6db74">&#34;stream-order-001&#34;</span>,
+  <span style="color:#f92672">&#34;user_id&#34;</span>: <span style="color:#e6db74">&#34;stream-user-001&#34;</span>,
+  <span style="color:#f92672">&#34;product_id&#34;</span>: <span style="color:#e6db74">&#34;stream-prod-001&#34;</span>,
+  <span style="color:#f92672">&#34;quantity&#34;</span>: <span style="color:#ae81ff">1</span>,
+  <span style="color:#f92672">&#34;total_amount&#34;</span>: <span style="color:#ae81ff">299</span>,
+  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;pending&#34;</span>,
+  <span style="color:#f92672">&#34;order_date&#34;</span>: <span style="color:#e6db74">&#34;2025-08-11T16:55:00Z&#34;</span>,
+  <span style="color:#f92672">&#34;stream_test&#34;</span>: <span style="color:#66d9ef">true</span>
+}
+</code></pre></div><p><strong>Expected log output</strong>: &ldquo;New order created - could trigger fulfillment&rdquo;</p>
+<h2 id="exercise-2-modify-event-processing">Exercise 2: MODIFY Event Processing</h2>
+<h3 id="step-1-update-order-status">Step 1: Update Order Status</h3>
+<p><strong>Test status change processing</strong>:</p>
+<ol>
+<li><strong>Find order</strong>: Query for <code>ORDER#stream-order-001</code></li>
+<li><strong>Edit item</strong>: Click &ldquo;Edit&rdquo; button</li>
+<li><strong>Update status</strong>: Change <code>status</code> from &ldquo;pending&rdquo; to &ldquo;processing&rdquo;</li>
+<li><strong>Add timestamp</strong>: Update or add <code>last_modified</code> field</li>
+<li><strong>Save changes</strong>: Click &ldquo;Save&rdquo;</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of order status update in DynamoDB</p>
+</div>
+
+<h3 id="step-2-monitor-modify-processing">Step 2: Monitor MODIFY Processing</h3>
+<p><strong>Check logs for MODIFY event</strong>:</p>
+<ol>
+<li><strong>CloudWatch Logs</strong>: Look for new entries</li>
+<li><strong>Event type</strong>: &ldquo;Processing MODIFY event&rdquo;</li>
+<li><strong>Status change</strong>: &ldquo;Status changed from pending to processing&rdquo;</li>
+<li><strong>Business logic</strong>: Could trigger notifications</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch logs showing MODIFY event with status change detection</p>
+</div>
+
+<h3 id="step-3-update-product-price">Step 3: Update Product Price</h3>
+<p><strong>Test price change detection</strong>:</p>
+<ol>
+<li><strong>Find product</strong>: <code>PRODUCT#stream-prod-001</code></li>
+<li><strong>Edit price</strong>: Change from 299 to 279</li>
+<li><strong>Save changes</strong>: Update the item</li>
+<li><strong>Check logs</strong>: &ldquo;Price changed from 299 to 279&rdquo;</li>
+</ol>
+<h3 id="step-4-multiple-field-updates">Step 4: Multiple Field Updates</h3>
+<p><strong>Test complex modifications</strong>:</p>
+<ol>
+<li><strong>Edit user profile</strong>: Update multiple fields:
+<ul>
+<li><code>name</code>: &ldquo;John Stream Updated&rdquo;</li>
+<li><code>last_login</code>: &ldquo;2025-08-11T17:00:00Z&rdquo;</li>
+<li><code>login_count</code>: 5</li>
+</ul>
+</li>
+<li><strong>Save changes</strong>: Apply updates</li>
+<li><strong>Monitor logs</strong>: Check processing details</li>
+</ol>
+<h2 id="exercise-3-remove-event-processing">Exercise 3: REMOVE Event Processing</h2>
+<h3 id="step-1-delete-test-product">Step 1: Delete Test Product</h3>
+<p><strong>Test deletion processing</strong>:</p>
+<ol>
+<li><strong>Find product</strong>: <code>PRODUCT#stream-prod-001</code></li>
+<li><strong>Delete item</strong>: Click &ldquo;Delete&rdquo; button</li>
+<li><strong>Confirm deletion</strong>: Click &ldquo;Delete&rdquo; in confirmation dialog</li>
+<li><strong>Note time</strong>: Record deletion time</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of item deletion confirmation dialog</p>
+</div>
+
+<h3 id="step-2-monitor-remove-processing">Step 2: Monitor REMOVE Processing</h3>
+<p><strong>Check deletion logs</strong>:</p>
+<ol>
+<li><strong>CloudWatch Logs</strong>: Look for REMOVE event</li>
+<li><strong>Event type</strong>: &ldquo;Processing REMOVE event&rdquo;</li>
+<li><strong>Business logic</strong>: &ldquo;Product deleted - could remove from search&rdquo;</li>
+<li><strong>Old image</strong>: Shows deleted item data</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch logs showing REMOVE event processing</p>
+</div>
+
+<h3 id="step-3-cleanup-remaining-items">Step 3: Cleanup Remaining Items</h3>
+<p><strong>Delete test items</strong>:</p>
+<ol>
+<li><strong>Delete order</strong>: <code>ORDER#stream-order-001</code></li>
+<li><strong>Delete user</strong>: <code>USER#stream-user-001</code></li>
+<li><strong>Monitor each</strong>: Check logs for each deletion</li>
+<li><strong>Verify processing</strong>: All events processed successfully</li>
+</ol>
+<h2 id="exercise-4-batch-processing-analysis">Exercise 4: Batch Processing Analysis</h2>
+<h3 id="step-1-create-multiple-items-rapidly">Step 1: Create Multiple Items Rapidly</h3>
+<p><strong>Test batch processing</strong>:</p>
+<ol>
+<li><strong>Create 5 items quickly</strong> (within 30 seconds):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#75715e">// Item 1
+</span><span style="color:#75715e"></span>{
+  <span style="color:#f92672">&#34;PK&#34;</span>: <span style="color:#e6db74">&#34;BATCH#test-001&#34;</span>,
+  <span style="color:#f92672">&#34;SK&#34;</span>: <span style="color:#e6db74">&#34;DATA&#34;</span>,
+  <span style="color:#f92672">&#34;test_type&#34;</span>: <span style="color:#e6db74">&#34;batch_processing&#34;</span>,
+  <span style="color:#f92672">&#34;created_at&#34;</span>: <span style="color:#e6db74">&#34;2025-08-11T17:10:00Z&#34;</span>
+}
+
+<span style="color:#75715e">// Item 2
+</span><span style="color:#75715e"></span>{
+  <span style="color:#f92672">&#34;PK&#34;</span>: <span style="color:#e6db74">&#34;BATCH#test-002&#34;</span>, 
+  <span style="color:#f92672">&#34;SK&#34;</span>: <span style="color:#e6db74">&#34;DATA&#34;</span>,
+  <span style="color:#f92672">&#34;test_type&#34;</span>: <span style="color:#e6db74">&#34;batch_processing&#34;</span>,
+  <span style="color:#f92672">&#34;created_at&#34;</span>: <span style="color:#e6db74">&#34;2025-08-11T17:10:15Z&#34;</span>
+}
+
+<span style="color:#75715e">// Continue with test-003, test-004, test-005...
+</span></code></pre></div><ol start="2">
+<li><strong>Create rapidly</strong>: Submit each within seconds of each other</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing rapid item creation for batch testing</p>
+</div>
+
+<h3 id="step-2-analyze-batch-processing">Step 2: Analyze Batch Processing</h3>
+<p><strong>Check Lambda behavior</strong>:</p>
+<ol>
+<li><strong>Monitor tab</strong>: Check invocation count</li>
+<li><strong>Fewer invocations</strong>: Should be less than 5 (batching occurred)</li>
+<li><strong>CloudWatch Logs</strong>: Look for entries like &ldquo;Successfully processed 3 records&rdquo;</li>
+<li><strong>Batch efficiency</strong>: Multiple records per invocation</li>
+</ol>
+<h3 id="step-3-measure-processing-time">Step 3: Measure Processing Time</h3>
+<p><strong>Performance analysis</strong>:</p>
+<ol>
+<li><strong>Duration metrics</strong>: Average processing time per batch</li>
+<li><strong>Throughput</strong>: Records processed per second</li>
+<li><strong>Cost efficiency</strong>: Fewer invocations = lower cost</li>
+<li><strong>Latency</strong>: Time from change to processing</li>
+</ol>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Lambda metrics showing batch processing efficiency</p>
+</div>
+
+<h2 id="exercise-5-real-world-scenarios">Exercise 5: Real-World Scenarios</h2>
+<h3 id="scenario-1-e-commerce-order-flow">Scenario 1: E-commerce Order Flow</h3>
+<p><strong>Simulate complete order lifecycle</strong>:</p>
+<ol>
+<li><strong>User signup</strong>: Create new user profile</li>
+<li><strong>Product browsing</strong>: Create product views (optional)</li>
+<li><strong>Add to cart</strong>: Create cart items</li>
+<li><strong>Place order</strong>: Create order with &ldquo;pending&rdquo; status</li>
+<li><strong>Payment</strong>: Update order to &ldquo;paid&rdquo;</li>
+<li><strong>Fulfillment</strong>: Update to &ldquo;processing&rdquo; → &ldquo;shipped&rdquo;</li>
+<li><strong>Delivery</strong>: Update to &ldquo;delivered&rdquo;</li>
+</ol>
+<p><strong>Monitor each step</strong>: Check logs for appropriate business logic triggers</p>
+<h3 id="scenario-2-inventory-management">Scenario 2: Inventory Management</h3>
+<p><strong>Test inventory updates</strong>:</p>
+<ol>
+<li><strong>Create product</strong>: With initial stock level</li>
+<li><strong>Sale occurs</strong>: Decrease stock by purchase quantity</li>
+<li><strong>Restock</strong>: Increase stock when inventory arrives</li>
+<li><strong>Low stock</strong>: Monitor when stock falls below threshold</li>
+<li><strong>Out of stock</strong>: Handle zero inventory scenarios</li>
+</ol>
+<h3 id="scenario-3-user-activity-tracking">Scenario 3: User Activity Tracking</h3>
+<p><strong>Profile management scenario</strong>:</p>
+<ol>
+<li><strong>Registration</strong>: New user creation</li>
+<li><strong>Profile updates</strong>: Name, email, preferences changes</li>
+<li><strong>Activity logging</strong>: Login events, page views</li>
+<li><strong>Account upgrades</strong>: Change account type</li>
+<li><strong>Account deletion</strong>: Remove user data</li>
+</ol>
+<h2 id="exercise-6-error-handling-testing">Exercise 6: Error Handling Testing</h2>
+<h3 id="step-1-test-large-item-processing">Step 1: Test Large Item Processing</h3>
+<p><strong>Create oversized item</strong> (careful with limits):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;PK&#34;</span>: <span style="color:#e6db74">&#34;LARGE#test-item&#34;</span>,
+  <span style="color:#f92672">&#34;SK&#34;</span>: <span style="color:#e6db74">&#34;DATA&#34;</span>,
+  <span style="color:#f92672">&#34;large_data&#34;</span>: <span style="color:#e6db74">&#34;[Create a string approaching 400KB limit]&#34;</span>,
+  <span style="color:#f92672">&#34;test_type&#34;</span>: <span style="color:#e6db74">&#34;size_testing&#34;</span>
+}
+</code></pre></div><p><strong>Monitor</strong>: Check if processing handles large payloads appropriately</p>
+<h3 id="step-2-rapid-fire-testing">Step 2: Rapid Fire Testing</h3>
+<p><strong>Stress test scenario</strong>:</p>
+<ol>
+<li><strong>Create 20 items</strong>: As fast as possible</li>
+<li><strong>Monitor throttling</strong>: Check for any rate limiting</li>
+<li><strong>Processing lag</strong>: Measure iterator age</li>
+<li><strong>Error rates</strong>: Ensure no processing failures</li>
+</ol>
+<h3 id="step-3-recovery-testing">Step 3: Recovery Testing</h3>
+<p><strong>Test retry behavior</strong>:</p>
+<ol>
+<li><strong>Simulate errors</strong>: (Advanced) Modify Lambda to fail temporarily</li>
+<li><strong>Check retries</strong>: Verify automatic retry logic</li>
+<li><strong>Dead letter queue</strong>: Monitor failed messages (if configured)</li>
+<li><strong>Recovery</strong>: Ensure processing resumes normally</li>
+</ol>
+<h2 id="performance-metrics-analysis">Performance Metrics Analysis</h2>
+<h3 id="key-metrics-to-track">Key Metrics to Track</h3>
+<p><strong>Lambda Function Metrics</strong>:</p>
+<ul>
+<li><strong>Invocations</strong>: Total function calls</li>
+<li><strong>Duration</strong>: Average execution time (target &lt; 1 second)</li>
+<li><strong>Errors</strong>: Should remain at 0</li>
+<li><strong>Throttles</strong>: Should be 0 for Free Tier usage</li>
+</ul>
+<p><strong>DynamoDB Stream Metrics</strong>:</p>
+<ul>
+<li><strong>IncomingRecords</strong>: Rate of changes captured</li>
+<li><strong>IteratorAge</strong>: Processing delay (target &lt; 1 second)</li>
+<li><strong>ReadThrottledEvents</strong>: Should be 0</li>
+</ul>
+<h3 id="optimization-insights">Optimization Insights</h3>
+<p><strong>Processing efficiency</strong>:</p>
+<ul>
+<li><strong>Batch size impact</strong>: Larger batches = fewer invocations</li>
+<li><strong>Memory usage</strong>: Monitor to optimize allocation</li>
+<li><strong>Cold starts</strong>: First invocation may be slower</li>
+<li><strong>Consistent performance</strong>: Subsequent calls should be fast</li>
+</ul>
+
+<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of comprehensive metrics dashboard showing all key performance indicators</p>
+</div>
+
+<h2 id="exercise-summary">Exercise Summary</h2>
+<p>Through these exercises, you&rsquo;ve experienced:</p>
+<ul>
+<li>✅ <strong>INSERT event processing</strong> with different item types</li>
+<li>✅ <strong>MODIFY event handling</strong> with change detection</li>
+<li>✅ <strong>REMOVE event processing</strong> with cleanup logic</li>
+<li>✅ <strong>Batch processing</strong> for efficiency optimization</li>
+<li>✅ <strong>Real-world scenarios</strong> for practical application</li>
+<li>✅ <strong>Performance monitoring</strong> and optimization insights</li>
+</ul>
+<h3 id="business-logic-patterns-demonstrated">Business Logic Patterns Demonstrated</h3>
+<p><strong>Event-driven actions you&rsquo;ve implemented</strong>:</p>
+<ul>
+<li>User registration → Welcome email trigger</li>
+<li>Product creation → Search index update</li>
+<li>Order placement → Fulfillment notification</li>
+<li>Status changes → Customer notifications</li>
+<li>Price changes → Cache invalidation</li>
+<li>Item deletion → Cleanup operations</li>
+</ul>
+
+<div class="notices success" ><p><strong>Stream Processing Mastery</strong>: You now understand how to build responsive, event-driven applications with DynamoDB Streams and Lambda!</p>
+</div>
+
+<h2 id="next-steps">Next Steps</h2>
+<p>With hands-on stream processing experience complete, the final section covers monitoring, debugging, and troubleshooting your stream processing pipeline in production scenarios.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/4-streams-lambda-processing/4.2-lambda-function-setup/" title="4.2 Lambda Function Setup"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/4-streams-lambda-processing/4.4-monitoring-debugging/" title="4.4 Monitoring &amp; Debugging" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1755010309"></script>
+    <script src="/js/perfect-scrollbar.min.js?1755010309"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1755010309"></script>
+    <script src="/js/jquery.sticky.js?1755010309"></script>
+    <script src="/js/featherlight.min.js?1755010309"></script>
+    <script src="/js/highlight.pack.js?1755010309"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1755010309"></script>
+    <script src="/js/learn.js?1755010309"></script>
+    <script src="/js/hugo-learn.js?1755010309"></script>
+
+    <link href="/mermaid/mermaid.css?1755010309" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1755010309"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
