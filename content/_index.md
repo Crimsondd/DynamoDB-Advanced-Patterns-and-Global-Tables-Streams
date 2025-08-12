@@ -14,7 +14,7 @@ Finally, we will implement comprehensive **monitoring and optimization** strateg
 #### Single Table Design
 **Single Table Design** is a DynamoDB modeling approach where you store multiple entity types in one table using composite keys. This pattern optimizes for performance and cost by reducing the number of requests and leveraging DynamoDB's partition-based architecture. When implemented correctly, it provides sub-millisecond query performance while minimizing capacity consumption.
 
-![DynamoDB Architecture](/images/1/Architectures.png?featherlight=false&width=90pc)
+![DynamoDB Architecture](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/Architectures.png?featherlight=false&width=90pc)
 
 {{% notice note %}}
 As a best practice, design your access patterns first before creating your table structure. Single Table Design requires careful planning of partition keys (PK) and sort keys (SK) to support all your query patterns efficiently. This workshop uses a proven e-commerce data model that supports 6 optimized access patterns while staying within Free Tier limits.

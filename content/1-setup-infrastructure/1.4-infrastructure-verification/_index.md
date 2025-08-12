@@ -45,7 +45,7 @@ Use this checklist to systematically verify each component:
 
 **Click on your stack** → **Outputs tab**:
 
-![OutPut-Stack](/images/1/Output-Stack.png?featherlight=false&width=90pc)
+![OutPut-Stack](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/Output-Stack.png?featherlight=false&width=90pc)
 
 **Record these values** - you'll use them for further verification.
 

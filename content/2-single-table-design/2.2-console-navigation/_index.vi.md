@@ -18,7 +18,7 @@ pre : " <b> 2.2 </b> "
 2. **Xác minh Region**: Đảm bảo bạn đang ở **US East (N. Virginia)**
 3. **Truy cập DynamoDB**: Services → Database → DynamoDB
 
-![DynamoDB-search](/images/2/DynamoDB-search.png?featherlight=false&width=90pc)
+![DynamoDB-search](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/DynamoDB-search.png?featherlight=false&width=90pc)
 
 ### Bước 2: Tìm Workshop Table của bạn
 
@@ -27,7 +27,7 @@ pre : " <b> 2.2 </b> "
 3. **Xác minh Status**: Phải hiển thị "Active"
 4. **Click tên table** để vào chi tiết table
 
-![DynamoDB-Server](/images/2/DynamoDB-Server.png?featherlight=false&width=90pc)
+![DynamoDB-Server](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/DynamoDB-Server.png?featherlight=false&width=90pc)
 
 ## Table Overview Dashboard
 

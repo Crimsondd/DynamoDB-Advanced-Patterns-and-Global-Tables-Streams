@@ -45,7 +45,7 @@ Sử dụng checklist này để xác minh từng thành phần một cách có 
 
 **Nhấp vào stack của bạn** → **Outputs tab**:
 
-![OutPut-Stack](/images/1/Output-Stack.png?featherlight=false&width=90pc)
+![OutPut-Stack](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/Output-Stack.png?featherlight=false&width=90pc)
 
 **Ghi lại các giá trị này** - bạn sẽ sử dụng chúng để xác minh thêm.
 

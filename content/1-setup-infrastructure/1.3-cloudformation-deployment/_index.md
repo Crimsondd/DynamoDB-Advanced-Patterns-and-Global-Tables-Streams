@@ -70,7 +70,7 @@ Our template creates the following resources:[Download CloudFormation Template](
    - Review template details if needed
    - Click "Next" to proceed
 
-![Choose_Template](/images/1/Choose-Template.png?featherlight=false&width=90pc)
+![Choose_Template](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/Choose-Template.png?featherlight=false&width=90pc)
 
 ### Step 3: Configure Stack Parameters
 
@@ -82,7 +82,7 @@ Description: DynamoDB Advanced Patterns Workshop Infrastructure
 
 **Parameters:**
 
-![ParametersChoose_Template](/images/1/Parameters.png?featherlight=false&width=90pc)
+![ParametersChoose_Template](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/Parameters.png?featherlight=false&width=90pc)
 
 **Resource Configuration:**
 ```
@@ -124,14 +124,14 @@ CostCenter: Learning
    - Click "Create stack" button
    - Deployment begins immediately
 
-![review-deploy](/images/1/review-deploy.png?featherlight=false&width=90pc)
+![review-deploy](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/review-deploy.png?featherlight=false&width=90pc)
 
 ## Monitoring Deployment
 
 ### Stack Events Tab
 Monitor real-time deployment progress:
 
-![Stack-Events](/images/1/Stack-Events.png?featherlight=false&width=90pc)
+![Stack-Events](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/Stack-Events.png?featherlight=false&width=90pc)
 
 ### Expected Timeline
 - **Total Duration**: 5-7 minutes

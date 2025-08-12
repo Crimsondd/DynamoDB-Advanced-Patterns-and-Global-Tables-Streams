@@ -14,7 +14,7 @@ Cuối cùng, chúng ta sẽ triển khai các chiến lược **monitoring và 
 #### Single Table Design
 **Single Table Design** là một phương pháp modeling DynamoDB nơi bạn lưu trữ nhiều loại entity trong một bảng sử dụng composite keys. Pattern này tối ưu cho hiệu suất và chi phí bằng cách giảm số lượng requests và tận dụng kiến trúc partition-based của DynamoDB. Khi triển khai đúng cách, nó cung cấp hiệu suất truy vấn sub-millisecond trong khi giảm thiểu tiêu thụ capacity.
 
-![DynamoDB Architecture](/images/1/0001.png?featherlight=false&width=90pc)
+![DynamoDB Architecture](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/0001.png?featherlight=false&width=90pc)
 
 {{% notice note %}}
 Như một best practice, hãy thiết kế access patterns của bạn trước khi tạo table structure. Single Table Design yêu cầu lập kế hoạch cẩn thận cho partition keys (PK) và sort keys (SK) để hỗ trợ tất cả query patterns của bạn một cách hiệu quả. Workshop này sử dụng một mô hình dữ liệu e-commerce đã được chứng minh hỗ trợ 6 access patterns được tối ưu trong khi ở trong giới hạn Free Tier.

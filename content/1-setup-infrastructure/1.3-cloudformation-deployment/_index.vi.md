@@ -56,7 +56,7 @@ Template của chúng ta tạo các tài nguyên sau:
    - Nhấp nút "Create stack"
    - Chọn "With new resources (standard)"
 
-![create-stack](/images/1/create-stack.png?featherlight=false&width=90pc)
+![create-stack](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/create-stack.png?featherlight=false&width=90pc)
 
 ### Bước 2: Upload Template
 
@@ -70,7 +70,7 @@ Template của chúng ta tạo các tài nguyên sau:
    - Xem lại template details nếu cần
    - Nhấp "Next" để tiếp tục
 
-![Choose_Template](/images/1/Choose-Template.png?featherlight=false&width=90pc)
+![Choose_Template](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/Choose-Template.png?featherlight=false&width=90pc)
 
 ### Bước 3: Cấu hình Stack Parameters
 
@@ -81,12 +81,8 @@ Description: DynamoDB Advanced Patterns Workshop Infrastructure
 ```
 
 **Parameters:**
-```
-Environment: demo
-PrimaryRegion: us-east-1
-SecondaryRegion: eu-west-1
-TableName: demo-ecommerce-freetier
-```
+
+![ParametersChoose_Template](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/Parameters.png?featherlight=false&width=90pc)
 
 **Resource Configuration:**
 ```
@@ -128,14 +124,14 @@ CostCenter: Learning
    - Nhấp nút "Create stack"
    - Deployment bắt đầu ngay lập tức
 
-![review-deploy](/images/1/review-deploy.png?featherlight=false&width=90pc)
+![review-deploy](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/review-deploy.png?featherlight=false&width=90pc)
 
 ## Giám sát Deployment
 
 ### Stack Events Tab
 Giám sát tiến trình deployment thời gian thực:
 
-![Stack-Events](/images/1/Stack-Events.png?featherlight=false&width=90pc)
+![Stack-Events](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/Stack-Events.png?featherlight=false&width=90pc)
 
 ### Timeline Dự kiến
 - **Tổng Thời lượng**: 5-7 phút

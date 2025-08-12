@@ -18,7 +18,7 @@ pre : " <b> 2.2 </b> "
 2. **Verify Region**: Ensure you're in **US East (N. Virginia)**
 3. **Access DynamoDB**: Services → Database → DynamoDB
 
-![DynamoDB-search](/images/2/DynamoDB-search.png?featherlight=false&width=90pc)
+![DynamoDB-search](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/DynamoDB-search.png?featherlight=false&width=90pc)
 
 ### Step 2: Find Your Workshop Table
 
@@ -27,7 +27,7 @@ pre : " <b> 2.2 </b> "
 3. **Verify Status**: Should show "Active"
 4. **Click table name** to enter table details
 
-![DynamoDB-Server](/images/2/DynamoDB-Server.png?featherlight=false&width=90pc)
+![DynamoDB-Server](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/DynamoDB-Server.png?featherlight=false&width=90pc)
 
 ## Table Overview Dashboard
 
