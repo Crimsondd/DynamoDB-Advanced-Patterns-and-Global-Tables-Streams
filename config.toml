@@ -26,7 +26,7 @@ home = [ "HTML", "RSS", "JSON"]
   
 [Languages]
 [Languages.en]
-title = "Create a new AWS account."
+title = "DynamoDB Advanced Patterns Workshop"
 weight = 1
 languageName = "English"
 
