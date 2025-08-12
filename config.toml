@@ -1,11 +1,9 @@
 # Hugo configuration for DynamoDB Workshop
-#baseURL = "https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/"
+baseURL = "https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/"
 languageCode = "en-us"
 title = "DynamoDB Advanced Patterns and Global Tables"
 
 # Change the default theme to be use when building the site with Hugo
-
-baseURL = "http://localhost:1313/"
 
 theme = "hugo-theme-learn"
 
