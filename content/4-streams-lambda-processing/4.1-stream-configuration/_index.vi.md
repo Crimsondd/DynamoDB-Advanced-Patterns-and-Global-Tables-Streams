@@ -226,10 +226,6 @@ DynamoDB Streams capture data modification events trong tables của bạn. Khi 
 - **Filtering**: Distinguish app writes from replication
 - **Processing**: Handle regional differences
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của Global Tables với streams enabled trong multiple regions
-{{% /notice %}}
-
 ## Troubleshooting Common Issues
 
 ### Stream Not Appearing

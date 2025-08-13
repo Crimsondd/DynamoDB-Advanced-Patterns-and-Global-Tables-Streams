@@ -231,10 +231,6 @@ arn:aws:dynamodb:us-east-1:123456789012:table/demo-ecommerce-freetier/stream/202
 - **Filtering**: Distinguish app writes from replication
 - **Processing**: Handle regional differences
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Global Tables with streams enabled in multiple regions
-{{% /notice %}}
-
 ## Troubleshooting Common Issues
 
 ### Stream Not Appearing

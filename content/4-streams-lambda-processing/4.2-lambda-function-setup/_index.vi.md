@@ -216,7 +216,7 @@ def handle_remove_event(record):
 
 1. **Test tab**: Click "Test" tab
 2. **Create test event**: Click "Create new event"
-3. **Event template**: Select "DynamoDB Stream" template
+3. **Event template**: Select "DynamoDB Update" template
 4. **Event name**: `test-stream-event`
 5. **Test**: Click "Test" để validate syntax
 
