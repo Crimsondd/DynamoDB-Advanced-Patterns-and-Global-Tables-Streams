@@ -32,9 +32,9 @@ In this section, you'll create the core entities for our e-commerce platform: Us
 3. **Click**: "Create item" button
 4. **Switch to**: JSON view
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Items tab with "Create item" button highlighted
-{{% /notice %}}
+![Create_item1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Create_item1.png?featherlight=false&width=90pc)
+
+![Create_item](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Create_item.png?featherlight=false&width=90pc)
 
 ### User Profile JSON Template
 
@@ -67,9 +67,7 @@ In this section, you'll create the core entities for our e-commerce platform: Us
 - **GSI1PK**: `USER#john.doe@email.com` - Enables email-based lookups
 - **GSI1SK**: `PROFILE` - Maintains consistency in GSI
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of JSON editor with user profile data entered
-{{% /notice %}}
+![JSON_editor](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/JSON_editor.png?featherlight=false&width=90pc)
 
 ### Save Your User
 
@@ -77,9 +75,7 @@ In this section, you'll create the core entities for our e-commerce platform: Us
 2. **Click "Create item"**
 3. **Verify creation**: Item should appear in the table view
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing successfully created user item in table view
-{{% /notice %}}
+![successfully_created](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/successfully_created.png?featherlight=false&width=90pc)
 
 ## Step 2: Create Products
 
@@ -117,9 +113,7 @@ In this section, you'll create the core entities for our e-commerce platform: Us
 - **GSI2PK**: `PRICE#500-1000` - Enables price range queries
 - **Nested attributes**: Store complex product details
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of product creation in JSON view
-{{% /notice %}}
+![product_creation](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/product_creation.png?featherlight=false&width=90pc)
 
 ### Books Product Example
 
@@ -152,9 +146,7 @@ In this section, you'll create the core entities for our e-commerce platform: Us
 - **Different price range**: `PRICE#10-50`
 - **Book-specific attributes**: author, isbn, pages
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing both products created in table view
-{{% /notice %}}
+![products_created](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/products_created.png?featherlight=false&width=90pc)
 
 ## Step 3: Create Order
 
@@ -194,9 +186,8 @@ In this section, you'll create the core entities for our e-commerce platform: Us
 - **GSI1PK**: `ORDER#order001` - Enables direct order lookup
 - **GSI2PK**: `STATUS#pending` - Enables status-based queries
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of order creation showing the relationship structure
-{{% /notice %}}
+![relationship](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/relationship.png?featherlight=false&width=90pc)
+
 
 ## Step 4: Create Order Items
 
@@ -245,9 +236,8 @@ In this section, you'll create the core entities for our e-commerce platform: Us
 - **SK**: `ITEM#productID` - Identifies specific items
 - **GSI1**: Creates product-to-order relationship
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing all order items created under the same order
-{{% /notice %}}
+![order_items](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/order_items.png?featherlight=false&width=90pc)
+
 
 ## Verify Your Data Structure
 
@@ -269,9 +259,7 @@ Items in Table:
 └─────────────────┴─────────────────┴──────────────────────────┘
 ```
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of complete table view showing all created items
-{{% /notice %}}
+![all_created](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/all_created.png?featherlight=false&width=90pc)
 
 ### Validate Relationships
 

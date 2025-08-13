@@ -22,38 +22,11 @@ Module này cung cấp thiết lập nền tảng cần thiết cho workshop Dyn
 - ✅ Xác minh tất cả tài nguyên được tạo thành công
 - ✅ Thiết lập giám sát và cảnh báo billing
 
-## ⏱️ Thời lượng Module: 90 phút
-
-- **Lý thuyết**: 15 phút
-- **Demo**: 25 phút  
-- **Thực hành**: 40 phút
-- **Ôn tập**: 10 phút
-
-## 📚 Tổng quan AWS Free Tier
-
-```
-Giới hạn AWS Free Tier cho workshop:
-┌─────────────────┬──────────────┬──────────────┐
-│ Dịch vụ         │ Free Tier    │ Sử dụng      │
-├─────────────────┼──────────────┼──────────────┤
-│ DynamoDB        │ 25 RCU/WCU   │ 15 RCU/WCU   │
-│ Lambda          │ 1M requests  │ ~100/ngày    │
-│ CloudWatch      │ 10 metrics   │ 6 metrics    │
-│ Data Transfer   │ 1GB          │ <100MB       │
-└─────────────────┴──────────────┴──────────────┘
-
-Chúng ta chỉ sử dụng 60% giới hạn = 100% an toàn!
-```
-
-{{% notice warning %}}
-**LƯU Ý AN TOÀN QUAN TRỌNG**: Chúng ta sử dụng AWS Free Tier độc quyền. Nếu bạn thấy BẤT KỲ phí nào xuất hiện trong workshop này, vui lòng dừng ngay lập tức và xác minh cấu hình của bạn. Tất cả tài nguyên sẽ được triển khai trong giới hạn Free Tier.
-{{% /notice %}}
-
 ## 🏗️ Tổng quan Kiến trúc
 
 #### Chúng ta sẽ triển khai hạ tầng trên hai vùng AWS:
 
-![global-tables-architecture](/images/1/global-tables-architecture-improved.png?featherlight=false&width=90pc)
+![global-tables-architecture](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/global-tables-architecture-improved.png?featherlight=false&width=90pc)
 
 ## 🎯 Những gì chúng ta sẽ xây dựng
 
@@ -88,14 +61,14 @@ Chúng ta chỉ sử dụng 60% giới hạn = 100% an toàn!
 
 - Bạn có thể chọn tài khoản **Personal** hoặc **Business**
 
-![Create Account](/images/1/0009.png?featherlight=false&width=90pc)
+![Create Account](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/0009.png?featherlight=false&width=90pc)
 
 #### Thêm phương thức thanh toán
 
 - Nhập thông tin thẻ tín dụng của bạn và chọn **Verify and Add**.
     - ***Lưu ý**: Bạn có thể chọn địa chỉ khác cho tài khoản của mình bằng cách chọn **Use a new address** trước **Verify and Add**.*
 
-![Create Account](/images/1/00010.png?featherlight=false&width=90pc)
+![Create Account](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/00010.png?featherlight=false&width=90pc)
 
 #### Xác minh số điện thoại của bạn
 
@@ -103,7 +76,7 @@ Chúng ta chỉ sử dụng 60% giới hạn = 100% an toàn!
 2. Nhập mã kiểm tra bảo mật sau đó chọn **Call me now**.
 3. AWS sẽ liên hệ và xác minh việc mở tài khoản.
 
-![Create Account](/images/1/00011.png?featherlight=false&width=90pc)
+![Create Account](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/00011.png?featherlight=false&width=90pc)
 
 #### Chọn Support Plan
 

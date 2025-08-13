@@ -6,19 +6,17 @@ chapter : true
 pre : " <b> 7. </b> "
 ---
 
-# Dọn dẹp Tài nguyên trên AWS Cloud
+## Dọn dẹp Tài nguyên
 
 Trong phần này, bạn sẽ học cách dọn dẹp tài nguyên trên AWS Cloud để tránh phát sinh chi phí không cần thiết.
 
-## Tại sao Dọn dẹp quan trọng
+### Tại sao Dọn dẹp quan trọng
 
 - **Kiểm soát Chi phí**: Ngăn chặn các khoản phí AWS không mong muốn
 - **Quản lý Tài nguyên**: Loại bỏ hạ tầng không sử dụng
 - **Best Practices**: Học quản lý lifecycle tài nguyên đúng cách
 
-**Chi phí cuối cùng dự kiến**: **$0.00** ✅
-
-## 1. Xóa DynamoDB Table được tạo trong Lab
+### 1. Xóa DynamoDB Table được tạo trong Lab
 
 - Truy cập **DynamoDB Management Console**
 - Trên thanh điều hướng bên trái, chọn **Tables**
@@ -28,11 +26,7 @@ Trong phần này, bạn sẽ học cách dọn dẹp tài nguyên trên AWS Clo
 - Nhập tên table để xác nhận
 - Xác nhận bằng cách nhấp **Delete**
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của quá trình xóa DynamoDB table
-{{% /notice %}}
-
-## 2. Xóa CloudWatch Resources được tạo trong Lab
+### 2. Xóa CloudWatch Resources được tạo trong Lab
 
 - Truy cập **CloudWatch Management Console**
 - Trên thanh điều hướng bên trái, đi đến **Dashboards**
@@ -46,11 +40,7 @@ Trong phần này, bạn sẽ học cách dọn dẹp tài nguyên trên AWS Clo
 - Chọn **Delete**
 - Xác nhận xóa bằng cách nhấp **Delete**
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của việc xóa CloudWatch dashboard và alarm
-{{% /notice %}}
-
-## 3. Xóa Lambda Functions (nếu đã tạo)
+### 3. Xóa Lambda Functions (nếu đã tạo)
 
 - Truy cập **Lambda Management Console**
 - Trên thanh điều hướng bên trái, điều hướng đến **Functions**
@@ -59,11 +49,7 @@ Trong phần này, bạn sẽ học cách dọn dẹp tài nguyên trên AWS Clo
 - Chọn **Delete function**
 - Xác nhận bằng cách nhấp **Delete**
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của việc xóa Lambda function
-{{% /notice %}}
-
-## 4. Xóa SNS Topics (nếu đã tạo)
+### 4. Xóa SNS Topics (nếu đã tạo)
 
 - Truy cập **SNS Management Console**
 - Trên thanh điều hướng bên trái, chọn **Topics**
@@ -73,22 +59,14 @@ Trong phần này, bạn sẽ học cách dọn dẹp tài nguyên trên AWS Clo
 - Nhập "delete me" để xác nhận
 - Xác nhận xóa bằng cách nhấp **Delete**
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của việc xóa SNS topic
-{{% /notice %}}
-
-## 5. Xác minh Billing và Chi phí
+### 5. Xác minh Billing và Chi phí
 
 - Truy cập **Billing and Cost Management Console**
 - Kiểm tra các khoản phí tháng hiện tại
 - Xác minh rằng tất cả các khoản phí hiển thị **$0.00**
 - Xác nhận không có dịch vụ nào đang chạy không mong muốn
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của billing dashboard hiển thị $0.00 charges
-{{% /notice %}}
-
-## Xác minh Cuối cùng
+### Xác minh Cuối cùng
 
 ✅ **Checklist Dọn dẹp:**
 
@@ -97,10 +75,6 @@ Trong phần này, bạn sẽ học cách dọn dẹp tài nguyên trên AWS Clo
 - Lambda functions đã xóa (nếu có)
 - SNS topics đã xóa (nếu có)
 - Billing hiển thị $0.00 charges
-
-{{% notice success %}}
-**Dọn dẹp Hoàn tất**: Tất cả tài nguyên đã được loại bỏ thành công. Workshop của bạn hoàn tất với zero AWS charges!
-{{% /notice %}}
 
 ---
 

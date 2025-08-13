@@ -14,7 +14,7 @@ pre : " <b> 1.2 </b> "
 
 Hạ tầng workshop của chúng ta trải rộng hai vùng AWS để minh họa chức năng Global Tables trong khi duy trì tuân thủ Free Tier.
 
-![global-tables-architecture](/images/1/global-tables-architecture-improved.png?featherlight=false&width=90pc)
+![global-tables-architecture](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/global-tables-architecture-improved.png?featherlight=false&width=90pc)
 
 ## Các Thành phần Cốt lõi
 

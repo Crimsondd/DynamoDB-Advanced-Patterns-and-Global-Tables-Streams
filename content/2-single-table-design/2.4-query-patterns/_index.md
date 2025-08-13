@@ -36,10 +36,6 @@ Now that you have created your e-commerce data, let's explore the powerful query
 2. **Click**: "Query" button (not Scan)
 3. **Ensure**: Table query is selected (not index)
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Query button location and table/index selection
-{{% /notice %}}
-
 ### Configure User Profile Query
 
 **Query Parameters**:
@@ -49,10 +45,6 @@ Now that you have created your e-commerce data, let's explore the powerful query
 
 **Expected Result**: Single item containing user profile data
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of query parameters filled in for user profile lookup
-{{% /notice %}}
-
 ### Execute and Verify
 
 1. **Click "Run"**
@@ -61,9 +53,6 @@ Now that you have created your e-commerce data, let's explore the powerful query
 
 **Performance**: ~1-2ms latency, 1 RCU consumed
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of query results showing user profile data
-{{% /notice %}}
 
 ## Pattern 2: Get User's Orders
 
@@ -78,10 +67,6 @@ Now that you have created your e-commerce data, let's explore the powerful query
 
 This pattern retrieves both the user profile AND all their orders in a single query.
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing "begins_with" sort key condition setup
-{{% /notice %}}
-
 ### Advanced Sort Key Options
 
 **Available sort key conditions**:
@@ -92,10 +77,6 @@ This pattern retrieves both the user profile AND all their orders in a single qu
 
 **For this pattern**: Use "begins_with" to get all items where SK starts with "ORDER#"
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of sort key condition dropdown menu
-{{% /notice %}}
-
 ### Execute User Orders Query
 
 **Expected Results**:
@@ -104,9 +85,6 @@ This pattern retrieves both the user profile AND all their orders in a single qu
 
 **Why this works**: All items with `PK = USER#user001` are stored together and can be retrieved in one efficient query.
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of query results showing profile + orders
-{{% /notice %}}
 
 ## Pattern 3: Get Order Details with Items
 
@@ -122,10 +100,6 @@ This pattern retrieves both the user profile AND all their orders in a single qu
 - Order details (`SK = DETAILS`)  
 - All order items (`SK = ITEM#laptop001`, `SK = ITEM#book001`)
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of order details query showing order + items
-{{% /notice %}}
-
 ## Pattern 4: Products by Category (GSI Query)
 
 ### Using Global Secondary Index
@@ -137,10 +111,6 @@ This pattern retrieves both the user profile AND all their orders in a single qu
 2. **Choose Index**: GSI1
 3. **Query the GSI**: Use GSI key structure
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing index selection dropdown with GSI1 highlighted
-{{% /notice %}}
-
 ### Configure Category Query
 
 **GSI1 Query Parameters**:
@@ -149,10 +119,6 @@ This pattern retrieves both the user profile AND all their orders in a single qu
 
 **Why this works**: All electronics products have `GSI1PK = CATEGORY#electronics`
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of GSI1 query setup for category search
-{{% /notice %}}
-
 ### Execute Category Query
 
 **Expected Results**: All products where category = "electronics"
@@ -160,10 +126,6 @@ This pattern retrieves both the user profile AND all their orders in a single qu
 **Try additional categories**:
 - `CATEGORY#books`
 - `CATEGORY#clothing` (if you created any)
-
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of category query results showing all electronics products
-{{% /notice %}}
 
 ## Pattern 5: Orders by Status (GSI Query)
 
@@ -177,10 +139,6 @@ This pattern retrieves both the user profile AND all their orders in a single qu
 - **GSI2 Sort key**: Leave empty
 
 **Expected Results**: All orders with status = "pending"
-
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of GSI2 query for order status
-{{% /notice %}}
 
 ### Try Different Status Values
 
@@ -206,10 +164,6 @@ This pattern retrieves both the user profile AND all their orders in a single qu
 - `PRICE#200-500` (premium items)
 - `PRICE#500-1000` (high-end items)
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of price range query showing products in range
-{{% /notice %}}
-
 ## Query Performance Analysis
 
 ### Monitor Query Efficiency
@@ -223,10 +177,6 @@ This pattern retrieves both the user profile AND all their orders in a single qu
 - **Single item queries**: ~1-2ms, 1 RCU
 - **Multi-item queries**: ~3-5ms, 2-5 RCU
 - **GSI queries**: ~2-4ms, 1-3 RCU
-
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Metrics tab showing query performance data
-{{% /notice %}}
 
 ## Advanced Query Techniques
 
@@ -245,9 +195,6 @@ This pattern retrieves both the user profile AND all their orders in a single qu
 - **Projection expression**: Specific attributes to return
 - **Filter expression**: Additional filtering after query
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing advanced query options and settings
-{{% /notice %}}
 
 ## Query Pattern Summary
 

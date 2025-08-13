@@ -22,38 +22,11 @@ This module provides the foundational setup required for the DynamoDB Advanced P
 - ✅ Verify all resources created successfully
 - ✅ Setup monitoring and billing alerts
 
-## ⏱️ Module Duration: 90 minutes
-
-- **Theory**: 15 minutes
-- **Demo**: 25 minutes  
-- **Hands-on**: 40 minutes
-- **Review**: 10 minutes
-
-## 📚 AWS Free Tier Overview
-
-```
-AWS Free Tier Limits for our workshop:
-┌─────────────────┬──────────────┬──────────────┐
-│ Service         │ Free Tier    │ Our Usage    │
-├─────────────────┼──────────────┼──────────────┤
-│ DynamoDB        │ 25 RCU/WCU   │ 15 RCU/WCU   │
-│ Lambda          │ 1M requests  │ ~100/day     │
-│ CloudWatch      │ 10 metrics   │ 6 metrics    │
-│ Data Transfer   │ 1GB          │ <100MB       │
-└─────────────────┴──────────────┴──────────────┘
-
-We're using only 60% of limits = 100% safe!
-```
-
-{{% notice warning %}}
-**CRITICAL SAFETY NOTE**: We're using AWS Free Tier exclusively. If you see ANY charges appearing during this workshop, please stop immediately and verify your configuration. All resources will be deployed within Free Tier limits.
-{{% /notice %}}
-
 ## 🏗️ Architecture Overview
 
 #### We'll deploy infrastructure across two AWS regions:
 
-![global-tables-architecture](/images/1/global-tables-architecture-improved.png?featherlight=false&width=90pc)
+![global-tables-architecture](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/global-tables-architecture-improved.png?featherlight=false&width=90pc)
 
 ## 🎯 What We'll Build
 
@@ -88,21 +61,21 @@ We're using only 60% of limits = 100% safe!
 
 - You can choose **Personal** or **Business** account
 
-![Create Account](/images/1/0009.png?featherlight=false&width=90pc)
+![Create Account](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/0009.png?featherlight=false&width=90pc)
 
 #### Add payment method
 
 - Enter your credit card information and select **Verify and Add**.
     - ***Note**: You can choose a different address for your account by selecting **Use a new address** before **Verify and Add**.*
 
-![Create Account](/images/1/00010.png?featherlight=false&width=90pc)
+![Create Account](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/00010.png?featherlight=false&width=90pc)
 #### Verify your phone number
 
 1. Enter the phone number.
 2. Enter the security check code then select **Call me now**.
 3. AWS will contact and verify account opening.
 
-![Create Account](/images/1/00011.png?featherlight=false&width=90pc)
+![Create Account](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/00011.png?featherlight=false&width=90pc)
 
 #### Select Support Plan
 

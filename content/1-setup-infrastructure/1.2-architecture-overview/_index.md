@@ -14,7 +14,7 @@ pre : " <b> 1.2 </b> "
 
 Our workshop infrastructure spans two AWS regions to demonstrate Global Tables functionality while maintaining Free Tier compliance.
 
-![global-tables-architecture](/images/1/global-tables-architecture-improved.png?featherlight=false&width=90pc)
+![global-tables-architecture](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/global-tables-architecture-improved.png?featherlight=false&width=90pc)
 
 ## Core Components
 

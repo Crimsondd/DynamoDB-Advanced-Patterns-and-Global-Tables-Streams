@@ -36,10 +36,6 @@ Bây giờ bạn đã tạo dữ liệu e-commerce của mình, hãy khám phá 
 2. **Click**: nút "Query" (không phải Scan)
 3. **Ensure**: Table query được chọn (không phải index)
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của vị trí nút Query và lựa chọn table/index
-{{% /notice %}}
-
 ### Configure User Profile Query
 
 **Query Parameters**:
@@ -49,10 +45,6 @@ Bây giờ bạn đã tạo dữ liệu e-commerce của mình, hãy khám phá 
 
 **Expected Result**: Single item chứa user profile data
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của query parameters được điền cho user profile lookup
-{{% /notice %}}
-
 ### Execute và Verify
 
 1. **Click "Run"**
@@ -60,10 +52,6 @@ Bây giờ bạn đã tạo dữ liệu e-commerce của mình, hãy khám phá 
 3. **Verify data**: Profile information sẽ được hiển thị
 
 **Performance**: ~1-2ms latency, 1 RCU consumed
-
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của query results hiển thị user profile data
-{{% /notice %}}
 
 ## Pattern 2: Get User's Orders
 
@@ -78,10 +66,6 @@ Bây giờ bạn đã tạo dữ liệu e-commerce của mình, hãy khám phá 
 
 Pattern này retrieves cả user profile VÀ tất cả orders của họ trong một query duy nhất.
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị "begins_with" sort key condition setup
-{{% /notice %}}
-
 ### Advanced Sort Key Options
 
 **Available sort key conditions**:
@@ -92,10 +76,6 @@ Pattern này retrieves cả user profile VÀ tất cả orders của họ trong 
 
 **Cho pattern này**: Sử dụng "begins_with" để get tất cả items có SK bắt đầu với "ORDER#"
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của sort key condition dropdown menu
-{{% /notice %}}
-
 ### Execute User Orders Query
 
 **Expected Results**:
@@ -103,10 +83,6 @@ Pattern này retrieves cả user profile VÀ tất cả orders của họ trong 
 - Tất cả user orders (`SK = ORDER#order001`, etc.)
 
 **Tại sao điều này hoạt động**: Tất cả items với `PK = USER#user001` được lưu trữ cùng nhau và có thể được retrieved trong một query hiệu quả.
-
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của query results hiển thị profile + orders
-{{% /notice %}}
 
 ## Pattern 3: Get Order Details with Items
 
@@ -122,9 +98,6 @@ Pattern này retrieves cả user profile VÀ tất cả orders của họ trong 
 - Order details (`SK = DETAILS`)  
 - Tất cả order items (`SK = ITEM#laptop001`, `SK = ITEM#book001`)
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của order details query hiển thị order + items
-{{% /notice %}}
 
 ## Pattern 4: Products by Category (GSI Query)
 
@@ -137,10 +110,6 @@ Pattern này retrieves cả user profile VÀ tất cả orders của họ trong 
 2. **Choose Index**: GSI1
 3. **Query the GSI**: Sử dụng GSI key structure
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị index selection dropdown với GSI1 được highlighted
-{{% /notice %}}
-
 ### Configure Category Query
 
 **GSI1 Query Parameters**:
@@ -149,10 +118,6 @@ Pattern này retrieves cả user profile VÀ tất cả orders của họ trong 
 
 **Tại sao điều này hoạt động**: Tất cả electronics products có `GSI1PK = CATEGORY#electronics`
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của GSI1 query setup cho category search
-{{% /notice %}}
-
 ### Execute Category Query
 
 **Expected Results**: Tất cả products có category = "electronics"
@@ -160,10 +125,6 @@ Pattern này retrieves cả user profile VÀ tất cả orders của họ trong 
 **Thử additional categories**:
 - `CATEGORY#books`
 - `CATEGORY#clothing` (nếu bạn đã tạo)
-
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của category query results hiển thị tất cả electronics products
-{{% /notice %}}
 
 ## Pattern 5: Orders by Status (GSI Query)
 
@@ -177,10 +138,6 @@ Pattern này retrieves cả user profile VÀ tất cả orders của họ trong 
 - **GSI2 Sort key**: Để trống
 
 **Expected Results**: Tất cả orders với status = "pending"
-
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của GSI2 query cho order status
-{{% /notice %}}
 
 ### Thử Different Status Values
 
@@ -206,10 +163,6 @@ Pattern này retrieves cả user profile VÀ tất cả orders của họ trong 
 - `PRICE#200-500` (premium items)
 - `PRICE#500-1000` (high-end items)
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của price range query hiển thị products trong range
-{{% /notice %}}
-
 ## Query Performance Analysis
 
 ### Monitor Query Efficiency
@@ -223,10 +176,6 @@ Pattern này retrieves cả user profile VÀ tất cả orders của họ trong 
 - **Single item queries**: ~1-2ms, 1 RCU
 - **Multi-item queries**: ~3-5ms, 2-5 RCU
 - **GSI queries**: ~2-4ms, 1-3 RCU
-
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của Metrics tab hiển thị query performance data
-{{% /notice %}}
 
 ## Advanced Query Techniques
 
@@ -244,10 +193,6 @@ Pattern này retrieves cả user profile VÀ tất cả orders của họ trong 
 - **Scan index forward**: Sort order (ascending/descending)
 - **Projection expression**: Specific attributes to return
 - **Filter expression**: Additional filtering after query
-
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị advanced query options và settings
-{{% /notice %}}
 
 ## Query Pattern Summary
 

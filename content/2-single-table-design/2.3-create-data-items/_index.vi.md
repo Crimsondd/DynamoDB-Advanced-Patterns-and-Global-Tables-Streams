@@ -32,9 +32,9 @@ Trong phần này, bạn sẽ tạo các entity cốt lõi cho nền tảng e-co
 3. **Click**: "Create item" button
 4. **Switch to**: JSON view
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của tab Items với nút "Create item" được highlight
-{{% /notice %}}
+![Create_item1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Create_item1.png?featherlight=false&width=90pc)
+
+![Create_item](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Create_item.png?featherlight=false&width=90pc)
 
 ### User Profile JSON Template
 
@@ -67,9 +67,7 @@ Trong phần này, bạn sẽ tạo các entity cốt lõi cho nền tảng e-co
 - **GSI1PK**: `USER#john.doe@email.com` - Cho phép lookups dựa trên email
 - **GSI1SK**: `PROFILE` - Duy trì tính nhất quán trong GSI
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của JSON editor với dữ liệu user profile được nhập
-{{% /notice %}}
+![JSON_editor](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/JSON_editor.png?featherlight=false&width=90pc)
 
 ### Lưu User của bạn
 
@@ -77,9 +75,7 @@ Trong phần này, bạn sẽ tạo các entity cốt lõi cho nền tảng e-co
 2. **Click "Create item"**
 3. **Verify creation**: Item sẽ xuất hiện trong table view
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị user item đã được tạo thành công trong table view
-{{% /notice %}}
+![successfully_created](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/successfully_created.png?featherlight=false&width=90pc)
 
 ## Bước 2: Tạo Products
 
@@ -117,9 +113,7 @@ Trong phần này, bạn sẽ tạo các entity cốt lõi cho nền tảng e-co
 - **GSI2PK**: `PRICE#500-1000` - Cho phép price range queries
 - **Nested attributes**: Lưu trữ chi tiết sản phẩm phức tạp
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của product creation trong JSON view
-{{% /notice %}}
+![product_creation](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/product_creation.png?featherlight=false&width=90pc)
 
 ### Ví dụ Books Product
 
@@ -152,9 +146,7 @@ Trong phần này, bạn sẽ tạo các entity cốt lõi cho nền tảng e-co
 - **Price range khác**: `PRICE#10-50`
 - **Attributes đặc biệt cho sách**: author, isbn, pages
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị cả hai products đã được tạo trong table view
-{{% /notice %}}
+![products_created](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/products_created.png?featherlight=false&width=90pc)
 
 ## Bước 3: Tạo Order
 
@@ -194,9 +186,8 @@ Trong phần này, bạn sẽ tạo các entity cốt lõi cho nền tảng e-co
 - **GSI1PK**: `ORDER#order001` - Cho phép direct order lookup
 - **GSI2PK**: `STATUS#pending` - Cho phép status-based queries
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của order creation hiển thị cấu trúc relationship
-{{% /notice %}}
+![relationship](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/relationship.png?featherlight=false&width=90pc)
+
 
 ## Bước 4: Tạo Order Items
 
@@ -245,9 +236,7 @@ Trong phần này, bạn sẽ tạo các entity cốt lõi cho nền tảng e-co
 - **SK**: `ITEM#productID` - Xác định specific items
 - **GSI1**: Tạo product-to-order relationship
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị tất cả order items được tạo dưới cùng một order
-{{% /notice %}}
+![order_items](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/order_items.png?featherlight=false&width=90pc)
 
 ## Xác minh cấu trúc dữ liệu của bạn
 
@@ -269,9 +258,8 @@ Items trong Table:
 └─────────────────┴─────────────────┴──────────────────────────┘
 ```
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của complete table view hiển thị tất cả các items đã tạo
-{{% /notice %}}
+![all_created](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/all_created.png?featherlight=false&width=90pc)
+
 
 ### Validate Relationships
 

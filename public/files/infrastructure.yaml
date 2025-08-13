@@ -1,0 +1,371 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'DynamoDB Advanced Patterns - Free Tier Demo Infrastructure'
+
+Parameters:
+  Environment:
+    Type: String
+    Default: 'demo'
+    Description: Environment name
+  
+  PrimaryRegion:
+    Type: String
+    Default: 'us-east-1'
+    Description: Primary region for Global Tables
+    
+  SecondaryRegion:
+    Type: String
+    Default: 'eu-west-1'
+    Description: Secondary region for Global Tables
+
+Resources:
+  # DynamoDB Table with Free Tier optimization
+  EcommerceTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub '${Environment}-ecommerce-freetier'
+      BillingMode: PROVISIONED
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5  # Well within Free Tier 25 RCU limit
+        WriteCapacityUnits: 5 # Well within Free Tier 25 WCU limit
+      
+      AttributeDefinitions:
+        - AttributeName: PK
+          AttributeType: S
+        - AttributeName: SK
+          AttributeType: S
+        - AttributeName: GSI1PK
+          AttributeType: S
+        - AttributeName: GSI1SK
+          AttributeType: S
+        - AttributeName: GSI2PK
+          AttributeType: S
+        - AttributeName: GSI2SK
+          AttributeType: S
+      
+      KeySchema:
+        - AttributeName: PK
+          KeyType: HASH
+        - AttributeName: SK
+          KeyType: RANGE
+      
+      # GSI 1: Category and Product queries
+      GlobalSecondaryIndexes:
+        - IndexName: GSI1
+          KeySchema:
+            - AttributeName: GSI1PK
+              KeyType: HASH
+            - AttributeName: GSI1SK
+              KeyType: RANGE
+          Projection:
+            ProjectionType: KEYS_ONLY  # Minimize storage cost
+          ProvisionedThroughput:
+            ReadCapacityUnits: 5
+            WriteCapacityUnits: 5
+        
+        # GSI 2: Price range and Status queries  
+        - IndexName: GSI2
+          KeySchema:
+            - AttributeName: GSI2PK
+              KeyType: HASH
+            - AttributeName: GSI2SK
+              KeyType: RANGE
+          Projection:
+            ProjectionType: KEYS_ONLY  # Minimize storage cost
+          ProvisionedThroughput:
+            ReadCapacityUnits: 5
+            WriteCapacityUnits: 5
+      
+      # Enable Streams for Lambda processing
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      
+      # Enable Point-in-time Recovery (Free)
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      
+      # Server-side Encryption (Free)
+      SSESpecification:
+        SSEEnabled: true
+        
+      # TTL for automatic cleanup (Free)
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+      
+      Tags:
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: Project
+          Value: DynamoDBAdvancedPatterns
+        - Key: CostCenter
+          Value: FreeTier
+
+  # Lambda Function for Stream Processing (Free Tier optimized)
+  StreamProcessorFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub '${Environment}-dynamodb-stream-processor'
+      Runtime: python3.9
+      Handler: index.lambda_handler
+      MemorySize: 128  # Minimum memory for cost optimization
+      Timeout: 30      # Short timeout to avoid charges
+      
+      Code:
+        ZipFile: |
+          import json
+          import boto3
+          import logging
+          from datetime import datetime
+          
+          logger = logging.getLogger()
+          logger.setLevel(logging.INFO)
+          
+          def lambda_handler(event, context):
+              """
+              Process DynamoDB Stream events efficiently within Free Tier limits
+              """
+              try:
+                  processed_records = 0
+                  
+                  for record in event['Records']:
+                      # Process each stream record
+                      event_name = record['eventName']
+                      
+                      if event_name in ['INSERT', 'MODIFY', 'REMOVE']:
+                          # Extract key information
+                          if 'dynamodb' in record:
+                              keys = record['dynamodb'].get('Keys', {})
+                              pk = keys.get('PK', {}).get('S', '')
+                              sk = keys.get('SK', {}).get('S', '')
+                              
+                              logger.info(f"Processing {event_name} for {pk}#{sk}")
+                              
+                              # Add your business logic here
+                              # Examples:
+                              # - Update search indexes
+                              # - Send notifications
+                              # - Update analytics
+                              # - Sync with other systems
+                              
+                              processed_records += 1
+                  
+                  logger.info(f"Successfully processed {processed_records} records")
+                  
+                  return {
+                      'statusCode': 200,
+                      'body': json.dumps({
+                          'processed_records': processed_records,
+                          'timestamp': datetime.utcnow().isoformat()
+                      })
+                  }
+                  
+              except Exception as e:
+                  logger.error(f"Error processing stream: {str(e)}")
+                  raise e
+      
+      Role: !GetAtt StreamProcessorRole.Arn
+      
+      Tags:
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: Project
+          Value: DynamoDBAdvancedPatterns
+
+  # IAM Role for Lambda Stream Processor
+  StreamProcessorRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub '${Environment}-stream-processor-role'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      
+      Policies:
+        - PolicyName: DynamoDBStreamAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:DescribeStream
+                  - dynamodb:GetRecords
+                  - dynamodb:GetShardIterator
+                  - dynamodb:ListStreams
+                Resource: !GetAtt EcommerceTable.StreamArn
+
+  # Event Source Mapping for DynamoDB Streams
+  StreamEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      EventSourceArn: !GetAtt EcommerceTable.StreamArn
+      FunctionName: !Ref StreamProcessorFunction
+      StartingPosition: TRIM_HORIZON
+      BatchSize: 10  # Small batch size for Free Tier optimization
+      MaximumBatchingWindowInSeconds: 5
+      ParallelizationFactor: 1  # Minimize concurrent executions
+
+  # CloudWatch Dashboard (Free Tier: 3 dashboards)
+  MonitoringDashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: !Sub '${Environment}-dynamodb-freetier-monitoring'
+      DashboardBody: !Sub |
+        {
+          "widgets": [
+            {
+              "type": "metric",
+              "x": 0,
+              "y": 0,
+              "width": 12,
+              "height": 6,
+              "properties": {
+                "metrics": [
+                  [ "AWS/DynamoDB", "ConsumedReadCapacityUnits", "TableName", "${Environment}-ecommerce-freetier" ],
+                  [ ".", "ConsumedWriteCapacityUnits", ".", "." ],
+                  [ ".", "ProvisionedReadCapacityUnits", ".", "." ],
+                  [ ".", "ProvisionedWriteCapacityUnits", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "${AWS::Region}",
+                "title": "DynamoDB Capacity Utilization",
+                "period": 300
+              }
+            },
+            {
+              "type": "metric",
+              "x": 12,
+              "y": 0,
+              "width": 12,
+              "height": 6,
+              "properties": {
+                "metrics": [
+                  [ "AWS/Lambda", "Invocations", "FunctionName", "${Environment}-dynamodb-stream-processor" ],
+                  [ ".", "Duration", ".", "." ],
+                  [ ".", "Errors", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "${AWS::Region}",
+                "title": "Lambda Stream Processor Metrics",
+                "period": 300
+              }
+            },
+            {
+              "type": "metric",
+              "x": 0,
+              "y": 6,
+              "width": 24,
+              "height": 6,
+              "properties": {
+                "metrics": [
+                  [ "AWS/DynamoDB", "ItemCount", "TableName", "${Environment}-ecommerce-freetier" ],
+                  [ ".", "TableSizeBytes", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "${AWS::Region}",
+                "title": "Storage Utilization (Free Tier: 25GB Limit)",
+                "period": 3600
+              }
+            }
+          ]
+        }
+
+  # CloudWatch Alarms (Free Tier: 10 alarms)
+  HighReadCapacityAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub '${Environment}-dynamodb-high-read-capacity'
+      AlarmDescription: 'DynamoDB Read Capacity approaching Free Tier limit'
+      MetricName: ConsumedReadCapacityUnits
+      Namespace: AWS/DynamoDB
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 2
+      Threshold: 20  # Alert at 80% of Free Tier limit (25 RCU)
+      ComparisonOperator: GreaterThanThreshold
+      Dimensions:
+        - Name: TableName
+          Value: !Ref EcommerceTable
+      TreatMissingData: notBreaching
+
+  HighWriteCapacityAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub '${Environment}-dynamodb-high-write-capacity'
+      AlarmDescription: 'DynamoDB Write Capacity approaching Free Tier limit'
+      MetricName: ConsumedWriteCapacityUnits
+      Namespace: AWS/DynamoDB
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 2
+      Threshold: 20  # Alert at 80% of Free Tier limit (25 WCU)
+      ComparisonOperator: GreaterThanThreshold
+      Dimensions:
+        - Name: TableName
+          Value: !Ref EcommerceTable
+      TreatMissingData: notBreaching
+
+  LambdaErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub '${Environment}-lambda-stream-processor-errors'
+      AlarmDescription: 'Lambda Stream Processor experiencing errors'
+      MetricName: Errors
+      Namespace: AWS/Lambda
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref StreamProcessorFunction
+      TreatMissingData: notBreaching
+
+Outputs:
+  TableName:
+    Description: 'DynamoDB Table Name'
+    Value: !Ref EcommerceTable
+    Export:
+      Name: !Sub '${Environment}-dynamodb-table-name'
+  
+  TableArn:
+    Description: 'DynamoDB Table ARN'
+    Value: !GetAtt EcommerceTable.Arn
+    Export:
+      Name: !Sub '${Environment}-dynamodb-table-arn'
+  
+  StreamArn:
+    Description: 'DynamoDB Stream ARN'
+    Value: !GetAtt EcommerceTable.StreamArn
+    Export:
+      Name: !Sub '${Environment}-dynamodb-stream-arn'
+  
+  LambdaFunctionName:
+    Description: 'Lambda Function Name'
+    Value: !Ref StreamProcessorFunction
+    Export:
+      Name: !Sub '${Environment}-lambda-function-name'
+  
+  DashboardURL:
+    Description: 'CloudWatch Dashboard URL'
+    Value: !Sub 'https://${AWS::Region}.console.aws.amazon.com/cloudwatch/home?region=${AWS::Region}#dashboards:name=${Environment}-dynamodb-freetier-monitoring'
+    Export:
+      Name: !Sub '${Environment}-dashboard-url'
+
+  FreeTierUsage:
+    Description: 'Free Tier Usage Summary'
+    Value: !Sub |
+      DynamoDB: 15 RCU + 15 WCU (60% of 25 limit)
+      Lambda: ~100 invocations/day (0.01% of 1M limit)
+      CloudWatch: 6 metrics, 1 dashboard, 3 alarms
+      Storage: <1GB (4% of 25GB limit)

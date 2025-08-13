@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Tạo mới tài khoản AWS</title>
-    <link>http://localhost:1313/vi/categories/</link>
+    <link>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/vi/categories/</link>
     <description>Recent content in Categories on Tạo mới tài khoản AWS</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/vi/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/vi/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

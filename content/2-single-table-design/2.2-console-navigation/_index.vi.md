@@ -43,9 +43,7 @@ Khi bạn click vào table của mình, bạn sẽ thấy một số tab:
 | **Indexes** | Quản lý GSI | Xem Global Secondary Indexes |
 | **Global tables** | Thiết lập multi-region | Kiểm tra replication status |
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của trang table overview hiển thị tất cả các tab
-{{% /notice %}}
+![Table-Layout](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Table-Layout.png?featherlight=false&width=90pc)
 
 ### Thông tin chính cần lưu ý
 
@@ -56,9 +54,7 @@ Khi bạn click vào table của mình, bạn sẽ thấy một số tab:
 - **Table status**: Active
 - **Item count**: Hiện tại là 0 (table trống)
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của chi tiết table hiển thị cấu hình PK và SK
-{{% /notice %}}
+![Table-Layout2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Table-Layout2.png?featherlight=false&width=90pc)
 
 ## Items Tab - Workspace dữ liệu của bạn
 
@@ -74,9 +70,7 @@ Khi bạn click vào table của mình, bạn sẽ thấy một số tab:
 - ✅ Chỉnh sửa attributes của item
 - ✅ Xóa items nếu cần
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của tab Items trống hiển thị cột PK và SK
-{{% /notice %}}
+![Table-columns](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Table-columns.png?featherlight=false&width=90pc)
 
 ### Giao diện tạo Items
 
@@ -87,9 +81,9 @@ Khi bạn click vào table của mình, bạn sẽ thấy một số tab:
    - **JSON view**: Chỉnh sửa JSON trực tiếp (được khuyến nghị)
 3. **Chuyển sang JSON view** để nhập dữ liệu dễ dàng hơn
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của dialog "Create item" hiển thị tùy chọn Form vs JSON view
-{{% /notice %}}
+![Create_item1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Create_item1.png?featherlight=false&width=90pc)
+
+![Create_item](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Create_item.png?featherlight=false&width=90pc)
 
 ## JSON View để nhập dữ liệu
 
@@ -112,9 +106,7 @@ Khi tạo items, bạn sẽ sử dụng cấu trúc JSON này:
 - **Attributes bổ sung**: Thêm theo nhu cầu cho từng loại entity
 - **Kiểu dữ liệu**: Hỗ trợ strings, numbers, booleans, lists, maps
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của JSON view trong dialog create item với dữ liệu mẫu
-{{% /notice %}}
+![Create_item](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Create_item.png?featherlight=false&width=90pc)
 
 ## Giao diện Query
 
@@ -127,9 +119,7 @@ Khi tạo items, bạn sẽ sử dụng cấu trúc JSON này:
    - **Table query**: Query table chính
    - **Index query**: Query GSI
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị vị trí nút Query và lựa chọn loại query
-{{% /notice %}}
+![Query_button](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Query_button.png?featherlight=false&width=90pc)
 
 ### Tham số Query
 
@@ -140,9 +130,7 @@ Khi tạo items, bạn sẽ sử dụng cấu trúc JSON này:
   - Bắt đầu với: `ORDER#`
   - Giữa: Range queries
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của dialog query hiển thị các trường input PK và SK
-{{% /notice %}}
+![Query_Parameters](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Query_Parameters.png?featherlight=false&width=90pc)
 
 ## Điều hướng Global Secondary Index (GSI)
 
@@ -156,21 +144,7 @@ Khi tạo items, bạn sẽ sử dụng cấu trúc JSON này:
 - **GSI1**: `GSI1PK` (Partition) + `GSI1SK` (Sort)
 - **GSI2**: `GSI2PK` (Partition) + `GSI2SK` (Sort)
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của tab Indexes hiển thị cấu hình GSI1 và GSI2
-{{% /notice %}}
-
-### Query GSIs
-
-**Để query một GSI**:
-1. **Click "Query" trong tab Items**
-2. **Chọn "Query (index)"**
-3. **Chọn GSI**: GSI1 hoặc GSI2
-4. **Nhập giá trị GSI key**
-
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của giao diện GSI query với dropdown lựa chọn index
-{{% /notice %}}
+![Indexes](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Indexes.png?featherlight=false&width=90pc)
 
 ## Metrics và Monitoring
 
@@ -187,9 +161,7 @@ Khi tạo items, bạn sẽ sử dụng cấu trúc JSON này:
 - ✅ Giám sát hiệu suất
 - ✅ Phát hiện sớm các vấn đề
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của tab Metrics hiển thị biểu đồ capacity utilization
-{{% /notice %}}
+![Performance](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Performance.png?featherlight=false&width=90pc)
 
 ## Tham chiếu Quick Actions
 
@@ -199,7 +171,6 @@ Khi tạo items, bạn sẽ sử dụng cấu trúc JSON này:
 |-----------|--------|----------|
 | **Create Item** | Items tab → Create item | Thêm dữ liệu mới |
 | **Query Table** | Items tab → Query | Tìm kiếm theo PK/SK |
-| **Query GSI** | Items tab → Query (index) | Tìm kiếm theo GSI keys |
 | **View Metrics** | Metrics tab | Giám sát hiệu suất |
 | **Check Capacity** | Overview tab | Xác minh provisioned capacity |
 

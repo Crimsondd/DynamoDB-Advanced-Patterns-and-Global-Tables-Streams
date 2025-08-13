@@ -43,9 +43,7 @@ When you click on your table, you'll see several tabs:
 | **Indexes** | GSI management | View Global Secondary Indexes |
 | **Global tables** | Multi-region setup | Check replication status |
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of table overview page showing all tabs
-{{% /notice %}}
+![Table-Layout](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Table-Layout.png?featherlight=false&width=90pc)
 
 ### Key Information to Note
 
@@ -56,9 +54,7 @@ When you click on your table, you'll see several tabs:
 - **Table status**: Active
 - **Item count**: Currently 0 (empty table)
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of table details showing PK and SK configuration
-{{% /notice %}}
+![Table-Layout2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Table-Layout2.png?featherlight=false&width=90pc)
 
 ## Items Tab - Your Data Workspace
 
@@ -74,9 +70,7 @@ This is where you'll:
 - ✅ Edit item attributes
 - ✅ Delete items if needed
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of empty Items tab showing PK and SK columns
-{{% /notice %}}
+![Table-columns](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Table-columns.png?featherlight=false&width=90pc)
 
 ### Creating Items Interface
 
@@ -87,9 +81,9 @@ This is where you'll:
    - **JSON view**: Direct JSON editing (recommended)
 3. **Switch to JSON view** for easier data entry
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of "Create item" dialog showing Form vs JSON view options
-{{% /notice %}}
+![Create_item1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Create_item1.png?featherlight=false&width=90pc)
+
+![Create_item](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Create_item.png?featherlight=false&width=90pc)
 
 ## JSON View for Data Entry
 
@@ -112,9 +106,7 @@ When creating items, you'll use this JSON structure:
 - **Additional attributes**: Add as needed for each entity type
 - **Data types**: Strings, numbers, booleans, lists, maps supported
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of JSON view in create item dialog with sample data
-{{% /notice %}}
+![Create_item](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Create_item.png?featherlight=false&width=90pc)
 
 ## Query Interface
 
@@ -127,9 +119,7 @@ When creating items, you'll use this JSON structure:
    - **Table query**: Query main table
    - **Index query**: Query GSI
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing Query button location and query type selection
-{{% /notice %}}
+![Query_button](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Query_button.png?featherlight=false&width=90pc)
 
 ### Query Parameters
 
@@ -140,9 +130,7 @@ When creating items, you'll use this JSON structure:
   - Begins with: `ORDER#`
   - Between: Range queries
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of query dialog showing PK and SK input fields
-{{% /notice %}}
+![Query_Parameters](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Query_Parameters.png?featherlight=false&width=90pc)
 
 ## Global Secondary Index (GSI) Navigation
 
@@ -156,21 +144,8 @@ When creating items, you'll use this JSON structure:
 - **GSI1**: `GSI1PK` (Partition) + `GSI1SK` (Sort)
 - **GSI2**: `GSI2PK` (Partition) + `GSI2SK` (Sort)
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Indexes tab showing GSI1 and GSI2 configuration
-{{% /notice %}}
+![Indexes](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Indexes.png?featherlight=false&width=90pc)
 
-### Querying GSIs
-
-**To query a GSI**:
-1. **Click "Query" in Items tab**
-2. **Select "Query (index)"**
-3. **Choose GSI**: GSI1 or GSI2
-4. **Enter GSI key values**
-
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of GSI query interface with index selection dropdown
-{{% /notice %}}
 
 ## Metrics and Monitoring
 
@@ -187,9 +162,7 @@ When creating items, you'll use this JSON structure:
 - ✅ Monitor performance
 - ✅ Detect any issues early
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Metrics tab showing capacity utilization graphs
-{{% /notice %}}
+![Performance](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/Performance.png?featherlight=false&width=90pc)
 
 ## Quick Actions Reference
 
@@ -199,7 +172,6 @@ When creating items, you'll use this JSON structure:
 |--------|----------|---------|
 | **Create Item** | Items tab → Create item | Add new data |
 | **Query Table** | Items tab → Query | Search by PK/SK |
-| **Query GSI** | Items tab → Query (index) | Search by GSI keys |
 | **View Metrics** | Metrics tab | Monitor performance |
 | **Check Capacity** | Overview tab | Verify provisioned capacity |
 
