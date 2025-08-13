@@ -1,0 +1,59 @@
+name: Deploy Hugo 0.92.2 to Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_ENV: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true        # cần nếu theme là submodule
+          fetch-depth: 0
+
+      - name: Setup Hugo 0.92.2 (extended)
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.92.2'
+          extended: true          # bắt buộc nếu theme có SCSS/SASS
+
+      # Nếu bạn KHÔNG dùng PostCSS/SCSS thì để nguyên.
+      # Nếu theme yêu cầu PostCSS, hãy cài thêm:
+      # - name: Setup Node (cho PostCSS)
+      #   uses: actions/setup-node@v4
+      #   with: { node-version: '20' }
+      # - run: npm ci
+      #   working-directory: .    # đổi nếu package.json ở nơi khác
+
+      - name: Build
+        run: hugo --minify        # xuất ra ./public
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
