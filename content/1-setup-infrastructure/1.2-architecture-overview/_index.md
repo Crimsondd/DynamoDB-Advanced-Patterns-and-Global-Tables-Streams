@@ -76,20 +76,15 @@ Trigger: DynamoDB Streams
 
 Our e-commerce platform uses a single DynamoDB table with multiple entity types:
 
-```text
-Entity Types and Access Patterns:
-┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐
-│ Entity Type     │ Partition Key   │ Sort Key        │ Purpose         │
-├─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-│ User Profile    │ USER#id         │ PROFILE         │ User metadata   │
-│ User Addresses  │ USER#id         │ ADDRESS#id      │ Shipping info   │
-│ Product         │ PRODUCT#id      │ DETAILS         │ Product catalog │
-│ Product Reviews │ PRODUCT#id      │ REVIEW#user_id  │ Customer reviews│
-│ Order Header    │ ORDER#id        │ DETAILS         │ Order metadata  │
-│ Order Items     │ ORDER#id        │ ITEM#product_id │ Order contents  │
-│ Category        │ CATEGORY#id     │ DETAILS         │ Product groups  │
-└─────────────────┴─────────────────┴─────────────────┴─────────────────┘
-```
+| Entity Type | Partition Key | Sort Key | Purpose |
+|-------------|---------------|----------|---------|
+| User Profile | USER#id | PROFILE | User metadata |
+| User Addresses | USER#id | ADDRESS#id | Shipping info |
+| Product | PRODUCT#id | DETAILS | Product catalog |
+| Product Reviews | PRODUCT#id | REVIEW#user_id | Customer reviews |
+| Order Header | ORDER#id | DETAILS | Order metadata |
+| Order Items | ORDER#id | ITEM#product_id | Order contents |
+| Category | CATEGORY#id | DETAILS | Product groups |
 
 ### Access Patterns
 

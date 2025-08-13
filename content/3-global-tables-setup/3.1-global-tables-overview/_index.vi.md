@@ -8,157 +8,157 @@ pre : " <b> 3.1 </b> "
 
 # Tổng quan Global Tables
 
-🌐 **Hiểu về kiến trúc DynamoDB Global Tables và cơ chế replication**
+🌐 **Hiểu về kiến trúc DynamoDB Global Tables và cơ chế sao chép (replication)**
 
 ## Global Tables là gì?
 
-Global Tables cho phép bạn tạo một database multi-region, multi-master cung cấp hiệu suất read và write local cho các ứng dụng phân tán toàn cầu. CloudFormation deployment của bạn đã cấu hình sẵn điều này.
+Global Tables cho phép bạn tạo một cơ sở dữ liệu đa vùng (multi-region), đa chủ (multi-master) cung cấp hiệu suất đọc và ghi cục bộ cho các ứng dụng phân tán toàn cầu. Triển khai CloudFormation của bạn đã cấu hình sẵn điều này.
 
 ## Các thành phần Kiến trúc
 
-### Workshop Setup hiện tại
+### Cấu hình Workshop hiện tại
 
-Infrastructure của bạn đã bao gồm:
+Hạ tầng của bạn đã bao gồm:
 
-| Component | US-East-1 | EU-West-1 | Status |
-|-----------|------------|-----------|---------|
-| **DynamoDB Table** | Primary | Replica | ✅ Active |
-| **Table Name** | `demo-ecommerce-freetier` | `demo-ecommerce-freetier` | ✅ Synced |
-| **DynamoDB Streams** | Enabled | Enabled | ✅ Replicating |
-| **Replication** | Bi-directional | Bi-directional | ✅ Healthy |
+| Thành phần | US-East-1 | EU-West-1 | Trạng thái |
+|------------|-----------|-----------|------------|
+| **Bảng DynamoDB** | Chính (Primary) | Bản sao (Replica) | ✅ Hoạt động |
+| **Tên bảng** | `demo-ecommerce-freetier` | `demo-ecommerce-freetier` | ✅ Đồng bộ |
+| **DynamoDB Streams** | Bật | Bật | ✅ Đang sao chép |
+| **Sao chép** | Hai chiều | Hai chiều | ✅ Ổn định |
 
-## Quá trình Replication
+## Quá trình Sao chép
 
-### Cách dữ liệu Flow giữa các Regions
+### Cách dữ liệu luân chuyển giữa các vùng
 
-| Step | Action | Details |
-|------|--------|---------|
-| **Bước 1** | **User writes to US-EAST-1** | |
-| | Item | `USER#john, SK: PROFILE` |
-| | Local write | Immediate success |
-| | Stream record | Created |
-| **Bước 2** | **DynamoDB Streams captures change** | |
-| | Stream record | `NEW_AND_OLD_IMAGES` |
-| | Timestamp | `2025-08-11T15:30:00.123Z` |
-| | Event | `INSERT` |
-| **Bước 3** | **Cross-region replication** | |
-| | Source | us-east-1 stream |
-| | Target | eu-west-1 table |
-| | Latency | 500ms - 2 seconds |
-| **Bước 4** | **EU-WEST-1 receives update** | |
-| | Item appears | `USER#john, SK: PROFILE` |
-| | Available for reads | Immediately |
-| | Status | Replicated ✅ |
+| Bước | Hành động | Chi tiết |
+|------|-----------|---------|
+| **Bước 1** | **Người dùng ghi vào US-EAST-1** | |
+| | Mục | `USER#john, SK: PROFILE` |
+| | Ghi cục bộ | Thành công ngay lập tức |
+| | Bản ghi Stream | Được tạo |
+| **Bước 2** | **DynamoDB Streams ghi nhận thay đổi** | |
+| | Bản ghi Stream | `NEW_AND_OLD_IMAGES` |
+| | Dấu thời gian | `2025-08-11T15:30:00.123Z` |
+| | Sự kiện | `INSERT` |
+| **Bước 3** | **Sao chép giữa các vùng** | |
+| | Nguồn | Stream us-east-1 |
+| | Đích | Bảng eu-west-1 |
+| | Độ trễ | 500ms - 2 giây |
+| **Bước 4** | **EU-WEST-1 nhận bản cập nhật** | |
+| | Mục xuất hiện | `USER#john, SK: PROFILE` |
+| | Có sẵn để đọc | Ngay lập tức |
+| | Trạng thái | Đã sao chép ✅ |
 
-## Consistency Model
+## Mô hình Nhất quán
 
-### Eventually Consistent
+### Nhất quán Cuối cùng (Eventually Consistent)
 
-Global Tables cung cấp **eventual consistency** across regions:
+Global Tables cung cấp **nhất quán cuối cùng** giữa các vùng:
 
-- **Immediate**: Write thành công ngay lập tức ở source region
-- **Propagation**: Changes replicate đến các regions khác trong 0.5-2 giây
-- **Convergence**: Tất cả regions cuối cùng có dữ liệu identical
-- **Durability**: Dữ liệu không bao giờ bị mất trong quá trình replication
+- **Ngay lập tức**: Ghi thành công ngay tại vùng nguồn
+- **Lan truyền**: Thay đổi được sao chép đến các vùng khác trong 0.5-2 giây
+- **Hội tụ**: Tất cả các vùng cuối cùng sẽ có dữ liệu giống nhau
+- **Bền vững**: Dữ liệu không bao giờ bị mất trong quá trình sao chép
 
-### Conflict Resolution
+### Giải quyết Xung đột
 
-Khi cùng một item được modified ở nhiều regions đồng thời:
+Khi cùng một mục được sửa đổi ở nhiều vùng đồng thời:
 
-**Last Writer Wins** strategy:
-1. **Compare timestamps** của các conflicting updates
-2. **Keep the later timestamp** (thay đổi gần đây hơn)
-3. **Overwrite earlier changes** trong tất cả regions
-4. **Notify through CloudWatch** metrics
+**Chiến lược Last Writer Wins**:
+1. **So sánh dấu thời gian** của các bản cập nhật xung đột
+2. **Giữ lại dấu thời gian muộn hơn** (thay đổi gần đây nhất)
+3. **Ghi đè các thay đổi trước đó** ở tất cả các vùng
+4. **Thông báo qua CloudWatch** metrics
 
-Ví dụ conflict scenario:
+Ví dụ về xung đột:
 ```text
-Time: 15:30:00 - US user updates: name = "John Smith"
-Time: 15:30:01 - EU user updates: name = "John Doe"
+Thời gian: 15:30:00 - Người dùng US cập nhật: name = "John Smith"
+Thời gian: 15:30:01 - Người dùng EU cập nhật: name = "John Doe"
 
-Result: Tất cả regions sẽ có name = "John Doe"
-(EU update wins do later timestamp)
+Kết quả: Tất cả các vùng sẽ có name = "John Doe"
+(Bản cập nhật EU thắng do dấu thời gian muộn hơn)
 ```
 
-## Global Tables Benefits
+## Lợi ích của Global Tables
 
-### Performance Benefits
+### Lợi ích về Hiệu suất
 
-- **Local Latency**: Sub-10ms response times trong mỗi region
-- **Global Scale**: Serve users worldwide không có performance penalty
-- **Load Distribution**: Traffic được distributed across regions
+- **Độ trễ cục bộ**: Thời gian phản hồi dưới 10ms trong mỗi vùng
+- **Quy mô toàn cầu**: Phục vụ người dùng trên toàn thế giới mà không bị giảm hiệu suất
+- **Phân phối tải**: Lưu lượng được phân phối giữa các vùng
 
-### Availability Benefits
+### Lợi ích về Khả dụng
 
-- **Regional Failover**: Automatic failover nếu một region becomes unavailable
-- **Disaster Recovery**: Built-in DR across geographic regions
-- **99.999% Availability**: Higher availability hơn single-region deployments
+- **Chuyển đổi vùng tự động**: Tự động chuyển đổi nếu một vùng không khả dụng
+- **Khôi phục thảm họa**: DR tích hợp giữa các vùng địa lý
+- **99.999% Khả dụng**: Khả dụng cao hơn so với triển khai một vùng
 
-### Operational Benefits
+### Lợi ích về Vận hành
 
-- **No Code Changes**: Applications work với bất kỳ region nào
-- **Automatic Scaling**: Mỗi region scales independently
-- **Unified Management**: Single table view across tất cả regions
+- **Không cần thay đổi mã**: Ứng dụng hoạt động với bất kỳ vùng nào
+- **Tự động mở rộng**: Mỗi vùng mở rộng độc lập
+- **Quản lý hợp nhất**: Một bảng duy nhất trên tất cả các vùng
 
-## Key Concepts cần nhớ
+## Các Khái niệm Chính cần nhớ
 
-### Multi-Master Replication
-- **Bất kỳ region nào có thể accept writes**
-- **Tất cả regions có thể serve reads**
-- **Không có single point of failure**
+### Sao chép Đa chủ (Multi-Master Replication)
+- **Bất kỳ vùng nào cũng có thể chấp nhận ghi**
+- **Tất cả các vùng đều có thể phục vụ đọc**
+- **Không có điểm lỗi duy nhất**
 
-### Stream-Based Replication
-- **DynamoDB Streams** power the replication
-- **Ordered delivery** ensures consistency
-- **Retry logic** handles temporary failures
+### Sao chép Dựa trên Stream
+- **DynamoDB Streams** cung cấp năng lượng cho sao chép
+- **Giao hàng theo thứ tự** đảm bảo tính nhất quán
+- **Logic thử lại** xử lý các lỗi tạm thời
 
-### Region Independence
-- **Mỗi region** operates independently
-- **Network partitions** không affect local operations
-- **Cross-region connectivity** chỉ cần cho replication
+### Độc lập Vùng
+- **Mỗi vùng** hoạt động độc lập
+- **Phân vùng mạng** không ảnh hưởng đến hoạt động cục bộ
+- **Kết nối giữa các vùng** chỉ cần thiết cho sao chép
 
 {{% notice tip %}}
-**Workshop Advantage**: CloudFormation template của bạn đã configured tất cả Global Tables components. Bạn có thể focus vào understanding và testing functionality!
+**Lợi thế Workshop**: Mẫu CloudFormation của bạn đã cấu hình tất cả các thành phần Global Tables. Bạn có thể tập trung vào việc hiểu và kiểm tra chức năng!
 {{% /notice %}}
 
-## Limitations cần hiểu
+## Hạn chế cần hiểu
 
-### Eventual Consistency Challenges
-- **Temporary inconsistencies** có thể xảy ra trong 0.5-2 giây
-- **Application design** phải handle eventual consistency
-- **Strong consistency** chỉ available trong single region
+### Thách thức về Nhất quán Cuối cùng
+- **Không nhất quán tạm thời** có thể xảy ra trong 0.5-2 giây
+- **Thiết kế ứng dụng** phải xử lý nhất quán cuối cùng
+- **Nhất quán mạnh** chỉ khả dụng trong một vùng
 
-### Conflict Resolution Limitations
-- **Last Writer Wins** có thể overwrite changes
-- **Không có custom conflict resolution** logic
-- **Application-level** conflict handling có thể cần thiết
+### Hạn chế về Giải quyết Xung đột
+- **Last Writer Wins** có thể ghi đè các thay đổi
+- **Không có logic giải quyết xung đột tùy chỉnh**
+- **Xử lý xung đột ở cấp ứng dụng** có thể cần thiết
 
-### Cross-Region Dependencies
-- **Network connectivity** required cho replication
-- **Regional outages** có thể delay replication
-- **Cross-region latency** affects replication speed
+### Phụ thuộc giữa các vùng
+- **Kết nối mạng** cần thiết cho sao chép
+- **Sự cố vùng** có thể làm chậm sao chép
+- **Độ trễ giữa các vùng** ảnh hưởng đến tốc độ sao chép
 
-## Real-World Use Cases
+## Các Trường hợp Sử dụng Thực tế
 
-### Ideal cho Global Tables
+### Lý tưởng cho Global Tables
 
-| Use Case | Tại sao It Works | Considerations |
-|----------|-------------------|----------------|
-| **User Profiles** | Infrequent updates, read-heavy | Handle profile conflicts |
-| **Product Catalogs** | Content distribution, global access | Inventory sync challenges |
-| **Gaming Leaderboards** | Global competition, eventual consistency OK | Score conflicts possible |
-| **IoT Sensor Data** | Time-series data, append-only | High write volume |
+| Trường hợp Sử dụng | Tại sao nó hoạt động | Cân nhắc |
+|---------------------|----------------------|----------|
+| **Hồ sơ người dùng** | Cập nhật không thường xuyên, đọc nhiều | Xử lý xung đột hồ sơ |
+| **Danh mục sản phẩm** | Phân phối nội dung, truy cập toàn cầu | Thách thức đồng bộ hóa tồn kho |
+| **Bảng xếp hạng trò chơi** | Cạnh tranh toàn cầu, nhất quán cuối cùng OK | Có thể xảy ra xung đột điểm số |
+| **Dữ liệu cảm biến IoT** | Dữ liệu chuỗi thời gian, chỉ thêm | Khối lượng ghi cao |
 
-### Challenging Scenarios
+### Các kịch bản thách thức
 
-- **Financial transactions** (require strong consistency)
-- **Inventory management** (stock levels need accuracy)
-- **Real-time collaboration** (immediate consistency needed)
+- **Giao dịch tài chính** (yêu cầu nhất quán mạnh)
+- **Quản lý tồn kho** (mức tồn kho cần độ chính xác)
+- **Hợp tác thời gian thực** (cần nhất quán ngay lập tức)
 
-## Next Steps
+## Bước Tiếp theo
 
-Bây giờ bạn đã hiểu Global Tables architecture, hãy verify multi-region setup của bạn và xem replication in action thông qua AWS Console.
+Bây giờ bạn đã hiểu kiến trúc Global Tables, hãy xác minh cấu hình đa vùng của bạn và xem sao chép hoạt động thông qua AWS Console.
 
 {{% notice info %}}
-**Ready to Explore**: Global Tables của bạn đã được configured và running. Time to see them in action!
+**Sẵn sàng Khám phá**: Global Tables của bạn đã được cấu hình và đang chạy. Đã đến lúc xem chúng hoạt động!
 {{% /notice %}}

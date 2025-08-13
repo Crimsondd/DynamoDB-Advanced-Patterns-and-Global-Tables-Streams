@@ -31,22 +31,17 @@ Short-term free access to certain services
 
 ## Free Tier Limits for This Workshop
 
-```text
-Service Usage Breakdown:
-┌─────────────────┬──────────────┬──────────────┬─────────────┐
-│ Service         │ Free Tier    │ Our Usage    │ Safety %    │
-├─────────────────┼──────────────┼──────────────┼─────────────┤
-│ DynamoDB RCU    │ 25 units     │ 15 units     │ 60%         │
-│ DynamoDB WCU    │ 25 units     │ 15 units     │ 60%         │
-│ DynamoDB Storage│ 25 GB        │ <1 GB        │ 4%          │
-│ Lambda Requests │ 1M/month     │ ~100/day     │ 0.3%        │
-│ Lambda Duration │ 400K GB-sec  │ <1K GB-sec   │ 0.25%       │
-│ CloudWatch      │ 10 metrics   │ 6 metrics    │ 60%         │
-│ Data Transfer   │ 1 GB         │ <100 MB      │ 10%         │
-└─────────────────┴──────────────┴──────────────┴─────────────┘
+| Service | Free Tier | Our Usage | Safety % |
+|---------|-----------|-----------|----------|
+| DynamoDB RCU | 25 units | 15 units | 60% |
+| DynamoDB WCU | 25 units | 15 units | 60% |
+| DynamoDB Storage | 25 GB | <1 GB | 4% |
+| Lambda Requests | 1M/month | ~100/day | 0.3% |
+| Lambda Duration | 400K GB-sec | <1K GB-sec | 0.25% |
+| CloudWatch | 10 metrics | 6 metrics | 60% |
+| Data Transfer | 1 GB | <100 MB | 10% |
 
 Overall Free Tier Usage: ~50% = 100% SAFE! 🛡️
-```
 
 {{% notice tip %}}
 **Cost Protection**: We're using only 50% of available Free Tier limits, ensuring zero charges throughout the workshop.

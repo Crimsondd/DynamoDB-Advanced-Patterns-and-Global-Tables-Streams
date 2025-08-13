@@ -6,103 +6,89 @@ chapter : false
 pre : " <b> 4.1 </b> "
 ---
 
-## Enable DynamoDB Streams
+## Bật DynamoDB Streams
 
-🔧 **Configure DynamoDB table của bạn để capture every data change**
+🔧 **Bật theo dõi thay đổi cho bảng DynamoDB của bạn**
 
 ### Tổng quan
 
-DynamoDB Streams capture data modification events trong tables của bạn. Khi enabled, streams provide time-ordered sequence của item-level modifications cho up to 24 hours.
+DynamoDB Streams ghi lại mọi thay đổi đối với các mục trong bảng của bạn. Điều này cho phép xử lý thời gian thực với các hàm Lambda.
 
-### What Streams Capture
+### Các loại Stream View
 
-**Event Types**:
-- **INSERT**: New item added to table
-- **MODIFY**: Existing item updated
-- **REMOVE**: Item deleted from table
+Chọn dữ liệu cần ghi lại:
+- **NEW_AND_OLD_IMAGES**: Dữ liệu đầy đủ trước và sau (khuyến nghị cho demo)
+- **NEW_IMAGE**: Chỉ dữ liệu sau khi cập nhật
+- **OLD_IMAGE**: Chỉ dữ liệu trước khi cập nhật
+- **KEYS_ONLY**: Chỉ các khóa
 
-**Stream View Types**:
-- **KEYS_ONLY**: Only key attributes của modified item
-- **NEW_IMAGE**: Entire item after modification
-- **OLD_IMAGE**: Entire item before modification  
-- **NEW_AND_OLD_IMAGES**: Both before và after images
+## Hướng dẫn từng bước: Bật Streams
 
-## Exercise 1: Enable Streams on Existing Table
+### Bước 1: Mở DynamoDB Console
 
-### Bước 1: Navigate to DynamoDB Console
+1. AWS Console → Tìm kiếm "DynamoDB"
+2. Bảng → Nhấp vào bảng của bạn `demo-ecommerce-freetier`
+3. Nhấp vào tab **"Exports and streams"**
 
-**Access table của bạn**:
+### Bước 2: Bật Stream
 
-1. **AWS Console**: Search "DynamoDB"
-2. **Tables**: Click "Tables" trong left sidebar
-3. **Select table**: Click `demo-ecommerce-freetier`
-4. **Exports and streams**: Click "Exports and streams" tab
+1. Tìm phần "DynamoDB stream"
+2. Nhấp vào nút **"Turn on"**
+3. Chọn **"New and old images"**
+4. Nhấp vào **"Turn on stream"**
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của DynamoDB console với Exports and streams tab highlighted
-{{% /notice %}}
+### Bước 3: Ghi lại Stream ARN
 
-### Bước 2: Configure DynamoDB Stream
+Sao chép Stream ARN - bạn sẽ cần nó để thiết lập Lambda:
+```
+arn:aws:dynamodb:us-east-1:123456789012:table/demo-ecommerce-freetier/stream/2025-08-13T10:00:00.000
+```
 
-**Enable stream processing**:
+![4.1.1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.1.1.png?featherlight=false&width=90pc)
 
-1. **DynamoDB stream section**: Scroll to "DynamoDB stream" section
-2. **Turn on stream**: Click "Turn on" button
-3. **View type selection**: Choose "New and old images"
-4. **Confirmation**: Click "Turn on stream"
+### Xác minh
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của stream configuration dialog với "New and old images" selected
-{{% /notice %}}
+✅ Trạng thái stream hiển thị "Enabled"  
+✅ Stream ARN được hiển thị  
+✅ Loại view là "New and old images"
 
-### Bước 3: Verify Stream Configuration
+![4.1.2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.1.2.png?featherlight=false&width=90pc)
 
-**Check stream status**:
+## Bài tập 2: Hiểu cài đặt Stream
 
-1. **Stream details**: Note the stream ARN appears
-2. **Status**: Should show "Active"
-3. **View type**: Confirms "New and old images"
-4. **Creation time**: Shows khi stream was enabled
+### So sánh các loại Stream View
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot showing active stream với ARN và configuration details
-{{% /notice %}}
+**Chọn loại view phù hợp với trường hợp sử dụng của bạn**:
 
-## Exercise 2: Understanding Stream Settings
+| Loại View | Trường hợp sử dụng | Dữ liệu được ghi lại |
+|-----------|--------------------|-----------------------|
+| **KEYS_ONLY** | Ghi nhật ký kiểm tra | Chỉ PK, SK |
+| **NEW_IMAGE** | Cập nhật bộ nhớ đệm | Mục sau thay đổi |
+| **OLD_IMAGE** | Theo dõi thay đổi | Mục trước thay đổi |
+| **NEW_AND_OLD_IMAGES** | Ghi nhật ký đầy đủ | Cả hai phiên bản |
 
-### Stream View Type Comparison
+### Cân nhắc về hiệu suất
 
-**Choose the right view type cho use case của bạn**:
+**Ảnh hưởng của cấu hình Stream**:
 
-| View Type | Use Case | Data Captured |
-|-----------|----------|---------------|
-| **KEYS_ONLY** | Audit logging | PK, SK only |
-| **NEW_IMAGE** | Cache updates | Item after change |
-| **OLD_IMAGE** | Change tracking | Item before change |
-| **NEW_AND_OLD_IMAGES** | Full audit | Both versions |
-
-### Performance Considerations
-
-**Stream Configuration Impact**:
-
-- **Storage**: NEW_AND_OLD_IMAGES uses most space
-- **Lambda payload**: Larger payloads với full images
-- **Processing time**: More data = longer processing
-- **Cost**: Minimal additional cost cho streams
+- **Lưu trữ**: NEW_AND_OLD_IMAGES sử dụng nhiều không gian nhất
+- **Payload Lambda**: Payload lớn hơn với hình ảnh đầy đủ
+- **Thời gian xử lý**: Nhiều dữ liệu hơn = thời gian xử lý lâu hơn
+- **Chi phí**: Chi phí bổ sung tối thiểu cho streams
 
 {{% notice warning %}}
-**Free Tier Note**: DynamoDB Streams are included at no additional charge. Lambda processing stays within Free Tier limits.
+**Lưu ý Free Tier**: DynamoDB Streams được bao gồm mà không tính thêm phí. Xử lý Lambda nằm trong giới hạn Free Tier.
 {{% /notice %}}
 
-## Exercise 3: Test Stream Functionality
+## Bài tập 3: Kiểm tra chức năng Stream
 
-### Bước 1: Create Test Item
+### Bước 1: Tạo mục kiểm tra
 
-**Generate một stream event**:
+**Tạo một sự kiện stream**:
 
-1. **Items tab**: Go back to "Items" tab
-2. **Create item**: Click "Create item"
-3. **Add test data**:
+1. **Tab Items**: Quay lại tab "Items"
+2. **Tạo mục**: Nhấp vào "Create item"
+3. **Thêm dữ liệu kiểm tra**:
 
 ```json
 {
@@ -115,29 +101,25 @@ DynamoDB Streams capture data modification events trong tables của bạn. Khi 
 }
 ```
 
-4. **Create**: Click "Create item"
+4. **Tạo**: Nhấp vào "Create item"
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của item creation dialog với stream test data
-{{% /notice %}}
+![4.1.3](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.1.3.png?featherlight=false&width=90pc)
 
-### Bước 2: Monitor Stream Activity
+### Bước 2: Giám sát hoạt động Stream
 
-**Check stream metrics**:
+**Kiểm tra các chỉ số stream**:
 
-1. **CloudWatch**: Open CloudWatch console trong new tab
-2. **Metrics**: Navigate to Metrics
-3. **DynamoDB**: Click "DynamoDB" namespace
-4. **Stream metrics**: Look for stream-related metrics
-5. **IncomingRecords**: Should show 1 new record
+1. **CloudWatch**: Mở console CloudWatch trong tab mới
+2. **Metrics**: Điều hướng đến Metrics
+3. **DynamoDB**: Nhấp vào namespace "DynamoDB"
+4. **Chỉ số stream**: Tìm các chỉ số liên quan đến stream
+5. **IncomingRecords**: Nên hiển thị 1 bản ghi mới
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của CloudWatch showing DynamoDB stream metrics
-{{% /notice %}}
+![4.1.4](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.1.4.png?featherlight=false&width=90pc)
 
-### Bước 3: Understand Stream Records
+### Bước 3: Hiểu cấu trúc bản ghi Stream
 
-**Stream record structure** (for reference):
+**Cấu trúc bản ghi Stream** (tham khảo):
 
 ```json
 {
@@ -171,104 +153,75 @@ DynamoDB Streams capture data modification events trong tables của bạn. Khi 
 }
 ```
 
-**Key components**:
-- **eventName**: INSERT (since this is a new item)
-- **Keys**: Primary key của changed item
-- **NewImage**: Complete item data after creation
-- **OldImage**: Would be empty cho INSERT events
+**Các thành phần chính**:
+- **eventName**: INSERT (vì đây là mục mới)
+- **Keys**: Khóa chính của mục đã thay đổi
+- **NewImage**: Dữ liệu mục đầy đủ sau khi tạo
+- **OldImage**: Sẽ trống đối với các sự kiện INSERT
 
-## Exercise 4: Stream Configuration Best Practices
+## Bài tập 4: Thực hành cấu hình Stream tốt nhất
 
-### Optimal Configuration for Workshop
+### Cấu hình tối ưu cho Workshop
 
-**Recommended settings**:
+**Cài đặt khuyến nghị**:
 
-- ✅ **View Type**: NEW_AND_OLD_IMAGES (comprehensive audit trail)
-- ✅ **Retention**: 24 hours (default, sufficient cho processing)
-- ✅ **Shards**: Auto-managed by AWS
-- ✅ **Processing**: Lambda với appropriate batch size
+- ✅ **Loại View**: NEW_AND_OLD_IMAGES (dấu vết kiểm tra toàn diện)
+- ✅ **Thời gian lưu trữ**: 24 giờ (mặc định, đủ cho xử lý)
+- ✅ **Shards**: Được AWS quản lý tự động
+- ✅ **Xử lý**: Lambda với kích thước batch phù hợp
 
-### Security Considerations
+### Cân nhắc về bảo mật
 
-**Access control**:
+**Kiểm soát truy cập**:
 
-1. **IAM permissions**: Lambda needs stream read permissions
-2. **Encryption**: Streams inherit table encryption settings
-3. **VPC**: Streams work within VPC configuration của bạn
-4. **Monitoring**: CloudTrail logs stream access
+1. **Quyền IAM**: Lambda cần quyền đọc stream
+2. **Mã hóa**: Streams kế thừa cài đặt mã hóa của bảng
+3. **VPC**: Streams hoạt động trong cấu hình VPC của bạn
+4. **Giám sát**: CloudTrail ghi lại truy cập stream
 
-### Cost Optimization
+### Tối ưu hóa chi phí
 
-**Stream cost factors**:
+**Các yếu tố chi phí Stream**:
 
-- **Read requests**: No additional charge cho stream writes
-- **Lambda invocations**: Count toward Free Tier
-- **Data transfer**: Minimal cho in-region processing
-- **Storage**: Stream records retained cho 24 hours only
+- **Yêu cầu đọc**: Không tính thêm phí cho ghi stream
+- **Lời gọi Lambda**: Tính vào Free Tier
+- **Truyền dữ liệu**: Tối thiểu cho xử lý trong cùng khu vực
+- **Lưu trữ**: Bản ghi stream được lưu giữ trong 24 giờ
 
-## Exercise 5: Advanced Stream Configuration
+## Bài tập 5: Cấu hình Stream nâng cao
 
-### Multiple Consumer Pattern
+### Mô hình nhiều người tiêu dùng
 
-**Khi bạn need multiple processors**:
+**Khi bạn cần nhiều bộ xử lý**:
 
-1. **Single stream**: One DynamoDB stream per table
-2. **Multiple Lambdas**: Each có thể process the same stream
-3. **Kinesis Data Streams**: Cho more complex routing
-4. **Event filtering**: Lambda-level filtering
+1. **Stream đơn**: Một stream DynamoDB cho mỗi bảng
+2. **Nhiều Lambda**: Mỗi Lambda có thể xử lý cùng một stream
+3. **Kinesis Data Streams**: Cho định tuyến phức tạp hơn
+4. **Lọc sự kiện**: Lọc ở mức Lambda
 
-### Cross-Region Considerations
+### Cân nhắc đa khu vực
 
 **Global Tables + Streams**:
 
-- **Each region**: Has its own stream
-- **Replication events**: Generate stream records
-- **Filtering**: Distinguish app writes from replication
-- **Processing**: Handle regional differences
+- **Mỗi khu vực**: Có stream riêng
+- **Sự kiện sao chép**: Tạo bản ghi stream
+- **Lọc**: Phân biệt ghi ứng dụng với sao chép
+- **Xử lý**: Xử lý sự khác biệt khu vực
 
-## Troubleshooting Common Issues
+## Tóm tắt cấu hình
 
-### Stream Not Appearing
+Bằng cách hoàn thành bài tập này, bạn đã:
 
-**Check các items này**:
-
-1. **Permissions**: Ensure bạn có DynamoDB full access
-2. **Region**: Verify bạn đang ở correct AWS region
-3. **Table status**: Table must be ACTIVE để enable streams
-4. **Refresh**: Browser refresh có thể needed
-
-### Stream Configuration Failed
-
-**Possible causes**:
-
-1. **Table updating**: Wait cho table to be ACTIVE
-2. **Permissions**: Need dynamodb:EnableStream permission
-3. **Rate limits**: Wait và retry nếu rate limited
-4. **Billing**: Ensure account is trong good standing
-
-### Stream Records Missing
-
-**Debugging steps**:
-
-1. **Stream status**: Confirm stream is ACTIVE
-2. **Write operations**: Ensure items are actually changing
-3. **Time delay**: Allow 1-2 minutes cho propagation
-4. **Metrics**: Check CloudWatch cho IncomingRecords
-
-## Configuration Summary
-
-Bằng cách completing exercise này, bạn đã có:
-
-- ✅ **Enabled DynamoDB Streams** on table của bạn
-- ✅ **Configured view type** cho comprehensive change capture  
-- ✅ **Tested stream functionality** với sample data
-- ✅ **Understood stream record structure** và components
-- ✅ **Applied best practices** cho optimal configuration
+- ✅ **Bật DynamoDB Streams** trên bảng của bạn
+- ✅ **Cấu hình loại view** để ghi lại thay đổi toàn diện  
+- ✅ **Kiểm tra chức năng stream** với dữ liệu mẫu
+- ✅ **Hiểu cấu trúc bản ghi stream** và các thành phần
+- ✅ **Áp dụng thực hành tốt nhất** để cấu hình tối ưu
 
 {{% notice success %}}
-**Stream Ready**: DynamoDB table của bạn bây giờ captures every change và ready cho Lambda processing!
+**Stream Sẵn Sàng**: Bảng DynamoDB của bạn bây giờ ghi lại mọi thay đổi và sẵn sàng cho xử lý Lambda!
 {{% /notice %}}
 
-## Next Steps
+## Bước tiếp theo
 
-Với streams configured, bạn ready để create Lambda functions sẽ process các events này real-time. Trong next section, chúng ta sẽ build và deploy Lambda function optimized cho DynamoDB stream processing.
+Với streams đã được cấu hình, bạn đã sẵn sàng tạo các hàm Lambda sẽ xử lý các sự kiện này trong thời gian thực. Trong phần tiếp theo, chúng ta sẽ xây dựng và triển khai một hàm Lambda được tối ưu hóa cho xử lý stream DynamoDB.

@@ -6,73 +6,67 @@ chapter : false
 pre : " <b> 4.2 </b> "
 ---
 
-## Create Stream Processing Lambda
+## Tạo Lambda Xử Lý Stream
 
-⚙️ **Build Lambda function để process DynamoDB stream events trong real-time**
+⚙️ **Xây dựng hàm Lambda để xử lý các sự kiện stream DynamoDB trong thời gian thực**
 
 ### Tổng quan
 
-AWS Lambda provides serverless compute để process DynamoDB stream events. Function của bạn sẽ automatically trigger khi items change trong table của bạn, enabling real-time processing patterns.
+AWS Lambda cung cấp khả năng tính toán serverless để xử lý các sự kiện stream DynamoDB. Hàm của bạn sẽ tự động kích hoạt khi các mục trong bảng thay đổi, cho phép các mẫu xử lý thời gian thực.
 
-### Function Requirements
+### Yêu cầu của Hàm
 
-**Free Tier Optimized Configuration**:
-- **Runtime**: Python 3.9 (reliable và well-supported)
-- **Memory**: 128 MB (minimum cho Free Tier)
-- **Timeout**: 30 seconds (sufficient cho stream processing)
-- **Concurrent executions**: 10 (Free Tier safe)
+**Cấu hình Tối ưu Free Tier**:
+- **Runtime**: Python 3.9 (đáng tin cậy và được hỗ trợ tốt)
+- **Memory**: 128 MB (tối thiểu cho Free Tier)
+- **Timeout**: 30 giây (đủ cho xử lý stream)
+- **Concurrent executions**: 10 (an toàn trong Free Tier)
 
-## Exercise 1: Create Lambda Function
+## Bài tập 1: Tạo Hàm Lambda
 
-### Bước 1: Access Lambda Console
+### Bước 1: Truy cập Lambda Console
 
-**Navigate to Lambda service**:
+**Điều hướng đến dịch vụ Lambda**:
 
-1. **AWS Console**: Search "Lambda"
-2. **Functions**: Click "Functions" trong left sidebar
-3. **Create function**: Click "Create function" button
-4. **Author from scratch**: Select option này
+1. **AWS Console**: Tìm kiếm "Lambda"
+2. **Functions**: Nhấp vào "Functions" trong thanh bên trái
+3. **Create function**: Nhấp vào nút "Create function"
+4. **Author from scratch**: Chọn tùy chọn này
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của Lambda console với Create function button highlighted
-{{% /notice %}}
+![4.2.1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.1.png?featherlight=false&width=90pc)
 
-### Bước 2: Configure Basic Settings
+### Bước 2: Cấu hình Cài đặt Cơ bản
 
-**Function configuration**:
+**Cấu hình hàm**:
 
 1. **Function name**: `demo-dynamodb-stream-processor`
-2. **Runtime**: Select "Python 3.9"
-3. **Architecture**: Leave as "x86_64" 
+2. **Runtime**: Chọn "Python 3.9"
+3. **Architecture**: Để mặc định là "x86_64" 
 4. **Permissions**: "Create a new role with basic Lambda permissions"
-5. **Create function**: Click to proceed
+5. **Create function**: Nhấp để tiếp tục
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của Lambda function creation form với specified settings
-{{% /notice %}}
+![4.2.2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.2.png?featherlight=false&width=90pc)
 
-### Bước 3: Configure Function Settings
+### Bước 3: Cấu hình Cài đặt Hàm
 
-**Optimize cho Free Tier**:
+**Tối ưu hóa cho Free Tier**:
 
-1. **Configuration tab**: Click after function creation
-2. **General configuration**: Click "Edit"
-3. **Memory**: Set to 128 MB
-4. **Timeout**: Set to 30 seconds
-5. **Save**: Click to apply changes
+1. **Configuration tab**: Nhấp sau khi tạo hàm
+2. **General configuration**: Nhấp vào "Edit"
+3. **Memory**: Đặt thành 128 MB
+4. **Timeout**: Đặt thành 30 giây
+5. **Save**: Nhấp để áp dụng thay đổi
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của Lambda function configuration settings với memory và timeout values
-{{% /notice %}}
+![4.2.3](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.3.png?featherlight=false&width=90pc)
 
-## Exercise 2: Add Stream Processing Code
+## Bài tập 2: Thêm Mã Xử Lý Stream
 
-### Bước 1: Replace Function Code
+### Bước 1: Thay thế Mã Hàm
 
-**Navigate to code editor**:
+**Điều hướng đến trình chỉnh sửa mã**:
 
-1. **Code tab**: Click để open code editor
-2. **lambda_function.py**: Replace existing code với:
+1. **Code tab**: Nhấp để mở trình chỉnh sửa mã
+2. **lambda_function.py**: Thay thế mã hiện có bằng:
 
 ```python
 import json
@@ -80,28 +74,28 @@ import boto3
 import logging
 from datetime import datetime
 
-# Configure logging
+# Cấu hình logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
     """
-    Process DynamoDB Stream events
-    Optimized for AWS Free Tier
+    Xử lý các sự kiện Stream DynamoDB
+    Tối ưu hóa cho AWS Free Tier
     """
     try:
         processed_records = 0
         
-        # Process each record in the batch
+        # Xử lý từng bản ghi trong batch
         for record in event['Records']:
             event_name = record['eventName']
             
-            # Process INSERT, MODIFY, REMOVE events
+            # Xử lý các sự kiện INSERT, MODIFY, REMOVE
             if event_name in ['INSERT', 'MODIFY', 'REMOVE']:
                 process_stream_record(record)
                 processed_records += 1
         
-        # Return success response
+        # Trả về phản hồi thành công
         return {
             'statusCode': 200,
             'body': json.dumps({
@@ -113,17 +107,17 @@ def lambda_handler(event, context):
         
     except Exception as e:
         logger.error(f"Error processing stream records: {str(e)}")
-        # Re-raise for Lambda retry logic
+        # Ném lại lỗi để Lambda retry
         raise e
 
 def process_stream_record(record):
     """
-    Process individual stream record
-    Add your business logic here
+    Xử lý từng bản ghi stream
+    Thêm logic nghiệp vụ của bạn tại đây
     """
     event_name = record['eventName']
     
-    # Extract key information
+    # Trích xuất thông tin chính
     if 'dynamodb' in record:
         keys = record['dynamodb'].get('Keys', {})
         pk = keys.get('PK', {}).get('S', '')
@@ -131,7 +125,7 @@ def process_stream_record(record):
         
         logger.info(f"Processing {event_name} for item: {pk}#{sk}")
         
-        # Handle different event types
+        # Xử lý các loại sự kiện khác nhau
         if event_name == 'INSERT':
             handle_insert_event(record)
         elif event_name == 'MODIFY':
@@ -141,146 +135,136 @@ def process_stream_record(record):
 
 def handle_insert_event(record):
     """
-    Handle new item creation
+    Xử lý việc tạo mục mới
     """
     logger.info("Processing INSERT event")
     
-    # Get new item data
+    # Lấy dữ liệu mục mới
     new_image = record['dynamodb'].get('NewImage', {})
     
-    # Example: Send notification for new user
+    # Ví dụ: Gửi thông báo cho người dùng mới
     if 'USER#' in str(new_image.get('PK', {})):
         logger.info("New user created - could send welcome email")
     
-    # Example: Update inventory for new product
+    # Ví dụ: Cập nhật kho cho sản phẩm mới
     elif 'PRODUCT#' in str(new_image.get('PK', {})):
         logger.info("New product created - could update search index")
     
-    # Example: Process new order
+    # Ví dụ: Xử lý đơn hàng mới
     elif 'ORDER#' in str(new_image.get('SK', {})):
         logger.info("New order created - could trigger fulfillment")
 
 def handle_modify_event(record):
     """
-    Handle item updates
+    Xử lý cập nhật mục
     """
     logger.info("Processing MODIFY event")
     
-    # Get before and after images
+    # Lấy hình ảnh trước và sau
     old_image = record['dynamodb'].get('OldImage', {})
     new_image = record['dynamodb'].get('NewImage', {})
     
-    # Example: Check for status changes
+    # Ví dụ: Kiểm tra thay đổi trạng thái
     old_status = old_image.get('status', {}).get('S', '')
     new_status = new_image.get('status', {}).get('S', '')
     
     if old_status != new_status:
         logger.info(f"Status changed from {old_status} to {new_status}")
-        # Could trigger notifications, cache updates, etc.
+        # Có thể kích hoạt thông báo, cập nhật bộ nhớ đệm, v.v.
     
-    # Example: Price change detection
+    # Ví dụ: Phát hiện thay đổi giá
     old_price = old_image.get('price', {}).get('N', '0')
     new_price = new_image.get('price', {}).get('N', '0')
     
     if old_price != new_price:
         logger.info(f"Price changed from {old_price} to {new_price}")
-        # Could invalidate cache, update recommendations, etc.
+        # Có thể làm mới bộ nhớ đệm, cập nhật gợi ý, v.v.
 
 def handle_remove_event(record):
     """
-    Handle item deletion
+    Xử lý xóa mục
     """
     logger.info("Processing REMOVE event")
     
-    # Get deleted item data
+    # Lấy dữ liệu mục đã xóa
     old_image = record['dynamodb'].get('OldImage', {})
     
-    # Example: Cleanup related data
+    # Ví dụ: Dọn dẹp dữ liệu liên quan
     if 'USER#' in str(old_image.get('PK', {})):
         logger.info("User deleted - could cleanup user data")
     
-    # Example: Remove from search index
+    # Ví dụ: Xóa khỏi chỉ mục tìm kiếm
     elif 'PRODUCT#' in str(old_image.get('PK', {})):
         logger.info("Product deleted - could remove from search")
 ```
 
-2. **Deploy**: Click "Deploy" để save the code
+2. **Deploy**: Nhấp vào "Deploy" để lưu mã
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của Lambda code editor với stream processing code
-{{% /notice %}}
+![4.2.4](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.4.png?featherlight=false&width=90pc)
 
-### Bước 2: Test Function Syntax
+### Bước 2: Kiểm tra Cú pháp Hàm
 
-**Validate the code**:
+**Xác thực mã**:
 
-1. **Test tab**: Click "Test" tab
-2. **Create test event**: Click "Create new event"
-3. **Event template**: Select "DynamoDB Update" template
+1. **Test tab**: Nhấp vào "Test" tab
+2. **Create test event**: Nhấp vào "Create new event"
+3. **Event template**: Chọn mẫu "DynamoDB Update"
 4. **Event name**: `test-stream-event`
-5. **Test**: Click "Test" để validate syntax
+5. **Test**: Nhấp vào "Test" để xác thực cú pháp
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của Lambda test configuration với DynamoDB Stream template
-{{% /notice %}}
+![4.2.5](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.5.png?featherlight=false&width=90pc)
 
-## Exercise 3: Configure Event Source Mapping
+## Bài tập 3: Cấu hình Kích hoạt Nguồn Sự kiện
 
-### Bước 1: Add DynamoDB Trigger
+### Bước 1: Thêm Kích hoạt DynamoDB
 
-**Connect Lambda to DynamoDB Stream**:
+**Kết nối Lambda với Stream DynamoDB**:
 
 1. **Function overview**: Trong Lambda console
-2. **Add trigger**: Click "Add trigger" button
+2. **Add trigger**: Nhấp vào nút "Add trigger"
 3. **Trigger configuration**: 
-   - **Source**: Select "DynamoDB"
-   - **DynamoDB table**: Choose `demo-ecommerce-freetier`
-   - **Batch size**: Set to 10 (Free Tier optimized)
-   - **Starting position**: Select "Trim horizon"
-4. **Add**: Click để create trigger
+   - **Source**: Chọn "DynamoDB"
+   - **DynamoDB table**: Chọn `demo-ecommerce-freetier`
+   - **Batch size**: Đặt thành 10 (tối ưu Free Tier)
+   - **Starting position**: Chọn "Trim horizon"
+4. **Add**: Nhấp để tạo kích hoạt
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của trigger configuration dialog với DynamoDB settings
-{{% /notice %}}
+![4.2.6](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.6.png?featherlight=false&width=90pc)
 
-### Bước 2: Verify Event Source Mapping
+### Bước 2: Xác minh Cấu hình Nguồn Sự kiện
 
-**Check trigger configuration**:
+**Kiểm tra cấu hình kích hoạt**:
 
-1. **Function overview**: Should show DynamoDB trigger
-2. **Configuration**: Verify settings:
-   - **Batch size**: 10 records
+1. **Function overview**: Nên hiển thị kích hoạt DynamoDB
+2. **Configuration**: Xác minh cài đặt:
+   - **Batch size**: 10 bản ghi
    - **Starting position**: Trim horizon
    - **Status**: Enabled
    - **State**: Creating → Enabled
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot showing successful DynamoDB trigger configuration
-{{% /notice %}}
+![4.2.7](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.7.png?featherlight=false&width=90pc)
 
-### Bước 3: Configure IAM Permissions
+### Bước 3: Cấu hình Quyền IAM
 
-**Update Lambda execution role**:
+**Cập nhật vai trò thực thi Lambda**:
 
-1. **Configuration tab**: Click "Permissions"
-2. **Execution role**: Click role name link
-3. **IAM console**: Opens trong new tab
-4. **Attach policies**: Add `AWSLambdaDynamoDBExecutionRole`
-5. **Save**: Return to Lambda console
+1. **Configuration tab**: Nhấp vào "Permissions"
+2. **Execution role**: Nhấp vào liên kết tên vai trò
+3. **IAM console**: Mở trong tab mới
+4. **Attach policies**: Thêm `AWSLambdaDynamoDBExecutionRole`
+5. **Save**: Quay lại Lambda console
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của IAM role với DynamoDB stream permissions
-{{% /notice %}}
+![4.2.8](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.8.png?featherlight=false&width=90pc)
 
-## Exercise 4: Test Stream Processing
+## Bài tập 4: Kiểm tra Xử Lý Stream
 
-### Bước 1: Create Test Item
+### Bước 1: Tạo Mục Kiểm tra
 
-**Generate stream event**:
+**Tạo sự kiện stream**:
 
-1. **DynamoDB console**: Open trong new tab
-2. **Items tab**: Navigate to table của bạn
-3. **Create item**: Add test data:
+1. **DynamoDB console**: Mở trong tab mới
+2. **Items tab**: Điều hướng đến bảng của bạn
+3. **Create item**: Thêm dữ liệu kiểm tra:
 
 ```json
 {
@@ -293,130 +277,122 @@ def handle_remove_event(record):
 }
 ```
 
-4. **Create**: Save the item
+4. **Create**: Lưu mục
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của DynamoDB item creation cho Lambda testing
-{{% /notice %}}
+![4.2.9](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.9.png?featherlight=false&width=90pc)
 
-### Bước 2: Monitor Lambda Execution
+### Bước 2: Giám sát Thực thi Lambda
 
-**Check function invocation**:
+**Kiểm tra việc gọi hàm**:
 
-1. **Lambda console**: Return to function của bạn
-2. **Monitor tab**: Click để view metrics
-3. **Invocations**: Should show 1 new invocation
-4. **Duration**: Typically < 1 second
-5. **Errors**: Should be 0
+1. **Lambda console**: Quay lại hàm của bạn
+2. **Monitor tab**: Nhấp để xem các chỉ số
+3. **Invocations**: Nên hiển thị 1 lần gọi mới
+4. **Duration**: Thường < 1 giây
+5. **Errors**: Nên là 0
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của Lambda monitoring tab showing successful invocation
-{{% /notice %}}
+![4.2.10](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.10.png?featherlight=false&width=90pc)
 
-### Bước 3: Check Processing Logs
+### Bước 3: Kiểm tra Nhật ký Xử lý
 
-**View detailed logs**:
+**Xem nhật ký chi tiết**:
 
-1. **CloudWatch logs**: Click "View CloudWatch logs"
-2. **Log stream**: Click latest log stream
-3. **Log entries**: Look for:
+1. **CloudWatch logs**: Nhấp vào "View CloudWatch logs"
+2. **Log stream**: Nhấp vào luồng nhật ký mới nhất
+3. **Log entries**: Tìm kiếm:
    - START RequestId: [uuid]
    - Processing INSERT for item: LAMBDA#test-processing#EVENT#001
    - Processing INSERT event
    - Successfully processed 1 records
    - END RequestId: [uuid]
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của CloudWatch logs showing successful stream processing
-{{% /notice %}}
+![4.2.11](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.11.png?featherlight=false&width=90pc)
 
-## Exercise 5: Advanced Configuration
+## Bài tập 5: Cấu hình Nâng cao
 
-### Error Handling Configuration
+### Cấu hình Xử lý Lỗi
 
-**Configure retry và error handling**:
+**Cấu hình retry và xử lý lỗi**:
 
-1. **Event source mapping**: Edit DynamoDB trigger của bạn
+1. **Event source mapping**: Chỉnh sửa kích hoạt DynamoDB của bạn
 2. **Additional settings**:
-   - **Retry attempts**: 3 (default)
-   - **Maximum record age**: 3600 seconds
-   - **Split batch on error**: Enable
-   - **Dead letter queue**: Configure SNS/SQS (optional)
+   - **Retry attempts**: 3 (mặc định)
+   - **Maximum record age**: 3600 giây
+   - **Split batch on error**: Bật
+   - **Dead letter queue**: Cấu hình SNS/SQS (tùy chọn)
 
-### Performance Optimization
+### Tối ưu hóa Hiệu suất
 
-**Free Tier optimization settings**:
+**Cài đặt tối ưu Free Tier**:
 
-- **Parallelization factor**: 1 (avoid excess concurrency)
-- **Batch size**: 10 records (balance latency vs cost)
-- **Reserved concurrency**: 10 (control costs)
-- **Provisioned concurrency**: 0 (not needed cho streams)
+- **Parallelization factor**: 1 (tránh đồng thời quá mức)
+- **Batch size**: 10 bản ghi (cân bằng độ trễ và chi phí)
+- **Reserved concurrency**: 10 (kiểm soát chi phí)
+- **Provisioned concurrency**: 0 (không cần cho streams)
 
-### Monitoring and Alerting
+### Giám sát và Cảnh báo
 
-**Set up basic monitoring**:
+**Thiết lập giám sát cơ bản**:
 
-1. **CloudWatch Alarms**: Create cho:
-   - Function errors > 0
-   - Function duration > 20 seconds
-   - Iterator age > 30 seconds
-2. **Notifications**: SNS topic cho alerts
-3. **Dashboard**: Add metrics to CloudWatch dashboard
+1. **CloudWatch Alarms**: Tạo cho:
+   - Lỗi hàm > 0
+   - Thời gian thực thi hàm > 20 giây
+   - Tuổi iterator > 30 giây
+2. **Notifications**: Chủ đề SNS cho cảnh báo
+3. **Dashboard**: Thêm các chỉ số vào bảng điều khiển CloudWatch
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của CloudWatch alarm configuration cho Lambda function
-{{% /notice %}}
+![4.2.12](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.12.png?featherlight=false&width=90pc)
 
-## Function Testing Patterns
+## Mẫu Kiểm tra Hàm
 
-### Test Different Event Types
+### Kiểm tra Các Loại Sự kiện Khác nhau
 
-**Comprehensive testing**:
+**Kiểm tra toàn diện**:
 
-1. **INSERT**: Create new items
-2. **MODIFY**: Update existing items
-3. **REMOVE**: Delete items
-4. **Batch**: Multiple rapid changes
+1. **INSERT**: Tạo mục mới
+2. **MODIFY**: Cập nhật mục hiện có
+3. **REMOVE**: Xóa mục
+4. **Batch**: Nhiều thay đổi nhanh chóng
 
-### Validation Checklist
+### Danh sách Kiểm tra Xác thực
 
-**Verify setup của bạn**:
+**Xác minh cài đặt của bạn**:
 
-- ✅ **Lambda function created** với correct runtime
-- ✅ **Stream trigger configured** với proper permissions
-- ✅ **Code deployed** và syntax validated
-- ✅ **Test successful** với sample data
-- ✅ **Logs showing** processing details
-- ✅ **Metrics indicating** healthy execution
+- ✅ **Hàm Lambda đã được tạo** với runtime chính xác
+- ✅ **Kích hoạt stream đã được cấu hình** với quyền truy cập thích hợp
+- ✅ **Mã đã được triển khai** và cú pháp đã được xác thực
+- ✅ **Kiểm tra thành công** với dữ liệu mẫu
+- ✅ **Nhật ký hiển thị** chi tiết xử lý
+- ✅ **Chỉ số cho thấy** thực thi khỏe mạnh
 
-## Troubleshooting Common Issues
+## Khắc phục sự cố Các Vấn đề Thường gặp
 
-### Lambda Not Triggering
+### Lambda Không Kích hoạt
 
-**Check các items này**:
+**Kiểm tra các mục sau**:
 
-1. **Stream enabled**: DynamoDB stream is active
-2. **Permissions**: Lambda có stream read permissions
-3. **Event source mapping**: Trigger is enabled
-4. **Function state**: Lambda is active (not failed)
+1. **Stream enabled**: DynamoDB stream đang hoạt động
+2. **Permissions**: Lambda có quyền đọc stream
+3. **Event source mapping**: Kích hoạt đang được bật
+4. **Function state**: Lambda đang hoạt động (không bị lỗi)
 
-### Processing Errors
+### Lỗi Xử lý
 
-**Debug steps**:
+**Các bước gỡ lỗi**:
 
-1. **CloudWatch logs**: Check cho error messages
-2. **Timeout issues**: Increase timeout nếu needed
-3. **Memory errors**: Monitor memory usage
-4. **Permissions**: Verify all required permissions
+1. **CloudWatch logs**: Kiểm tra các thông báo lỗi
+2. **Timeout issues**: Tăng thời gian chờ nếu cần
+3. **Memory errors**: Giám sát mức sử dụng bộ nhớ
+4. **Permissions**: Xác minh tất cả các quyền cần thiết
 
-### Performance Issues
+### Vấn đề Hiệu suất
 
-**Optimization tips**:
+**Mẹo tối ưu hóa**:
 
-1. **Batch size**: Adjust based on processing time
-2. **Memory allocation**: Right-size cho workload của bạn
-3. **Cold starts**: Consider provisioned concurrency nếu needed
-4. **Error handling**: Implement proper retry logic
+1. **Batch size**: Điều chỉnh dựa trên thời gian xử lý
+2. **Memory allocation**: Định kích thước phù hợp cho tải công việc của bạn
+3. **Cold starts**: Cân nhắc sử dụng provisioned concurrency nếu cần
+4. **Error handling**: Triển khai logic thử lại thích hợp
 
 {{% notice success %}}
 **Lambda Ready**: Function của bạn bây giờ processing DynamoDB stream events trong real-time!

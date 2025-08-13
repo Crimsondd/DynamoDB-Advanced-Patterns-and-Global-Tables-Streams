@@ -22,9 +22,7 @@ Your CloudFormation template has automatically configured Global Tables between 
 2. **Check Region**: Top-right corner should show "N. Virginia"
 3. **Switch if needed**: Click region dropdown → "US East (N. Virginia)"
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of AWS Console with region selector showing US East (N. Virginia)
-{{% /notice %}}
+![US_East](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/US_East.png?featherlight=false&width=50pc)
 
 ### Find Your DynamoDB Table
 
@@ -33,9 +31,7 @@ Your CloudFormation template has automatically configured Global Tables between 
 3. **Locate**: Find `demo-ecommerce-freetier`
 4. **Status**: Verify table shows "Active"
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of DynamoDB Tables list showing demo-ecommerce-freetier with Active status
-{{% /notice %}}
+![DynamoDB_Tables](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/DynamoDB_Tables.png?featherlight=false&width=90pc)
 
 ## Step 2: Check Global Tables Configuration
 
@@ -45,9 +41,7 @@ Your CloudFormation template has automatically configured Global Tables between 
 2. **Navigate**: Click "Global tables" tab
 3. **Review**: Global Tables configuration
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of table overview with Global tables tab highlighted
-{{% /notice %}}
+![Global_tables_tab](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/Global_tables_tab.png?featherlight=false&width=90pc)
 
 ### Verify Global Tables Status
 
@@ -63,9 +57,7 @@ Your CloudFormation template has automatically configured Global Tables between 
 - **Last Replication**: Recent timestamp
 - **Pending Updates**: Should be 0
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Global tables configuration showing both regions with healthy status
-{{% /notice %}}
+![Global_tables](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/Global_tables.png?featherlight=false&width=90pc)
 
 ## Step 3: Verify Secondary Region
 
@@ -75,9 +67,7 @@ Your CloudFormation template has automatically configured Global Tables between 
 2. **Select**: "Europe (Ireland)" - eu-west-1
 3. **Wait**: Allow console to switch regions
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of region selector dropdown with Europe (Ireland) highlighted
-{{% /notice %}}
+![Europe](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/Europe.png?featherlight=false&width=50pc)
 
 ### Check Replica Table
 
@@ -92,9 +82,7 @@ Your CloudFormation template has automatically configured Global Tables between 
 - **Role**: Replica table
 - **Primary Region**: us-east-1
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of EU region showing the replica table with same name
-{{% /notice %}}
+![EU_region_showing](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/EU_region_showing.png?featherlight=false&width=90pc)
 
 ## Step 4: Compare Table Schemas
 
@@ -116,9 +104,8 @@ Both regions should have identical table schema:
 - **Point-in-time Recovery**: Enabled
 - **DynamoDB Streams**: Enabled
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot comparing table schema between US and EU regions
-{{% /notice %}}
+![table_schema](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/table_schema.png?featherlight=false&width=90pc)
+
 
 ## Step 5: Check Current Data
 
@@ -139,9 +126,8 @@ If you've completed Module 2, check that your existing data appears in both regi
 - Refresh the browser page
 - Check Global Tables health status
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing identical item counts in both regions
-{{% /notice %}}
+![item_counts1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/item_counts1.png?featherlight=false&width=90pc)
+![item_counts2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/item_counts2.png?featherlight=false&width=90pc)
 
 ## Step 6: Verify Stream Configuration
 
@@ -158,9 +144,7 @@ If you've completed Module 2, check that your existing data appears in both regi
 - **Stream ARN**: Should be present
 - **Shard count**: 1 or more active shards
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of DynamoDB Streams configuration showing enabled status
-{{% /notice %}}
+![DynamoDB_Streams_config](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/DynamoDB_Streams_config.png?featherlight=false&width=90pc)
 
 ## Step 7: Health Check Dashboard
 
@@ -179,9 +163,7 @@ If you've completed Module 2, check that your existing data appears in both regi
 - **Pending Count**: 0 or very low
 - **Error Rate**: 0%
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of metrics dashboard showing healthy replication metrics
-{{% /notice %}}
+![replication_metrics](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/replication_metrics.png?featherlight=false&width=90pc)
 
 ## Step 8: Network Connectivity Test
 
@@ -203,9 +185,7 @@ If you've completed Module 2, check that your existing data appears in both regi
 }
 ```
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of test item appearing in both regions
-{{% /notice %}}
+![test_item_appearing](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/test_item_appearing.png?featherlight=false&width=90pc)
 
 ## Troubleshooting Common Issues
 

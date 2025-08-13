@@ -12,188 +12,169 @@ pre : " <b> 3.2 </b> "
 
 ## Tổng quan
 
-CloudFormation template của bạn đã tự động cấu hình Global Tables giữa US-East-1 và EU-West-1. Hãy xác minh mọi thứ hoạt động correctly trước khi chúng ta bắt đầu testing replication.
+CloudFormation template của bạn đã tự động cấu hình Global Tables giữa US-East-1 và EU-West-1. Hãy xác minh mọi thứ hoạt động đúng trước khi chúng ta bắt đầu kiểm tra việc sao chép.
 
 ## Bước 1: Truy cập Primary Region
 
-### Navigate đến US-East-1
+### Điều hướng đến US-East-1
 
-1. **Open AWS Console**: Đảm bảo bạn đã logged in
-2. **Check Region**: Góc trên-phải sẽ hiển thị "N. Virginia"
-3. **Switch if needed**: Click region dropdown → "US East (N. Virginia)"
+1. **Mở AWS Console**: Đảm bảo bạn đã đăng nhập
+2. **Kiểm tra Region**: Góc trên-phải sẽ hiển thị "N. Virginia"
+3. **Chuyển đổi nếu cần**: Nhấp vào dropdown region → "US East (N. Virginia)"
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của AWS Console với region selector hiển thị US East (N. Virginia)
-{{% /notice %}}
+![US_East](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/US_East.png?featherlight=false&width=50pc)
 
 ### Tìm DynamoDB Table của bạn
 
-1. **Services**: Navigate đến DynamoDB service
-2. **Tables**: Click "Tables" trong left sidebar
-3. **Locate**: Tìm `demo-ecommerce-freetier`
-4. **Status**: Verify table hiển thị "Active"
+1. **Dịch vụ**: Điều hướng đến dịch vụ DynamoDB
+2. **Bảng**: Nhấp vào "Tables" trong thanh bên trái
+3. **Định vị**: Tìm `demo-ecommerce-freetier`
+4. **Trạng thái**: Xác minh bảng hiển thị "Active"
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của DynamoDB Tables list hiển thị demo-ecommerce-freetier với Active status
-{{% /notice %}}
+![DynamoDB_Tables](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/DynamoDB_Tables.png?featherlight=false&width=90pc)
 
-## Bước 2: Check Global Tables Configuration
+## Bước 2: Kiểm tra Cấu hình Global Tables
 
-### Access Global Tables Tab
+### Truy cập Tab Global Tables
 
-1. **Click**: Table name `demo-ecommerce-freetier`
-2. **Navigate**: Click "Global tables" tab
-3. **Review**: Global Tables configuration
+1. **Nhấp**: Tên bảng `demo-ecommerce-freetier`
+2. **Điều hướng**: Nhấp vào tab "Global tables"
+3. **Xem xét**: Cấu hình Global Tables
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của table overview với Global tables tab được highlighted
-{{% /notice %}}
+![Global_tables_tab](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/Global_tables_tab.png?featherlight=false&width=90pc)
 
-### Verify Global Tables Status
+### Xác minh Trạng thái Global Tables
 
-**Expected Configuration**:
+**Cấu hình Mong đợi**:
 
 | Region | Status | Role | Health |
 |--------|--------|------|--------|
 | **us-east-1** | Active | Primary | ✅ Healthy |
 | **eu-west-1** | Active | Replica | ✅ Healthy |
 
-**Key indicators cần verify**:
-- **Replication Status**: "Healthy" hoặc "Active"
-- **Last Replication**: Recent timestamp
-- **Pending Updates**: Sẽ là 0
+**Các chỉ số chính cần xác minh**:
+- **Trạng thái Sao chép**: "Healthy" hoặc "Active"
+- **Lần Sao chép Cuối**: Dấu thời gian gần đây
+- **Cập nhật Đang Chờ**: Sẽ là 0
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của Global tables configuration hiển thị cả hai regions với healthy status
-{{% /notice %}}
+![Global_tables](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/Global_tables.png?featherlight=false&width=90pc)
 
-## Bước 3: Verify Secondary Region
+## Bước 3: Xác minh Khu vực Thứ cấp
 
-### Switch đến EU-West-1
+### Chuyển đến EU-West-1
 
-1. **Region Selector**: Click region dropdown (top-right)
-2. **Select**: "Europe (Ireland)" - eu-west-1
-3. **Wait**: Cho phép console switch regions
+1. **Bộ chọn Khu vực**: Nhấp vào dropdown khu vực (góc trên bên phải)
+2. **Chọn**: "Europe (Ireland)" - eu-west-1
+3. **Chờ**: Cho phép console chuyển đổi khu vực
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của region selector dropdown với Europe (Ireland) được highlighted
-{{% /notice %}}
+![Europe](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/Europe.png?featherlight=false&width=50pc)
 
-### Check Replica Table
+### Kiểm tra Bảng Sao chép
 
-1. **Navigate**: DynamoDB → Tables
-2. **Find**: Cùng table name `demo-ecommerce-freetier`
-3. **Verify**: Table exists và hiển thị "Active"
-4. **Check**: Global tables tab hiển thị replica status
+1. **Điều hướng**: DynamoDB → Tables
+2. **Tìm**: Cùng tên bảng `demo-ecommerce-freetier`
+3. **Xác minh**: Bảng tồn tại và hiển thị "Active"
+4. **Kiểm tra**: Tab global tables hiển thị trạng thái sao chép
 
-**Expected trong EU-West-1**:
-- **Table Name**: `demo-ecommerce-freetier` (identical)
-- **Status**: Active
-- **Role**: Replica table
-- **Primary Region**: us-east-1
+**Mong đợi trong EU-West-1**:
+- **Tên Bảng**: `demo-ecommerce-freetier` (giống hệt)
+- **Trạng thái**: Active
+- **Vai trò**: Bảng sao chép
+- **Khu vực Chính**: us-east-1
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của EU region hiển thị replica table với same name
-{{% /notice %}}
+![EU_region_showing](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/EU_region_showing.png?featherlight=false&width=90pc)
 
-## Bước 4: Compare Table Schemas
+## Bước 4: So sánh Lược đồ Bảng
 
-### Verify Schema Consistency
+### Xác minh Tính nhất quán của Lược đồ
 
-Cả hai regions sẽ có identical table schema:
+Cả hai khu vực sẽ có lược đồ bảng giống hệt nhau:
 
-**Primary Keys**:
-- **Partition Key**: PK (String)
-- **Sort Key**: SK (String)
+**Khóa Chính**:
+- **Khóa Phân vùng**: PK (Chuỗi)
+- **Khóa Sắp xếp**: SK (Chuỗi)
 
-**Global Secondary Indexes**:
-- **GSI1**: GSI1PK (String), GSI1SK (String)
-- **GSI2**: GSI2PK (String), GSI2SK (String)
+**Chỉ mục Bổ sung Toàn cầu**:
+- **GSI1**: GSI1PK (Chuỗi), GSI1SK (Chuỗi)
+- **GSI2**: GSI2PK (Chuỗi), GSI2SK (Chuỗi)
 
-**Settings**:
-- **Read Capacity**: 5 units (provisioned)
-- **Write Capacity**: 5 units (provisioned)
-- **Point-in-time Recovery**: Enabled
-- **DynamoDB Streams**: Enabled
+**Cài đặt**:
+- **Công suất Đọc**: 5 đơn vị (được cấp phát)
+- **Công suất Ghi**: 5 đơn vị (được cấp phát)
+- **Khôi phục theo thời gian**: Bật
+- **DynamoDB Streams**: Bật
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot so sánh table schema giữa US và EU regions
-{{% /notice %}}
+![table_schema](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/table_schema.png?featherlight=false&width=90pc)
 
-## Bước 5: Check Current Data
+## Bước 5: Kiểm tra Dữ liệu Hiện tại
 
-### Verify Existing Data Replication
+### Xác minh Việc Sao chép Dữ liệu Tồn tại
 
-Nếu bạn đã hoàn thành Module 2, check rằng existing data của bạn xuất hiện trong cả hai regions:
+Nếu bạn đã hoàn thành Module 2, hãy kiểm tra rằng dữ liệu hiện có của bạn xuất hiện trong cả hai khu vực:
 
-**Switch đến US-East-1**:
-1. **Go to**: Items tab
-2. **Count items**: Note số lượng items
+**Chuyển đến US-East-1**:
+1. **Đi tới**: Tab Items
+2. **Đếm mục**: Ghi lại số lượng mục
 
-**Switch đến EU-West-1**:
-1. **Go to**: Items tab  
-2. **Compare count**: Sẽ match US region exactly
+**Chuyển đến EU-West-1**:
+1. **Đi tới**: Tab Items  
+2. **So sánh số lượng**: Sẽ khớp chính xác với khu vực US
 
-**Nếu item counts không match**:
-- Wait 1-2 phút cho replication
-- Refresh browser page
-- Check Global Tables health status
+**Nếu số lượng mục không khớp**:
+- Chờ 1-2 phút cho việc sao chép
+- Làm mới trang trình duyệt
+- Kiểm tra trạng thái sức khỏe của Global Tables
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị identical item counts trong cả hai regions
-{{% /notice %}}
+![item_counts1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/item_counts1.png?featherlight=false&width=90pc)
+![item_counts2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/item_counts2.png?featherlight=false&width=90pc)
 
-## Bước 6: Verify Stream Configuration
+## Bước 6: Xác minh Cấu hình Luồng
 
-### Check DynamoDB Streams
+### Kiểm tra DynamoDB Streams
 
 **Trong US-East-1**:
-1. **Table Overview**: Go to table details
-2. **Exports and streams**: Click tab
-3. **Stream details**: Verify settings
+1. **Tổng quan về Bảng**: Đi tới chi tiết bảng
+2. **Xuất và luồng**: Nhấp vào tab
+3. **Chi tiết luồng**: Xác minh cài đặt
 
-**Expected Stream Configuration**:
-- **Stream Status**: Enabled
-- **Stream view type**: New and old images
-- **Stream ARN**: Sẽ present
-- **Shard count**: 1 hoặc nhiều active shards
+**Cấu hình Luồng Mong đợi**:
+- **Trạng thái Luồng**: Bật
+- **Loại chế độ xem luồng**: Ảnh mới và cũ
+- **Stream ARN**: Sẽ có mặt
+- **Số lượng Shard**: 1 hoặc nhiều shard đang hoạt động
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của DynamoDB Streams configuration hiển thị enabled status
-{{% /notice %}}
+![DynamoDB_Streams_config](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/DynamoDB_Streams_config.png?featherlight=false&width=90pc)
 
-## Bước 7: Health Check Dashboard
+## Bước 7: Bảng điều khiển Kiểm tra Sức khỏe
 
-### Monitor Replication Health
+### Giám sát Sức khỏe Sao chép
 
-**Access Monitoring**:
-1. **Metrics Tab**: Click trong table view
-2. **Global Tables metrics**: Look for replication metrics
-3. **Key metrics**: 
-   - Replication latency
-   - Pending replication count
-   - Failed replication events
+**Truy cập Giám sát**:
+1. **Tab Chỉ số**: Nhấp trong chế độ xem bảng
+2. **Chỉ số Global Tables**: Tìm các chỉ số sao chép
+3. **Các chỉ số chính**: 
+   - Độ trễ sao chép
+   - Số lượng sao chép đang chờ
+   - Sự kiện sao chép thất bại
 
-**Healthy Indicators**:
-- **Replication Latency**: < 2 seconds average
-- **Pending Count**: 0 hoặc very low
-- **Error Rate**: 0%
+**Các chỉ số Khỏe mạnh**:
+- **Độ trễ Sao chép**: < 2 giây trung bình
+- **Số lượng Đang chờ**: 0 hoặc rất thấp
+- **Tỷ lệ Lỗi**: 0%
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của metrics dashboard hiển thị healthy replication metrics
-{{% /notice %}}
+![replication_metrics](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/replication_metrics.png?featherlight=false&width=90pc)
 
-## Bước 8: Network Connectivity Test
+## Bước 8: Kiểm tra Kết nối Mạng
 
-### Test Cross-Region Communication
+### Kiểm tra Giao tiếp Giữa các Khu vực
 
-**Simple connectivity verification**:
-1. **Create test item** trong US-East-1
-2. **Wait 30 seconds**
-3. **Check EU-West-1** cho item đó
-4. **Delete test item** từ either region
+**Xác minh kết nối đơn giản**:
+1. **Tạo mục kiểm tra** trong US-East-1
+2. **Chờ 30 giây**
+3. **Kiểm tra EU-West-1** cho mục đó
+4. **Xóa mục kiểm tra** từ một trong hai khu vực
 
-**Test Item Example**:
+**Ví dụ về Mục Kiểm tra**:
 ```json
 {
   "PK": "TEST#connectivity",
@@ -203,61 +184,59 @@ Nếu bạn đã hoàn thành Module 2, check rằng existing data của bạn x
 }
 ```
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của test item xuất hiện trong cả hai regions
-{{% /notice %}}
+![test_item_appearing](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/test_item_appearing.png?featherlight=false&width=90pc)
 
-## Troubleshooting Common Issues
+## Khắc phục sự cố Các Vấn đề Thường gặp
 
-### Issue: Table Not Found trong EU-West-1
+### Vấn đề: Không tìm thấy Bảng trong EU-West-1
 
-**Possible Causes**:
-- Wrong region selected
-- CloudFormation deployment incomplete
-- Global Tables setup failed
+**Nguyên nhân Có thể**:
+- Chọn sai khu vực
+- Triển khai CloudFormation chưa hoàn tất
+- Thiết lập Global Tables thất bại
 
-**Solutions**:
-1. **Double-check region** trong top-right corner
-2. **Verify CloudFormation** stack completed successfully
-3. **Check IAM permissions** cho cross-region access
+**Giải pháp**:
+1. **Kiểm tra lại khu vực** trong góc trên bên phải
+2. **Xác minh CloudFormation** stack đã hoàn tất thành công
+3. **Kiểm tra quyền IAM** cho truy cập giữa các khu vực
 
-### Issue: Replication Status Unhealthy
+### Vấn đề: Trạng thái Sao chép Không Khỏe mạnh
 
-**Check These Items**:
-- **Network connectivity** giữa regions
-- **DynamoDB Streams** enabled trên source table
-- **IAM permissions** cho Global Tables service
-- **Table capacity** không throttling
+**Kiểm tra Các Mục này**:
+- **Kết nối mạng** giữa các khu vực
+- **DynamoDB Streams** đã bật trên bảng nguồn
+- **Quyền IAM** cho dịch vụ Global Tables
+- **Công suất Bảng** không bị giới hạn
 
-### Issue: Item Counts Don't Match
+### Vấn đề: Số lượng Mục Không Khớp
 
-**Troubleshooting Steps**:
-1. **Wait longer** (up to 2 minutes)
-2. **Refresh browser** page
-3. **Check for errors** trong CloudWatch logs
-4. **Verify no throttling** trong metrics
+**Các Bước Khắc phục sự cố**:
+1. **Chờ lâu hơn** (lên đến 2 phút)
+2. **Làm mới trang** trình duyệt
+3. **Kiểm tra lỗi** trong nhật ký CloudWatch
+4. **Xác minh không bị giới hạn** trong các chỉ số
 
-## Verification Checklist
+## Danh sách Kiểm tra Xác minh
 
-Trước khi proceeding đến multi-region operations:
+Trước khi tiếp tục đến các hoạt động đa khu vực:
 
-- [ ] **Both regions accessible** thông qua AWS Console
-- [ ] **Table exists** trong cả us-east-1 và eu-west-1
-- [ ] **Global Tables status** hiển thị "Healthy" hoặc "Active"
-- [ ] **Schema identical** giữa regions
-- [ ] **DynamoDB Streams** enabled
-- [ ] **Existing data replicated** (nếu có)
-- [ ] **Test connectivity** working
-- [ ] **Monitoring metrics** available
+- [ ] **Cả hai khu vực đều có thể truy cập** thông qua AWS Console
+- [ ] **Bảng tồn tại** trong cả us-east-1 và eu-west-1
+- [ ] **Trạng thái Global Tables** hiển thị "Healthy" hoặc "Active"
+- [ ] **Lược đồ giống hệt** giữa các khu vực
+- [ ] **DynamoDB Streams** đã bật
+- [ ] **Dữ liệu hiện có đã được sao chép** (nếu có)
+- [ ] **Kiểm tra kết nối** hoạt động
+- [ ] **Chỉ số giám sát** có sẵn
 
 {{% notice success %}}
-**Verification Complete**: Global Tables setup của bạn healthy và ready cho multi-region operations!
+**Xác minh Hoàn tất**: Thiết lập Global Tables của bạn khỏe mạnh và sẵn sàng cho các hoạt động đa khu vực!
 {{% /notice %}}
 
-## Next Steps
+## Các Bước Tiếp Theo
 
-Với Global Tables đã verified và healthy, bạn ready để experience multi-region operations. Trong section tiếp theo, chúng ta sẽ create data trong một region và watch nó automatically appear trong region khác!
+Với Global Tables đã được xác minh và khỏe mạnh, bạn đã sẵn sàng để trải nghiệm các hoạt động đa khu vực. Trong phần tiếp theo, chúng ta sẽ tạo dữ liệu trong một khu vực và theo dõi nó tự động xuất hiện trong khu vực khác!
 
 {{% notice tip %}}
-**Pro Tip**: Giữ cả hai region tabs mở trong browser của bạn (US-East-1 và EU-West-1) để easily switch giữa chúng trong các exercises.
+**Mẹo Chuyên nghiệp**: Giữ cả hai tab khu vực mở trong trình duyệt của bạn (US-East-1 và EU-West-1) để dễ dàng chuyển đổi giữa chúng trong các bài tập.
 {{% /notice %}}

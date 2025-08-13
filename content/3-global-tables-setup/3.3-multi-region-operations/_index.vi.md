@@ -1,46 +1,45 @@
 ---
-title : "3.3 Multi-Region Operations"
+title : "3.3 Hoạt động Đa Vùng"
 date : "2025-08-11"
 weight : 33
 chapter : false
 pre : " <b> 3.3 </b> "
 ---
 
-# Multi-Region Operations
+# Hoạt động Đa Vùng
 
-🌍 **Thực hành hands-on với cross-region read/write operations và replication testing**
+🌍 **Thực hành trực tiếp với các thao tác đọc/ghi giữa các vùng và kiểm tra sao chép**
 
 ## Tổng quan
 
-Bây giờ Global Tables của bạn đã được verified, hãy experience multi-region operations firsthand. Bạn sẽ create data trong một region, verify nó replicates đến region khác, và test conflict resolution scenarios.
+Bây giờ Global Tables của bạn đã được xác minh, hãy trải nghiệm các hoạt động đa vùng. Bạn sẽ tạo dữ liệu ở một vùng, xác minh nó được sao chép sang vùng khác và kiểm tra các kịch bản giải quyết xung đột.
 
-## Exercise 1: Write to Primary, Read from Replica
+## Bài tập 1: Ghi vào Vùng Chính, Đọc từ Bản Sao
 
-### Bước 1: Create Global User trong US-East-1
+### Bước 1: Tạo Người Dùng Toàn Cầu ở US-East-1
 
-**Ensure bạn đang ở US-East-1**:
-1. **Check region**: Top-right sẽ hiển thị "N. Virginia"
-2. **Navigate**: DynamoDB → Tables → `demo-ecommerce-freetier`
-3. **Go to**: Items tab
-4. **Click**: "Create item"
+**Đảm bảo bạn đang ở US-East-1**:
+1. **Kiểm tra vùng**: Góc trên bên phải sẽ hiển thị "N. Virginia"
+2. **Điều hướng**: DynamoDB → Tables → `demo-ecommerce-freetier`
+3. **Đi tới**: Tab Items
+4. **Nhấp vào**: "Create item"
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của US-East-1 region với Create item dialog mở
-{{% /notice %}}
+![3.3.1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.1.png?featherlight=false&width=90pc)
+![3.3.1(1)](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.1(1).png?featherlight=false&width=90pc)
 
-### User Creation Template
+### Mẫu Tạo Người Dùng
 
-**Switch to JSON view** và create:
+**Chuyển sang chế độ xem JSON** và tạo:
 
 ```json
 {
-  "PK": "USER#global-user-[your-name]",
+  "PK": "USER#global-user-[tên-của-bạn]",
   "SK": "PROFILE",
-  "GSI1PK": "USER#[your-name]@global.com",
+  "GSI1PK": "USER#[tên-của-bạn]@global.com",
   "GSI1SK": "PROFILE",
-  "user_id": "global-user-[your-name]",
-  "name": "[Your Name] Global",
-  "email": "[your-name]@global.com",
+  "user_id": "global-user-[tên-của-bạn]",
+  "name": "[Tên Của Bạn] Global",
+  "email": "[tên-của-bạn]@global.com",
   "region_created": "us-east-1",
   "created_timestamp": "2025-08-11T15:30:00Z",
   "test_type": "global_replication",
@@ -48,78 +47,70 @@ Bây giờ Global Tables của bạn đã được verified, hãy experience mul
 }
 ```
 
-**Important**: Replace `[your-name]` với tên thực của bạn để make items unique.
+**Quan trọng**: Thay thế `[tên-của-bạn]` bằng tên thực của bạn để làm cho các mục trở nên duy nhất.
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của JSON editor với global user data được nhập
-{{% /notice %}}
+![3.3.2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.2.png?featherlight=false&width=90pc)
 
-### Bước 2: Note Creation Time
+### Bước 2: Ghi lại Thời gian Tạo
 
-**Record the details**:
-1. **Click "Create item"**
-2. **Note the time**: Record khi bạn clicked create
-3. **Take screenshot**: Của created item
+**Ghi lại chi tiết**:
+1. **Nhấp vào "Create item"**
+2. **Ghi lại thời gian**: Ghi lại khi bạn nhấp vào tạo
+3. **Chụp ảnh màn hình**: Của mục đã tạo
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị successfully created item trong US region
-{{% /notice %}}
+![3.3.3](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.3.png?featherlight=false&width=90pc)
 
-### Bước 3: Switch đến EU-West-1
+### Bước 3: Chuyển sang EU-West-1
 
-**Change regions**:
-1. **Region selector**: Click dropdown (top-right)
-2. **Select**: "Europe (Ireland)"
-3. **Wait**: Cho region switch to complete
-4. **Navigate**: DynamoDB → Tables → `demo-ecommerce-freetier`
+**Thay đổi vùng**:
+1. **Bộ chọn vùng**: Nhấp vào menu thả xuống (góc trên bên phải)
+2. **Chọn**: "Europe (Ireland)"
+3. **Chờ**: Để hoàn tất chuyển vùng
+4. **Điều hướng**: DynamoDB → Tables → `demo-ecommerce-freetier`
 
 ![Europe](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/Europe.png?featherlight=false&width=50pc)
 
-### Bước 4: Query for Replicated Data
+### Bước 4: Truy vấn Dữ liệu Sao chép
 
-**Search cho user của bạn**:
-1. **Items tab**: Navigate đến items view
-2. **Click**: "Query" button
-3. **Configure query**:
-   - **Partition key (PK)**: `USER#global-user-[your-name]`
-   - **Sort key (SK)**: `PROFILE`
-4. **Click**: "Run"
+**Tìm kiếm người dùng của bạn**:
+1. **Tab Items**: Điều hướng đến chế độ xem các mục
+2. **Nhấp vào**: Nút "Query"
+3. **Cấu hình truy vấn**:
+   - **Khóa phân vùng (PK)**: `USER#global-user-[tên-của-bạn]`
+   - **Khóa sắp xếp (SK)**: `PROFILE`
+4. **Nhấp vào**: "Run"
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của query setup trong EU region looking for the US-created user
-{{% /notice %}}
+![3.3.4](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.4.png?featherlight=false&width=90pc)
 
-### Bước 5: Verify Replication
+### Bước 5: Xác minh Sao chép
 
-**Expected results**:
-- **If immediate**: Item appears ngay lập tức
-- **If delayed**: Wait 30-60 seconds và try again
-- **Replication time**: Note how long it took
+**Kết quả mong đợi**:
+- **Nếu ngay lập tức**: Mục xuất hiện ngay lập tức
+- **Nếu bị trễ**: Chờ 30-60 giây và thử lại
+- **Thời gian sao chép**: Ghi lại mất bao lâu
 
-**Verify the data**:
-- **All attributes**: Sẽ match exactly
-- **region_created**: Vẫn sẽ show "us-east-1"
-- **Timestamps**: Sẽ identical
+**Xác minh dữ liệu**:
+- **Tất cả các thuộc tính**: Phải khớp chính xác
+- **region_created**: Vẫn sẽ hiển thị "us-east-1"
+- **Dấu thời gian**: Phải giống hệt nhau
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị replicated item trong EU region với identical data
-{{% /notice %}}
+![3.3.5](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.5.png?featherlight=false&width=90pc)
 
-## Exercise 2: Write from Replica, Read from Primary
+## Bài tập 2: Ghi từ Bản Sao, Đọc từ Vùng Chính
 
-### Bước 1: Create Product trong EU-West-1
+### Bước 1: Tạo Sản phẩm ở EU-West-1
 
-**Stay trong EU-West-1** và create một product:
+**Ở lại EU-West-1** và tạo một sản phẩm:
 
 ```json
 {
-  "PK": "PRODUCT#eu-product-[unique-id]",
+  "PK": "PRODUCT#eu-product-[id-duy-nhat]",
   "SK": "DETAILS",
   "GSI1PK": "CATEGORY#eu-electronics",
-  "GSI1SK": "PRODUCT#eu-product-[unique-id]",
+  "GSI1SK": "PRODUCT#eu-product-[id-duy-nhat]",
   "GSI2PK": "PRICE#200-500",
-  "GSI2SK": "PRODUCT#eu-product-[unique-id]",
-  "product_id": "eu-product-[unique-id]",
+  "GSI2SK": "PRODUCT#eu-product-[id-duy-nhat]",
+  "product_id": "eu-product-[id-duy-nhat]",
   "name": "European Smartphone",
   "description": "Created in EU region",
   "category": "eu-electronics",
@@ -131,52 +122,46 @@ Bây giờ Global Tables của bạn đã được verified, hãy experience mul
 }
 ```
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của product creation trong EU region
-{{% /notice %}}
+![3.3.6](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.6.png?featherlight=false&width=90pc)
 
-### Bước 2: Switch Back đến US-East-1
+### Bước 2: Chuyển lại sang US-East-1
 
-**Return to primary region**:
-1. **Region selector**: "US East (N. Virginia)"
-2. **Navigate**: DynamoDB → Tables → Items
-3. **Query for product**:
-   - **PK**: `PRODUCT#eu-product-[unique-id]`
+**Quay lại vùng chính**:
+1. **Bộ chọn vùng**: "US East (N. Virginia)"
+2. **Điều hướng**: DynamoDB → Tables → Items
+3. **Truy vấn sản phẩm**:
+   - **PK**: `PRODUCT#eu-product-[id-duy-nhat]`
    - **SK**: `DETAILS`
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của US region query looking for EU-created product
-{{% /notice %}}
+![3.3.7](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.7.png?featherlight=false&width=90pc)
 
-### Bước 3: Verify Reverse Replication
+### Bước 3: Xác minh Sao chép Ngược
 
-**Check the results**:
-- **Product appears**: Trong US region
-- **region_created**: Vẫn shows "eu-west-1"
-- **All data intact**: Exact copy từ EU
+**Kiểm tra kết quả**:
+- **Sản phẩm xuất hiện**: Trong vùng US
+- **region_created**: Vẫn hiển thị "eu-west-1"
+- **Tất cả dữ liệu nguyên vẹn**: Bản sao chính xác từ EU
 
-Điều này demonstrates **bi-directional replication** - bạn có thể write to any region!
+Điều này chứng minh **sao chép hai chiều** - bạn có thể ghi vào bất kỳ vùng nào!
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị EU-created product bây giờ visible trong US region
-{{% /notice %}}
+![3.3.8](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.8.png?featherlight=false&width=90pc)
 
-## Exercise 3: Conflict Resolution Testing
+## Bài tập 3: Kiểm tra Giải quyết Xung đột
 
-### Bước 1: Create Base Order
+### Bước 1: Tạo Đơn hàng Cơ sở
 
-**Trong US-East-1**, create một order:
+**Trong US-East-1**, tạo một đơn hàng:
 
 ```json
 {
-  "PK": "USER#global-user-[your-name]",
+  "PK": "USER#global-user-[tên-của-bạn]",
   "SK": "ORDER#conflict-test",
   "GSI1PK": "ORDER#conflict-test",
   "GSI1SK": "DETAILS",
   "GSI2PK": "STATUS#pending",
   "GSI2SK": "ORDER#conflict-test",
   "order_id": "conflict-test",
-  "user_id": "global-user-[your-name]",
+  "user_id": "global-user-[tên-của-bạn]",
   "status": "pending",
   "total_amount": 100,
   "last_updated_region": "us-east-1",
@@ -184,20 +169,18 @@ Bây giờ Global Tables của bạn đã được verified, hãy experience mul
 }
 ```
 
-**Wait 2 minutes** cho replication to complete.
+**Chờ 2 phút** cho việc sao chép hoàn tất.
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của conflict test order creation trong US region
-{{% /notice %}}
+![3.3.9](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.9.png?featherlight=false&width=90pc)
 
-### Bước 2: Simultaneous Updates (Advanced)
+### Bước 2: Cập nhật Đồng thời (Nâng cao)
 
-**Nếu working với một partner**:
-1. **Partner A**: Update order trong US-East-1
-2. **Partner B**: Update same order trong EU-West-1
-3. **Both execute**: Within 10 seconds của nhau
+**Nếu làm việc với một đối tác**:
+1. **Đối tác A**: Cập nhật đơn hàng trong US-East-1
+2. **Đối tác B**: Cập nhật cùng một đơn hàng trong EU-West-1
+3. **Cả hai cùng thực hiện**: Trong vòng 10 giây của nhau
 
-**US Update** (Partner A):
+**Cập nhật US** (Đối tác A):
 ```json
 {
   "total_amount": 150,
@@ -206,7 +189,7 @@ Bây giờ Global Tables của bạn đã được verified, hãy experience mul
 }
 ```
 
-**EU Update** (Partner B):
+**Cập nhật EU** (Đối tác B):
 ```json
 {
   "total_amount": 200,
@@ -215,65 +198,58 @@ Bây giờ Global Tables của bạn đã được verified, hãy experience mul
 }
 ```
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị edit dialog cho conflict testing
-{{% /notice %}}
+![3.3.10](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.10.png?featherlight=false&width=90pc)
 
-### Bước 3: Observe Conflict Resolution
+### Bước 3: Quan sát Giải quyết Xung đột
 
-**After 2-3 minutes**:
-1. **Check both regions**: Query the same order
-2. **Compare results**: Which update won?
-3. **Understand why**: Later timestamp wins
+**Sau 2-3 phút**:
+1. **Kiểm tra cả hai vùng**: Truy vấn cùng một đơn hàng
+2. **So sánh kết quả**: Cập nhật nào đã thắng?
+3. **Hiểu lý do**: Cập nhật có dấu thời gian sau cùng sẽ thắng
 
-**Expected outcome**: EU update wins vì timestamp 15:40:05 > 15:40:00
+**Kết quả mong đợi**: Cập nhật EU thắng vì dấu thời gian 15:40:05 > 15:40:00
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị final conflict resolution result trong both regions
-{{% /notice %}}
+![3.3.11](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.11.png?featherlight=false&width=90pc)
+![3.3.11(1)](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.11(1).png?featherlight=false&width=90pc)
 
-## Exercise 4: Query Patterns Across Regions
+## Bài tập 4: Các Mẫu Truy vấn Giữa các Vùng
 
-### Bước 1: Category Query trong EU
+### Bước 1: Truy vấn Danh mục trong EU
 
-**Test GSI queries** work across regions:
-1. **Stay trong EU-West-1**
-2. **Query Index**: GSI1
+**Kiểm tra các truy vấn GSI** hoạt động giữa các vùng:
+1. **Ở lại EU-West-1**
+2. **Truy vấn Chỉ mục**: GSI1
 3. **GSI1PK**: `CATEGORY#eu-electronics`
-4. **Run query**
+4. **Chạy truy vấn**
 
-**Expected**: Shows products created trong EU region
+**Kết quả mong đợi**: Hiển thị các sản phẩm được tạo trong vùng EU
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của GSI category query trong EU region
-{{% /notice %}}
+![3.3.12](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.12.png?featherlight=false&width=90pc)
 
-### Bước 2: Status Query trong US
+### Bước 2: Truy vấn Trạng thái trong US
 
-**Test cross-region status queries**:
-1. **Switch đến US-East-1**
-2. **Query Index**: GSI2
+**Kiểm tra các truy vấn trạng thái giữa các vùng**:
+1. **Chuyển đến US-East-1**
+2. **Truy vấn Chỉ mục**: GSI2
 3. **GSI2PK**: `STATUS#pending`
-4. **Run query**
+4. **Chạy truy vấn**
 
-**Expected**: Shows orders từ both regions với pending status
+**Kết quả mong đợi**: Hiển thị các đơn hàng từ cả hai vùng với trạng thái đang chờ xử lý
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của GSI status query hiển thị orders từ multiple regions
-{{% /notice %}}
+![3.3.13](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.13.png?featherlight=false&width=90pc)
 
-## Exercise 5: Replication Timing Analysis
+## Bài tập 5: Phân tích Thời gian Sao chép
 
-### Bước 1: Measure Replication Speed
+### Bước 1: Đo tốc độ sao chép
 
-**Create timestamped items**:
-1. **Record start time**: Note exact time trước creation
-2. **Create item**: Trong một region
-3. **Switch regions**: Immediately
-4. **Query repeatedly**: Until item appears
-5. **Calculate delay**: End time - start time
+**Tạo các mục có dấu thời gian**:
+1. **Ghi lại thời gian bắt đầu**: Ghi chú thời gian chính xác trước khi tạo
+2. **Tạo mục**: Trong một vùng
+3. **Chuyển vùng**: Ngay lập tức
+4. **Truy vấn liên tục**: Cho đến khi mục xuất hiện
+5. **Tính toán độ trễ**: Thời gian kết thúc - thời gian bắt đầu
 
-**Test Item Template**:
+**Mẫu Mục Kiểm tra**:
 ```json
 {
   "PK": "TEST#timing-[timestamp]",
@@ -284,98 +260,96 @@ Bây giờ Global Tables của bạn đã được verified, hãy experience mul
 }
 ```
 
-### Bước 2: Document Results
+### Bước 2: Ghi lại Kết quả
 
-**Record your findings**:
-- **Fastest replication**: ___ seconds
-- **Slowest replication**: ___ seconds
-- **Average time**: ___ seconds
-- **Consistency**: Usually < 2 seconds
+**Ghi lại phát hiện của bạn**:
+- **Sao chép nhanh nhất**: ___ giây
+- **Sao chép chậm nhất**: ___ giây
+- **Thời gian trung bình**: ___ giây
+- **Tính nhất quán**: Thường < 2 giây
 
-## Real-World Scenarios
+## Các Kịch bản Thực tế
 
-### Scenario 1: Global User Login
+### Kịch bản 1: Đăng nhập Người dùng Toàn cầu
 
-**Simulate global application**:
-1. **User logs in**: US region
-2. **Profile updated**: Last login timestamp
-3. **User travels**: EU region  
-4. **App checks**: Profile từ EU
-5. **Verify**: Recent login time visible
+**Giả lập ứng dụng toàn cầu**:
+1. **Người dùng đăng nhập**: Vùng US
+2. **Hồ sơ được cập nhật**: Dấu thời gian đăng nhập cuối
+3. **Người dùng di chuyển**: Đến vùng EU  
+4. **Ứng dụng kiểm tra**: Hồ sơ từ EU
+5. **Xác minh**: Thời gian đăng nhập gần đây hiển thị
 
-### Scenario 2: Inventory Management
+### Kịch bản 2: Quản lý Tồn kho
 
-**Product stock updates**:
-1. **Product sold**: US region (-1 stock)
-2. **Same product**: EU region query
-3. **Stock level**: Eventually consistent
-4. **Business logic**: Handle temporary inconsistency
+**Cập nhật tồn kho sản phẩm**:
+1. **Sản phẩm được bán**: Vùng US (-1 tồn kho)
+2. **Cùng sản phẩm**: Truy vấn vùng EU
+3. **Mức tồn kho**: Nhất quán theo thời gian
+4. **Logic kinh doanh**: Xử lý sự không nhất quán tạm thời
 
-### Scenario 3: Order Processing
+### Kịch bản 3: Xử lý Đơn hàng
 
-**Multi-region order flow**:
-1. **Order created**: EU region
-2. **Payment processed**: US region
-3. **Status updated**: EU region
-4. **Fulfillment**: Reads từ nearest region
+**Luồng đơn hàng đa vùng**:
+1. **Đơn hàng được tạo**: Vùng EU
+2. **Thanh toán được xử lý**: Vùng US
+3. **Trạng thái được cập nhật**: Vùng EU
+4. **Thực hiện**: Đọc từ vùng gần nhất
 
-## Performance Monitoring
+## Giám sát Hiệu suất
 
-### Check Replication Metrics
+### Kiểm tra Các chỉ số Sao chép
 
-**During exercises**:
-1. **Monitor**: CloudWatch metrics
-2. **Watch**: Replication latency
-3. **Observe**: Pending replication count
-4. **Track**: Error rates (sẽ là 0)
+**Trong các bài tập**:
+1. **Giám sát**: Các chỉ số CloudWatch
+2. **Theo dõi**: Độ trễ sao chép
+3. **Quan sát**: Số lượng sao chép đang chờ xử lý
+4. **Theo dõi**: Tỷ lệ lỗi (sẽ là 0)
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của CloudWatch metrics hiển thị replication performance trong exercises
-{{% /notice %}}
+![3.3.14](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.14.png?featherlight=false&width=90pc)
 
-## Troubleshooting Guide
+## Hướng dẫn Khắc phục sự cố
 
-### Replication Not Working
+### Sao chép Không hoạt động
 
-**Common issues**:
-- **Wrong region**: Double-check region selection
-- **Typos in keys**: Exact match required cho queries
-- **Browser cache**: Refresh page
-- **Wait longer**: Up to 2 minutes possible
+**Các vấn đề phổ biến**:
+- **Chọn sai vùng**: Kiểm tra kỹ vùng đã chọn
+- **Lỗi chính tả trong khóa**: Cần khớp chính xác cho các truy vấn
+- **Bộ nhớ đệm trình duyệt**: Làm mới trang
+- **Chờ lâu hơn**: Có thể mất đến 2 phút
 
-### Queries Returning Empty
+### Truy vấn Trả về Rỗng
 
-**Checklist**:
-- **Correct PK/SK**: Exact string match
-- **Region correct**: Item exists trong queried region
-- **GSI populated**: GSI keys included trong item
-- **Query type**: Using Query, không phải Scan
+**Danh sách kiểm tra**:
+- **PK/SK chính xác**: Khớp chuỗi chính xác
+- **Vùng chính xác**: Mục tồn tại trong vùng được truy vấn
+- **GSI đã được điền**: Các khóa GSI được bao gồm trong mục
+- **Loại truy vấn**: Sử dụng Query, không phải Scan
 
-### Conflict Resolution Unexpected
+### Giải quyết Xung đột Không như Mong đợi
 
-**Understanding**:
-- **Timestamp precision**: Millisecond level
-- **Clock synchronization**: AWS handles timing
-- **Application design**: Plan cho overwrites
+**Hiểu biết**:
+- **Độ chính xác của dấu thời gian**: Ở mức độ mili giây
+- **Đồng bộ hóa đồng hồ**: AWS xử lý thời gian
+- **Thiết kế ứng dụng**: Lập kế hoạch cho việc ghi đè
 
 {{% notice warning %}}
-**Important**: Nếu bạn experience issues, check the Global Tables health status trong console và verify network connectivity.
+**Quan trọng**: Nếu bạn gặp sự cố, hãy kiểm tra trạng thái sức khỏe của Global Tables trong bảng điều khiển và xác minh kết nối mạng.
 {{% /notice %}}
 
-## Exercise Summary
+## Tóm tắt Bài tập
 
-Bằng cách completing các exercises này, bạn đã experienced:
+Bằng cách hoàn thành các bài tập này, bạn đã trải nghiệm:
 
-- ✅ **Cross-region replication** trong both directions
-- ✅ **Eventual consistency** timing
-- ✅ **Conflict resolution** với Last Writer Wins
-- ✅ **Query patterns** working across regions
-- ✅ **Real-world scenarios** và timing analysis
+- ✅ **Sao chép giữa các vùng** trong cả hai hướng
+- ✅ **Thời gian nhất quán theo sự kiện**
+- ✅ **Giải quyết xung đột** với Người viết Cuối cùng thắng
+- ✅ **Các mẫu truy vấn** hoạt động giữa các vùng
+- ✅ **Các kịch bản thực tế** và phân tích thời gian
 
 {{% notice success %}}
-**Multi-Region Mastery**: Bây giờ bạn understand how Global Tables enables truly global applications với local performance!
+**Thành thạo Đa Vùng**: Bây giờ bạn hiểu cách Global Tables cho phép các ứng dụng thực sự toàn cầu với hiệu suất địa phương!
 {{% /notice %}}
 
-## Next Steps
+## Các Bước Tiếp theo
 
-Với hands-on Global Tables experience complete, hãy monitor the replication performance và understand the metrics giúp bạn operate global applications trong production.
+Với trải nghiệm thực hành Global Tables đã hoàn thành, hãy giám sát hiệu suất sao chép và hiểu các chỉ số giúp bạn vận hành các ứng dụng toàn cầu trong môi trường sản xuất.

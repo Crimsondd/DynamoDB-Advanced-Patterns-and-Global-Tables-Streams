@@ -32,9 +32,6 @@ As a best practice, design your access patterns first before creating your table
 #### Monitoring & Cost Optimization
 **CloudWatch monitoring** provides real-time visibility into your DynamoDB performance, capacity utilization, and costs. Combined with **billing alerts** and **Free Tier tracking**, you can ensure optimal performance while maintaining strict cost control. This workshop implements comprehensive monitoring dashboards and automated alerting.
 
-#### Free Tier Compliance
-**AWS Free Tier** provides generous limits for learning and experimentation. This workshop is designed to use only 60% of available Free Tier resources, ensuring zero cost while providing enterprise-grade learning experience. All participants will implement production-ready patterns without incurring any charges.
-
 #### Main Content
 
 1. [Setup & Infrastructure Deployment](1-setup-infrastructure/)
@@ -42,5 +39,5 @@ As a best practice, design your access patterns first before creating your table
 3. [Global Tables Multi-Region Setup](3-global-tables-setup/)
 4. [DynamoDB Streams & Lambda Processing](4-streams-lambda-processing/)
 5. [Monitoring & Performance Optimization](5-monitoring-optimization/)
-6. [Advanced Patterns & Best Practices](6-advanced-patterns/)
+6. [Advanced Patterns](6-advanced-patterns/)
 7. [Cleanup & Resource Management](7-cleanup-resources/)

@@ -12,21 +12,21 @@
     <title>3.3 Multi-Region Operations :: DynamoDB Advanced Patterns Workshop</title>
 
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755112295" rel="stylesheet">
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755112295" rel="stylesheet">
     
     
 
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755112295"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755099793"></script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755112295"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755112295"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/crimsondd.github.io\/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams\/";
     
 </script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755112295"></script>
 
     
   </div>
@@ -629,13 +629,13 @@
  
   
     
-    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Dashboards" class="dd-item 
+    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Basic Monitoring" class="dd-item 
         
         
         
         ">
       <a href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/">
-           <b> 5.1 </b> 5.1 CloudWatch Dashboards
+           <b> 5.1 </b> 5.1 CloudWatch Basic Monitoring
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1058,10 +1058,8 @@
 <li><strong>Go to</strong>: Items tab</li>
 <li><strong>Click</strong>: &ldquo;Create item&rdquo;</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of US-East-1 region with Create item dialog open</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.1.png?featherlight=false&amp;width=90pc" alt="3.3.1">
+<img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.1(1).png?featherlight=false&amp;width=90pc" alt="3.3.1(1)"></p>
 <h3 id="user-creation-template">User Creation Template</h3>
 <p><strong>Switch to JSON view</strong> and create:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
@@ -1078,10 +1076,7 @@
   <span style="color:#f92672">&#34;workshop_session&#34;</span>: <span style="color:#e6db74">&#34;module3&#34;</span>
 }
 </code></pre></div><p><strong>Important</strong>: Replace <code>[your-name]</code> with your actual name to make items unique.</p>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of JSON editor with global user data being entered</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.2.png?featherlight=false&amp;width=90pc" alt="3.3.2"></p>
 <h3 id="step-2-note-creation-time">Step 2: Note Creation Time</h3>
 <p><strong>Record the details</strong>:</p>
 <ol>
@@ -1089,10 +1084,7 @@
 <li><strong>Note the time</strong>: Record when you clicked create</li>
 <li><strong>Take screenshot</strong>: Of the created item</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing successfully created item in US region</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.3.png?featherlight=false&amp;width=90pc" alt="3.3.3"></p>
 <h3 id="step-3-switch-to-eu-west-1">Step 3: Switch to EU-West-1</h3>
 <p><strong>Change regions</strong>:</p>
 <ol>
@@ -1115,10 +1107,7 @@
 </li>
 <li><strong>Click</strong>: &ldquo;Run&rdquo;</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of query setup in EU region looking for the US-created user</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.4.png?featherlight=false&amp;width=90pc" alt="3.3.4"></p>
 <h3 id="step-5-verify-replication">Step 5: Verify Replication</h3>
 <p><strong>Expected results</strong>:</p>
 <ul>
@@ -1132,10 +1121,7 @@
 <li><strong>region_created</strong>: Should still show &ldquo;us-east-1&rdquo;</li>
 <li><strong>Timestamps</strong>: Should be identical</li>
 </ul>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing the replicated item in EU region with identical data</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.5.png?featherlight=false&amp;width=90pc" alt="3.3.5"></p>
 <h2 id="exercise-2-write-from-replica-read-from-primary">Exercise 2: Write from Replica, Read from Primary</h2>
 <h3 id="step-1-create-product-in-eu-west-1">Step 1: Create Product in EU-West-1</h3>
 <p><strong>Stay in EU-West-1</strong> and create a product:</p>
@@ -1156,10 +1142,7 @@
   <span style="color:#f92672">&#34;created_timestamp&#34;</span>: <span style="color:#e6db74">&#34;2025-08-11T15:35:00Z&#34;</span>,
   <span style="color:#f92672">&#34;test_type&#34;</span>: <span style="color:#e6db74">&#34;reverse_replication&#34;</span>
 }
-</code></pre></div>
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of product creation in EU region</p>
-</div>
-
+</code></pre></div><p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.6.png?featherlight=false&amp;width=90pc" alt="3.3.6"></p>
 <h3 id="step-2-switch-back-to-us-east-1">Step 2: Switch Back to US-East-1</h3>
 <p><strong>Return to primary region</strong>:</p>
 <ol>
@@ -1172,10 +1155,7 @@
 </ul>
 </li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of US region query looking for EU-created product</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.7.png?featherlight=false&amp;width=90pc" alt="3.3.7"></p>
 <h3 id="step-3-verify-reverse-replication">Step 3: Verify Reverse Replication</h3>
 <p><strong>Check the results</strong>:</p>
 <ul>
@@ -1184,10 +1164,7 @@
 <li><strong>All data intact</strong>: Exact copy from EU</li>
 </ul>
 <p>This demonstrates <strong>bi-directional replication</strong> - you can write to any region!</p>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing EU-created product now visible in US region</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.8.png?featherlight=false&amp;width=90pc" alt="3.3.8"></p>
 <h2 id="exercise-3-conflict-resolution-testing">Exercise 3: Conflict Resolution Testing</h2>
 <h3 id="step-1-create-base-order">Step 1: Create Base Order</h3>
 <p><strong>In US-East-1</strong>, create an order:</p>
@@ -1206,10 +1183,7 @@
   <span style="color:#f92672">&#34;conflict_test&#34;</span>: <span style="color:#66d9ef">true</span>
 }
 </code></pre></div><p><strong>Wait 2 minutes</strong> for replication to complete.</p>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of conflict test order creation in US region</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.9.png?featherlight=false&amp;width=90pc" alt="3.3.9"></p>
 <h3 id="step-2-simultaneous-updates-advanced">Step 2: Simultaneous Updates (Advanced)</h3>
 <p><strong>If working with a partner</strong>:</p>
 <ol>
@@ -1229,10 +1203,7 @@
   <span style="color:#f92672">&#34;last_updated_region&#34;</span>: <span style="color:#e6db74">&#34;eu-west-1&#34;</span>, 
   <span style="color:#f92672">&#34;update_timestamp&#34;</span>: <span style="color:#e6db74">&#34;2025-08-11T15:40:05Z&#34;</span>
 }
-</code></pre></div>
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing edit dialog for conflict testing</p>
-</div>
-
+</code></pre></div><p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.10.png?featherlight=false&amp;width=90pc" alt="3.3.10"></p>
 <h3 id="step-3-observe-conflict-resolution">Step 3: Observe Conflict Resolution</h3>
 <p><strong>After 2-3 minutes</strong>:</p>
 <ol>
@@ -1241,10 +1212,8 @@
 <li><strong>Understand why</strong>: Later timestamp wins</li>
 </ol>
 <p><strong>Expected outcome</strong>: EU update wins because timestamp 15:40:05 &gt; 15:40:00</p>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing final conflict resolution result in both regions</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.11.png?featherlight=false&amp;width=90pc" alt="3.3.11">
+<img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.11(1).png?featherlight=false&amp;width=90pc" alt="3.3.11(1)"></p>
 <h2 id="exercise-4-query-patterns-across-regions">Exercise 4: Query Patterns Across Regions</h2>
 <h3 id="step-1-category-query-in-eu">Step 1: Category Query in EU</h3>
 <p><strong>Test GSI queries</strong> work across regions:</p>
@@ -1255,10 +1224,7 @@
 <li><strong>Run query</strong></li>
 </ol>
 <p><strong>Expected</strong>: Shows products created in EU region</p>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of GSI category query in EU region</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.12.png?featherlight=false&amp;width=90pc" alt="3.3.12"></p>
 <h3 id="step-2-status-query-in-us">Step 2: Status Query in US</h3>
 <p><strong>Test cross-region status queries</strong>:</p>
 <ol>
@@ -1268,10 +1234,7 @@
 <li><strong>Run query</strong></li>
 </ol>
 <p><strong>Expected</strong>: Shows orders from both regions with pending status</p>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of GSI status query showing orders from multiple regions</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.13.png?featherlight=false&amp;width=90pc" alt="3.3.13"></p>
 <h2 id="exercise-5-replication-timing-analysis">Exercise 5: Replication Timing Analysis</h2>
 <h3 id="step-1-measure-replication-speed">Step 1: Measure Replication Speed</h3>
 <p><strong>Create timestamped items</strong>:</p>
@@ -1333,10 +1296,7 @@
 <li><strong>Observe</strong>: Pending replication count</li>
 <li><strong>Track</strong>: Error rates (should be 0)</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch metrics showing replication performance during exercises</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.14.png?featherlight=false&amp;width=90pc" alt="3.3.14"></p>
 <h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
 <h3 id="replication-not-working">Replication Not Working</h3>
 <p><strong>Common issues</strong>:</p>
@@ -1844,19 +1804,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755112296"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755112296"></script>
 
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755099793" rel="stylesheet" />
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755099793"></script>
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755112296" rel="stylesheet" />
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755112296"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -1,101 +1,75 @@
 ---
-title : "5.1 CloudWatch Dashboards"
+title : "5.1 CloudWatch Basic Monitoring"
 date : "2025-08-11"
 weight : 51
 chapter : false
 pre : " <b> 5.1 </b> "
 ---
 
-# CloudWatch Dashboards
+# CloudWatch Basic Monitoring
 
-📊 **Create essential CloudWatch dashboards for DynamoDB monitoring**
+📊 **View basic DynamoDB metrics in CloudWatch**
 
 ## Overview
 
-CloudWatch dashboards provide visual insights into your DynamoDB performance, capacity utilization, and system health. We'll create a simple monitoring dashboard to track key metrics.
+CloudWatch automatically collects basic metrics from DynamoDB. We'll explore how to view these metrics without creating complex dashboards.
 
-## Create Primary Monitoring Dashboard
+## View DynamoDB Metrics
 
-### Step 1: Access CloudWatch Console
+### Step 1: Access CloudWatch Metrics
 
 1. **AWS Console**: Search "CloudWatch"
-2. **Dashboards**: Click "Dashboards" in left sidebar  
-3. **Create dashboard**: Click "Create dashboard" button
-4. **Dashboard name**: `DynamoDB-Demo-Monitoring`
-5. **Create dashboard**: Click to proceed
+2. **Metrics**: Click "Metrics" in left sidebar
+3. **AWS/DynamoDB**: Click on this namespace
+4. **Table Metrics**: Browse available metrics
 
-### Step 2: Add DynamoDB Capacity Widget
+![5.1.1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/5/5.1.1.png?featherlight=false&width=90pc)
 
-**Monitor capacity utilization**:
+### Step 2: Check Key Metrics
 
-1. **Add widget**: Click "Add widget" button
-2. **Widget type**: Select "Line" chart
-3. **Data source**: Choose "Metrics"
-4. **Browse metrics**: 
-   - **AWS/DynamoDB** → **Table Metrics**
-   - **Table**: Select `demo-ecommerce-freetier`
-   - **Metrics**: Check these:
-     - `ConsumedReadCapacityUnits`
-     - `ConsumedWriteCapacityUnits`
-     - `ProvisionedReadCapacityUnits`
-     - `ProvisionedWriteCapacityUnits`
+**Monitor basic usage**:
 
-5. **Configure widget**:
-   - **Title**: "DynamoDB Capacity Utilization"
-   - **Period**: 5 minutes
-   - **Statistic**: Average
+1. **ConsumedReadCapacityUnits**: Check read usage
+2. **ConsumedWriteCapacityUnits**: Check write usage
+3. **ItemCount**: Number of items in table
+4. **TableSizeBytes**: Storage usage
 
-### Step 3: Add Performance Metrics Widget
+![5.1.2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/5/5.1.2.png?featherlight=false&width=90pc)
 
-**Monitor response times and errors**:
+### Step 3: View Metric Details
 
-1. **Add widget**: Click "Add widget" (second widget)
-2. **Widget type**: Line chart
-3. **Metrics selection**:
-   - **AWS/DynamoDB** → **Table Metrics**
-   - **Table**: `demo-ecommerce-freetier`
-   - **Select metrics**:
-     - `SuccessfulRequestLatency` (Query operations)
-     - `UserErrors`
-     - `ThrottledRequests`
+**Click on any metric to see details**:
 
-4. **Widget configuration**:
-   - **Title**: "Performance & Error Metrics"
-   - **Period**: 5 minutes
+1. **Select your table**: `demo-ecommerce-freetier`
+2. **View graph**: Shows usage over time
+3. **Check values**: Ensure staying within Free Tier
 
-### Step 4: Configure Dashboard
+![5.1.3](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/5/5.1.3.png?featherlight=false&width=90pc)
 
-**Set operational parameters**:
+## Key Metrics to Check
 
-1. **Time range**: Set to "Last 3 hours"
-2. **Auto-refresh**: Enable 1-minute refresh
-3. **Save dashboard**: Click "Save dashboard"
+| Metric | Purpose | Free Tier Limit |
+|--------|---------|-----------------|
+| **ConsumedReadCapacityUnits** | Read usage | 25 RCU/month |
+| **ConsumedWriteCapacityUnits** | Write usage | 25 WCU/month |
+| **ItemCount** | Number of items | No limit |
+| **TableSizeBytes** | Storage used | 25 GB |
 
-## Key Metrics to Monitor
-
-| Metric | Purpose | Target |
-|--------|---------|--------|
-| **ConsumedReadCapacityUnits** | Monitor read usage | <4 units (80% of 5) |
-| **ConsumedWriteCapacityUnits** | Monitor write usage | <4 units (80% of 5) |
-| **SuccessfulRequestLatency** | Response time | <50ms average |
-| **UserErrors** | Application errors | 0 errors |
-| **ThrottledRequests** | Capacity exceeded | 0 throttles |
-
-{{% notice warning %}}
-**Free Tier Note**: CloudWatch provides 10 custom metrics and 3 dashboards free. This basic dashboard fits within limits.
+{{% notice info %}}
+**Free Tier**: All basic CloudWatch metrics for DynamoDB are free. No dashboard creation needed.
 {{% /notice %}}
 
-## Dashboard Best Practices
+## Simple Monitoring Tips
 
-- **Focus on key metrics**: Capacity, latency, errors
-- **Set appropriate time ranges**: 3-24 hours for operational monitoring  
-- **Use auto-refresh**: 1-5 minutes for real-time visibility
-- **Monitor Free Tier limits**: Stay within AWS Free Tier boundaries
+- **Check metrics daily**: Ensure staying within Free Tier
+- **Look for spikes**: Unusual usage patterns
+- **Monitor storage**: Track table size growth
+- **No alerts needed**: Visual checking is sufficient for workshop
 
 {{% notice success %}}
-**Dashboard Created**: You now have essential visual monitoring for your DynamoDB table!
+**Basic Monitoring**: You can now view essential DynamoDB metrics in CloudWatch!
 {{% /notice %}}
 
 ## Next Steps
 
-With basic dashboard monitoring in place, you can expand monitoring as needed or move to the next workshop module.
+Basic metric viewing is sufficient for this workshop. Move to the next module when ready.

@@ -33,9 +33,7 @@ AWS Lambda provides serverless compute to process DynamoDB stream events. Your f
 3. **Create function**: Click "Create function" button
 4. **Author from scratch**: Select this option
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Lambda console with Create function button highlighted
-{{% /notice %}}
+![4.2.1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.1.png?featherlight=false&width=90pc)
 
 ### Step 2: Configure Basic Settings
 
@@ -47,9 +45,7 @@ AWS Lambda provides serverless compute to process DynamoDB stream events. Your f
 4. **Permissions**: "Create a new role with basic Lambda permissions"
 5. **Create function**: Click to proceed
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Lambda function creation form with specified settings
-{{% /notice %}}
+![4.2.2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.2.png?featherlight=false&width=90pc)
 
 ### Step 3: Configure Function Settings
 
@@ -61,9 +57,7 @@ AWS Lambda provides serverless compute to process DynamoDB stream events. Your f
 4. **Timeout**: Set to 30 seconds
 5. **Save**: Click to apply changes
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Lambda function configuration settings with memory and timeout values
-{{% /notice %}}
+![4.2.3](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.3.png?featherlight=false&width=90pc)
 
 ## Exercise 2: Add Stream Processing Code
 
@@ -206,9 +200,8 @@ def handle_remove_event(record):
 
 2. **Deploy**: Click "Deploy" to save the code
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Lambda code editor with the stream processing code
-{{% /notice %}}
+![4.2.4](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.4.png?featherlight=false&width=90pc)
+
 
 ### Step 2: Test Function Syntax
 
@@ -220,9 +213,8 @@ def handle_remove_event(record):
 4. **Event name**: `test-stream-event`
 5. **Test**: Click "Test" to validate syntax
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Lambda test configuration with DynamoDB Stream template
-{{% /notice %}}
+![4.2.5](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.5.png?featherlight=false&width=90pc)
+
 
 ## Exercise 3: Configure Event Source Mapping
 
@@ -239,9 +231,8 @@ def handle_remove_event(record):
    - **Starting position**: Select "Trim horizon"
 4. **Add**: Click to create trigger
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of trigger configuration dialog with DynamoDB settings
-{{% /notice %}}
+![4.2.6](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.6.png?featherlight=false&width=90pc)
+
 
 ### Step 2: Verify Event Source Mapping
 
@@ -254,9 +245,7 @@ def handle_remove_event(record):
    - **Status**: Enabled
    - **State**: Creating → Enabled
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing successful DynamoDB trigger configuration
-{{% /notice %}}
+![4.2.7](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.7.png?featherlight=false&width=90pc)
 
 ### Step 3: Configure IAM Permissions
 
@@ -268,9 +257,7 @@ def handle_remove_event(record):
 4. **Attach policies**: Add `AWSLambdaDynamoDBExecutionRole`
 5. **Save**: Return to Lambda console
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of IAM role with DynamoDB stream permissions
-{{% /notice %}}
+![4.2.8](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.8.png?featherlight=false&width=90pc)
 
 ## Exercise 4: Test Stream Processing
 
@@ -295,9 +282,7 @@ def handle_remove_event(record):
 
 4. **Create**: Save the item
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of DynamoDB item creation for Lambda testing
-{{% /notice %}}
+![4.2.9](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.9.png?featherlight=false&width=90pc)
 
 ### Step 2: Monitor Lambda Execution
 
@@ -309,9 +294,7 @@ def handle_remove_event(record):
 4. **Duration**: Typically < 1 second
 5. **Errors**: Should be 0
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of Lambda monitoring tab showing successful invocation
-{{% /notice %}}
+![4.2.10](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.10.png?featherlight=false&width=90pc)
 
 ### Step 3: Check Processing Logs
 
@@ -326,9 +309,7 @@ def handle_remove_event(record):
    - Successfully processed 1 records
    - END RequestId: [uuid]
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of CloudWatch logs showing successful stream processing
-{{% /notice %}}
+![4.2.11](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.11.png?featherlight=false&width=90pc)
 
 ## Exercise 5: Advanced Configuration
 
@@ -363,9 +344,7 @@ def handle_remove_event(record):
 2. **Notifications**: SNS topic for alerts
 3. **Dashboard**: Add metrics to CloudWatch dashboard
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of CloudWatch alarm configuration for Lambda function
-{{% /notice %}}
+![4.2.12](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.12.png?featherlight=false&width=90pc)
 
 ## Function Testing Patterns
 

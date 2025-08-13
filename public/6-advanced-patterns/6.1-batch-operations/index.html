@@ -12,21 +12,21 @@
     <title>6.1 Batch Operations :: DynamoDB Advanced Patterns Workshop</title>
 
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755112296" rel="stylesheet">
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755112296" rel="stylesheet">
     
     
 
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755112296"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755099793"></script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755112296"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755112296"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/crimsondd.github.io\/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams\/";
     
 </script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755112296"></script>
 
     
   </div>
@@ -629,13 +629,13 @@
  
   
     
-    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Dashboards" class="dd-item 
+    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Basic Monitoring" class="dd-item 
         
         
         
         ">
       <a href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/">
-           <b> 5.1 </b> 5.1 CloudWatch Dashboards
+           <b> 5.1 </b> 5.1 CloudWatch Basic Monitoring
           
             <i class="fas fa-check read-icon"></i>
           
@@ -962,49 +962,36 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#efficient-multi-item-processing">Efficient Multi-Item Processing</a>
+    <li><a href="#overview">Overview</a>
       <ul>
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#batch-operation-types">Batch Operation Types</a></li>
-        <li><a href="#performance-comparison">Performance Comparison</a></li>
+        <li><a href="#key-benefits">Key Benefits</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-1-batch-write-operations">Exercise 1: Batch Write Operations</a>
+    <li><a href="#exercise-1-simple-batch-write">Exercise 1: Simple Batch Write</a>
       <ul>
         <li><a href="#step-1-create-batch-product-data">Step 1: Create Batch Product Data</a></li>
         <li><a href="#step-2-execute-batch-write">Step 2: Execute Batch Write</a></li>
-        <li><a href="#step-3-verify-batch-creation">Step 3: Verify Batch Creation</a></li>
+        <li><a href="#step-3-verify-results">Step 3: Verify Results</a></li>
       </ul>
     </li>
     <li><a href="#exercise-2-batch-read-operations">Exercise 2: Batch Read Operations</a>
       <ul>
-        <li><a href="#step-1-create-batch-get-request">Step 1: Create Batch Get Request</a></li>
+        <li><a href="#step-1-batch-get-items">Step 1: Batch Get Items</a></li>
         <li><a href="#step-2-execute-batch-get">Step 2: Execute Batch Get</a></li>
-        <li><a href="#step-3-performance-comparison">Step 3: Performance Comparison</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-3-advanced-batch-patterns">Exercise 3: Advanced Batch Patterns</a>
+    <li><a href="#batch-operation-benefits">Batch Operation Benefits</a>
       <ul>
-        <li><a href="#step-1-mixed-batch-operations">Step 1: Mixed Batch Operations</a></li>
-        <li><a href="#step-2-error-handling-in-batch-operations">Step 2: Error Handling in Batch Operations</a></li>
-        <li><a href="#step-3-batch-operations-with-projections">Step 3: Batch Operations with Projections</a></li>
+        <li><a href="#efficiency-gains">Efficiency Gains</a></li>
+        <li><a href="#free-tier-benefits">Free Tier Benefits</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-4-production-batch-patterns">Exercise 4: Production Batch Patterns</a>
+    <li><a href="#best-practices">Best Practices</a>
       <ul>
-        <li><a href="#step-1-batch-processing-with-error-handling">Step 1: Batch Processing with Error Handling</a></li>
-        <li><a href="#step-2-batch-operation-monitoring">Step 2: Batch Operation Monitoring</a></li>
-        <li><a href="#step-3-cost-optimization-with-batching">Step 3: Cost Optimization with Batching</a></li>
+        <li><a href="#batch-limits">Batch Limits</a></li>
+        <li><a href="#when-to-use-batching">When to Use Batching</a></li>
       </ul>
     </li>
-    <li><a href="#batch-operations-best-practices">Batch Operations Best Practices</a>
-      <ul>
-        <li><a href="#efficiency-guidelines">Efficiency Guidelines</a></li>
-        <li><a href="#error-handling">Error Handling</a></li>
-        <li><a href="#performance-optimization">Performance Optimization</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-summary">Exercise Summary</a></li>
     <li><a href="#next-steps">Next Steps</a></li>
   </ul>
 </nav>
@@ -1031,148 +1018,108 @@
 
 
 
-	<h2 id="efficient-multi-item-processing">Efficient Multi-Item Processing</h2>
-<p>⚡ <strong>Master batch operations to process multiple items with single API calls for maximum efficiency</strong></p>
-<h3 id="overview">Overview</h3>
-<p>Batch operations are the key to efficient DynamoDB usage. Instead of making individual API calls for each item, batch operations allow you to process up to 25 items in a single request, dramatically reducing latency and improving performance.</p>
-<h3 id="batch-operation-types">Batch Operation Types</h3>
-<p><strong>Available batch operations</strong>:</p>
+	<h1 id="batch-operations">Batch Operations</h1>
+<p>⚡ <strong>Process multiple items efficiently with batch operations</strong></p>
+<h2 id="overview">Overview</h2>
+<p>Batch operations allow you to process multiple items in a single API call, reducing latency and improving performance.</p>
+<h3 id="key-benefits">Key Benefits</h3>
 <ul>
-<li><strong>BatchWriteItem</strong>: Insert or delete up to 25 items</li>
-<li><strong>BatchGetItem</strong>: Retrieve up to 100 items</li>
-<li><strong>Reduced API calls</strong>: Fewer round trips to DynamoDB</li>
-<li><strong>Lower latency</strong>: Bulk processing efficiency</li>
+<li><strong>BatchWriteItem</strong>: Insert or delete up to 25 items at once</li>
+<li><strong>BatchGetItem</strong>: Retrieve up to 100 items at once</li>
+<li><strong>Fewer API calls</strong>: Better performance and efficiency</li>
+<li><strong>Lower latency</strong>: Bulk processing reduces round trips</li>
 </ul>
-<h3 id="performance-comparison">Performance Comparison</h3>
-<pre tabindex="0"><code>Single Operations (Inefficient):
-- 100 items = 100 API calls
-- Higher latency per operation
-- More request units consumed
-
-Batch Operations (Efficient):
-- 100 items = 4 API calls (25 items each)
-- Lower overall latency
-- Optimal request unit usage
-</code></pre><h2 id="exercise-1-batch-write-operations">Exercise 1: Batch Write Operations</h2>
+<h2 id="exercise-1-simple-batch-write">Exercise 1: Simple Batch Write</h2>
 <h3 id="step-1-create-batch-product-data">Step 1: Create Batch Product Data</h3>
-<p><strong>Prepare batch data for multiple product insertion</strong>:</p>
+<p><strong>Use AWS CloudShell for batch operations</strong>:</p>
 <ol>
-<li><strong>AWS CloudShell</strong>: Open AWS CloudShell from the AWS Console</li>
+<li><strong>Open CloudShell</strong>: From AWS Console</li>
 <li><strong>Create batch file</strong>: Generate JSON for multiple products</li>
 </ol>
-<p><strong>Create batch-products.json file</strong>:</p>
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.1.1.png?featherlight=false&amp;width=90pc" alt="6.1.1"></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat &gt; batch-products.json <span style="color:#e6db74">&lt;&lt; &#39;EOF&#39;
 </span><span style="color:#e6db74">{
 </span><span style="color:#e6db74">  &#34;demo-ecommerce-freetier&#34;: [
 </span><span style="color:#e6db74">    {
 </span><span style="color:#e6db74">      &#34;PutRequest&#34;: {
 </span><span style="color:#e6db74">        &#34;Item&#34;: {
-</span><span style="color:#e6db74">          &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-laptop-001&#34;},
+</span><span style="color:#e6db74">          &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#gaming-laptop&#34;},
 </span><span style="color:#e6db74">          &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;},
 </span><span style="color:#e6db74">          &#34;GSI1PK&#34;: {&#34;S&#34;: &#34;CATEGORY#electronics&#34;},
-</span><span style="color:#e6db74">          &#34;GSI1SK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-laptop-001&#34;},
+</span><span style="color:#e6db74">          &#34;GSI1SK&#34;: {&#34;S&#34;: &#34;PRODUCT#gaming-laptop&#34;},
 </span><span style="color:#e6db74">          &#34;name&#34;: {&#34;S&#34;: &#34;Gaming Laptop Pro&#34;},
 </span><span style="color:#e6db74">          &#34;price&#34;: {&#34;N&#34;: &#34;1299&#34;},
 </span><span style="color:#e6db74">          &#34;stock&#34;: {&#34;N&#34;: &#34;15&#34;},
-</span><span style="color:#e6db74">          &#34;category&#34;: {&#34;S&#34;: &#34;electronics&#34;},
-</span><span style="color:#e6db74">          &#34;brand&#34;: {&#34;S&#34;: &#34;TechPro&#34;}
+</span><span style="color:#e6db74">          &#34;category&#34;: {&#34;S&#34;: &#34;electronics&#34;}
 </span><span style="color:#e6db74">        }
 </span><span style="color:#e6db74">      }
 </span><span style="color:#e6db74">    },
 </span><span style="color:#e6db74">    {
 </span><span style="color:#e6db74">      &#34;PutRequest&#34;: {
 </span><span style="color:#e6db74">        &#34;Item&#34;: {
-</span><span style="color:#e6db74">          &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-mouse-002&#34;},
+</span><span style="color:#e6db74">          &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#wireless-mouse&#34;},
 </span><span style="color:#e6db74">          &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;},
 </span><span style="color:#e6db74">          &#34;GSI1PK&#34;: {&#34;S&#34;: &#34;CATEGORY#electronics&#34;},
-</span><span style="color:#e6db74">          &#34;GSI1SK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-mouse-002&#34;},
+</span><span style="color:#e6db74">          &#34;GSI1SK&#34;: {&#34;S&#34;: &#34;PRODUCT#wireless-mouse&#34;},
 </span><span style="color:#e6db74">          &#34;name&#34;: {&#34;S&#34;: &#34;Wireless Gaming Mouse&#34;},
 </span><span style="color:#e6db74">          &#34;price&#34;: {&#34;N&#34;: &#34;79&#34;},
 </span><span style="color:#e6db74">          &#34;stock&#34;: {&#34;N&#34;: &#34;50&#34;},
-</span><span style="color:#e6db74">          &#34;category&#34;: {&#34;S&#34;: &#34;electronics&#34;},
-</span><span style="color:#e6db74">          &#34;brand&#34;: {&#34;S&#34;: &#34;GamerGear&#34;}
+</span><span style="color:#e6db74">          &#34;category&#34;: {&#34;S&#34;: &#34;electronics&#34;}
 </span><span style="color:#e6db74">        }
 </span><span style="color:#e6db74">      }
 </span><span style="color:#e6db74">    },
 </span><span style="color:#e6db74">    {
 </span><span style="color:#e6db74">      &#34;PutRequest&#34;: {
 </span><span style="color:#e6db74">        &#34;Item&#34;: {
-</span><span style="color:#e6db74">          &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-keyboard-003&#34;},
+</span><span style="color:#e6db74">          &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#rgb-keyboard&#34;},
 </span><span style="color:#e6db74">          &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;},
 </span><span style="color:#e6db74">          &#34;GSI1PK&#34;: {&#34;S&#34;: &#34;CATEGORY#electronics&#34;},
-</span><span style="color:#e6db74">          &#34;GSI1SK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-keyboard-003&#34;},
-</span><span style="color:#e6db74">          &#34;name&#34;: {&#34;S&#34;: &#34;Mechanical Keyboard RGB&#34;},
+</span><span style="color:#e6db74">          &#34;GSI1SK&#34;: {&#34;S&#34;: &#34;PRODUCT#rgb-keyboard&#34;},
+</span><span style="color:#e6db74">          &#34;name&#34;: {&#34;S&#34;: &#34;RGB Mechanical Keyboard&#34;},
 </span><span style="color:#e6db74">          &#34;price&#34;: {&#34;N&#34;: &#34;159&#34;},
 </span><span style="color:#e6db74">          &#34;stock&#34;: {&#34;N&#34;: &#34;25&#34;},
-</span><span style="color:#e6db74">          &#34;category&#34;: {&#34;S&#34;: &#34;electronics&#34;},
-</span><span style="color:#e6db74">          &#34;brand&#34;: {&#34;S&#34;: &#34;KeyMaster&#34;}
+</span><span style="color:#e6db74">          &#34;category&#34;: {&#34;S&#34;: &#34;electronics&#34;}
 </span><span style="color:#e6db74">        }
 </span><span style="color:#e6db74">      }
 </span><span style="color:#e6db74">    }
 </span><span style="color:#e6db74">  ]
 </span><span style="color:#e6db74">}
 </span><span style="color:#e6db74">EOF</span>
-</code></pre></div>
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudShell with the batch-products.json file created</p>
-</div>
-
-<h3 id="step-2-execute-batch-write">Step 2: Execute Batch Write</h3>
+</code></pre></div><h3 id="step-2-execute-batch-write">Step 2: Execute Batch Write</h3>
 <p><strong>Perform batch write operation</strong>:</p>
-<ol>
-<li><strong>Execute batch write command</strong>:</li>
-</ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb batch-write-item --request-items file://batch-products.json
-</code></pre></div><ol start="2">
-<li><strong>Verify successful execution</strong>:
+</code></pre></div><p><strong>Expected result</strong>: All 3 items created with one API call instead of 3 separate calls.</p>
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.1.2.png?featherlight=false&amp;width=90pc" alt="6.1.2"></p>
+<h3 id="step-3-verify-results">Step 3: Verify Results</h3>
+<p><strong>Check DynamoDB Console</strong>:</p>
+<ol>
+<li>Navigate to your table items</li>
+<li>Look for the 3 new products:
 <ul>
-<li>Check for no error messages</li>
-<li>Note the response showing processed items</li>
-<li>All 3 items created with single API call</li>
+<li><code>PRODUCT#gaming-laptop</code></li>
+<li><code>PRODUCT#wireless-mouse</code></li>
+<li><code>PRODUCT#rgb-keyboard</code></li>
 </ul>
 </li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing successful batch write response in CloudShell</p>
-</div>
-
-<h3 id="step-3-verify-batch-creation">Step 3: Verify Batch Creation</h3>
-<p><strong>Confirm items were created in DynamoDB Console</strong>:</p>
-<ol>
-<li><strong>DynamoDB Console</strong>: Navigate to DynamoDB service</li>
-<li><strong>Select table</strong>: Click on <code>demo-ecommerce-freetier</code> table</li>
-<li><strong>View items</strong>: Click &ldquo;Explore table items&rdquo;</li>
-<li><strong>Verify batch items</strong>: Look for the 3 newly created products</li>
-</ol>
-<p><strong>Items to verify</strong>:</p>
-<ul>
-<li><strong>PRODUCT#batch-laptop-001</strong>: Gaming Laptop Pro</li>
-<li><strong>PRODUCT#batch-mouse-002</strong>: Wireless Gaming Mouse</li>
-<li><strong>PRODUCT#batch-keyboard-003</strong>: Mechanical Keyboard RGB</li>
-</ul>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of DynamoDB console showing the 3 batch-created items</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.1.3.png?featherlight=false&amp;width=90pc" alt="6.1.3"></p>
 <h2 id="exercise-2-batch-read-operations">Exercise 2: Batch Read Operations</h2>
-<h3 id="step-1-create-batch-get-request">Step 1: Create Batch Get Request</h3>
-<p><strong>Prepare batch read operation</strong>:</p>
-<ol>
-<li><strong>Create batch-get.json file</strong>:</li>
-</ol>
+<h3 id="step-1-batch-get-items">Step 1: Batch Get Items</h3>
+<p><strong>Retrieve multiple items at once</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat &gt; batch-get.json <span style="color:#e6db74">&lt;&lt; &#39;EOF&#39;
 </span><span style="color:#e6db74">{
 </span><span style="color:#e6db74">  &#34;demo-ecommerce-freetier&#34;: {
 </span><span style="color:#e6db74">    &#34;Keys&#34;: [
 </span><span style="color:#e6db74">      {
-</span><span style="color:#e6db74">        &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-laptop-001&#34;},
+</span><span style="color:#e6db74">        &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#gaming-laptop&#34;},
 </span><span style="color:#e6db74">        &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;}
 </span><span style="color:#e6db74">      },
 </span><span style="color:#e6db74">      {
-</span><span style="color:#e6db74">        &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-mouse-002&#34;},
+</span><span style="color:#e6db74">        &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#wireless-mouse&#34;},
 </span><span style="color:#e6db74">        &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;}
 </span><span style="color:#e6db74">      },
 </span><span style="color:#e6db74">      {
-</span><span style="color:#e6db74">        &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-keyboard-003&#34;},
+</span><span style="color:#e6db74">        &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#rgb-keyboard&#34;},
 </span><span style="color:#e6db74">        &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;}
 </span><span style="color:#e6db74">      }
 </span><span style="color:#e6db74">    ]
@@ -1180,314 +1127,80 @@ Batch Operations (Efficient):
 </span><span style="color:#e6db74">}
 </span><span style="color:#e6db74">EOF</span>
 </code></pre></div><h3 id="step-2-execute-batch-get">Step 2: Execute Batch Get</h3>
-<p><strong>Retrieve multiple items with single API call</strong>:</p>
-<ol>
-<li><strong>Execute batch get command</strong>:</li>
-</ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb batch-get-item --request-items file://batch-get.json
-</code></pre></div><ol start="2">
-<li><strong>Analyze response</strong>:
-<ul>
-<li>All 3 items returned in single response</li>
-<li>Complete item data for each product</li>
-<li>Much faster than 3 separate GetItem calls</li>
-</ul>
-</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of batch get response showing all 3 items retrieved at once</p>
-</div>
-
-<h3 id="step-3-performance-comparison">Step 3: Performance Comparison</h3>
-<p><strong>Compare batch vs individual operations</strong>:</p>
-<p><strong>Single GetItem (for comparison)</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Single item retrieval (less efficient)</span>
-aws dynamodb get-item <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#batch-laptop-001&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span>
-</code></pre></div><p><strong>Performance analysis</strong>:</p>
+</code></pre></div><p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.1.4.png?featherlight=false&amp;width=90pc" alt="6.1.4"></p>
+<p><strong>Performance comparison</strong>:</p>
 <ul>
 <li><strong>Batch operation</strong>: 1 API call for 3 items</li>
 <li><strong>Individual operations</strong>: 3 API calls for 3 items</li>
-<li><strong>Efficiency gain</strong>: 3x fewer API calls</li>
-<li><strong>Latency reduction</strong>: Significant improvement</li>
+<li><strong>Result</strong>: 3x fewer API calls = better performance</li>
+</ul>
+<h2 id="batch-operation-benefits">Batch Operation Benefits</h2>
+<h3 id="efficiency-gains">Efficiency Gains</h3>
+<table>
+<thead>
+<tr>
+<th>Operation Type</th>
+<th>Individual Calls</th>
+<th>Batch Calls</th>
+<th>Efficiency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Write 25 items</strong></td>
+<td>25 API calls</td>
+<td>1 API call</td>
+<td>25x faster</td>
+</tr>
+<tr>
+<td><strong>Read 100 items</strong></td>
+<td>100 API calls</td>
+<td>1 API call</td>
+<td>100x faster</td>
+</tr>
+<tr>
+<td><strong>Mixed operations</strong></td>
+<td>Multiple calls</td>
+<td>1 API call</td>
+<td>Much faster</td>
+</tr>
+</tbody>
+</table>
+<h3 id="free-tier-benefits">Free Tier Benefits</h3>
+<ul>
+<li><strong>Same RCU/WCU usage</strong>: Capacity consumption unchanged</li>
+<li><strong>Fewer API calls</strong>: Better throughput within limits</li>
+<li><strong>Reduced latency</strong>: Faster application response</li>
+<li><strong>Efficient processing</strong>: More work done per request</li>
+</ul>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="batch-limits">Batch Limits</h3>
+<ul>
+<li><strong>BatchWriteItem</strong>: Maximum 25 items per request</li>
+<li><strong>BatchGetItem</strong>: Maximum 100 items per request</li>
+<li><strong>Item size</strong>: Each item still counts toward size limits</li>
+<li><strong>Error handling</strong>: Some items may fail while others succeed</li>
+</ul>
+<h3 id="when-to-use-batching">When to Use Batching</h3>
+<p><strong>Good for batching</strong>:</p>
+<ul>
+<li>Multiple related items to process</li>
+<li>Bulk data imports/exports</li>
+<li>Initialization or cleanup operations</li>
+</ul>
+<p><strong>Not ideal for batching</strong>:</p>
+<ul>
+<li>Single item operations</li>
+<li>Items requiring individual error handling</li>
+<li>Real-time user interactions</li>
 </ul>
 
-<div class="notices success" ><p><strong>Performance Benefit</strong>: Batch operations reduce API calls by up to 25x for writes and 100x for reads, dramatically improving application performance!</p>
+<div class="notices success" ><p><strong>Batch Operations Mastery</strong>: You can now process multiple items efficiently, reducing API calls and improving application performance!</p>
 </div>
 
-<h2 id="exercise-3-advanced-batch-patterns">Exercise 3: Advanced Batch Patterns</h2>
-<h3 id="step-1-mixed-batch-operations">Step 1: Mixed Batch Operations</h3>
-<p><strong>Combine PutRequest and DeleteRequest in single batch</strong>:</p>
-<ol>
-<li><strong>Create mixed-batch.json</strong>:</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat &gt; mixed-batch.json <span style="color:#e6db74">&lt;&lt; &#39;EOF&#39;
-</span><span style="color:#e6db74">{
-</span><span style="color:#e6db74">  &#34;demo-ecommerce-freetier&#34;: [
-</span><span style="color:#e6db74">    {
-</span><span style="color:#e6db74">      &#34;PutRequest&#34;: {
-</span><span style="color:#e6db74">        &#34;Item&#34;: {
-</span><span style="color:#e6db74">          &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-headset-004&#34;},
-</span><span style="color:#e6db74">          &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;},
-</span><span style="color:#e6db74">          &#34;GSI1PK&#34;: {&#34;S&#34;: &#34;CATEGORY#electronics&#34;},
-</span><span style="color:#e6db74">          &#34;GSI1SK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-headset-004&#34;},
-</span><span style="color:#e6db74">          &#34;name&#34;: {&#34;S&#34;: &#34;Wireless Headset Pro&#34;},
-</span><span style="color:#e6db74">          &#34;price&#34;: {&#34;N&#34;: &#34;199&#34;},
-</span><span style="color:#e6db74">          &#34;stock&#34;: {&#34;N&#34;: &#34;20&#34;},
-</span><span style="color:#e6db74">          &#34;category&#34;: {&#34;S&#34;: &#34;electronics&#34;}
-</span><span style="color:#e6db74">        }
-</span><span style="color:#e6db74">      }
-</span><span style="color:#e6db74">    },
-</span><span style="color:#e6db74">    {
-</span><span style="color:#e6db74">      &#34;DeleteRequest&#34;: {
-</span><span style="color:#e6db74">        &#34;Key&#34;: {
-</span><span style="color:#e6db74">          &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-mouse-002&#34;},
-</span><span style="color:#e6db74">          &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;}
-</span><span style="color:#e6db74">        }
-</span><span style="color:#e6db74">      }
-</span><span style="color:#e6db74">    }
-</span><span style="color:#e6db74">  ]
-</span><span style="color:#e6db74">}
-</span><span style="color:#e6db74">EOF</span>
-</code></pre></div><ol start="2">
-<li><strong>Execute mixed batch operation</strong>:</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb batch-write-item --request-items file://mixed-batch.json
-</code></pre></div>
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing mixed batch operation execution (add + delete)</p>
-</div>
-
-<h3 id="step-2-error-handling-in-batch-operations">Step 2: Error Handling in Batch Operations</h3>
-<p><strong>Understanding batch operation limitations</strong>:</p>
-<ol>
-<li><strong>Create oversized batch</strong> (to demonstrate limits):</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Create a batch with more than 25 items (will be split automatically by AWS CLI)</span>
-cat &gt; large-batch.json <span style="color:#e6db74">&lt;&lt; &#39;EOF&#39;
-</span><span style="color:#e6db74">{
-</span><span style="color:#e6db74">  &#34;demo-ecommerce-freetier&#34;: [
-</span><span style="color:#e6db74">EOF</span>
-
-<span style="color:#75715e"># Add multiple items to demonstrate batch limits</span>
-<span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>1..30<span style="color:#f92672">}</span>; <span style="color:#66d9ef">do</span>
-  cat &gt;&gt; large-batch.json <span style="color:#e6db74">&lt;&lt; EOF
-</span><span style="color:#e6db74">    {
-</span><span style="color:#e6db74">      &#34;PutRequest&#34;: {
-</span><span style="color:#e6db74">        &#34;Item&#34;: {
-</span><span style="color:#e6db74">          &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-test-$i&#34;},
-</span><span style="color:#e6db74">          &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;},
-</span><span style="color:#e6db74">          &#34;name&#34;: {&#34;S&#34;: &#34;Test Product $i&#34;},
-</span><span style="color:#e6db74">          &#34;price&#34;: {&#34;N&#34;: &#34;10&#34;}
-</span><span style="color:#e6db74">        }
-</span><span style="color:#e6db74">      }
-</span><span style="color:#e6db74">    }$([ $i -lt 30 ] &amp;&amp; echo &#34;,&#34;)
-</span><span style="color:#e6db74">EOF</span>
-<span style="color:#66d9ef">done</span>
-
-cat &gt;&gt; large-batch.json <span style="color:#e6db74">&lt;&lt; &#39;EOF&#39;
-</span><span style="color:#e6db74">  ]
-</span><span style="color:#e6db74">}
-</span><span style="color:#e6db74">EOF</span>
-</code></pre></div><ol start="2">
-<li><strong>Execute and observe AWS CLI handling</strong>:</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb batch-write-item --request-items file://large-batch.json
-</code></pre></div><p><strong>Batch operation best practices</strong>:</p>
-<ul>
-<li><strong>Maximum 25 items</strong> per BatchWriteItem request</li>
-<li><strong>Maximum 100 items</strong> per BatchGetItem request</li>
-<li><strong>Handle UnprocessedItems</strong> in response for retries</li>
-<li><strong>Implement exponential backoff</strong> for failed items</li>
-</ul>
-<h3 id="step-3-batch-operations-with-projections">Step 3: Batch Operations with Projections</h3>
-<p><strong>Optimize batch reads with projection expressions</strong>:</p>
-<ol>
-<li><strong>Create projection batch get</strong>:</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat &gt; batch-get-projection.json <span style="color:#e6db74">&lt;&lt; &#39;EOF&#39;
-</span><span style="color:#e6db74">{
-</span><span style="color:#e6db74">  &#34;demo-ecommerce-freetier&#34;: {
-</span><span style="color:#e6db74">    &#34;Keys&#34;: [
-</span><span style="color:#e6db74">      {
-</span><span style="color:#e6db74">        &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-laptop-001&#34;},
-</span><span style="color:#e6db74">        &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;}
-</span><span style="color:#e6db74">      },
-</span><span style="color:#e6db74">      {
-</span><span style="color:#e6db74">        &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-keyboard-003&#34;},
-</span><span style="color:#e6db74">        &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;}
-</span><span style="color:#e6db74">      },
-</span><span style="color:#e6db74">      {
-</span><span style="color:#e6db74">        &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#batch-headset-004&#34;},
-</span><span style="color:#e6db74">        &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;}
-</span><span style="color:#e6db74">      }
-</span><span style="color:#e6db74">    ],
-</span><span style="color:#e6db74">    &#34;ProjectionExpression&#34;: &#34;PK, SK, #n, price, stock&#34;,
-</span><span style="color:#e6db74">    &#34;ExpressionAttributeNames&#34;: {
-</span><span style="color:#e6db74">      &#34;#n&#34;: &#34;name&#34;
-</span><span style="color:#e6db74">    }
-</span><span style="color:#e6db74">  }
-</span><span style="color:#e6db74">}
-</span><span style="color:#e6db74">EOF</span>
-</code></pre></div><ol start="2">
-<li><strong>Execute optimized batch get</strong>:</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb batch-get-item --request-items file://batch-get-projection.json
-</code></pre></div><p><strong>Benefits of projection in batch operations</strong>:</p>
-<ul>
-<li><strong>Reduced data transfer</strong>: Only fetch needed attributes</li>
-<li><strong>Lower RCU consumption</strong>: Pay only for retrieved data</li>
-<li><strong>Faster response times</strong>: Less data to process</li>
-<li><strong>Network efficiency</strong>: Smaller payload sizes</li>
-</ul>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot comparing full item vs projected item responses</p>
-</div>
-
-<h2 id="exercise-4-production-batch-patterns">Exercise 4: Production Batch Patterns</h2>
-<h3 id="step-1-batch-processing-with-error-handling">Step 1: Batch Processing with Error Handling</h3>
-<p><strong>Implement robust batch processing</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> boto3
-<span style="color:#f92672">import</span> json
-<span style="color:#f92672">import</span> time
-<span style="color:#f92672">from</span> botocore.exceptions <span style="color:#f92672">import</span> ClientError
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BatchProcessor</span>:
-    <span style="color:#66d9ef">def</span> __init__(self, table_name):
-        self<span style="color:#f92672">.</span>dynamodb <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;dynamodb&#39;</span>)
-        self<span style="color:#f92672">.</span>table_name <span style="color:#f92672">=</span> table_name
-    
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">batch_write_with_retry</span>(self, items, max_retries<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>):
-        <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">        Batch write with automatic retry for unprocessed items
-</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
-        request_items <span style="color:#f92672">=</span> {self<span style="color:#f92672">.</span>table_name: items}
-        
-        <span style="color:#66d9ef">for</span> attempt <span style="color:#f92672">in</span> range(max_retries):
-            <span style="color:#66d9ef">try</span>:
-                response <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>dynamodb<span style="color:#f92672">.</span>batch_write_item(
-                    RequestItems<span style="color:#f92672">=</span>request_items
-                )
-                
-                <span style="color:#75715e"># Check for unprocessed items</span>
-                unprocessed <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;UnprocessedItems&#39;</span>, {})
-                <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> unprocessed:
-                    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>  <span style="color:#75715e"># All items processed successfully</span>
-                
-                <span style="color:#75715e"># Retry unprocessed items with exponential backoff</span>
-                wait_time <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> attempt) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.1</span>
-                time<span style="color:#f92672">.</span>sleep(wait_time)
-                request_items <span style="color:#f92672">=</span> unprocessed
-                
-            <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
-                print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Batch write error (attempt </span><span style="color:#e6db74">{</span>attempt <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">): </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-                <span style="color:#66d9ef">if</span> attempt <span style="color:#f92672">==</span> max_retries <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>:
-                    <span style="color:#66d9ef">raise</span>
-                time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> attempt)
-        
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>  <span style="color:#75715e"># Some items remained unprocessed</span>
-    
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">batch_get_with_projection</span>(self, keys, projection_expression<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
-        <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">        Batch get with optional projection
-</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
-        request_items <span style="color:#f92672">=</span> {
-            self<span style="color:#f92672">.</span>table_name: {<span style="color:#e6db74">&#39;Keys&#39;</span>: keys}
-        }
-        
-        <span style="color:#66d9ef">if</span> projection_expression:
-            request_items[self<span style="color:#f92672">.</span>table_name][<span style="color:#e6db74">&#39;ProjectionExpression&#39;</span>] <span style="color:#f92672">=</span> projection_expression
-        
-        response <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>dynamodb<span style="color:#f92672">.</span>batch_get_item(RequestItems<span style="color:#f92672">=</span>request_items)
-        <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;Responses&#39;</span>, {})<span style="color:#f92672">.</span>get(self<span style="color:#f92672">.</span>table_name, [])
-</code></pre></div><h3 id="step-2-batch-operation-monitoring">Step 2: Batch Operation Monitoring</h3>
-<p><strong>Monitor batch operation performance</strong>:</p>
-<ol>
-<li>
-<p><strong>CloudWatch metrics to monitor</strong>:</p>
-<ul>
-<li><strong>UserErrors</strong>: Failed batch operations</li>
-<li><strong>SystemErrors</strong>: DynamoDB-side issues</li>
-<li><strong>ThrottledRequests</strong>: Capacity exceeded</li>
-<li><strong>ConsumedReadCapacityUnits</strong>: RCU usage</li>
-<li><strong>ConsumedWriteCapacityUnits</strong>: WCU usage</li>
-</ul>
-</li>
-<li>
-<p><strong>Performance optimization</strong>:</p>
-<ul>
-<li><strong>Batch size tuning</strong>: Use maximum batch sizes</li>
-<li><strong>Parallel processing</strong>: Multiple concurrent batches</li>
-<li><strong>Error handling</strong>: Implement retry logic</li>
-<li><strong>Monitoring</strong>: Track success rates and latency</li>
-</ul>
-</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch metrics showing batch operation performance</p>
-</div>
-
-<h3 id="step-3-cost-optimization-with-batching">Step 3: Cost Optimization with Batching</h3>
-<p><strong>Maximize Free Tier efficiency</strong>:</p>
-<p><strong>Cost comparison</strong>:</p>
-<pre tabindex="0"><code>Individual Operations:
-- 100 items × 1 WCU each = 100 WCU
-- 100 separate API calls
-- Higher latency
-
-Batch Operations:  
-- 100 items ÷ 25 per batch = 4 API calls
-- Same 100 WCU total
-- 25x fewer API calls
-- Lower latency
-</code></pre><p><strong>Free Tier benefits</strong>:</p>
-<ul>
-<li><strong>Efficient RCU/WCU usage</strong>: Same capacity consumption</li>
-<li><strong>Reduced API overhead</strong>: Fewer requests</li>
-<li><strong>Better throughput</strong>: More items processed per second</li>
-<li><strong>Improved user experience</strong>: Faster application response</li>
-</ul>
-<h2 id="batch-operations-best-practices">Batch Operations Best Practices</h2>
-<h3 id="efficiency-guidelines">Efficiency Guidelines</h3>
-<p><strong>Maximize batch effectiveness</strong>:</p>
-<ul>
-<li><strong>Use maximum batch sizes</strong>: 25 items for writes, 100 for reads</li>
-<li><strong>Group related operations</strong>: Batch similar operations together</li>
-<li><strong>Implement retry logic</strong>: Handle UnprocessedItems properly</li>
-<li><strong>Monitor performance</strong>: Track batch success rates</li>
-</ul>
-<h3 id="error-handling">Error Handling</h3>
-<p><strong>Robust batch processing</strong>:</p>
-<ul>
-<li><strong>Exponential backoff</strong>: Gradual retry delays</li>
-<li><strong>Partial success handling</strong>: Process successful items</li>
-<li><strong>Logging and monitoring</strong>: Track failed operations</li>
-<li><strong>Graceful degradation</strong>: Fall back to individual operations</li>
-</ul>
-<h3 id="performance-optimization">Performance Optimization</h3>
-<p><strong>Batch operation tuning</strong>:</p>
-<ul>
-<li><strong>Parallel batches</strong>: Process multiple batches concurrently</li>
-<li><strong>Projection expressions</strong>: Reduce data transfer</li>
-<li><strong>Capacity planning</strong>: Ensure adequate throughput</li>
-<li><strong>Connection pooling</strong>: Reuse DynamoDB connections</li>
-</ul>
-
-<div class="notices success" ><p><strong>Batch Mastery</strong>: You&rsquo;ve mastered batch operations! You can now process multiple items efficiently, reduce API calls by up to 25x, and optimize for both performance and cost.</p>
-</div>
-
-<h2 id="exercise-summary">Exercise Summary</h2>
-<p>You&rsquo;ve learned batch operation techniques:</p>
-<ul>
-<li>✅ <strong>Batch write operations</strong> for efficient data insertion</li>
-<li>✅ <strong>Batch read operations</strong> for fast data retrieval</li>
-<li>✅ <strong>Mixed batch operations</strong> combining puts and deletes</li>
-<li>✅ <strong>Error handling patterns</strong> for robust processing</li>
-<li>✅ <strong>Performance optimization</strong> with projections</li>
-<li>✅ <strong>Production patterns</strong> for enterprise applications</li>
-</ul>
 <h2 id="next-steps">Next Steps</h2>
-<p>Continue to <a href="../6.2-conditional-updates/">6.2 Conditional Updates</a> to learn data integrity patterns and prevent race conditions in concurrent environments.</p>
+<p>Continue to learn more advanced DynamoDB patterns or proceed to the next workshop module.</p>
 
 
 
@@ -1949,19 +1662,19 @@ Batch Operations:
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755112296"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755112296"></script>
 
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755099793" rel="stylesheet" />
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755099793"></script>
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755112296" rel="stylesheet" />
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755112296"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

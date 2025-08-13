@@ -76,20 +76,15 @@ Trigger: DynamoDB Streams
 
 Nền tảng thương mại điện tử của chúng ta sử dụng một bảng DynamoDB duy nhất với nhiều loại entity:
 
-```text
-Loại Entity và Access Patterns:
-┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐
-│ Loại Entity     │ Partition Key   │ Sort Key        │ Mục đích        │
-├─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-│ User Profile    │ USER#id         │ PROFILE         │ User metadata   │
-│ User Addresses  │ USER#id         │ ADDRESS#id      │ Thông tin ship  │
-│ Product         │ PRODUCT#id      │ DETAILS         │ Danh mục sản phẩm│
-│ Product Reviews │ PRODUCT#id      │ REVIEW#user_id  │ Đánh giá khách  │
-│ Order Header    │ ORDER#id        │ DETAILS         │ Order metadata  │
-│ Order Items     │ ORDER#id        │ ITEM#product_id │ Nội dung order  │
-│ Category        │ CATEGORY#id     │ DETAILS         │ Nhóm sản phẩm   │
-└─────────────────┴─────────────────┴─────────────────┴─────────────────┘
-```
+| Loại Entity | Partition Key | Sort Key | Mục đích |
+|-------------|---------------|----------|----------|
+| User Profile | USER#id | PROFILE | User metadata |
+| User Addresses | USER#id | ADDRESS#id | Thông tin ship |
+| Product | PRODUCT#id | DETAILS | Danh mục sản phẩm |
+| Product Reviews | PRODUCT#id | REVIEW#user_id | Đánh giá khách |
+| Order Header | ORDER#id | DETAILS | Order metadata |
+| Order Items | ORDER#id | ITEM#product_id | Nội dung order |
+| Category | CATEGORY#id | DETAILS | Nhóm sản phẩm |
 
 ### Access Patterns
 

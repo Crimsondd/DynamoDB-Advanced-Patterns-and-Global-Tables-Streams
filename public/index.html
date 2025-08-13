@@ -12,21 +12,21 @@
     <title>DynamoDB Advanced Patterns Workshop :: DynamoDB Advanced Patterns Workshop</title>
 
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755112295" rel="stylesheet">
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755112295" rel="stylesheet">
     
     
 
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755112295"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755099793"></script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755112295"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755112295"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/crimsondd.github.io\/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams\/";
     
 </script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755112295"></script>
 
     
   </div>
@@ -629,13 +629,13 @@
  
   
     
-    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Dashboards" class="dd-item 
+    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Basic Monitoring" class="dd-item 
         
         
         
         ">
       <a href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/">
-           <b> 5.1 </b> 5.1 CloudWatch Dashboards
+           <b> 5.1 </b> 5.1 CloudWatch Basic Monitoring
           
             <i class="fas fa-check read-icon"></i>
           
@@ -953,8 +953,6 @@ Finally, we will implement comprehensive <strong>monitoring and optimization</st
 <p><strong>Global Secondary Indexes</strong> allow you to query your data using different access patterns than your main table. GSIs have their own partition and sort keys, enabling efficient queries across different dimensions of your data. Proper GSI design is crucial for performance optimization and cost control.</p>
 <h4 id="monitoring--cost-optimization">Monitoring &amp; Cost Optimization</h4>
 <p><strong>CloudWatch monitoring</strong> provides real-time visibility into your DynamoDB performance, capacity utilization, and costs. Combined with <strong>billing alerts</strong> and <strong>Free Tier tracking</strong>, you can ensure optimal performance while maintaining strict cost control. This workshop implements comprehensive monitoring dashboards and automated alerting.</p>
-<h4 id="free-tier-compliance">Free Tier Compliance</h4>
-<p><strong>AWS Free Tier</strong> provides generous limits for learning and experimentation. This workshop is designed to use only 60% of available Free Tier resources, ensuring zero cost while providing enterprise-grade learning experience. All participants will implement production-ready patterns without incurring any charges.</p>
 <h4 id="main-content">Main Content</h4>
 <ol>
 <li><a href="1-setup-infrastructure/">Setup &amp; Infrastructure Deployment</a></li>
@@ -962,7 +960,7 @@ Finally, we will implement comprehensive <strong>monitoring and optimization</st
 <li><a href="3-global-tables-setup/">Global Tables Multi-Region Setup</a></li>
 <li><a href="4-streams-lambda-processing/">DynamoDB Streams &amp; Lambda Processing</a></li>
 <li><a href="5-monitoring-optimization/">Monitoring &amp; Performance Optimization</a></li>
-<li><a href="6-advanced-patterns/">Advanced Patterns &amp; Best Practices</a></li>
+<li><a href="6-advanced-patterns/">Advanced Patterns</a></li>
 <li><a href="7-cleanup-resources/">Cleanup &amp; Resource Management</a></li>
 </ol>
 	
@@ -1412,19 +1410,19 @@ Finally, we will implement comprehensive <strong>monitoring and optimization</st
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755112295"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755112295"></script>
 
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755099793" rel="stylesheet" />
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755099793"></script>
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755112295" rel="stylesheet" />
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755112295"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -8,148 +8,144 @@ pre : " <b> 4. </b> "
 
 # DynamoDB Streams & Lambda Processing
 
-⚡ **Real-time event processing với DynamoDB Streams và AWS Lambda**
+⚡ **Thiết lập xử lý sự kiện thời gian thực cho bảng DynamoDB của bạn**
 
-## Module Overview
+## Tổng quan Module
 
-Transform static database của bạn thành reactive, event-driven system automatically responds to every data change trong real-time.
+Tìm hiểu cách ghi lại và xử lý các thay đổi dữ liệu trong thời gian thực bằng cách sử dụng DynamoDB Streams và AWS Lambda.
 
-#### What You'll Learn
+#### Bạn sẽ học được gì
 
-- **Stream Architecture**: Understand làm thế nào DynamoDB captures và processes data changes
-- **Lambda Integration**: Configure serverless functions để respond to database events
-- **Event Processing**: Handle INSERT, MODIFY, và REMOVE events effectively
-- **Real-time Patterns**: Implement common event-driven architecture patterns
-- **Monitoring & Debugging**: Track performance và troubleshoot stream processing
+- **Bật Streams**: Bật theo dõi thay đổi cho bảng của bạn
+- **Tạo Lambda**: Xây dựng một hàm để xử lý sự kiện  
+- **Kiểm tra xử lý**: Xem các sự kiện được kích hoạt trong thời gian thực
 
-#### Architecture Overview
+#### Kiến trúc đơn giản
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Application   │    │   DynamoDB      │    │ DynamoDB Streams│
-│                 │    │     Table       │    │                 │
-│  ┌───────────┐  │    │  ┌───────────┐  │    │  ┌───────────┐  │
-│  │   Write   │──┼───►│  │   Item    │──┼───►│  │  Stream   │  │
-│  │   Item    │  │    │  │  Created  │  │    │  │  Record   │  │
-│  └───────────┘  │    │  └───────────┘  │    │  └───────────┘  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                                        │
-                                                        ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│     Lambda      │    │   Event Source  │    │    Stream       │
-│   Function      │    │    Mapping      │    │   Shards        │
-│                 │    │                 │    │                 │
-│  ┌───────────┐  │    │  ┌───────────┐  │    │  ┌───────────┐  │
-│  │  Process  │◄─┼────│  │   Poll    │◄─┼────│  │  Records  │  │
-│  │  Records  │  │    │  │  Stream   │  │    │  │  Queue    │  │
-│  └───────────┘  │    │  └───────────┘  │    │  └───────────┘  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
+![Simple_Architecture](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/Simple_Architecture.png?featherlight=false&width=50pc)
 
-#### Key Benefits
+#### Lợi ích chính
 
-**Real-time Processing**
-- Process data changes within 100-500 milliseconds
-- Không polling required - events pushed automatically
-- Scale to millions của events per second
+- **Thời gian thực**: Xử lý thay đổi ngay lập tức
+- **Tự động**: Không cần polling
+- **Mở rộng**: Lambda xử lý đồng thời
+- **Hiệu quả chi phí**: Chỉ trả tiền cho thời gian sử dụng
 
-**Event-Driven Architecture**  
-- Decouple data storage từ business logic
-- Trigger multiple downstream systems
-- Build reactive, responsive applications
+## Nội dung Module
 
-**Cost Effective**
-- Pay only cho actual processing time
-- AWS Free Tier includes 1M Lambda invocations
-- Không infrastructure to manage
+1. **[Cấu hình Stream](4.1-stream-configuration/)** - Bật streams trên bảng của bạn
+2. **[Thiết lập hàm Lambda](4.2-lambda-function-setup/)** - Tạo và kết nối Lambda
 
-#### Common Use Cases
+{{% notice info %}}
+**Free Tier**: Lambda cung cấp 1 triệu yêu cầu miễn phí mỗi tháng. Demo này sử dụng tài nguyên tối thiểu.
+{{% /notice %}}
 
-| Pattern | Trigger | Action |
+{{% children %}}
+
+#### Hãy thêm xử lý thời gian thực vào bảng DynamoDB của bạn.
+
+**Xử lý thời gian thực**
+- Xử lý thay đổi dữ liệu trong vòng 100-500 mili giây
+- Không cần polling - các sự kiện được đẩy tự động
+- Mở rộng đến hàng triệu sự kiện mỗi giây
+
+**Kiến trúc hướng sự kiện**  
+- Tách biệt lưu trữ dữ liệu khỏi logic nghiệp vụ
+- Kích hoạt nhiều hệ thống hạ nguồn
+- Xây dựng các ứng dụng phản ứng nhanh, đáp ứng
+
+**Hiệu quả chi phí**
+- Chỉ trả tiền cho thời gian xử lý thực tế
+- AWS Free Tier bao gồm 1 triệu lần gọi Lambda
+- Không cần quản lý cơ sở hạ tầng
+
+#### Các trường hợp sử dụng phổ biến
+
+| Mẫu | Kích hoạt | Hành động |
 |---------|---------|--------|
-| **Audit Trail** | Any change | Log to S3/CloudWatch |
-| **Cache Invalidation** | Item update | Clear Redis/ElastiCache |
-| **Notifications** | Order created | Send email/SMS |
-| **Analytics** | User activity | Update metrics dashboard |
-| **Search Index** | Product change | Update Elasticsearch |
-| **Workflow** | Status change | Trigger Step Functions |
+| **Audit Trail** | Bất kỳ thay đổi nào | Ghi nhật ký vào S3/CloudWatch |
+| **Cache Invalidation** | Cập nhật mục | Xóa Redis/ElastiCache |
+| **Notifications** | Đơn hàng được tạo | Gửi email/SMS |
+| **Analytics** | Hoạt động người dùng | Cập nhật bảng điều khiển số liệu |
+| **Search Index** | Thay đổi sản phẩm | Cập nhật Elasticsearch |
+| **Workflow** | Thay đổi trạng thái | Kích hoạt Step Functions |
 
-#### Stream Processing Patterns
+#### Mẫu xử lý Stream
 
-**Fan-out Pattern**: One change triggers multiple Lambda functions
+**Mẫu Fan-out**: Một thay đổi kích hoạt nhiều hàm Lambda
 ```
 DynamoDB Change → Stream → Lambda 1 (Email)
                        → Lambda 2 (Analytics)  
                        → Lambda 3 (Cache Update)
 ```
 
-**Pipeline Pattern**: Sequential processing through multiple stages
+**Mẫu Pipeline**: Xử lý tuần tự qua nhiều giai đoạn
 ```
 Order Created → Validate → Process Payment → Update Inventory → Ship
 ```
 
-**Aggregation Pattern**: Combine multiple changes thành summaries
+**Mẫu Aggregation**: Kết hợp nhiều thay đổi thành các bản tóm tắt
 ```
 Sales Records → Real-time Revenue Dashboard
 User Actions → Activity Analytics
 ```
 
-#### Performance Characteristics
+#### Đặc điểm hiệu suất
 
-- **Latency**: Typically 100-500ms từ change to processing
-- **Throughput**: Scales automatically với data volume của bạn  
-- **Reliability**: Automatic retries và error handling
-- **Ordering**: Changes processed in order per item
-- **Retention**: Stream records available cho 24 hours
+- **Độ trễ**: Thường từ 100-500ms từ thay đổi đến xử lý
+- **Thông lượng**: Tự động mở rộng với khối lượng dữ liệu của bạn  
+- **Độ tin cậy**: Tự động thử lại và xử lý lỗi
+- **Thứ tự**: Các thay đổi được xử lý theo thứ tự cho mỗi mục
+- **Lưu giữ**: Bản ghi stream có sẵn trong 24 giờ
 
-#### Module Structure
+#### Cấu trúc Module
 
-Module này được organized thành hands-on sections build upon each other:
+Module này được tổ chức thành các phần thực hành xây dựng dựa trên nhau:
 
-1. **Stream Configuration** - Enable và configure DynamoDB Streams
-2. **Lambda Function Setup** - Create và deploy stream processing functions  
-3. **Event Processing Practice** - Test với real data changes
-4. **Monitoring & Debugging** - Track performance và troubleshoot issues
+1. **Cấu hình Stream** - Bật và cấu hình DynamoDB Streams
+2. **Thiết lập hàm Lambda** - Tạo và triển khai các hàm xử lý stream  
+3. **Thực hành xử lý sự kiện** - Kiểm tra với các thay đổi dữ liệu thực tế
+4. **Giám sát & Gỡ lỗi** - Theo dõi hiệu suất và khắc phục sự cố
 
-Mỗi section includes:
-- ✅ **Step-by-step AWS Console instructions**
-- ✅ **Code examples và templates**
-- ✅ **Screenshot placeholders cho documentation**
-- ✅ **Troubleshooting guides**
-- ✅ **Real-world scenarios**
+Mỗi phần bao gồm:
+- ✅ **Hướng dẫn từng bước trên AWS Console**
+- ✅ **Ví dụ mã và mẫu**
+- ✅ **Chỗ dành sẵn cho ảnh chụp màn hình trong tài liệu**
+- ✅ **Hướng dẫn khắc phục sự cố**
+- ✅ **Kịch bản thực tế**
 
-#### Prerequisites
+#### Điều kiện tiên quyết
 
-Trước khi starting module này, ensure bạn có:
-- ✅ Completed Module 1 (DynamoDB table setup)
-- ✅ Basic understanding của AWS Lambda
-- ✅ Familiarity với JSON và event-driven concepts
-- ✅ AWS Console access với appropriate permissions
+Trước khi bắt đầu module này, hãy đảm bảo bạn đã:
+- ✅ Hoàn thành Module 1 (thiết lập bảng DynamoDB)
+- ✅ Hiểu cơ bản về AWS Lambda
+- ✅ Quen thuộc với JSON và các khái niệm hướng sự kiện
+- ✅ Truy cập AWS Console với quyền phù hợp
 
 {{% notice info %}}
-**Free Tier Optimization**: Tất cả exercises được designed để stay within AWS Free Tier limits, including Lambda invocations và DynamoDB streams.
+**Tối ưu hóa Free Tier**: Tất cả các bài tập được thiết kế để nằm trong giới hạn Free Tier của AWS, bao gồm các lần gọi Lambda và DynamoDB streams.
 {{% /notice %}}
 
-### Learning Objectives
+### Mục tiêu học tập
 
 Sau khi hoàn thành module này, bạn sẽ:
 
-- **Understand** DynamoDB Streams architecture và event flow
-- **Configure** Lambda functions để process stream events
-- **Implement** common event-driven patterns
-- **Monitor** stream processing performance
-- **Debug** stream processing issues
-- **Design** scalable event-driven applications
+- **Hiểu** kiến trúc DynamoDB Streams và luồng sự kiện
+- **Cấu hình** các hàm Lambda để xử lý sự kiện stream
+- **Triển khai** các mẫu hướng sự kiện phổ biến
+- **Giám sát** hiệu suất xử lý stream
+- **Gỡ lỗi** các vấn đề xử lý stream
+- **Thiết kế** các ứng dụng hướng sự kiện có khả năng mở rộng
 
 {{% notice success %}}
-**Ready to Build**: Transform static database của bạn thành reactive, event-driven system automatically responds to every change!
+**Sẵn sàng xây dựng**: Biến cơ sở dữ liệu tĩnh của bạn thành hệ thống hướng sự kiện, phản ứng tự động với mọi thay đổi!
 {{% /notice %}}
 
 {{% children %}}
 
-- DynamoDB Streams configuration
-- Lambda stream processor functions
-- Real-time order processing pipeline
-- Error handling và dead letter queues
+- Cấu hình DynamoDB Streams
+- Các hàm xử lý stream Lambda
+- Pipeline xử lý đơn hàng thời gian thực
+- Xử lý lỗi và hàng đợi thư chết
 
-Hãy implement real-time stream processing cho e-commerce platform của bạn.
+Hãy triển khai xử lý stream thời gian thực cho nền tảng thương mại điện tử của bạn.

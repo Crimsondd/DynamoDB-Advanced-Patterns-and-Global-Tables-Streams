@@ -44,9 +44,7 @@ Copy the Stream ARN - you'll need it for Lambda setup:
 arn:aws:dynamodb:us-east-1:123456789012:table/demo-ecommerce-freetier/stream/2025-08-13T10:00:00.000
 ```
 
-{{% notice success %}}
-**Stream Enabled!** Your table now captures all changes. Next, we'll create a Lambda function to process these events.
-{{% /notice %}}
+![4.1.1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.1.1.png?featherlight=false&width=90pc)
 
 ### Verification
 
@@ -56,9 +54,7 @@ arn:aws:dynamodb:us-east-1:123456789012:table/demo-ecommerce-freetier/stream/202
 3. **View type selection**: Choose "New and old images"
 4. **Confirmation**: Click "Turn on stream"
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of stream configuration dialog with "New and old images" selected
-{{% /notice %}}
+![4.1.2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.1.2.png?featherlight=false&width=90pc)
 
 ### Step 3: Verify Stream Configuration
 
@@ -69,9 +65,8 @@ arn:aws:dynamodb:us-east-1:123456789012:table/demo-ecommerce-freetier/stream/202
 3. **View type**: Confirms "New and old images"
 4. **Creation time**: Shows when stream was enabled
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing active stream with ARN and configuration details
-{{% /notice %}}
+![4.1.2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.1.2.png?featherlight=false&width=90pc)
+
 
 ## Exercise 2: Understanding Stream Settings
 
@@ -122,9 +117,7 @@ arn:aws:dynamodb:us-east-1:123456789012:table/demo-ecommerce-freetier/stream/202
 
 4. **Create**: Click "Create item"
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of item creation dialog with stream test data
-{{% /notice %}}
+![4.1.3](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.1.3.png?featherlight=false&width=90pc)
 
 ### Step 2: Monitor Stream Activity
 
@@ -136,9 +129,7 @@ arn:aws:dynamodb:us-east-1:123456789012:table/demo-ecommerce-freetier/stream/202
 4. **Stream metrics**: Look for stream-related metrics
 5. **IncomingRecords**: Should show 1 new record
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of CloudWatch showing DynamoDB stream metrics
-{{% /notice %}}
+![4.1.4](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.1.4.png?featherlight=false&width=90pc)
 
 ### Step 3: Understand Stream Records
 

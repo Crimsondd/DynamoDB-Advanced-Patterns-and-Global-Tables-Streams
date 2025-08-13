@@ -62,20 +62,15 @@ Sử dụng checklist này để xác minh từng thành phần một cách có 
 
 **Table Overview**:
 
-```text
-Chi tiết Table:
-┌─────────────────────┬─────────────────────────────────────────┐
-│ Property            │ Expected Value                          │
-├─────────────────────┼─────────────────────────────────────────┤
-│ Table Status        │ Active ✅                               │
-│ Partition Key       │ PK (String)                             │
-│ Sort Key            │ SK (String)                             │
-│ Read Capacity       │ 5 (Provisioned)                         │
-│ Write Capacity      │ 5 (Provisioned)                         │
-│ Point-in-time Rec.  │ Enabled                                 │
-│ Streams             │ Enabled (NEW_AND_OLD_IMAGES)            │
-└─────────────────────┴─────────────────────────────────────────┘
-```
+| Property | Expected Value |
+|----------|----------------|
+| Table Status | Active ✅ |
+| Partition Key | PK (String) |
+| Sort Key | SK (String) |
+| Read Capacity | 5 (Provisioned) |
+| Write Capacity | 5 (Provisioned) |
+| Point-in-time Rec. | Enabled |
+| Streams | Enabled (NEW_AND_OLD_IMAGES) |
 
 ### 2.3 Xác minh Cấu hình Table
 
@@ -136,19 +131,14 @@ Chi tiết Table:
 
 **Function Overview**:
 
-```text
-Chi tiết Lambda Function:
-┌─────────────────────┬─────────────────────────────────────────┐
-│ Property            │ Expected Value                          │
-├─────────────────────┼─────────────────────────────────────────┤
-│ Function Name       │ demo-dynamodb-stream-processor          │
-│ Runtime             │ Python 3.9                              │
-│ Memory              │ 128 MB                                  │
-│ Timeout             │ 30 seconds                              │
-│ Handler             │ lambda_function.lambda_handler          │
-│ Last Modified       │ Ngày hôm nay                            │
-└─────────────────────┴─────────────────────────────────────────┘
-```
+| Property | Expected Value |
+|----------|----------------|
+| Function Name | demo-dynamodb-stream-processor |
+| Runtime | Python 3.9 |
+| Memory | 128 MB |
+| Timeout | 30 seconds |
+| Handler | lambda_function.lambda_handler |
+| Last Modified | Ngày hôm nay |
 
 ### 4.3 Xác minh Stream Trigger
 
@@ -177,19 +167,14 @@ Chi tiết Lambda Function:
 
 **Widgets Dự kiến**:
 
-```text
-Layout Dashboard:
-┌─────────────────────┬─────────────────────────────────────────┐
-│ Widget              │ Description                             │
-├─────────────────────┼─────────────────────────────────────────┤
-│ DynamoDB RCU        │ Read Capacity Utilization              │
-│ DynamoDB WCU        │ Write Capacity Utilization             │
-│ DynamoDB Throttles  │ Throttled Read/Write Requests           │
-│ Lambda Invocations  │ Function invocation count               │
-│ Lambda Errors       │ Function error rate                     │
-│ Lambda Duration     │ Function execution duration             │
-└─────────────────────┴─────────────────────────────────────────┘
-```
+| Widget | Description |
+|--------|-------------|
+| DynamoDB RCU | Read Capacity Utilization |
+| DynamoDB WCU | Write Capacity Utilization |
+| DynamoDB Throttles | Throttled Read/Write Requests |
+| Lambda Invocations | Function invocation count |
+| Lambda Errors | Function error rate |
+| Lambda Duration | Function execution duration |
 
 ### 5.3 Xác minh Metrics Data
 
@@ -251,20 +236,16 @@ Layout Dashboard:
 - **CloudWatch**: Nên hiển thị active metrics
 
 **Usage Breakdown**:
-```text
-Sử dụng Free Tier Hiện tại:
-┌─────────────────┬──────────────┬──────────────┬─────────────┐
-│ Service         │ Used         │ Available    │ % Used      │
-├─────────────────┼──────────────┼──────────────┼─────────────┤
-│ DynamoDB RCU    │ <1 unit      │ 25 units     │ <4%         │
-│ DynamoDB WCU    │ <1 unit      │ 25 units     │ <4%         │
-│ DynamoDB Storage│ <0.01 GB     │ 25 GB        │ <0.1%       │
-│ Lambda Requests │ 1 request    │ 1M requests  │ <0.001%     │
-│ Lambda Duration │ <1 GB-sec    │ 400K GB-sec  │ <0.001%     │
-└─────────────────┴──────────────┴──────────────┴─────────────┘
+
+| Service | Used | Available | % Used |
+|---------|------|-----------|--------|
+| DynamoDB RCU | <1 unit | 25 units | <4% |
+| DynamoDB WCU | <1 unit | 25 units | <4% |
+| DynamoDB Storage | <0.01 GB | 25 GB | <0.1% |
+| Lambda Requests | 1 request | 1M requests | <0.001% |
+| Lambda Duration | <1 GB-sec | 400K GB-sec | <0.001% |
 
 Tổng Sử dụng: <1% giới hạn Free Tier ✅
-```
 
 ## Bước 8: Tóm tắt Xác minh Cuối cùng
 
@@ -283,18 +264,14 @@ Tổng Sử dụng: <1% giới hạn Free Tier ✅
 ### 8.2 Sẵn sàng cho Module Tiếp theo
 
 **Infrastructure Health Check**:
-```text
-🟢 Tất cả Hệ thống Hoạt động
-┌─────────────────────┬─────────────────────┬─────────────────────┐
-│ Component           │ Status              │ Health              │
-├─────────────────────┼─────────────────────┼─────────────────────┤
-│ DynamoDB Table      │ Active              │ 🟢 Healthy         │
-│ Global Tables       │ Replicating         │ 🟢 Healthy         │
-│ Lambda Function     │ Active              │ 🟢 Healthy         │
-│ CloudWatch          │ Monitoring          │ 🟢 Healthy         │
-│ Cost Management     │ $0.00               │ 🟢 On Track        │
-└─────────────────────┴─────────────────────┴─────────────────────┘
-```
+
+| Component | Status | Health |
+|-----------|---------|---------|
+| DynamoDB Table | Active | 🟢 Healthy |
+| Global Tables | Replicating | 🟢 Healthy |
+| Lambda Function | Active | 🟢 Healthy |
+| CloudWatch | Monitoring | 🟢 Healthy |
+| Cost Management | $0.00 | 🟢 On Track |
 
 {{% notice success %}}
 **Xác minh Hạ tầng Hoàn tất**: Tất cả tài nguyên đã được triển khai đúng cách và hoạt động. Bạn sẵn sàng tiến hành Module 2: Single Table Design.

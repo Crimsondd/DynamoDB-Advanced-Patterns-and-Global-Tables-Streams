@@ -12,21 +12,21 @@
     <title>2.4 Query Patterns :: DynamoDB Advanced Patterns Workshop</title>
 
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755112295" rel="stylesheet">
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755112295" rel="stylesheet">
     
     
 
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755112295"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755099793"></script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755112295"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755112295"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/crimsondd.github.io\/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams\/";
     
 </script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755112295"></script>
 
     
   </div>
@@ -629,13 +629,13 @@
  
   
     
-    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Dashboards" class="dd-item 
+    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Basic Monitoring" class="dd-item 
         
         
         
         ">
       <a href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/">
-           <b> 5.1 </b> 5.1 CloudWatch Dashboards
+           <b> 5.1 </b> 5.1 CloudWatch Basic Monitoring
           
             <i class="fas fa-check read-icon"></i>
           
@@ -963,71 +963,16 @@
 <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
-    <li><a href="#query-vs-scan---critical-difference">Query vs Scan - Critical Difference</a>
-      <ul>
-        <li><a href="#always-use-query-not-scan">Always Use Query (Not Scan)</a></li>
-      </ul>
-    </li>
-    <li><a href="#pattern-1-get-user-profile">Pattern 1: Get User Profile</a>
-      <ul>
-        <li><a href="#single-item-lookup">Single Item Lookup</a></li>
-        <li><a href="#configure-user-profile-query">Configure User Profile Query</a></li>
-        <li><a href="#execute-and-verify">Execute and Verify</a></li>
-      </ul>
-    </li>
-    <li><a href="#pattern-2-get-users-orders">Pattern 2: Get User&rsquo;s Orders</a>
-      <ul>
-        <li><a href="#one-to-many-relationship-query">One-to-Many Relationship Query</a></li>
-        <li><a href="#advanced-sort-key-options">Advanced Sort Key Options</a></li>
-        <li><a href="#execute-user-orders-query">Execute User Orders Query</a></li>
-      </ul>
-    </li>
-    <li><a href="#pattern-3-get-order-details-with-items">Pattern 3: Get Order Details with Items</a>
-      <ul>
-        <li><a href="#hierarchical-data-query">Hierarchical Data Query</a></li>
-      </ul>
-    </li>
-    <li><a href="#pattern-4-products-by-category-gsi-query">Pattern 4: Products by Category (GSI Query)</a>
-      <ul>
-        <li><a href="#using-global-secondary-index">Using Global Secondary Index</a></li>
-        <li><a href="#configure-category-query">Configure Category Query</a></li>
-        <li><a href="#execute-category-query">Execute Category Query</a></li>
-      </ul>
-    </li>
-    <li><a href="#pattern-5-orders-by-status-gsi-query">Pattern 5: Orders by Status (GSI Query)</a>
-      <ul>
-        <li><a href="#status-based-filtering">Status-based Filtering</a></li>
-        <li><a href="#try-different-status-values">Try Different Status Values</a></li>
-      </ul>
-    </li>
-    <li><a href="#pattern-6-price-range-queries-gsi-query">Pattern 6: Price Range Queries (GSI Query)</a>
-      <ul>
-        <li><a href="#range-based-product-search">Range-based Product Search</a></li>
-      </ul>
-    </li>
-    <li><a href="#query-performance-analysis">Query Performance Analysis</a>
-      <ul>
-        <li><a href="#monitor-query-efficiency">Monitor Query Efficiency</a></li>
-      </ul>
-    </li>
-    <li><a href="#advanced-query-techniques">Advanced Query Techniques</a>
-      <ul>
-        <li><a href="#combining-conditions">Combining Conditions</a></li>
-        <li><a href="#query-result-options">Query Result Options</a></li>
-      </ul>
-    </li>
-    <li><a href="#query-pattern-summary">Query Pattern Summary</a>
-      <ul>
-        <li><a href="#patterns-youve-mastered">Patterns You&rsquo;ve Mastered</a></li>
-        <li><a href="#query-best-practices">Query Best Practices</a></li>
-      </ul>
-    </li>
-    <li><a href="#query-troubleshooting">Query Troubleshooting</a>
-      <ul>
-        <li><a href="#common-issues">Common Issues</a></li>
-      </ul>
-    </li>
-    <li><a href="#ready-for-global-scale">Ready for Global Scale</a></li>
+    <li><a href="#query-vs-scan">Query vs Scan</a></li>
+    <li><a href="#access-query-interface">Access Query Interface</a></li>
+    <li><a href="#pattern-1-get-user-profile">Pattern 1: Get User Profile</a></li>
+    <li><a href="#pattern-2-get-users-orders">Pattern 2: Get User&rsquo;s Orders</a></li>
+    <li><a href="#pattern-3-get-order-details">Pattern 3: Get Order Details</a></li>
+    <li><a href="#pattern-4-products-by-category-gsi">Pattern 4: Products by Category (GSI)</a></li>
+    <li><a href="#pattern-5-orders-by-status-gsi">Pattern 5: Orders by Status (GSI)</a></li>
+    <li><a href="#query-performance">Query Performance</a></li>
+    <li><a href="#best-practices">Best Practices</a></li>
+    <li><a href="#next-steps">Next Steps</a></li>
   </ul>
 </nav>
     </div>
@@ -1054,256 +999,90 @@
 
 
 	<h1 id="query-patterns">Query Patterns</h1>
-<p>🔍 <strong>Learn efficient query techniques for Single Table Design using DynamoDB Console</strong></p>
+<p>🔍 <strong>Learn efficient query techniques using DynamoDB Console</strong></p>
 <h2 id="overview">Overview</h2>
-<p>Now that you have created your e-commerce data, let&rsquo;s explore the powerful query patterns that make Single Table Design so effective. You&rsquo;ll learn how to retrieve data efficiently using both table queries and Global Secondary Index (GSI) queries.</p>
-<h2 id="query-vs-scan---critical-difference">Query vs Scan - Critical Difference</h2>
-<h3 id="always-use-query-not-scan">Always Use Query (Not Scan)</h3>
+<p>Learn how to retrieve data efficiently using both table queries and Global Secondary Index (GSI) queries.</p>
+<h2 id="query-vs-scan">Query vs Scan</h2>
 <ul>
-<li><strong>Query</strong>: Fast, efficient, cost-effective (uses primary keys)</li>
-<li><strong>Scan</strong>: Slow, expensive, reads entire table (avoid in production)</li>
+<li><strong>Query</strong>: Fast, efficient, uses primary keys ✅</li>
+<li><strong>Scan</strong>: Slow, expensive, reads entire table ❌</li>
 </ul>
 
-<div class="notices warning" ><p><strong>Important</strong>: Always use Query operations in this workshop. Scan operations are inefficient and can quickly exceed Free Tier limits.</p>
+<div class="notices warning" ><p><strong>Important</strong>: Always use Query operations. Scan operations can exceed Free Tier limits.</p>
 </div>
 
-<h2 id="pattern-1-get-user-profile">Pattern 1: Get User Profile</h2>
-<h3 id="single-item-lookup">Single Item Lookup</h3>
-<p><strong>Objective</strong>: Retrieve a specific user&rsquo;s profile information</p>
-<p><strong>Access the Query Interface</strong>:</p>
+<h2 id="access-query-interface">Access Query Interface</h2>
 <ol>
 <li><strong>Go to</strong>: Items tab in your DynamoDB table</li>
 <li><strong>Click</strong>: &ldquo;Query&rdquo; button (not Scan)</li>
-<li><strong>Ensure</strong>: Table query is selected (not index)</li>
+<li><strong>Select</strong>: Table query or Index query</li>
 </ol>
-<h3 id="configure-user-profile-query">Configure User Profile Query</h3>
-<p><strong>Query Parameters</strong>:</p>
+<h2 id="pattern-1-get-user-profile">Pattern 1: Get User Profile</h2>
+<p><strong>Objective</strong>: Get specific user information</p>
+<p><strong>Query Configuration</strong>:</p>
 <ul>
 <li><strong>Partition key (PK)</strong>: <code>USER#user001</code></li>
 <li><strong>Sort key (SK)</strong>: <code>PROFILE</code></li>
-<li><strong>Query condition</strong>: Use &ldquo;equals&rdquo; (default)</li>
 </ul>
-<p><strong>Expected Result</strong>: Single item containing user profile data</p>
-<h3 id="execute-and-verify">Execute and Verify</h3>
-<ol>
-<li><strong>Click &ldquo;Run&rdquo;</strong></li>
-<li><strong>Check results</strong>: Should return 1 item</li>
-<li><strong>Verify data</strong>: Profile information should be displayed</li>
-</ol>
-<p><strong>Performance</strong>: ~1-2ms latency, 1 RCU consumed</p>
+<p><strong>Result</strong>: Single item with user profile data</p>
 <h2 id="pattern-2-get-users-orders">Pattern 2: Get User&rsquo;s Orders</h2>
-<h3 id="one-to-many-relationship-query">One-to-Many Relationship Query</h3>
-<p><strong>Objective</strong>: Retrieve all orders for a specific user</p>
+<p><strong>Objective</strong>: Get all orders for a user</p>
 <p><strong>Query Configuration</strong>:</p>
 <ul>
 <li><strong>Partition key (PK)</strong>: <code>USER#user001</code></li>
 <li><strong>Sort key condition</strong>: &ldquo;begins_with&rdquo;</li>
 <li><strong>Sort key value</strong>: <code>ORDER#</code></li>
 </ul>
-<p>This pattern retrieves both the user profile AND all their orders in a single query.</p>
-<h3 id="advanced-sort-key-options">Advanced Sort Key Options</h3>
-<p><strong>Available sort key conditions</strong>:</p>
-<ul>
-<li><strong>=</strong> (equals): Exact match</li>
-<li><strong>begins_with</strong>: Prefix matching</li>
-<li><strong>between</strong>: Range queries</li>
-<li><strong>&gt;</strong>, <strong>&gt;=</strong>, <strong>&lt;</strong>, <strong>&lt;=</strong>: Comparison operators</li>
-</ul>
-<p><strong>For this pattern</strong>: Use &ldquo;begins_with&rdquo; to get all items where SK starts with &ldquo;ORDER#&rdquo;</p>
-<h3 id="execute-user-orders-query">Execute User Orders Query</h3>
-<p><strong>Expected Results</strong>:</p>
-<ul>
-<li>User profile (<code>SK = PROFILE</code>)</li>
-<li>All user orders (<code>SK = ORDER#order001</code>, etc.)</li>
-</ul>
-<p><strong>Why this works</strong>: All items with <code>PK = USER#user001</code> are stored together and can be retrieved in one efficient query.</p>
-<h2 id="pattern-3-get-order-details-with-items">Pattern 3: Get Order Details with Items</h2>
-<h3 id="hierarchical-data-query">Hierarchical Data Query</h3>
-<p><strong>Objective</strong>: Get complete order information including all items</p>
+<p><strong>Result</strong>: User profile + all their orders</p>
+<h2 id="pattern-3-get-order-details">Pattern 3: Get Order Details</h2>
+<p><strong>Objective</strong>: Get complete order information</p>
 <p><strong>Query Configuration</strong>:</p>
 <ul>
 <li><strong>Partition key (PK)</strong>: <code>ORDER#order001</code></li>
-<li><strong>Sort key</strong>: Leave empty (gets all items in partition)</li>
+<li><strong>Sort key</strong>: Leave empty (gets all items)</li>
 </ul>
-<p><strong>Expected Results</strong>:</p>
-<ul>
-<li>Order details (<code>SK = DETAILS</code>)</li>
-<li>All order items (<code>SK = ITEM#laptop001</code>, <code>SK = ITEM#book001</code>)</li>
-</ul>
-<h2 id="pattern-4-products-by-category-gsi-query">Pattern 4: Products by Category (GSI Query)</h2>
-<h3 id="using-global-secondary-index">Using Global Secondary Index</h3>
-<p><strong>Objective</strong>: Find all products in a specific category</p>
+<p><strong>Result</strong>: Order details + all order items</p>
+<h2 id="pattern-4-products-by-category-gsi">Pattern 4: Products by Category (GSI)</h2>
+<p><strong>Objective</strong>: Find products in specific category</p>
 <p><strong>Switch to GSI Query</strong>:</p>
 <ol>
-<li><strong>Click Query dropdown</strong>: Select &ldquo;Query (index)&rdquo;</li>
-<li><strong>Choose Index</strong>: GSI1</li>
-<li><strong>Query the GSI</strong>: Use GSI key structure</li>
+<li>Click &ldquo;Query (index)&rdquo;</li>
+<li>Choose Index: GSI1</li>
 </ol>
-<h3 id="configure-category-query">Configure Category Query</h3>
-<p><strong>GSI1 Query Parameters</strong>:</p>
+<p><strong>Query Configuration</strong>:</p>
 <ul>
 <li><strong>GSI1 Partition key</strong>: <code>CATEGORY#electronics</code></li>
-<li><strong>GSI1 Sort key</strong>: Leave empty (gets all products in category)</li>
+<li><strong>GSI1 Sort key</strong>: Leave empty</li>
 </ul>
-<p><strong>Why this works</strong>: All electronics products have <code>GSI1PK = CATEGORY#electronics</code></p>
-<h3 id="execute-category-query">Execute Category Query</h3>
-<p><strong>Expected Results</strong>: All products where category = &ldquo;electronics&rdquo;</p>
-<p><strong>Try additional categories</strong>:</p>
-<ul>
-<li><code>CATEGORY#books</code></li>
-<li><code>CATEGORY#clothing</code> (if you created any)</li>
-</ul>
-<h2 id="pattern-5-orders-by-status-gsi-query">Pattern 5: Orders by Status (GSI Query)</h2>
-<h3 id="status-based-filtering">Status-based Filtering</h3>
-<p><strong>Objective</strong>: Find all orders with a specific status</p>
-<p><strong>GSI2 Query Configuration</strong>:</p>
+<p><strong>Result</strong>: All electronics products</p>
+<h2 id="pattern-5-orders-by-status-gsi">Pattern 5: Orders by Status (GSI)</h2>
+<p><strong>Objective</strong>: Find orders with specific status</p>
+<p><strong>Query Configuration</strong>:</p>
 <ul>
 <li><strong>Choose Index</strong>: GSI2</li>
 <li><strong>GSI2 Partition key</strong>: <code>STATUS#pending</code></li>
-<li><strong>GSI2 Sort key</strong>: Leave empty</li>
 </ul>
-<p><strong>Expected Results</strong>: All orders with status = &ldquo;pending&rdquo;</p>
-<h3 id="try-different-status-values">Try Different Status Values</h3>
-<p><strong>Query other statuses</strong>:</p>
-<ul>
-<li><code>STATUS#shipped</code></li>
-<li><code>STATUS#delivered</code></li>
-<li><code>STATUS#cancelled</code></li>
-</ul>
-<h2 id="pattern-6-price-range-queries-gsi-query">Pattern 6: Price Range Queries (GSI Query)</h2>
-<h3 id="range-based-product-search">Range-based Product Search</h3>
-<p><strong>Objective</strong>: Find products within a price range</p>
-<p><strong>GSI2 Query Configuration</strong>:</p>
-<ul>
-<li><strong>Choose Index</strong>: GSI2</li>
-<li><strong>GSI2 Partition key</strong>: <code>PRICE#500-1000</code></li>
-<li><strong>GSI2 Sort key</strong>: Leave empty</li>
-</ul>
-<p><strong>Price Ranges Used in Our Data</strong>:</p>
-<ul>
-<li><code>PRICE#10-50</code> (books, accessories)</li>
-<li><code>PRICE#50-200</code> (mid-range items)</li>
-<li><code>PRICE#200-500</code> (premium items)</li>
-<li><code>PRICE#500-1000</code> (high-end items)</li>
-</ul>
-<h2 id="query-performance-analysis">Query Performance Analysis</h2>
-<h3 id="monitor-query-efficiency">Monitor Query Efficiency</h3>
-<p><strong>Check Performance Metrics</strong>:</p>
-<ol>
-<li><strong>Go to</strong>: Metrics tab</li>
-<li><strong>Monitor</strong>: Consumed read capacity</li>
-<li><strong>Verify</strong>: No throttled requests</li>
-</ol>
+<p><strong>Result</strong>: All pending orders</p>
+<h2 id="query-performance">Query Performance</h2>
 <p><strong>Expected Performance</strong>:</p>
 <ul>
-<li><strong>Single item queries</strong>: ~1-2ms, 1 RCU</li>
-<li><strong>Multi-item queries</strong>: ~3-5ms, 2-5 RCU</li>
+<li><strong>Single item</strong>: ~1-2ms, 1 RCU</li>
+<li><strong>Multi-item</strong>: ~3-5ms, 2-5 RCU</li>
 <li><strong>GSI queries</strong>: ~2-4ms, 1-3 RCU</li>
 </ul>
-<h2 id="advanced-query-techniques">Advanced Query Techniques</h2>
-<h3 id="combining-conditions">Combining Conditions</h3>
-<p><strong>Sort Key with Multiple Conditions</strong>:</p>
-<ul>
-<li><strong>Between dates</strong>: <code>SK between 2025-01-01 and 2025-12-31</code></li>
-<li><strong>Greater than</strong>: <code>SK &gt; ORDER#order001</code></li>
-<li><strong>Prefix + range</strong>: Complex filtering patterns</li>
-</ul>
-<h3 id="query-result-options">Query Result Options</h3>
-<p><strong>Additional Query Settings</strong>:</p>
-<ul>
-<li><strong>Limit</strong>: Maximum number of items to return</li>
-<li><strong>Scan index forward</strong>: Sort order (ascending/descending)</li>
-<li><strong>Projection expression</strong>: Specific attributes to return</li>
-<li><strong>Filter expression</strong>: Additional filtering after query</li>
-</ul>
-<h2 id="query-pattern-summary">Query Pattern Summary</h2>
-<h3 id="patterns-youve-mastered">Patterns You&rsquo;ve Mastered</h3>
-<table>
-<thead>
-<tr>
-<th>Pattern</th>
-<th>Query Type</th>
-<th>Key Structure</th>
-<th>Use Case</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>User Profile</strong></td>
-<td>Table</td>
-<td>PK + SK exact</td>
-<td>Get specific user</td>
-</tr>
-<tr>
-<td><strong>User Orders</strong></td>
-<td>Table</td>
-<td>PK + SK prefix</td>
-<td>Get user&rsquo;s orders</td>
-</tr>
-<tr>
-<td><strong>Order Items</strong></td>
-<td>Table</td>
-<td>PK all items</td>
-<td>Get order details</td>
-</tr>
-<tr>
-<td><strong>Category Products</strong></td>
-<td>GSI1</td>
-<td>Category grouping</td>
-<td>Product catalog</td>
-</tr>
-<tr>
-<td><strong>Status Orders</strong></td>
-<td>GSI2</td>
-<td>Status grouping</td>
-<td>Order management</td>
-</tr>
-<tr>
-<td><strong>Price Range</strong></td>
-<td>GSI2</td>
-<td>Price grouping</td>
-<td>Product search</td>
-</tr>
-</tbody>
-</table>
-<h3 id="query-best-practices">Query Best Practices</h3>
+<h2 id="best-practices">Best Practices</h2>
 <ol>
-<li><strong>Always use Query</strong>: Never use Scan for production workloads</li>
-<li><strong>Design keys for queries</strong>: Think about access patterns first</li>
-<li><strong>Use GSIs strategically</strong>: Enable multiple query patterns</li>
-<li><strong>Monitor performance</strong>: Track consumed capacity and latency</li>
-<li><strong>Test query patterns</strong>: Verify they return expected results</li>
+<li><strong>Always use Query</strong> (never Scan)</li>
+<li><strong>Design keys for queries</strong> first</li>
+<li><strong>Use GSIs strategically</strong> for different access patterns</li>
+<li><strong>Monitor performance</strong> and consumed capacity</li>
 </ol>
 
-<div class="notices tip" ><p><strong>Key Insight</strong>: Single Table Design enables all these query patterns with consistent performance and minimal cost. Traditional relational approaches would require multiple queries and JOINs.</p>
+<div class="notices success" ><p><strong>Query Mastery</strong>: You can now efficiently retrieve data using Single Table Design patterns!</p>
 </div>
 
-<h2 id="query-troubleshooting">Query Troubleshooting</h2>
-<h3 id="common-issues">Common Issues</h3>
-<p><strong>No Results Returned</strong>:</p>
-<ul>
-<li>✅ Check partition key spelling</li>
-<li>✅ Verify sort key conditions</li>
-<li>✅ Ensure data exists with those keys</li>
-</ul>
-<p><strong>Unexpected Results</strong>:</p>
-<ul>
-<li>✅ Review sort key conditions (exact vs begins_with)</li>
-<li>✅ Check index selection (table vs GSI)</li>
-<li>✅ Verify data was created correctly</li>
-</ul>
-<p><strong>Performance Issues</strong>:</p>
-<ul>
-<li>✅ Avoid Scan operations</li>
-<li>✅ Use specific partition keys</li>
-<li>✅ Monitor consumed capacity</li>
-</ul>
-<h2 id="ready-for-global-scale">Ready for Global Scale</h2>
-<p>You&rsquo;ve now mastered Single Table Design query patterns! In the next module, we&rsquo;ll take this data global by configuring Global Tables for multi-region deployment, enabling users worldwide to access your e-commerce platform with low latency.</p>
-
-<div class="notices success" ><p><strong>Query Mastery Achieved</strong>: You can now efficiently retrieve data using all major Single Table Design patterns with consistent performance and cost optimization!</p>
-</div>
-
+<h2 id="next-steps">Next Steps</h2>
+<p>Ready for global scale! Next module covers Global Tables for multi-region deployment.</p>
 
 
 
@@ -1768,19 +1547,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755112295"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755112295"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755112295"></script>
 
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755099793" rel="stylesheet" />
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755099793"></script>
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755112295" rel="stylesheet" />
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755112295"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

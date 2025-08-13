@@ -24,9 +24,8 @@ Now that your Global Tables are verified, let's experience multi-region operatio
 3. **Go to**: Items tab
 4. **Click**: "Create item"
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of US-East-1 region with Create item dialog open
-{{% /notice %}}
+![3.3.1](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.1.png?featherlight=false&width=90pc)
+![3.3.1(1)](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.1(1).png?featherlight=false&width=90pc)
 
 ### User Creation Template
 
@@ -50,9 +49,8 @@ Now that your Global Tables are verified, let's experience multi-region operatio
 
 **Important**: Replace `[your-name]` with your actual name to make items unique.
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of JSON editor with global user data being entered
-{{% /notice %}}
+![3.3.2](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.2.png?featherlight=false&width=90pc)
+
 
 ### Step 2: Note Creation Time
 
@@ -61,9 +59,7 @@ Now that your Global Tables are verified, let's experience multi-region operatio
 2. **Note the time**: Record when you clicked create
 3. **Take screenshot**: Of the created item
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing successfully created item in US region
-{{% /notice %}}
+![3.3.3](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.3.png?featherlight=false&width=90pc)
 
 ### Step 3: Switch to EU-West-1
 
@@ -85,9 +81,7 @@ Now that your Global Tables are verified, let's experience multi-region operatio
    - **Sort key (SK)**: `PROFILE`
 4. **Click**: "Run"
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of query setup in EU region looking for the US-created user
-{{% /notice %}}
+![3.3.4](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.4.png?featherlight=false&width=90pc)
 
 ### Step 5: Verify Replication
 
@@ -101,9 +95,7 @@ Now that your Global Tables are verified, let's experience multi-region operatio
 - **region_created**: Should still show "us-east-1"
 - **Timestamps**: Should be identical
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing the replicated item in EU region with identical data
-{{% /notice %}}
+![3.3.5](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.5.png?featherlight=false&width=90pc)
 
 ## Exercise 2: Write from Replica, Read from Primary
 
@@ -131,9 +123,7 @@ Now that your Global Tables are verified, let's experience multi-region operatio
 }
 ```
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of product creation in EU region
-{{% /notice %}}
+![3.3.6](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.6.png?featherlight=false&width=90pc)
 
 ### Step 2: Switch Back to US-East-1
 
@@ -144,9 +134,7 @@ Now that your Global Tables are verified, let's experience multi-region operatio
    - **PK**: `PRODUCT#eu-product-[unique-id]`
    - **SK**: `DETAILS`
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of US region query looking for EU-created product
-{{% /notice %}}
+![3.3.7](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.7.png?featherlight=false&width=90pc)
 
 ### Step 3: Verify Reverse Replication
 
@@ -157,9 +145,7 @@ Now that your Global Tables are verified, let's experience multi-region operatio
 
 This demonstrates **bi-directional replication** - you can write to any region!
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing EU-created product now visible in US region
-{{% /notice %}}
+![3.3.8](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.8.png?featherlight=false&width=90pc)
 
 ## Exercise 3: Conflict Resolution Testing
 
@@ -186,9 +172,7 @@ This demonstrates **bi-directional replication** - you can write to any region!
 
 **Wait 2 minutes** for replication to complete.
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of conflict test order creation in US region
-{{% /notice %}}
+![3.3.9](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.9.png?featherlight=false&width=90pc)
 
 ### Step 2: Simultaneous Updates (Advanced)
 
@@ -215,9 +199,7 @@ This demonstrates **bi-directional replication** - you can write to any region!
 }
 ```
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing edit dialog for conflict testing
-{{% /notice %}}
+![3.3.10](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.10.png?featherlight=false&width=90pc)
 
 ### Step 3: Observe Conflict Resolution
 
@@ -228,9 +210,8 @@ This demonstrates **bi-directional replication** - you can write to any region!
 
 **Expected outcome**: EU update wins because timestamp 15:40:05 > 15:40:00
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing final conflict resolution result in both regions
-{{% /notice %}}
+![3.3.11](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.11.png?featherlight=false&width=90pc)
+![3.3.11(1)](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.11(1).png?featherlight=false&width=90pc)
 
 ## Exercise 4: Query Patterns Across Regions
 
@@ -244,9 +225,7 @@ This demonstrates **bi-directional replication** - you can write to any region!
 
 **Expected**: Shows products created in EU region
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of GSI category query in EU region
-{{% /notice %}}
+![3.3.12](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.12.png?featherlight=false&width=90pc)
 
 ### Step 2: Status Query in US
 
@@ -258,9 +237,7 @@ This demonstrates **bi-directional replication** - you can write to any region!
 
 **Expected**: Shows orders from both regions with pending status
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of GSI status query showing orders from multiple regions
-{{% /notice %}}
+![3.3.13](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.13.png?featherlight=false&width=90pc)
 
 ## Exercise 5: Replication Timing Analysis
 
@@ -329,9 +306,7 @@ This demonstrates **bi-directional replication** - you can write to any region!
 3. **Observe**: Pending replication count
 4. **Track**: Error rates (should be 0)
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of CloudWatch metrics showing replication performance during exercises
-{{% /notice %}}
+![3.3.14](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/3.3.14.png?featherlight=false&width=90pc)
 
 ## Troubleshooting Guide
 

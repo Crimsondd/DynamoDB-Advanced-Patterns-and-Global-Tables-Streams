@@ -1,105 +1,53 @@
 ---
-title : "5. Monitoring & Optimization"
+title : "5. Giám Sát & Tối Ưu Hóa"
 date : "2025-08-11"
 weight : 5 
 chapter : true
 pre : " <b> 5. </b> "
 ---
 
-# Monitoring & Optimization
+# Giám Sát & Tối Ưu Hóa
 
-📊 **Tối ưu hiệu suất DynamoDB và thiết lập monitoring toàn diện cho production workloads**
+📈 **Giám sát và tối ưu hóa chi phí cho workshop DynamoDB của bạn**
 
-## Tổng quan
+## Tổng Quan Module
 
-Monitoring và optimization là crucial cho việc vận hành DynamoDB thành công trong production. Module này sẽ dạy bạn cách thiết lập comprehensive monitoring, phân tích performance metrics, và optimize costs cho maximum efficiency.
+Học cách giám sát bảng DynamoDB của bạn và duy trì trong giới hạn Free Tier với các bảng điều khiển CloudWatch thực tế và theo dõi chi phí.
 
-## Tại sao Monitoring quan trọng?
+#### Những Gì Bạn Sẽ Học
 
-### Production Challenges:
+- **Bảng Điều Khiển CloudWatch**: Tạo một giao diện giám sát cho bảng của bạn
+- **Theo Dõi Chi Phí**: Giám sát việc sử dụng Free Tier để tránh chi phí
+- **Cảnh Báo Cơ Bản**: Thiết lập các cảnh báo đơn giản cho giới hạn dung lượng
 
-- **Performance Issues**: Throttling, high latency, timeouts
-- **Cost Overruns**: Unexpected charges, over-provisioning
-- **Operational Blind Spots**: Lack of visibility into system health
-- **Scaling Decisions**: When và how to scale capacity
+#### Các Chỉ Số Quan Trọng Cần Giám Sát
 
-### Monitoring Benefits:
+| Chỉ Số | Giới Hạn Free Tier | Cần Theo Dõi |
+|--------|---------------------|---------------|
+| **Dung Lượng Đọc** | 25 RCU | Giữ mức sử dụng dưới 20 RCU |
+| **Dung Lượng Ghi** | 25 WCU | Giữ mức sử dụng dưới 20 WCU |
+| **Lưu Trữ** | 25 GB | Theo dõi sự tăng trưởng dữ liệu |
 
-- **Proactive Problem Detection**: Catch issues trước khi affect users
-- **Cost Optimization**: Right-size resources cho optimal spending
-- **Performance Insights**: Data-driven optimization decisions
-- **Operational Excellence**: Reliable, observable systems
+#### Giám Sát Free Tier
 
-## Mục tiêu Học tập
-
-#### Sau khi hoàn thành module này, bạn sẽ:
-
-- ✅ Thiết lập CloudWatch dashboards cho DynamoDB monitoring
-- ✅ Cấu hình alerting và notifications cho key metrics
-- ✅ Thực hiện cost analysis và optimization strategies
-- ✅ Implement performance tuning techniques
-- ✅ Troubleshoot common performance issues
-
-## Thời lượng Module: 90 phút
-
-- **Lý thuyết**: 15 phút - Monitoring principles và best practices
-- **Dashboard Setup**: 25 phút - CloudWatch configuration
-- **Alerting**: 20 phút - Notification setup và testing
-- **Optimization**: 25 phút - Performance tuning hands-on
-- **Analysis**: 5 phút - Review và planning
-
-## Key Metrics to Monitor
-
-### Performance Metrics:
+**Duy trì trong giới hạn với các kiểm tra đơn giản này**:
 
 ```
-Latency Metrics:
-• SuccessfulRequestLatency
-• UserErrors
-• SystemErrors
-• ThrottledRequests
-
-Capacity Metrics:
-• ConsumedReadCapacityUnits  
-• ConsumedWriteCapacityUnits
-• ProvisionedReadCapacityUnits
-• ProvisionedWriteCapacityUnits
-
-Throughput Metrics:
-• ItemCount
-• TableSizeBytes
-• ReplicationMetrics (cho Global Tables)
+✅ Bảng điều khiển hiển thị các chỉ số màu xanh
+✅ Lưu trữ dưới 20 GB
+✅ Sử dụng RCU/WCU dưới 80%
+✅ Bảng điều khiển billing hiển thị $0.00
 ```
 
-### Cost Optimization Areas:
+## Nội Dung Module
 
-- **Right-sizing Capacity**: Match provisioned với actual usage
-- **On-Demand vs Provisioned**: Choose optimal billing mode
-- **Storage Optimization**: Efficient data modeling
-- **GSI Optimization**: Minimize unnecessary indexes
+1. **[Bảng Điều Khiển CloudWatch](5.1-cloudwatch-dashboards/)** - Tạo giao diện giám sát
+2. **[Phân Tích Chi Phí](5.3-cost-analysis-optimization/)** - Theo dõi việc sử dụng Free Tier
 
-## Dashboard Architecture
+{{% notice info %}}
+**Tập Trung**: Module này chỉ bao gồm các giám sát cần thiết cho workshop. Các mẫu nâng cao được đề cập riêng.
+{{% /notice %}}
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   DynamoDB      │───►│   CloudWatch    │───►│   Dashboard     │
-│   Metrics       │    │   Metrics       │    │   Visualization │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         ▼                       ▼                       ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Auto Scaling  │    │   SNS Alerts    │    │   Operational   │
-│   Triggers      │    │   Notifications │    │   Insights      │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
+{{% children %}}
 
-Module này bao gồm:
-
-1. **[5.1 CloudWatch Dashboards](5.1-cloudwatch-dashboards/)**: Thiết lập comprehensive monitoring
-2. **[5.2 Alerting & Notifications](5.2-alerting-notifications/)**: Configure proactive alerts
-3. **[5.3 Cost Analysis & Optimization](5.3-cost-analysis-optimization/)**: Optimize spending
-4. **[5.4 Performance Tuning](5.4-performance-tuning/)**: Advanced optimization techniques
-
----
-
-**📊 Hãy bắt đầu master monitoring và optimization!**
+Hãy thiết lập giám sát cơ bản để giữ cho workshop của bạn hoạt động trơn tru và không tốn phí.

@@ -14,21 +14,17 @@ pre : " <b> 4. </b> "
 
 Learn how to capture and process data changes in real-time using DynamoDB Streams and AWS Lambda.
 
-### What You'll Learn
+#### What You'll Learn
 
 - **Enable Streams**: Turn on change tracking for your table
 - **Create Lambda**: Build a function to process events  
 - **Test Processing**: See events trigger in real-time
 
-### Simple Architecture
+#### Simple Architecture
 
-```text
-DynamoDB Table → DynamoDB Streams → Lambda Function
-     ↓                ↓                    ↓
-  Data Change    Capture Event        Process Event
-```
+![Simple_Architecture](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/Simple_Architecture.png?featherlight=false&width=50pc)
 
-### Key Benefits
+#### Key Benefits
 
 - **Real-time**: Process changes instantly
 - **Automatic**: No polling required
@@ -46,7 +42,7 @@ DynamoDB Table → DynamoDB Streams → Lambda Function
 
 {{% children %}}
 
-Let's add real-time processing to your DynamoDB table.
+#### Let's add real-time processing to your DynamoDB table.
 
 **Real-time Processing**
 - Process data changes within 100-500 milliseconds

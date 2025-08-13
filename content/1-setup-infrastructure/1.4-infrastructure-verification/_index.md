@@ -62,20 +62,15 @@ Use this checklist to systematically verify each component:
 
 **Table Overview**:
 
-```text
-Table Details:
-┌─────────────────────┬─────────────────────────────────────────┐
-│ Property            │ Expected Value                          │
-├─────────────────────┼─────────────────────────────────────────┤
-│ Table Status        │ Active ✅                               │
-│ Partition Key       │ PK (String)                             │
-│ Sort Key            │ SK (String)                             │
-│ Read Capacity       │ 5 (Provisioned)                         │
-│ Write Capacity      │ 5 (Provisioned)                         │
-│ Point-in-time Rec.  │ Enabled                                 │
-│ Streams             │ Enabled (NEW_AND_OLD_IMAGES)            │
-└─────────────────────┴─────────────────────────────────────────┘
-```
+| Property | Expected Value |
+|----------|----------------|
+| Table Status | Active ✅ |
+| Partition Key | PK (String) |
+| Sort Key | SK (String) |
+| Read Capacity | 5 (Provisioned) |
+| Write Capacity | 5 (Provisioned) |
+| Point-in-time Rec. | Enabled |
+| Streams | Enabled (NEW_AND_OLD_IMAGES) |
 
 ### 2.3 Verify Table Configuration
 
@@ -136,19 +131,14 @@ Table Details:
 
 **Function Overview**:
 
-```text
-Lambda Function Details:
-┌─────────────────────┬─────────────────────────────────────────┐
-│ Property            │ Expected Value                          │
-├─────────────────────┼─────────────────────────────────────────┤
-│ Function Name       │ demo-dynamodb-stream-processor          │
-│ Runtime             │ Python 3.9                              │
-│ Memory              │ 128 MB                                  │
-│ Timeout             │ 30 seconds                              │
-│ Handler             │ lambda_function.lambda_handler          │
-│ Last Modified       │ Today's date                            │
-└─────────────────────┴─────────────────────────────────────────┘
-```
+| Property | Expected Value |
+|----------|----------------|
+| Function Name | demo-dynamodb-stream-processor |
+| Runtime | Python 3.9 |
+| Memory | 128 MB |
+| Timeout | 30 seconds |
+| Handler | lambda_function.lambda_handler |
+| Last Modified | Today's date |
 
 ### 4.3 Verify Stream Trigger
 
@@ -177,19 +167,14 @@ Lambda Function Details:
 
 **Expected Widgets**:
 
-```text
-Dashboard Layout:
-┌─────────────────────┬─────────────────────────────────────────┐
-│ Widget              │ Description                             │
-├─────────────────────┼─────────────────────────────────────────┤
-│ DynamoDB RCU        │ Read Capacity Utilization              │
-│ DynamoDB WCU        │ Write Capacity Utilization             │
-│ DynamoDB Throttles  │ Throttled Read/Write Requests           │
-│ Lambda Invocations  │ Function invocation count               │
-│ Lambda Errors       │ Function error rate                     │
-│ Lambda Duration     │ Function execution duration             │
-└─────────────────────┴─────────────────────────────────────────┘
-```
+| Widget | Description |
+|--------|-------------|
+| DynamoDB RCU | Read Capacity Utilization |
+| DynamoDB WCU | Write Capacity Utilization |
+| DynamoDB Throttles | Throttled Read/Write Requests |
+| Lambda Invocations | Function invocation count |
+| Lambda Errors | Function error rate |
+| Lambda Duration | Function execution duration |
 
 ### 5.3 Verify Metrics Data
 
@@ -285,20 +270,16 @@ Dashboard Layout:
 - **CloudWatch**: Should show active metrics
 
 **Usage Breakdown**:
-```text
-Current Free Tier Usage:
-┌─────────────────┬──────────────┬──────────────┬─────────────┐
-│ Service         │ Used         │ Available    │ % Used      │
-├─────────────────┼──────────────┼──────────────┼─────────────┤
-│ DynamoDB RCU    │ <1 unit      │ 25 units     │ <4%         │
-│ DynamoDB WCU    │ <1 unit      │ 25 units     │ <4%         │
-│ DynamoDB Storage│ <0.01 GB     │ 25 GB        │ <0.1%       │
-│ Lambda Requests │ 1 request    │ 1M requests  │ <0.001%     │
-│ Lambda Duration │ <1 GB-sec    │ 400K GB-sec  │ <0.001%     │
-└─────────────────┴──────────────┴──────────────┴─────────────┘
+
+| Service | Used | Available | % Used |
+|---------|------|-----------|--------|
+| DynamoDB RCU | <1 unit | 25 units | <4% |
+| DynamoDB WCU | <1 unit | 25 units | <4% |
+| DynamoDB Storage | <0.01 GB | 25 GB | <0.1% |
+| Lambda Requests | 1 request | 1M requests | <0.001% |
+| Lambda Duration | <1 GB-sec | 400K GB-sec | <0.001% |
 
 Total Usage: <1% of Free Tier limits ✅
-```
 
 ## Step 9: Troubleshooting Common Issues
 
@@ -359,18 +340,14 @@ Total Usage: <1% of Free Tier limits ✅
 ### 10.2 Ready for Next Module
 
 **Infrastructure Health Check**:
-```text
-🟢 All Systems Operational
-┌─────────────────────┬─────────────────────┬─────────────────────┐
-│ Component           │ Status              │ Health              │
-├─────────────────────┼─────────────────────┼─────────────────────┤
-│ DynamoDB Table      │ Active              │ 🟢 Healthy         │
-│ Global Tables       │ Replicating         │ 🟢 Healthy         │
-│ Lambda Function     │ Active              │ 🟢 Healthy         │
-│ CloudWatch          │ Monitoring          │ 🟢 Healthy         │
-│ Cost Management     │ $0.00               │ 🟢 On Track        │
-└─────────────────────┴─────────────────────┴─────────────────────┘
-```
+
+| Component | Status | Health |
+|-----------|---------|---------|
+| DynamoDB Table | Active | 🟢 Healthy |
+| Global Tables | Replicating | 🟢 Healthy |
+| Lambda Function | Active | 🟢 Healthy |
+| CloudWatch | Monitoring | 🟢 Healthy |
+| Cost Management | $0.00 | 🟢 On Track |
 
 {{% notice success %}}
 **Infrastructure Verification Complete**: All resources are properly deployed and functioning. You're ready to proceed to Module 2: Single Table Design.

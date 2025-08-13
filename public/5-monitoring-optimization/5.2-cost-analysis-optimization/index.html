@@ -12,21 +12,21 @@
     <title>5.2 Cost Analysis &amp; Optimization :: DynamoDB Advanced Patterns Workshop</title>
 
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755112296" rel="stylesheet">
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755112296" rel="stylesheet">
     
     
 
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755112296"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755099793"></script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755112296"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755112296"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/crimsondd.github.io\/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams\/";
     
 </script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755112296"></script>
 
     
   </div>
@@ -629,13 +629,13 @@
  
   
     
-    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Dashboards" class="dd-item 
+    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Basic Monitoring" class="dd-item 
         
         
         
         ">
       <a href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/">
-           <b> 5.1 </b> 5.1 CloudWatch Dashboards
+           <b> 5.1 </b> 5.1 CloudWatch Basic Monitoring
           
             <i class="fas fa-check read-icon"></i>
           
@@ -962,69 +962,32 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#free-tier-management--cost-control">Free Tier Management &amp; Cost Control</a>
-      <ul>
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#cost-analysis-strategy">Cost Analysis Strategy</a></li>
-        <li><a href="#free-tier-optimization-goals">Free Tier Optimization Goals</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-1-aws-cost-explorer-analysis">Exercise 1: AWS Cost Explorer Analysis</a>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#free-tier-limits">Free Tier Limits</a></li>
+    <li><a href="#exercise-1-check-current-costs">Exercise 1: Check Current Costs</a>
       <ul>
         <li><a href="#step-1-access-billing-dashboard">Step 1: Access Billing Dashboard</a></li>
-        <li><a href="#step-2-analyze-dynamodb-costs">Step 2: Analyze DynamoDB Costs</a></li>
-        <li><a href="#step-3-service-breakdown-analysis">Step 3: Service Breakdown Analysis</a></li>
+        <li><a href="#step-2-view-free-tier-usage">Step 2: View Free Tier Usage</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-2-free-tier-usage-monitoring">Exercise 2: Free Tier Usage Monitoring</a>
+    <li><a href="#exercise-2-set-up-billing-alerts">Exercise 2: Set Up Billing Alerts</a>
       <ul>
-        <li><a href="#step-1-access-free-tier-dashboard">Step 1: Access Free Tier Dashboard</a></li>
-        <li><a href="#step-2-analyze-usage-patterns">Step 2: Analyze Usage Patterns</a></li>
-        <li><a href="#step-3-set-usage-alerts">Step 3: Set Usage Alerts</a></li>
+        <li><a href="#step-1-enable-billing-alerts">Step 1: Enable Billing Alerts</a></li>
+        <li><a href="#step-2-create-cost-budget">Step 2: Create Cost Budget</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-3-dynamodb-cost-optimization">Exercise 3: DynamoDB Cost Optimization</a>
+    <li><a href="#cost-optimization-tips">Cost Optimization Tips</a>
       <ul>
-        <li><a href="#step-1-capacity-utilization-analysis">Step 1: Capacity Utilization Analysis</a></li>
-        <li><a href="#step-2-storage-optimization">Step 2: Storage Optimization</a></li>
-        <li><a href="#step-3-query-optimization">Step 3: Query Optimization</a></li>
+        <li><a href="#keep-costs-at-zero">Keep Costs at Zero</a></li>
+        <li><a href="#workshop-resource-cleanup">Workshop Resource Cleanup</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-4-lambda-cost-optimization">Exercise 4: Lambda Cost Optimization</a>
+    <li><a href="#troubleshooting-costs">Troubleshooting Costs</a>
       <ul>
-        <li><a href="#step-1-function-performance-analysis">Step 1: Function Performance Analysis</a></li>
-        <li><a href="#step-2-code-optimization">Step 2: Code Optimization</a></li>
-        <li><a href="#step-3-monitoring-and-alerting-costs">Step 3: Monitoring and Alerting Costs</a></li>
+        <li><a href="#if-you-see-charges">If You See Charges</a></li>
+        <li><a href="#common-cost-issues">Common Cost Issues</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-5-scaling-cost-projections">Exercise 5: Scaling Cost Projections</a>
-      <ul>
-        <li><a href="#step-1-growth-scenario-planning">Step 1: Growth Scenario Planning</a></li>
-        <li><a href="#step-2-optimization-strategies-for-scale">Step 2: Optimization Strategies for Scale</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-6-cost-governance-setup">Exercise 6: Cost Governance Setup</a>
-      <ul>
-        <li><a href="#step-1-budget-creation">Step 1: Budget Creation</a></li>
-        <li><a href="#step-2-cost-anomaly-detection">Step 2: Cost Anomaly Detection</a></li>
-        <li><a href="#step-3-resource-tagging-strategy">Step 3: Resource Tagging Strategy</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-7-optimization-recommendations">Exercise 7: Optimization Recommendations</a>
-      <ul>
-        <li><a href="#step-1-right-sizing-analysis">Step 1: Right-Sizing Analysis</a></li>
-        <li><a href="#step-2-feature-optimization">Step 2: Feature Optimization</a></li>
-        <li><a href="#step-3-long-term-strategy">Step 3: Long-term Strategy</a></li>
-      </ul>
-    </li>
-    <li><a href="#cost-optimization-best-practices">Cost Optimization Best Practices</a>
-      <ul>
-        <li><a href="#resource-efficiency">Resource Efficiency</a></li>
-        <li><a href="#monitoring-and-alerting">Monitoring and Alerting</a></li>
-        <li><a href="#scaling-economics">Scaling Economics</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-summary">Exercise Summary</a></li>
     <li><a href="#next-steps">Next Steps</a></li>
   </ul>
 </nav>
@@ -1051,507 +1014,133 @@
 
 
 
-	<h2 id="free-tier-management--cost-control">Free Tier Management &amp; Cost Control</h2>
-<p>💰 <strong>Analyze AWS costs, optimize Free Tier usage, and implement cost control strategies</strong></p>
-<h3 id="overview">Overview</h3>
-<p>Effective cost management ensures you maximize AWS Free Tier benefits while building production-ready skills. Learn to monitor spending, optimize resource usage, and scale efficiently without unexpected charges.</p>
-<h3 id="cost-analysis-strategy">Cost Analysis Strategy</h3>
-<p><strong>Multi-dimensional cost tracking</strong>:</p>
-<ul>
-<li><strong>Service-level</strong>: DynamoDB, Lambda, CloudWatch costs</li>
-<li><strong>Resource-level</strong>: Per-table, per-function expenses</li>
-<li><strong>Time-based</strong>: Daily, weekly, monthly trends</li>
-<li><strong>Feature-level</strong>: Global Tables, Streams, Backups</li>
-</ul>
-<h3 id="free-tier-optimization-goals">Free Tier Optimization Goals</h3>
-<p><strong>Maximize value within limits</strong>:</p>
-<ul>
-<li><strong>Stay within Free Tier</strong>: Avoid any charges</li>
-<li><strong>Learn production patterns</strong>: Real-world techniques</li>
-<li><strong>Scale-ready design</strong>: Prepared for growth</li>
-<li><strong>Cost visibility</strong>: Understand pricing model</li>
-</ul>
-<h2 id="exercise-1-aws-cost-explorer-analysis">Exercise 1: AWS Cost Explorer Analysis</h2>
+	<h1 id="cost-analysis--free-tier-monitoring">Cost Analysis &amp; Free Tier Monitoring</h1>
+<p>💰 <strong>Monitor AWS Free Tier usage to avoid unexpected charges</strong></p>
+<h2 id="overview">Overview</h2>
+<p>Learn to track your DynamoDB costs and stay within Free Tier limits during the workshop.</p>
+<h2 id="free-tier-limits">Free Tier Limits</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Free Tier Limit</th>
+<th>Workshop Usage</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DynamoDB Read</strong></td>
+<td>25 RCU/month</td>
+<td>~5-10 RCU</td>
+<td>✅ Safe</td>
+</tr>
+<tr>
+<td><strong>DynamoDB Write</strong></td>
+<td>25 WCU/month</td>
+<td>~5-10 WCU</td>
+<td>✅ Safe</td>
+</tr>
+<tr>
+<td><strong>DynamoDB Storage</strong></td>
+<td>25 GB</td>
+<td>&lt;1 GB</td>
+<td>✅ Safe</td>
+</tr>
+<tr>
+<td><strong>Lambda Requests</strong></td>
+<td>1M/month</td>
+<td>&lt;1,000</td>
+<td>✅ Safe</td>
+</tr>
+<tr>
+<td><strong>CloudWatch Metrics</strong></td>
+<td>10 custom</td>
+<td>5-8 used</td>
+<td>✅ Safe</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise-1-check-current-costs">Exercise 1: Check Current Costs</h2>
 <h3 id="step-1-access-billing-dashboard">Step 1: Access Billing Dashboard</h3>
-<p><strong>Navigate to cost analysis tools</strong>:</p>
 <ol>
 <li><strong>AWS Console</strong>: Click account name (top-right)</li>
 <li><strong>Billing and Cost Management</strong>: Select from dropdown</li>
 <li><strong>Cost Explorer</strong>: Click &ldquo;Cost Explorer&rdquo; in left sidebar</li>
-<li><strong>Launch Cost Explorer</strong>: Click to open (may take a few minutes first time)</li>
+<li><strong>Expected result</strong>: $0.00 for all services</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of AWS Console billing dropdown and Cost Explorer access</p>
-</div>
-
-<h3 id="step-2-analyze-dynamodb-costs">Step 2: Analyze DynamoDB Costs</h3>
-<p><strong>Review current DynamoDB expenses</strong>:</p>
+<h3 id="step-2-view-free-tier-usage">Step 2: View Free Tier Usage</h3>
 <ol>
-<li><strong>Time range</strong>: Set to &ldquo;Last 3 months&rdquo;</li>
-<li><strong>Group by</strong>: Service</li>
-<li><strong>Filter services</strong>: Add filter for &ldquo;DynamoDB&rdquo;</li>
-<li><strong>View type</strong>: Daily costs</li>
-<li><strong>Expected result</strong>: $0.00 for all periods (Free Tier)</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Cost Explorer showing DynamoDB costs at $0.00</p>
-</div>
-
-<h3 id="step-3-service-breakdown-analysis">Step 3: Service Breakdown Analysis</h3>
-<p><strong>Detailed cost breakdown</strong>:</p>
-<ol>
-<li><strong>Group by</strong>: Service and Operation</li>
-<li><strong>Services</strong>: Include DynamoDB, Lambda, CloudWatch</li>
-<li><strong>Analysis</strong>:
+<li><strong>Billing console</strong>: Click &ldquo;Free Tier&rdquo; tab</li>
+<li><strong>Check usage</strong>:
 <ul>
-<li><strong>DynamoDB</strong>: Read/write operations, storage</li>
-<li><strong>Lambda</strong>: Invocations, duration</li>
-<li><strong>CloudWatch</strong>: Metrics, logs, alarms</li>
-</ul>
-</li>
-<li><strong>Verify</strong>: All services within Free Tier limits</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of detailed service cost breakdown with operations</p>
-</div>
-
-<h2 id="exercise-2-free-tier-usage-monitoring">Exercise 2: Free Tier Usage Monitoring</h2>
-<h3 id="step-1-access-free-tier-dashboard">Step 1: Access Free Tier Dashboard</h3>
-<p><strong>Check Free Tier consumption</strong>:</p>
-<ol>
-<li><strong>Billing console</strong>: Navigate to main billing page</li>
-<li><strong>Free Tier</strong>: Click &ldquo;Free Tier&rdquo; tab</li>
-<li><strong>Service filters</strong>: Select relevant services</li>
-<li><strong>Review usage</strong>:
-<ul>
-<li><strong>DynamoDB</strong>: Read/write capacity usage</li>
-<li><strong>Lambda</strong>: Invocations and compute time</li>
-<li><strong>CloudWatch</strong>: Metrics and alarms</li>
+<li><strong>DynamoDB</strong>: Should show low usage percentages</li>
+<li><strong>Lambda</strong>: Minimal invocations</li>
+<li><strong>CloudWatch</strong>: Basic metrics usage</li>
 </ul>
 </li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Free Tier dashboard showing DynamoDB usage percentages</p>
-</div>
-
-<h3 id="step-2-analyze-usage-patterns">Step 2: Analyze Usage Patterns</h3>
-<p><strong>DynamoDB Free Tier consumption</strong>:</p>
-<p><strong>Current usage tracking</strong>:</p>
-<pre tabindex="0"><code>Free Tier Utilization Analysis:
-┌─────────────────────┬─────────────────┬─────────────────┐
-│ Resource            │ Free Tier Limit │ Current Usage   │
-├─────────────────────┼─────────────────┼─────────────────┤
-│ Read Capacity       │ 25 RCU          │ ~15 RCU (60%)   │
-│ Write Capacity      │ 25 WCU          │ ~15 WCU (60%)   │
-│ Storage             │ 25 GB           │ &lt;0.1 GB (0.4%)  │
-│ Lambda Invocations  │ 1M requests     │ &lt;1K (0.1%)     │
-│ CloudWatch Metrics  │ 10 metrics      │ 8 metrics (80%) │
-└─────────────────────┴─────────────────┴─────────────────┘
-</code></pre><h3 id="step-3-set-usage-alerts">Step 3: Set Usage Alerts</h3>
-<p><strong>Prevent Free Tier overages</strong>:</p>
+<h2 id="exercise-2-set-up-billing-alerts">Exercise 2: Set Up Billing Alerts</h2>
+<h3 id="step-1-enable-billing-alerts">Step 1: Enable Billing Alerts</h3>
 <ol>
 <li><strong>Billing preferences</strong>: Navigate to preferences</li>
 <li><strong>Billing alerts</strong>: Enable &ldquo;Receive Free Tier Usage Alerts&rdquo;</li>
-<li><strong>Email address</strong>: Confirm notification email</li>
-<li><strong>Usage thresholds</strong>: Set alerts at 80% of limits</li>
+<li><strong>Email</strong>: Confirm notification email</li>
+<li><strong>Thresholds</strong>: Set alerts at 80% of Free Tier limits</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Free Tier alert configuration</p>
-</div>
-
-<h2 id="exercise-3-dynamodb-cost-optimization">Exercise 3: DynamoDB Cost Optimization</h2>
-<h3 id="step-1-capacity-utilization-analysis">Step 1: Capacity Utilization Analysis</h3>
-<p><strong>Optimize read/write capacity</strong>:</p>
+<h3 id="step-2-create-cost-budget">Step 2: Create Cost Budget</h3>
 <ol>
-<li>
-<p><strong>CloudWatch</strong>: Navigate to DynamoDB metrics</p>
-</li>
-<li>
-<p><strong>Capacity analysis</strong>:</p>
-<ul>
-<li><strong>Peak usage</strong>: Identify highest consumption periods</li>
-<li><strong>Average usage</strong>: Calculate typical utilization</li>
-<li><strong>Efficiency</strong>: Consumed vs provisioned ratio</li>
-</ul>
-</li>
-<li>
-<p><strong>Optimization opportunities</strong>:</p>
-<ul>
-<li><strong>Current setup</strong>: 5 RCU/WCU per table + GSIs</li>
-<li><strong>Utilization</strong>: ~40-60% average usage</li>
-<li><strong>Optimization</strong>: Well-sized for Free Tier</li>
-</ul>
-</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch showing DynamoDB capacity utilization patterns</p>
-</div>
-
-<h3 id="step-2-storage-optimization">Step 2: Storage Optimization</h3>
-<p><strong>Minimize storage costs</strong>:</p>
-<ol>
-<li>
-<p><strong>Data lifecycle analysis</strong>:</p>
-<ul>
-<li><strong>Current storage</strong>: Check table size metrics</li>
-<li><strong>Growth rate</strong>: Monitor size increase over time</li>
-<li><strong>Data patterns</strong>: Identify large or unused items</li>
-</ul>
-</li>
-<li>
-<p><strong>Optimization strategies</strong>:</p>
-<ul>
-<li><strong>Item design</strong>: Remove unnecessary attributes</li>
-<li><strong>Data archiving</strong>: Move old data to S3</li>
-<li><strong>Compression</strong>: Efficient data formats</li>
-</ul>
-</li>
-</ol>
-<h3 id="step-3-query-optimization">Step 3: Query Optimization</h3>
-<p><strong>Improve read efficiency</strong>:</p>
-<ol>
-<li>
-<p><strong>Query analysis</strong>:</p>
-<ul>
-<li><strong>Scan vs Query</strong>: Prefer Query operations</li>
-<li><strong>Projection</strong>: Use GSI projections effectively</li>
-<li><strong>Batch operations</strong>: Group requests when possible</li>
-</ul>
-</li>
-<li>
-<p><strong>Cost impact</strong>:</p>
-<ul>
-<li><strong>Query</strong>: 1 RCU per 4KB read</li>
-<li><strong>Scan</strong>: Consumes RCU for entire scan</li>
-<li><strong>GSI queries</strong>: Use projected attributes</li>
-</ul>
-</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing query performance metrics and RCU consumption</p>
-</div>
-
-<h2 id="exercise-4-lambda-cost-optimization">Exercise 4: Lambda Cost Optimization</h2>
-<h3 id="step-1-function-performance-analysis">Step 1: Function Performance Analysis</h3>
-<p><strong>Optimize Lambda costs</strong>:</p>
-<ol>
-<li>
-<p><strong>CloudWatch</strong>: Review Lambda metrics</p>
-</li>
-<li>
-<p><strong>Performance analysis</strong>:</p>
-<ul>
-<li><strong>Duration</strong>: Target &lt;1 second execution</li>
-<li><strong>Memory</strong>: 128MB optimal for Free Tier</li>
-<li><strong>Invocations</strong>: Monitor request frequency</li>
-</ul>
-</li>
-<li>
-<p><strong>Cost breakdown</strong>:</p>
-<ul>
-<li><strong>Requests</strong>: 1M free per month</li>
-<li><strong>Compute time</strong>: 400,000 GB-seconds free</li>
-<li><strong>Current usage</strong>: &lt;1% of limits</li>
-</ul>
-</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Lambda cost analysis showing Free Tier usage</p>
-</div>
-
-<h3 id="step-2-code-optimization">Step 2: Code Optimization</h3>
-<p><strong>Improve function efficiency</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Optimized Lambda function for cost efficiency</span>
-<span style="color:#f92672">import</span> json
-<span style="color:#f92672">import</span> boto3
-<span style="color:#f92672">import</span> logging
-
-<span style="color:#75715e"># Reuse connections (outside handler)</span>
-dynamodb <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>resource(<span style="color:#e6db74">&#39;dynamodb&#39;</span>)
-table <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>Table(<span style="color:#e6db74">&#39;demo-ecommerce-freetier&#39;</span>)
-
-logger <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>getLogger()
-logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f92672">.</span>INFO)
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lambda_handler</span>(event, context):
-    <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">    Cost-optimized stream processing
-</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
-    <span style="color:#66d9ef">try</span>:
-        <span style="color:#75715e"># Process in batches for efficiency</span>
-        processed <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        <span style="color:#66d9ef">for</span> record <span style="color:#f92672">in</span> event[<span style="color:#e6db74">&#39;Records&#39;</span>]:
-            <span style="color:#75715e"># Minimal processing for Free Tier optimization</span>
-            process_efficiently(record)
-            processed <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-        
-        <span style="color:#66d9ef">return</span> {
-            <span style="color:#e6db74">&#39;statusCode&#39;</span>: <span style="color:#ae81ff">200</span>,
-            <span style="color:#e6db74">&#39;processed&#39;</span>: processed
-        }
-    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
-        logger<span style="color:#f92672">.</span>error(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Error: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-        <span style="color:#66d9ef">raise</span>
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process_efficiently</span>(record):
-    <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">    Streamlined processing to minimize duration
-</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
-    <span style="color:#75715e"># Essential processing only</span>
-    event_name <span style="color:#f92672">=</span> record[<span style="color:#e6db74">&#39;eventName&#39;</span>]
-    logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Processed </span><span style="color:#e6db74">{</span>event_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> event&#34;</span>)
-    <span style="color:#75715e"># Additional business logic as needed</span>
-</code></pre></div><h3 id="step-3-monitoring-and-alerting-costs">Step 3: Monitoring and Alerting Costs</h3>
-<p><strong>CloudWatch cost management</strong>:</p>
-<ol>
-<li>
-<p><strong>Metrics optimization</strong>:</p>
-<ul>
-<li><strong>Custom metrics</strong>: Use sparingly (10 free)</li>
-<li><strong>Log retention</strong>: Set appropriate retention periods</li>
-<li><strong>Dashboard widgets</strong>: Limit to essential views</li>
-</ul>
-</li>
-<li>
-<p><strong>Cost tracking</strong>:</p>
-<ul>
-<li><strong>Logs</strong>: 5GB free per month</li>
-<li><strong>Metrics</strong>: 10 custom metrics free</li>
-<li><strong>Alarms</strong>: 10 alarms free</li>
-</ul>
-</li>
-</ol>
-<h2 id="exercise-5-scaling-cost-projections">Exercise 5: Scaling Cost Projections</h2>
-<h3 id="step-1-growth-scenario-planning">Step 1: Growth Scenario Planning</h3>
-<p><strong>Project costs for scaling</strong>:</p>
-<ol>
-<li>
-<p><strong>Current baseline</strong>: Document Free Tier usage</p>
-</li>
-<li>
-<p><strong>Growth scenarios</strong>:</p>
-<ul>
-<li><strong>10x traffic</strong>: Capacity and cost impact</li>
-<li><strong>100x traffic</strong>: Migration to on-demand billing</li>
-<li><strong>Global expansion</strong>: Multi-region costs</li>
-</ul>
-</li>
-<li>
-<p><strong>Cost modeling</strong>:</p>
-</li>
-</ol>
-<pre tabindex="0"><code>Scaling Cost Projections:
-┌─────────────────┬─────────────┬─────────────┬─────────────┐
-│ Traffic Level   │ RCU/WCU     │ Monthly Cost│ Billing Mode│
-├─────────────────┼─────────────┼─────────────┼─────────────┤
-│ Current (Free)  │ 15/15       │ $0.00       │ Provisioned │
-│ 2x Growth       │ 30/30       │ ~$15        │ Provisioned │
-│ 10x Growth      │ 150/150     │ ~$75        │ On-Demand   │
-│ 100x Growth     │ 1500/1500   │ ~$750       │ On-Demand   │
-└─────────────────┴─────────────┴─────────────┴─────────────┘
-</code></pre>
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of cost projection analysis in Cost Explorer</p>
-</div>
-
-<h3 id="step-2-optimization-strategies-for-scale">Step 2: Optimization Strategies for Scale</h3>
-<p><strong>Cost-effective scaling approaches</strong>:</p>
-<ol>
-<li>
-<p><strong>Provisioned vs On-Demand</strong>:</p>
-<ul>
-<li><strong>Predictable traffic</strong>: Provisioned capacity</li>
-<li><strong>Variable traffic</strong>: On-demand billing</li>
-<li><strong>Hybrid approach</strong>: Mix both modes</li>
-</ul>
-</li>
-<li>
-<p><strong>Auto-scaling configuration</strong>:</p>
-<ul>
-<li><strong>Target utilization</strong>: 70% capacity</li>
-<li><strong>Scale-out</strong>: Quick scaling up</li>
-<li><strong>Scale-in</strong>: Conservative scaling down</li>
-</ul>
-</li>
-<li>
-<p><strong>Reserved capacity</strong> (for large scale):</p>
-<ul>
-<li><strong>Commitment discounts</strong>: Up to 76% savings</li>
-<li><strong>Predictable workloads</strong>: Best for steady traffic</li>
-</ul>
-</li>
-</ol>
-<h2 id="exercise-6-cost-governance-setup">Exercise 6: Cost Governance Setup</h2>
-<h3 id="step-1-budget-creation">Step 1: Budget Creation</h3>
-<p><strong>Set spending limits</strong>:</p>
-<ol>
-<li>
-<p><strong>AWS Budgets</strong>: Navigate to Budgets service</p>
-</li>
-<li>
-<p><strong>Create budget</strong>: Click &ldquo;Create budget&rdquo;</p>
-</li>
-<li>
-<p><strong>Budget configuration</strong>:</p>
+<li><strong>AWS Budgets</strong>: Navigate to Budgets service</li>
+<li><strong>Create budget</strong>:
 <ul>
 <li><strong>Budget type</strong>: Cost budget</li>
-<li><strong>Time range</strong>: Monthly</li>
-<li><strong>Budget amount</strong>: $5.00 (safety buffer)</li>
-<li><strong>Filters</strong>: DynamoDB service</li>
-</ul>
-</li>
-<li>
-<p><strong>Alert thresholds</strong>:</p>
-<ul>
-<li><strong>80% threshold</strong>: Warning alert</li>
-<li><strong>100% threshold</strong>: Critical alert</li>
+<li><strong>Amount</strong>: $1.00 (safety buffer)</li>
+<li><strong>Period</strong>: Monthly</li>
+<li><strong>Alert at</strong>: $0.80 (80% threshold)</li>
 </ul>
 </li>
 </ol>
 
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of budget creation with DynamoDB-specific filters</p>
+<div class="notices warning" ><p><strong>Important</strong>: This workshop is designed to stay within Free Tier. Any charges indicate unexpected usage.</p>
 </div>
 
-<h3 id="step-2-cost-anomaly-detection">Step 2: Cost Anomaly Detection</h3>
-<p><strong>Automated cost monitoring</strong>:</p>
+<h2 id="cost-optimization-tips">Cost Optimization Tips</h2>
+<h3 id="keep-costs-at-zero">Keep Costs at Zero</h3>
+<ul>
+<li><strong>Monitor usage</strong>: Check Free Tier dashboard weekly</li>
+<li><strong>Clean up resources</strong>: Delete resources when workshop complete</li>
+<li><strong>Avoid over-provisioning</strong>: Stick to workshop configurations</li>
+<li><strong>Set alerts</strong>: Get notified before any charges</li>
+</ul>
+<h3 id="workshop-resource-cleanup">Workshop Resource Cleanup</h3>
+<p><strong>When finished with workshop</strong>:</p>
 <ol>
-<li>
-<p><strong>Cost Anomaly Detection</strong>: Enable service</p>
-</li>
-<li>
-<p><strong>Detection configuration</strong>:</p>
-<ul>
-<li><strong>Services</strong>: DynamoDB, Lambda, CloudWatch</li>
-<li><strong>Sensitivity</strong>: High (detect small anomalies)</li>
-<li><strong>Notifications</strong>: Email alerts</li>
-</ul>
-</li>
-<li>
-<p><strong>Machine learning</strong>: AWS analyzes patterns automatically</p>
-</li>
-</ol>
-<h3 id="step-3-resource-tagging-strategy">Step 3: Resource Tagging Strategy</h3>
-<p><strong>Cost allocation and tracking</strong>:</p>
-<ol>
-<li>
-<p><strong>Tagging strategy</strong>:</p>
-<pre tabindex="0"><code>Tag Structure:
-- Environment: workshop/dev/prod
-- Project: dynamodb-learning
-- Owner: [your-name]
-- Cost-Center: education
-</code></pre></li>
-<li>
-<p><strong>Tag-based budgets</strong>: Create budgets by tag values</p>
-</li>
-<li>
-<p><strong>Cost allocation</strong>: Track costs by project/owner</p>
-</li>
-</ol>
-<h2 id="exercise-7-optimization-recommendations">Exercise 7: Optimization Recommendations</h2>
-<h3 id="step-1-right-sizing-analysis">Step 1: Right-Sizing Analysis</h3>
-<p><strong>Capacity optimization</strong>:</p>
-<ol>
-<li>
-<p><strong>Current efficiency</strong>:</p>
-<ul>
-<li><strong>Table utilization</strong>: 40-60% average</li>
-<li><strong>GSI utilization</strong>: 20-40% average</li>
-<li><strong>Lambda efficiency</strong>: &lt;1 second execution</li>
-</ul>
-</li>
-<li>
-<p><strong>Optimization actions</strong>:</p>
-<ul>
-<li><strong>Maintain current sizing</strong>: Well-optimized for Free Tier</li>
-<li><strong>Monitor growth</strong>: Scale when approaching limits</li>
-<li><strong>Query optimization</strong>: Continue efficient patterns</li>
-</ul>
-</li>
-</ol>
-<h3 id="step-2-feature-optimization">Step 2: Feature Optimization</h3>
-<p><strong>Service feature cost analysis</strong>:</p>
-<ol>
-<li>
-<p><strong>Global Tables</strong>:</p>
-<ul>
-<li><strong>Cost</strong>: Same as single-region within Free Tier</li>
-<li><strong>Value</strong>: Multi-region availability</li>
-<li><strong>Recommendation</strong>: Keep enabled for learning</li>
-</ul>
-</li>
-<li>
-<p><strong>DynamoDB Streams</strong>:</p>
-<ul>
-<li><strong>Cost</strong>: Free feature</li>
-<li><strong>Value</strong>: Real-time processing capability</li>
-<li><strong>Recommendation</strong>: Continue using</li>
-</ul>
-</li>
-<li>
-<p><strong>Backups</strong>:</p>
-<ul>
-<li><strong>Continuous backups</strong>: Free</li>
-<li><strong>On-demand backups</strong>: First 10GB free monthly</li>
-</ul>
-</li>
+<li><strong>Delete DynamoDB table</strong>: Removes storage costs</li>
+<li><strong>Delete Lambda functions</strong>: Removes compute costs</li>
+<li><strong>Delete CloudWatch dashboards</strong>: Removes monitoring costs</li>
+<li><strong>Remove IAM roles</strong>: Clean up permissions</li>
 </ol>
 
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of feature-by-feature cost analysis</p>
+<div class="notices success" ><p><strong>Cost Control</strong>: Following workshop instructions keeps you within Free Tier limits.</p>
 </div>
 
-<h3 id="step-3-long-term-strategy">Step 3: Long-term Strategy</h3>
-<p><strong>Scaling preparation</strong>:</p>
+<h2 id="troubleshooting-costs">Troubleshooting Costs</h2>
+<h3 id="if-you-see-charges">If You See Charges</h3>
 <ol>
-<li><strong>Monitoring foundation</strong>: Already established</li>
-<li><strong>Cost visibility</strong>: Comprehensive tracking in place</li>
-<li><strong>Optimization patterns</strong>: Learned efficient practices</li>
-<li><strong>Scaling readiness</strong>: Understand cost implications</li>
+<li><strong>Check region</strong>: Ensure using correct AWS region</li>
+<li><strong>Review resources</strong>: Look for unexpected resource creation</li>
+<li><strong>Contact support</strong>: AWS Free Tier support available</li>
+<li><strong>Stop resources</strong>: Immediately stop any billable resources</li>
 </ol>
-<h2 id="cost-optimization-best-practices">Cost Optimization Best Practices</h2>
-<h3 id="resource-efficiency">Resource Efficiency</h3>
-<p><strong>Maximize Free Tier value</strong>:</p>
+<h3 id="common-cost-issues">Common Cost Issues</h3>
 <ul>
-<li><strong>Batch operations</strong>: Group requests for efficiency</li>
-<li><strong>Efficient queries</strong>: Use Query instead of Scan</li>
-<li><strong>Right-size capacity</strong>: Match provisioning to usage</li>
-<li><strong>Data lifecycle</strong>: Archive old data appropriately</li>
+<li><strong>Wrong region</strong>: Resources in non-Free Tier regions</li>
+<li><strong>Over-provisioning</strong>: Capacity above Free Tier limits</li>
+<li><strong>Forgotten resources</strong>: Resources left running after workshop</li>
+<li><strong>Data transfer</strong>: Cross-region data movement costs</li>
 </ul>
-<h3 id="monitoring-and-alerting">Monitoring and Alerting</h3>
-<p><strong>Cost control automation</strong>:</p>
-<ul>
-<li><strong>Usage alerts</strong>: Set at 80% of Free Tier limits</li>
-<li><strong>Budget notifications</strong>: Multiple threshold levels</li>
-<li><strong>Anomaly detection</strong>: Automated unusual usage detection</li>
-<li><strong>Regular reviews</strong>: Monthly cost analysis</li>
-</ul>
-<h3 id="scaling-economics">Scaling Economics</h3>
-<p><strong>Cost-effective growth</strong>:</p>
-<ul>
-<li><strong>Gradual scaling</strong>: Increase capacity incrementally</li>
-<li><strong>Performance testing</strong>: Validate before scaling</li>
-<li><strong>Alternative billing</strong>: Consider on-demand for variable loads</li>
-<li><strong>Reserved capacity</strong>: For predictable, large-scale workloads</li>
-</ul>
-
-<div class="notices warning" ><p><strong>Cost Safety</strong>: Always monitor Free Tier usage closely and set up billing alerts to prevent unexpected charges.</p>
-</div>
-
-<h2 id="exercise-summary">Exercise Summary</h2>
-<p>You&rsquo;ve mastered cost analysis and optimization:</p>
-<ul>
-<li>✅ <strong>Cost Explorer analysis</strong> for detailed spending insights</li>
-<li>✅ <strong>Free Tier monitoring</strong> to maximize benefits</li>
-<li>✅ <strong>Resource optimization</strong> for efficient utilization</li>
-<li>✅ <strong>Scaling projections</strong> for growth planning</li>
-<li>✅ <strong>Cost governance</strong> with budgets and alerts</li>
-<li>✅ <strong>Best practices</strong> for long-term cost management</li>
-</ul>
-
-<div class="notices success" ><p><strong>Cost Mastery</strong>: You can now operate DynamoDB efficiently within Free Tier limits while preparing for cost-effective scaling!</p>
-</div>
-
 <h2 id="next-steps">Next Steps</h2>
-<p>With cost optimization mastered, the final section covers performance tuning techniques to maximize efficiency and prepare your system for production-scale operations.</p>
+<p>With cost monitoring in place, you can continue the workshop with confidence that you&rsquo;ll stay within Free Tier limits.</p>
 
 
 
@@ -2003,7 +1592,7 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
 	 
 	 
 		
-			<a class="nav nav-prev" href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Dashboards"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Basic Monitoring"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/6-advanced-patterns/" title="6. Advanced Patterns" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -2016,19 +1605,19 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755112296"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755112296"></script>
 
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755099793" rel="stylesheet" />
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755099793"></script>
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755112296" rel="stylesheet" />
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755112296"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

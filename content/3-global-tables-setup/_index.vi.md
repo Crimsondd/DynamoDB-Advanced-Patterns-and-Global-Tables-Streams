@@ -16,6 +16,8 @@ Global Tables biến đổi DynamoDB table đơn vùng của bạn thành cơ s�
 
 ## Tại sao Global Tables?
 
+![BEFOREGB](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/BEFOREGB.png?featherlight=false&width=50pc)
+
 ### Vấn đề
 - **Độ trễ cao**: Người dùng xa database phải chờ lâu
 - **Không có Disaster Recovery**: Điểm lỗi đơn

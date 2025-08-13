@@ -12,21 +12,21 @@
     <title>4.2 Lambda Function Setup :: DynamoDB Advanced Patterns Workshop</title>
 
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755112295" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755112295" rel="stylesheet">
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755112295" rel="stylesheet">
     
     
 
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755112295"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755099793"></script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755112295"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755112295"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/crimsondd.github.io\/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams\/";
     
 </script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755112295"></script>
 
     
   </div>
@@ -629,13 +629,13 @@
  
   
     
-    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Dashboards" class="dd-item 
+    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Basic Monitoring" class="dd-item 
         
         
         
         ">
       <a href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/">
-           <b> 5.1 </b> 5.1 CloudWatch Dashboards
+           <b> 5.1 </b> 5.1 CloudWatch Basic Monitoring
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1062,10 +1062,7 @@
 <li><strong>Create function</strong>: Click &ldquo;Create function&rdquo; button</li>
 <li><strong>Author from scratch</strong>: Select this option</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Lambda console with Create function button highlighted</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.1.png?featherlight=false&amp;width=90pc" alt="4.2.1"></p>
 <h3 id="step-2-configure-basic-settings">Step 2: Configure Basic Settings</h3>
 <p><strong>Function configuration</strong>:</p>
 <ol>
@@ -1075,10 +1072,7 @@
 <li><strong>Permissions</strong>: &ldquo;Create a new role with basic Lambda permissions&rdquo;</li>
 <li><strong>Create function</strong>: Click to proceed</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Lambda function creation form with specified settings</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.2.png?featherlight=false&amp;width=90pc" alt="4.2.2"></p>
 <h3 id="step-3-configure-function-settings">Step 3: Configure Function Settings</h3>
 <p><strong>Optimize for Free Tier</strong>:</p>
 <ol>
@@ -1088,10 +1082,7 @@
 <li><strong>Timeout</strong>: Set to 30 seconds</li>
 <li><strong>Save</strong>: Click to apply changes</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Lambda function configuration settings with memory and timeout values</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.3.png?featherlight=false&amp;width=90pc" alt="4.2.3"></p>
 <h2 id="exercise-2-add-stream-processing-code">Exercise 2: Add Stream Processing Code</h2>
 <h3 id="step-1-replace-function-code">Step 1: Replace Function Code</h3>
 <p><strong>Navigate to code editor</strong>:</p>
@@ -1229,10 +1220,7 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
 </code></pre></div><ol start="2">
 <li><strong>Deploy</strong>: Click &ldquo;Deploy&rdquo; to save the code</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Lambda code editor with the stream processing code</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.4.png?featherlight=false&amp;width=90pc" alt="4.2.4"></p>
 <h3 id="step-2-test-function-syntax">Step 2: Test Function Syntax</h3>
 <p><strong>Validate the code</strong>:</p>
 <ol>
@@ -1242,10 +1230,7 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
 <li><strong>Event name</strong>: <code>test-stream-event</code></li>
 <li><strong>Test</strong>: Click &ldquo;Test&rdquo; to validate syntax</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Lambda test configuration with DynamoDB Stream template</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.5.png?featherlight=false&amp;width=90pc" alt="4.2.5"></p>
 <h2 id="exercise-3-configure-event-source-mapping">Exercise 3: Configure Event Source Mapping</h2>
 <h3 id="step-1-add-dynamodb-trigger">Step 1: Add DynamoDB Trigger</h3>
 <p><strong>Connect Lambda to DynamoDB Stream</strong>:</p>
@@ -1262,10 +1247,7 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
 </li>
 <li><strong>Add</strong>: Click to create trigger</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of trigger configuration dialog with DynamoDB settings</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.6.png?featherlight=false&amp;width=90pc" alt="4.2.6"></p>
 <h3 id="step-2-verify-event-source-mapping">Step 2: Verify Event Source Mapping</h3>
 <p><strong>Check trigger configuration</strong>:</p>
 <ol>
@@ -1279,10 +1261,7 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
 </ul>
 </li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing successful DynamoDB trigger configuration</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.7.png?featherlight=false&amp;width=90pc" alt="4.2.7"></p>
 <h3 id="step-3-configure-iam-permissions">Step 3: Configure IAM Permissions</h3>
 <p><strong>Update Lambda execution role</strong>:</p>
 <ol>
@@ -1292,10 +1271,7 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
 <li><strong>Attach policies</strong>: Add <code>AWSLambdaDynamoDBExecutionRole</code></li>
 <li><strong>Save</strong>: Return to Lambda console</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of IAM role with DynamoDB stream permissions</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.8.png?featherlight=false&amp;width=90pc" alt="4.2.8"></p>
 <h2 id="exercise-4-test-stream-processing">Exercise 4: Test Stream Processing</h2>
 <h3 id="step-1-create-test-item">Step 1: Create Test Item</h3>
 <p><strong>Generate stream event</strong>:</p>
@@ -1315,10 +1291,7 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
 </code></pre></div><ol start="4">
 <li><strong>Create</strong>: Save the item</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of DynamoDB item creation for Lambda testing</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.9.png?featherlight=false&amp;width=90pc" alt="4.2.9"></p>
 <h3 id="step-2-monitor-lambda-execution">Step 2: Monitor Lambda Execution</h3>
 <p><strong>Check function invocation</strong>:</p>
 <ol>
@@ -1328,10 +1301,7 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
 <li><strong>Duration</strong>: Typically &lt; 1 second</li>
 <li><strong>Errors</strong>: Should be 0</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Lambda monitoring tab showing successful invocation</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.10.png?featherlight=false&amp;width=90pc" alt="4.2.10"></p>
 <h3 id="step-3-check-processing-logs">Step 3: Check Processing Logs</h3>
 <p><strong>View detailed logs</strong>:</p>
 <ol>
@@ -1347,10 +1317,7 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
 </ul>
 </li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch logs showing successful stream processing</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.11.png?featherlight=false&amp;width=90pc" alt="4.2.11"></p>
 <h2 id="exercise-5-advanced-configuration">Exercise 5: Advanced Configuration</h2>
 <h3 id="error-handling-configuration">Error Handling Configuration</h3>
 <p><strong>Configure retry and error handling</strong>:</p>
@@ -1386,10 +1353,7 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
 <li><strong>Notifications</strong>: SNS topic for alerts</li>
 <li><strong>Dashboard</strong>: Add metrics to CloudWatch dashboard</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch alarm configuration for Lambda function</p>
-</div>
-
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/4/4.2.12.png?featherlight=false&amp;width=90pc" alt="4.2.12"></p>
 <h2 id="function-testing-patterns">Function Testing Patterns</h2>
 <h3 id="test-different-event-types">Test Different Event Types</h3>
 <p><strong>Comprehensive testing</strong>:</p>
@@ -1904,19 +1868,19 @@ logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f9
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755112296"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755112296"></script>
 
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755099793" rel="stylesheet" />
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755099793"></script>
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755112296" rel="stylesheet" />
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755112296"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

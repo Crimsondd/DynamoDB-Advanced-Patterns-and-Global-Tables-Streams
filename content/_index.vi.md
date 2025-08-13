@@ -14,7 +14,7 @@ Cuối cùng, chúng ta sẽ triển khai các chiến lược **monitoring và 
 #### Single Table Design
 **Single Table Design** là một phương pháp modeling DynamoDB nơi bạn lưu trữ nhiều loại entity trong một bảng sử dụng composite keys. Pattern này tối ưu cho hiệu suất và chi phí bằng cách giảm số lượng requests và tận dụng kiến trúc partition-based của DynamoDB. Khi triển khai đúng cách, nó cung cấp hiệu suất truy vấn sub-millisecond trong khi giảm thiểu tiêu thụ capacity.
 
-![DynamoDB Architecture](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/0001.png?featherlight=false&width=90pc)
+![DynamoDB Architecture](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/Architectures.png?featherlight=false&width=90pc)
 
 {{% notice note %}}
 Như một best practice, hãy thiết kế access patterns của bạn trước khi tạo table structure. Single Table Design yêu cầu lập kế hoạch cẩn thận cho partition keys (PK) và sort keys (SK) để hỗ trợ tất cả query patterns của bạn một cách hiệu quả. Workshop này sử dụng một mô hình dữ liệu e-commerce đã được chứng minh hỗ trợ 6 access patterns được tối ưu trong khi ở trong giới hạn Free Tier.
@@ -32,9 +32,6 @@ Như một best practice, hãy thiết kế access patterns của bạn trước
 #### Monitoring & Cost Optimization
 **CloudWatch monitoring** cung cấp visibility thời gian thực vào hiệu suất DynamoDB, capacity utilization, và costs. Kết hợp với **billing alerts** và **Free Tier tracking**, bạn có thể đảm bảo hiệu suất tối ưu trong khi duy trì kiểm soát chi phí nghiêm ngặt. Workshop này triển khai comprehensive monitoring dashboards và automated alerting.
 
-#### Tuân thủ Free Tier
-**AWS Free Tier** cung cấp giới hạn hào phóng cho học tập và thử nghiệm. Workshop này được thiết kế để chỉ sử dụng 60% tài nguyên Free Tier có sẵn, đảm bảo zero cost trong khi cung cấp trải nghiệm học tập enterprise-grade. Tất cả participants sẽ triển khai các patterns production-ready mà không phát sinh bất kỳ khoản phí nào.
-
 #### Nội dung Chính
 
 1. [Thiết lập & Triển khai Hạ tầng](1-setup-infrastructure/)
@@ -42,5 +39,5 @@ Như một best practice, hãy thiết kế access patterns của bạn trước
 3. [Thiết lập Global Tables Đa Vùng](3-global-tables-setup/)
 4. [DynamoDB Streams & Lambda Processing](4-streams-lambda-processing/)
 5. [Monitoring & Performance Optimization](5-monitoring-optimization/)
-6. [Advanced Patterns & Best Practices](6-advanced-patterns/)
+6. [Advanced Patterns](6-advanced-patterns/)
 7. [Dọn dẹp & Quản lý Tài nguyên](7-cleanup-resources/)

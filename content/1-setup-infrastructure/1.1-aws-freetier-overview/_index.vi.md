@@ -31,22 +31,17 @@ Truy cập miễn phí ngắn hạn vào một số dịch vụ nhất định
 
 ## Giới hạn Free Tier cho Workshop này
 
-```text
-Phân tích Sử dụng Dịch vụ:
-┌─────────────────┬──────────────┬──────────────┬─────────────┐
-│ Dịch vụ         │ Free Tier    │ Sử dụng      │ An toàn %   │
-├─────────────────┼──────────────┼──────────────┼─────────────┤
-│ DynamoDB RCU    │ 25 units     │ 15 units     │ 60%         │
-│ DynamoDB WCU    │ 25 units     │ 15 units     │ 60%         │
-│ DynamoDB Storage│ 25 GB        │ <1 GB        │ 4%          │
-│ Lambda Requests │ 1M/tháng     │ ~100/ngày    │ 0.3%        │
-│ Lambda Duration │ 400K GB-sec  │ <1K GB-sec   │ 0.25%       │
-│ CloudWatch      │ 10 metrics   │ 6 metrics    │ 60%         │
-│ Data Transfer   │ 1 GB         │ <100 MB      │ 10%         │
-└─────────────────┴──────────────┴──────────────┴─────────────┘
+| Dịch vụ | Free Tier | Sử dụng | An toàn % |
+|---------|-----------|---------|-----------|
+| DynamoDB RCU | 25 units | 15 units | 60% |
+| DynamoDB WCU | 25 units | 15 units | 60% |
+| DynamoDB Storage | 25 GB | <1 GB | 4% |
+| Lambda Requests | 1M/tháng | ~100/ngày | 0.3% |
+| Lambda Duration | 400K GB-sec | <1K GB-sec | 0.25% |
+| CloudWatch | 10 metrics | 6 metrics | 60% |
+| Data Transfer | 1 GB | <100 MB | 10% |
 
 Tổng Sử dụng Free Tier: ~50% = 100% AN TOÀN! 🛡️
-```
 
 {{% notice tip %}}
 **Bảo vệ Chi phí**: Chúng ta chỉ sử dụng 50% giới hạn Free Tier có sẵn, đảm bảo không có phí phát sinh trong suốt workshop.

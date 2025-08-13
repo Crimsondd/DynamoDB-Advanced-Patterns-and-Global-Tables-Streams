@@ -16,6 +16,8 @@ Global Tables transforms your single-region DynamoDB table into a globally distr
 
 ## Why Global Tables?
 
+![BEFOREGB](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/BEFOREGB.png?featherlight=false&width=50pc)
+
 ### The Problem
 - **High Latency**: Users far from database experience slow response
 - **No Disaster Recovery**: Single point of failure

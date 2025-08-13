@@ -12,21 +12,21 @@
     <title>6.2 Conditional Updates :: DynamoDB Advanced Patterns Workshop</title>
 
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755099793" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755112296" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755112296" rel="stylesheet">
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755112296" rel="stylesheet">
     
     
 
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755112296"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755099793"></script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755112296"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755112296"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/crimsondd.github.io\/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams\/";
     
 </script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755112296"></script>
 
     
   </div>
@@ -629,13 +629,13 @@
  
   
     
-    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Dashboards" class="dd-item 
+    <li data-nav-id="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/" title="5.1 CloudWatch Basic Monitoring" class="dd-item 
         
         
         
         ">
       <a href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/">
-           <b> 5.1 </b> 5.1 CloudWatch Dashboards
+           <b> 5.1 </b> 5.1 CloudWatch Basic Monitoring
           
             <i class="fas fa-check read-icon"></i>
           
@@ -962,56 +962,40 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#data-integrity-and-race-condition-prevention">Data Integrity and Race Condition Prevention</a>
+    <li><a href="#overview">Overview</a>
       <ul>
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#the-race-condition-problem">The Race Condition Problem</a></li>
-        <li><a href="#conditional-expression-types">Conditional Expression Types</a></li>
+        <li><a href="#the-problem-race-conditions">The Problem: Race Conditions</a></li>
       </ul>
     </li>
     <li><a href="#exercise-1-basic-conditional-updates">Exercise 1: Basic Conditional Updates</a>
       <ul>
-        <li><a href="#step-1-setup-test-product">Step 1: Setup Test Product</a></li>
-        <li><a href="#step-2-price-update-with-condition">Step 2: Price Update with Condition</a></li>
+        <li><a href="#step-1-create-test-product">Step 1: Create Test Product</a></li>
+        <li><a href="#step-2-safe-price-update">Step 2: Safe Price Update</a></li>
         <li><a href="#step-3-failed-conditional-update">Step 3: Failed Conditional Update</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-2-inventory-management-with-conditions">Exercise 2: Inventory Management with Conditions</a>
+    <li><a href="#exercise-2-prevent-overselling">Exercise 2: Prevent Overselling</a>
       <ul>
-        <li><a href="#step-1-stock-decrement-with-safety-check">Step 1: Stock Decrement with Safety Check</a></li>
+        <li><a href="#step-1-safe-stock-decrement">Step 1: Safe Stock Decrement</a></li>
         <li><a href="#step-2-prevent-overselling">Step 2: Prevent Overselling</a></li>
-        <li><a href="#step-3-advanced-inventory-patterns">Step 3: Advanced Inventory Patterns</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-3-optimistic-locking-pattern">Exercise 3: Optimistic Locking Pattern</a>
+    <li><a href="#exercise-3-version-control">Exercise 3: Version Control</a>
       <ul>
-        <li><a href="#step-1-version-based-updates">Step 1: Version-Based Updates</a></li>
-        <li><a href="#step-2-simulate-concurrent-update-conflict">Step 2: Simulate Concurrent Update Conflict</a></li>
-        <li><a href="#step-3-proper-version-update-flow">Step 3: Proper Version Update Flow</a></li>
+        <li><a href="#step-1-add-version-to-product">Step 1: Add Version to Product</a></li>
+        <li><a href="#step-2-version-based-update">Step 2: Version-Based Update</a></li>
+        <li><a href="#step-3-version-conflict">Step 3: Version Conflict</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-4-advanced-conditional-patterns">Exercise 4: Advanced Conditional Patterns</a>
+    <li><a href="#exercise-4-prevent-duplicates">Exercise 4: Prevent Duplicates</a>
       <ul>
-        <li><a href="#step-1-attribute-existence-conditions">Step 1: Attribute Existence Conditions</a></li>
-        <li><a href="#step-2-complex-conditional-logic">Step 2: Complex Conditional Logic</a></li>
-        <li><a href="#step-3-function-based-conditions">Step 3: Function-Based Conditions</a></li>
+        <li><a href="#step-1-create-unique-user">Step 1: Create Unique User</a></li>
+        <li><a href="#step-2-try-duplicate">Step 2: Try Duplicate</a></li>
+        <li><a href="#step-3-complex-conditions">Step 3: Complex Conditions</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-5-production-conditional-patterns">Exercise 5: Production Conditional Patterns</a>
-      <ul>
-        <li><a href="#step-1-e-commerce-order-processing">Step 1: E-commerce Order Processing</a></li>
-        <li><a href="#step-2-error-handling-for-conditions">Step 2: Error Handling for Conditions</a></li>
-        <li><a href="#step-3-performance-monitoring">Step 3: Performance Monitoring</a></li>
-      </ul>
-    </li>
-    <li><a href="#conditional-updates-best-practices">Conditional Updates Best Practices</a>
-      <ul>
-        <li><a href="#design-guidelines">Design Guidelines</a></li>
-        <li><a href="#common-patterns">Common Patterns</a></li>
-        <li><a href="#error-handling">Error Handling</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-summary">Exercise Summary</a></li>
+    <li><a href="#monitoring-conditional-updates">Monitoring Conditional Updates</a></li>
+    <li><a href="#key-benefits">Key Benefits</a></li>
     <li><a href="#next-steps">Next Steps</a></li>
   </ul>
 </nav>
@@ -1038,87 +1022,49 @@
 
 
 
-	<h2 id="data-integrity-and-race-condition-prevention">Data Integrity and Race Condition Prevention</h2>
-<p>🛡️ <strong>Master conditional updates to ensure data integrity and prevent race conditions in concurrent environments</strong></p>
-<h3 id="overview">Overview</h3>
-<p>Conditional updates are essential for maintaining data integrity in multi-user applications. They prevent race conditions, ensure business rules are enforced, and protect against data corruption when multiple clients access the same data simultaneously.</p>
-<h3 id="the-race-condition-problem">The Race Condition Problem</h3>
-<p><strong>Scenario: Two users buying the last item</strong>:</p>
-<pre tabindex="0"><code>Without Conditions (Dangerous):
-User A reads: stock = 1
+	<h1 id="conditional-updates">Conditional Updates</h1>
+<p>🛡️ <strong>Prevent race conditions with conditional updates</strong></p>
+<h2 id="overview">Overview</h2>
+<p>Conditional updates ensure data integrity by only updating items when specific conditions are met. This prevents race conditions in multi-user applications.</p>
+<h3 id="the-problem-race-conditions">The Problem: Race Conditions</h3>
+<p><strong>Without conditions (dangerous)</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">User A reads: stock = 1
 User B reads: stock = 1  
 User A updates: stock = 0  ✅
 User B updates: stock = 0  ❌ (Should fail!)
-Result: Both succeed (oversold!)
-
-With Conditions (Safe):
-User A reads: stock = 1
-User B reads: stock = 1
-User A updates: stock = 0 (condition: stock &gt;= 1) ✅
-User B updates: stock = 0 (condition: stock &gt;= 1) ❌ FAILS
+Result: Oversold!
+</code></pre></div><p><strong>With conditions (safe)</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">User A: stock = 0 (condition: stock &gt;= 1) ✅
+User B: fails (condition: stock &gt;= 1) ❌
 Result: Only first succeeds ✅
-</code></pre><h3 id="conditional-expression-types">Conditional Expression Types</h3>
-<p><strong>Available condition types</strong>:</p>
-<ul>
-<li><strong>attribute_exists(path)</strong>: Item/attribute must exist</li>
-<li><strong>attribute_not_exists(path)</strong>: Item/attribute must not exist</li>
-<li><strong>Comparison operators</strong>: =, &lt;&gt;, &lt;, &lt;=, &gt;, &gt;=</li>
-<li><strong>BETWEEN and IN</strong>: Range and membership tests</li>
-<li><strong>Functions</strong>: begins_with(), contains(), size()</li>
-</ul>
-<h2 id="exercise-1-basic-conditional-updates">Exercise 1: Basic Conditional Updates</h2>
-<h3 id="step-1-setup-test-product">Step 1: Setup Test Product</h3>
-<p><strong>Create a product for conditional update testing</strong>:</p>
-<ol>
-<li><strong>AWS CloudShell</strong>: Open CloudShell from AWS Console</li>
-<li><strong>Create test product</strong>:</li>
-</ol>
+</code></pre></div><h2 id="exercise-1-basic-conditional-updates">Exercise 1: Basic Conditional Updates</h2>
+<h3 id="step-1-create-test-product">Step 1: Create Test Product</h3>
+<p><strong>Create a product for testing</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb put-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --item <span style="color:#e6db74">&#39;{
 </span><span style="color:#e6db74">    &#34;PK&#34;: {&#34;S&#34;: &#34;PRODUCT#conditional-test&#34;},
 </span><span style="color:#e6db74">    &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;},
-</span><span style="color:#e6db74">    &#34;GSI1PK&#34;: {&#34;S&#34;: &#34;CATEGORY#test&#34;},
-</span><span style="color:#e6db74">    &#34;GSI1SK&#34;: {&#34;S&#34;: &#34;PRODUCT#conditional-test&#34;},
-</span><span style="color:#e6db74">    &#34;name&#34;: {&#34;S&#34;: &#34;Conditional Test Product&#34;},
+</span><span style="color:#e6db74">    &#34;name&#34;: {&#34;S&#34;: &#34;Test Product&#34;},
 </span><span style="color:#e6db74">    &#34;price&#34;: {&#34;N&#34;: &#34;100&#34;},
-</span><span style="color:#e6db74">    &#34;stock&#34;: {&#34;N&#34;: &#34;5&#34;},
-</span><span style="color:#e6db74">    &#34;version&#34;: {&#34;N&#34;: &#34;1&#34;}
+</span><span style="color:#e6db74">    &#34;stock&#34;: {&#34;N&#34;: &#34;5&#34;}
 </span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="3">
-<li><strong>Verify creation</strong>: Check item exists in DynamoDB Console</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing the test product created in DynamoDB console</p>
-</div>
-
-<h3 id="step-2-price-update-with-condition">Step 2: Price Update with Condition</h3>
-<p><strong>Update price only if current price matches expected value</strong>:</p>
-<ol>
-<li><strong>Successful conditional update</strong>:</li>
-</ol>
+</code></pre></div><p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.2.1.png?featherlight=false&amp;width=90pc" alt="6.2.1">
+<img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.2.1(1).png?featherlight=false&amp;width=90pc" alt="6.2.1(1)"></p>
+<h3 id="step-2-safe-price-update">Step 2: Safe Price Update</h3>
+<p><strong>Update price with condition</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb update-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --update-expression <span style="color:#e6db74">&#34;SET price = :new_price, last_updated = :timestamp&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --update-expression <span style="color:#e6db74">&#34;SET price = :new_price&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --condition-expression <span style="color:#e6db74">&#34;price = :current_price&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
 </span><span style="color:#e6db74">    &#34;:new_price&#34;: {&#34;N&#34;: &#34;90&#34;},
-</span><span style="color:#e6db74">    &#34;:current_price&#34;: {&#34;N&#34;: &#34;100&#34;},
-</span><span style="color:#e6db74">    &#34;:timestamp&#34;: {&#34;S&#34;: &#34;2025-08-12T10:00:00Z&#34;}
+</span><span style="color:#e6db74">    &#34;:current_price&#34;: {&#34;N&#34;: &#34;100&#34;}
 </span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="2">
-<li><strong>Verify price change</strong>: Check updated price in console</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing successful price update with condition</p>
-</div>
-
+</code></pre></div><p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.2.2.png?featherlight=false&amp;width=90pc" alt="6.2.2"></p>
 <h3 id="step-3-failed-conditional-update">Step 3: Failed Conditional Update</h3>
-<p><strong>Attempt update with wrong condition (should fail)</strong>:</p>
-<ol>
-<li><strong>Try update with incorrect current price</strong>:</li>
-</ol>
+<p><strong>Try update with wrong condition</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb update-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
@@ -1128,20 +1074,11 @@ Result: Only first succeeds ✅
 </span><span style="color:#e6db74">    &#34;:new_price&#34;: {&#34;N&#34;: &#34;80&#34;},
 </span><span style="color:#e6db74">    &#34;:wrong_price&#34;: {&#34;N&#34;: &#34;100&#34;}
 </span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="2">
-<li><strong>Expected result</strong>: ConditionalCheckFailedException error</li>
-<li><strong>Verify price unchanged</strong>: Price should still be 90</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing ConditionalCheckFailedException error in CloudShell</p>
-</div>
-
-<h2 id="exercise-2-inventory-management-with-conditions">Exercise 2: Inventory Management with Conditions</h2>
-<h3 id="step-1-stock-decrement-with-safety-check">Step 1: Stock Decrement with Safety Check</h3>
-<p><strong>Implement safe inventory decrement</strong>:</p>
-<ol>
-<li><strong>Purchase 2 items (should succeed)</strong>:</li>
-</ol>
+</code></pre></div><p><strong>Result</strong>: ConditionalCheckFailedException error</p>
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.2.3.png?featherlight=false&amp;width=90pc" alt="6.2.3"></p>
+<h2 id="exercise-2-prevent-overselling">Exercise 2: Prevent Overselling</h2>
+<h3 id="step-1-safe-stock-decrement">Step 1: Safe Stock Decrement</h3>
+<p><strong>Buy 2 items safely</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb update-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
@@ -1150,18 +1087,9 @@ Result: Only first succeeds ✅
 </span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
 </span><span style="color:#e6db74">    &#34;:quantity&#34;: {&#34;N&#34;: &#34;2&#34;}
 </span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="2">
-<li><strong>Verify stock reduction</strong>: Stock should be 3 (was 5, bought 2)</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing stock reduced from 5 to 3</p>
-</div>
-
+</code></pre></div><p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.2.4.png?featherlight=false&amp;width=90pc" alt="6.2.4"></p>
 <h3 id="step-2-prevent-overselling">Step 2: Prevent Overselling</h3>
-<p><strong>Attempt to buy more items than available</strong>:</p>
-<ol>
-<li><strong>Try to purchase 5 items (should fail)</strong>:</li>
-</ol>
+<p><strong>Try to buy more than available</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb update-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
@@ -1170,46 +1098,20 @@ Result: Only first succeeds ✅
 </span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
 </span><span style="color:#e6db74">    &#34;:quantity&#34;: {&#34;N&#34;: &#34;5&#34;}
 </span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="2">
-<li><strong>Expected result</strong>: ConditionalCheckFailedException (only 3 in stock)</li>
-<li><strong>Verify stock unchanged</strong>: Stock should still be 3</li>
-</ol>
-<p><strong>This prevents overselling! 🛡️</strong></p>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing failed purchase attempt due to insufficient stock</p>
-</div>
-
-<h3 id="step-3-advanced-inventory-patterns">Step 3: Advanced Inventory Patterns</h3>
-<p><strong>Implement complex inventory logic</strong>:</p>
-<ol>
-<li><strong>Conditional stock update with minimum threshold</strong>:</li>
-</ol>
+</code></pre></div><p><strong>Result</strong>: Fails because only 3 items in stock</p>
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.2.5.png?featherlight=false&amp;width=90pc" alt="6.2.5"></p>
+<h2 id="exercise-3-version-control">Exercise 3: Version Control</h2>
+<h3 id="step-1-add-version-to-product">Step 1: Add Version to Product</h3>
+<p><strong>Update product with version number</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb update-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --update-expression <span style="color:#e6db74">&#34;SET stock = stock - :quantity, last_sold = :timestamp&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --condition-expression <span style="color:#e6db74">&#34;stock &gt;= :quantity AND stock &gt; :min_threshold&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --update-expression <span style="color:#e6db74">&#34;SET version = :version&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
-</span><span style="color:#e6db74">    &#34;:quantity&#34;: {&#34;N&#34;: &#34;1&#34;},
-</span><span style="color:#e6db74">    &#34;:min_threshold&#34;: {&#34;N&#34;: &#34;1&#34;},
-</span><span style="color:#e6db74">    &#34;:timestamp&#34;: {&#34;S&#34;: &#34;2025-08-12T10:05:00Z&#34;}
+</span><span style="color:#e6db74">    &#34;:version&#34;: {&#34;N&#34;: &#34;1&#34;}
 </span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="2">
-<li><strong>Business rule</strong>: Keep at least 1 item in stock (reserve inventory)</li>
-</ol>
-<h2 id="exercise-3-optimistic-locking-pattern">Exercise 3: Optimistic Locking Pattern</h2>
-<h3 id="step-1-version-based-updates">Step 1: Version-Based Updates</h3>
-<p><strong>Implement optimistic locking with version numbers</strong>:</p>
-<ol>
-<li><strong>Read current version</strong>: Note the version number (should be 1)</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb get-item <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --projection-expression <span style="color:#e6db74">&#34;version&#34;</span>
-</code></pre></div><ol start="2">
-<li><strong>Update with version check</strong>:</li>
-</ol>
+</code></pre></div><h3 id="step-2-version-based-update">Step 2: Version-Based Update</h3>
+<p><strong>Update with version check</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb update-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
@@ -1220,18 +1122,9 @@ Result: Only first succeeds ✅
 </span><span style="color:#e6db74">    &#34;:inc&#34;: {&#34;N&#34;: &#34;1&#34;},
 </span><span style="color:#e6db74">    &#34;:expected_version&#34;: {&#34;N&#34;: &#34;1&#34;}
 </span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="3">
-<li><strong>Verify version increment</strong>: Version should now be 2</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing version incremented from 1 to 2</p>
-</div>
-
-<h3 id="step-2-simulate-concurrent-update-conflict">Step 2: Simulate Concurrent Update Conflict</h3>
-<p><strong>Demonstrate optimistic locking protection</strong>:</p>
-<ol>
-<li><strong>Attempt update with old version</strong> (should fail):</li>
-</ol>
+</code></pre></div><p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.2.6.png?featherlight=false&amp;width=90pc" alt="6.2.6"></p>
+<h3 id="step-3-version-conflict">Step 3: Version Conflict</h3>
+<p><strong>Try update with old version</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb update-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
@@ -1242,98 +1135,33 @@ Result: Only first succeeds ✅
 </span><span style="color:#e6db74">    &#34;:inc&#34;: {&#34;N&#34;: &#34;1&#34;},
 </span><span style="color:#e6db74">    &#34;:old_version&#34;: {&#34;N&#34;: &#34;1&#34;}
 </span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="2">
-<li><strong>Expected result</strong>: ConditionalCheckFailedException (version is now 2, not 1)</li>
-<li><strong>Protection achieved</strong>: Prevents overwriting changes from other users</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing version conflict error</p>
-</div>
-
-<h3 id="step-3-proper-version-update-flow">Step 3: Proper Version Update Flow</h3>
-<p><strong>Correct optimistic locking workflow</strong>:</p>
-<ol>
-<li><strong>Read current item with version</strong>:</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb get-item <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --projection-expression <span style="color:#e6db74">&#34;#v, price, #n&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --expression-attribute-names <span style="color:#e6db74">&#39;{
-</span><span style="color:#e6db74">    &#34;#v&#34;: &#34;version&#34;,
-</span><span style="color:#e6db74">    &#34;#n&#34;: &#34;name&#34;
-</span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="2">
-<li><strong>Update with current version</strong> (should succeed):</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb update-item <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --update-expression <span style="color:#e6db74">&#34;SET price = :new_price, version = version + :inc&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --condition-expression <span style="color:#e6db74">&#34;version = :current_version&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
-</span><span style="color:#e6db74">    &#34;:new_price&#34;: {&#34;N&#34;: &#34;88&#34;},
-</span><span style="color:#e6db74">    &#34;:inc&#34;: {&#34;N&#34;: &#34;1&#34;},
-</span><span style="color:#e6db74">    &#34;:current_version&#34;: {&#34;N&#34;: &#34;2&#34;}
-</span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="3">
-<li><strong>Version now 3</strong>: Successful update with proper version control</li>
-</ol>
-<h2 id="exercise-4-advanced-conditional-patterns">Exercise 4: Advanced Conditional Patterns</h2>
-<h3 id="step-1-attribute-existence-conditions">Step 1: Attribute Existence Conditions</h3>
-<p><strong>Create items only if they don&rsquo;t exist</strong>:</p>
-<ol>
-<li><strong>Create user profile (should succeed)</strong>:</li>
-</ol>
+</code></pre></div><p><strong>Result</strong>: Fails because version is now 2, not 1</p>
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.2.7.png?featherlight=false&amp;width=90pc" alt="6.2.7"></p>
+<h2 id="exercise-4-prevent-duplicates">Exercise 4: Prevent Duplicates</h2>
+<h3 id="step-1-create-unique-user">Step 1: Create Unique User</h3>
+<p><strong>Create user only if doesn&rsquo;t exist</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb put-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --item <span style="color:#e6db74">&#39;{
-</span><span style="color:#e6db74">    &#34;PK&#34;: {&#34;S&#34;: &#34;USER#conditional-user&#34;},
+</span><span style="color:#e6db74">    &#34;PK&#34;: {&#34;S&#34;: &#34;USER#unique-user&#34;},
 </span><span style="color:#e6db74">    &#34;SK&#34;: {&#34;S&#34;: &#34;PROFILE&#34;},
-</span><span style="color:#e6db74">    &#34;email&#34;: {&#34;S&#34;: &#34;user@example.com&#34;},
-</span><span style="color:#e6db74">    &#34;created_at&#34;: {&#34;S&#34;: &#34;2025-08-12T10:10:00Z&#34;}
+</span><span style="color:#e6db74">    &#34;email&#34;: {&#34;S&#34;: &#34;user@example.com&#34;}
 </span><span style="color:#e6db74">  }&#39;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --condition-expression <span style="color:#e6db74">&#34;attribute_not_exists(PK)&#34;</span>
-</code></pre></div><ol start="2">
-<li><strong>Try to create same user again</strong> (should fail):</li>
-</ol>
+</code></pre></div><h3 id="step-2-try-duplicate">Step 2: Try Duplicate</h3>
+<p><strong>Try to create same user again</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb put-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --item <span style="color:#e6db74">&#39;{
-</span><span style="color:#e6db74">    &#34;PK&#34;: {&#34;S&#34;: &#34;USER#conditional-user&#34;},
+</span><span style="color:#e6db74">    &#34;PK&#34;: {&#34;S&#34;: &#34;USER#unique-user&#34;},
 </span><span style="color:#e6db74">    &#34;SK&#34;: {&#34;S&#34;: &#34;PROFILE&#34;}, 
-</span><span style="color:#e6db74">    &#34;email&#34;: {&#34;S&#34;: &#34;different@example.com&#34;},
-</span><span style="color:#e6db74">    &#34;created_at&#34;: {&#34;S&#34;: &#34;2025-08-12T10:15:00Z&#34;}
+</span><span style="color:#e6db74">    &#34;email&#34;: {&#34;S&#34;: &#34;different@example.com&#34;}
 </span><span style="color:#e6db74">  }&#39;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --condition-expression <span style="color:#e6db74">&#34;attribute_not_exists(PK)&#34;</span>
-</code></pre></div><p><strong>Result</strong>: Second attempt fails (prevents duplicate users)</p>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing duplicate prevention with attribute_not_exists</p>
-</div>
-
-<h3 id="step-2-complex-conditional-logic">Step 2: Complex Conditional Logic</h3>
-<p><strong>Combine multiple conditions with AND/OR</strong>:</p>
-<ol>
-<li><strong>Update product with complex business rules</strong>:</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb update-item <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --update-expression <span style="color:#e6db74">&#34;SET discount_price = :discount&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --condition-expression <span style="color:#e6db74">&#34;price &gt; :min_price AND stock &gt; :min_stock&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
-</span><span style="color:#e6db74">    &#34;:discount&#34;: {&#34;N&#34;: &#34;70&#34;},
-</span><span style="color:#e6db74">    &#34;:min_price&#34;: {&#34;N&#34;: &#34;50&#34;},
-</span><span style="color:#e6db74">    &#34;:min_stock&#34;: {&#34;N&#34;: &#34;0&#34;}
-</span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="2">
-<li><strong>Business rule</strong>: Only apply discount if price &gt; $50 AND stock &gt; 0</li>
-</ol>
-<h3 id="step-3-function-based-conditions">Step 3: Function-Based Conditions</h3>
-<p><strong>Use DynamoDB condition functions</strong>:</p>
-<ol>
-<li><strong>Update if attribute contains specific value</strong>:</li>
-</ol>
+</code></pre></div><p><strong>Result</strong>: Fails - prevents duplicate users</p>
+<p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.2.8.png?featherlight=false&amp;width=90pc" alt="6.2.8"></p>
+<h3 id="step-3-complex-conditions">Step 3: Complex Conditions</h3>
+<p><strong>Update with multiple conditions</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb update-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
@@ -1344,157 +1172,28 @@ Result: Only first succeeds ✅
 </span><span style="color:#e6db74">    &#34;:featured&#34;: {&#34;BOOL&#34;: true},
 </span><span style="color:#e6db74">    &#34;:keyword&#34;: {&#34;S&#34;: &#34;Test&#34;}
 </span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><ol start="2">
-<li><strong>Condition</strong>: Only feature products with &ldquo;Test&rdquo; in the name</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot showing function-based condition success</p>
-</div>
-
-<h2 id="exercise-5-production-conditional-patterns">Exercise 5: Production Conditional Patterns</h2>
-<h3 id="step-1-e-commerce-order-processing">Step 1: E-commerce Order Processing</h3>
-<p><strong>Implement order creation with inventory check</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Create order only if product has sufficient stock</span>
-aws dynamodb put-item <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --item <span style="color:#e6db74">&#39;{
-</span><span style="color:#e6db74">    &#34;PK&#34;: {&#34;S&#34;: &#34;ORDER#order-001&#34;},
-</span><span style="color:#e6db74">    &#34;SK&#34;: {&#34;S&#34;: &#34;DETAILS&#34;},
-</span><span style="color:#e6db74">    &#34;GSI1PK&#34;: {&#34;S&#34;: &#34;USER#conditional-user&#34;},
-</span><span style="color:#e6db74">    &#34;GSI1SK&#34;: {&#34;S&#34;: &#34;ORDER#order-001&#34;},
-</span><span style="color:#e6db74">    &#34;product_id&#34;: {&#34;S&#34;: &#34;PRODUCT#conditional-test&#34;},
-</span><span style="color:#e6db74">    &#34;quantity&#34;: {&#34;N&#34;: &#34;1&#34;},
-</span><span style="color:#e6db74">    &#34;status&#34;: {&#34;S&#34;: &#34;pending&#34;},
-</span><span style="color:#e6db74">    &#34;created_at&#34;: {&#34;S&#34;: &#34;2025-08-12T10:20:00Z&#34;}
-</span><span style="color:#e6db74">  }&#39;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --condition-expression <span style="color:#e6db74">&#34;attribute_not_exists(PK)&#34;</span>
-
-<span style="color:#75715e"># Simultaneously decrement stock</span>
-aws dynamodb update-item <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --table-name demo-ecommerce-freetier <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;PRODUCT#conditional-test&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;DETAILS&#34;}}&#39;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --update-expression <span style="color:#e6db74">&#34;SET stock = stock - :quantity, reserved_stock = if_not_exists(reserved_stock, :zero) + :quantity&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --condition-expression <span style="color:#e6db74">&#34;stock &gt;= :quantity&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{
-</span><span style="color:#e6db74">    &#34;:quantity&#34;: {&#34;N&#34;: &#34;1&#34;},
-</span><span style="color:#e6db74">    &#34;:zero&#34;: {&#34;N&#34;: &#34;0&#34;}
-</span><span style="color:#e6db74">  }&#39;</span>
-</code></pre></div><h3 id="step-2-error-handling-for-conditions">Step 2: Error Handling for Conditions</h3>
-<p><strong>Handle conditional failures gracefully</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> boto3
-<span style="color:#f92672">from</span> botocore.exceptions <span style="color:#f92672">import</span> ClientError
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">safe_inventory_decrement</span>(product_id, quantity):
-    <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">    Safely decrement inventory with proper error handling
-</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
-    dynamodb <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;dynamodb&#39;</span>)
-    
-    <span style="color:#66d9ef">try</span>:
-        response <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>update_item(
-            TableName<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;demo-ecommerce-freetier&#39;</span>,
-            Key<span style="color:#f92672">=</span>{
-                <span style="color:#e6db74">&#39;PK&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;PRODUCT#</span><span style="color:#e6db74">{</span>product_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>},
-                <span style="color:#e6db74">&#39;SK&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;DETAILS&#39;</span>}
-            },
-            UpdateExpression<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;SET stock = stock - :quantity&#39;</span>,
-            ConditionExpression<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;stock &gt;= :quantity&#39;</span>,
-            ExpressionAttributeValues<span style="color:#f92672">=</span>{
-                <span style="color:#e6db74">&#39;:quantity&#39;</span>: {<span style="color:#e6db74">&#39;N&#39;</span>: str(quantity)}
-            },
-            ReturnValues<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ALL_NEW&#39;</span>
-        )
-        <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#39;success&#39;</span>: <span style="color:#66d9ef">True</span>, <span style="color:#e6db74">&#39;item&#39;</span>: response[<span style="color:#e6db74">&#39;Attributes&#39;</span>]}
-        
-    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
-        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ConditionalCheckFailedException&#39;</span>:
-            <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#39;success&#39;</span>: <span style="color:#66d9ef">False</span>, <span style="color:#e6db74">&#39;error&#39;</span>: <span style="color:#e6db74">&#39;Insufficient stock&#39;</span>}
-        <span style="color:#66d9ef">else</span>:
-            <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#39;success&#39;</span>: <span style="color:#66d9ef">False</span>, <span style="color:#e6db74">&#39;error&#39;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Database error: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>}
-
-<span style="color:#75715e"># Usage example</span>
-result <span style="color:#f92672">=</span> safe_inventory_decrement(<span style="color:#e6db74">&#39;conditional-test&#39;</span>, <span style="color:#ae81ff">1</span>)
-<span style="color:#66d9ef">if</span> result[<span style="color:#e6db74">&#39;success&#39;</span>]:
-    print(<span style="color:#e6db74">&#34;Stock decremented successfully&#34;</span>)
-<span style="color:#66d9ef">else</span>:
-    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Failed: </span><span style="color:#e6db74">{</span>result[<span style="color:#e6db74">&#39;error&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</code></pre></div><h3 id="step-3-performance-monitoring">Step 3: Performance Monitoring</h3>
-<p><strong>Monitor conditional update patterns</strong>:</p>
+</code></pre></div><p><img src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/6/6.2.9.png?featherlight=false&amp;width=90pc" alt="6.2.9"></p>
+<h2 id="monitoring-conditional-updates">Monitoring Conditional Updates</h2>
+<p><strong>Check CloudWatch metrics</strong>:</p>
 <ol>
-<li>
-<p><strong>CloudWatch metrics to track</strong>:</p>
-<ul>
 <li><strong>ConditionalCheckFailedException</strong>: Failed condition rate</li>
 <li><strong>SuccessfulRequestLatency</strong>: Update performance</li>
 <li><strong>ThrottledRequests</strong>: Capacity issues</li>
-<li><strong>ItemCollectionMetrics</strong>: Item size growth</li>
-</ul>
-</li>
-<li>
-<p><strong>Optimize conditional performance</strong>:</p>
-<ul>
-<li><strong>Minimize condition complexity</strong>: Simple conditions perform better</li>
-<li><strong>Use efficient operators</strong>: = is faster than contains()</li>
-<li><strong>Avoid unnecessary conditions</strong>: Only check what&rsquo;s essential</li>
-<li><strong>Monitor failure rates</strong>: High failure rates indicate design issues</li>
-</ul>
-</li>
 </ol>
+<p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch showing conditional update metrics</p>
+<h2 id="key-benefits">Key Benefits</h2>
+<ul>
+<li><strong>Prevents race conditions</strong>: Multiple users can&rsquo;t oversell inventory</li>
+<li><strong>Data integrity</strong>: Ensures business rules are enforced</li>
+<li><strong>Version control</strong>: Prevents overwriting concurrent changes</li>
+<li><strong>Duplicate prevention</strong>: Unique constraints without database locks</li>
+</ul>
 
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch showing conditional update metrics</p>
+<div class="notices success" ><p><strong>Conditional Updates Mastery</strong>: You can now safely handle concurrent access and prevent data corruption!</p>
 </div>
 
-<h2 id="conditional-updates-best-practices">Conditional Updates Best Practices</h2>
-<h3 id="design-guidelines">Design Guidelines</h3>
-<p><strong>Effective condition design</strong>:</p>
-<ul>
-<li><strong>Keep conditions simple</strong>: Complex conditions impact performance</li>
-<li><strong>Use appropriate operators</strong>: Choose the most efficient operator</li>
-<li><strong>Minimize attribute references</strong>: Fewer attributes = better performance</li>
-<li><strong>Plan for failures</strong>: Design application logic to handle condition failures</li>
-</ul>
-<h3 id="common-patterns">Common Patterns</h3>
-<p><strong>Production-ready conditional patterns</strong>:</p>
-<h4 id="optimistic-locking">Optimistic Locking</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Always increment version on updates</span>
-UPDATE SET data <span style="color:#f92672">=</span> :new_data, version <span style="color:#f92672">=</span> version + <span style="color:#ae81ff">1</span>
-WHERE version <span style="color:#f92672">=</span> :expected_version
-</code></pre></div><h4 id="inventory-management">Inventory Management</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Prevent overselling</span>
-UPDATE SET stock <span style="color:#f92672">=</span> stock - :quantity
-WHERE stock &gt;<span style="color:#f92672">=</span> :quantity
-</code></pre></div><h4 id="unique-constraints">Unique Constraints</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Prevent duplicates</span>
-PUT item
-WHERE attribute_not_exists<span style="color:#f92672">(</span>primary_key<span style="color:#f92672">)</span>
-</code></pre></div><h4 id="business-rules">Business Rules</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Enforce business logic</span>
-UPDATE SET status <span style="color:#f92672">=</span> :new_status
-WHERE current_status <span style="color:#f92672">=</span> :expected_status AND user_role <span style="color:#f92672">=</span> :admin
-</code></pre></div><h3 id="error-handling">Error Handling</h3>
-<p><strong>Robust conditional update handling</strong>:</p>
-<ul>
-<li><strong>Expect failures</strong>: Conditions are designed to fail sometimes</li>
-<li><strong>Retry logic</strong>: Implement appropriate retry strategies</li>
-<li><strong>User feedback</strong>: Provide meaningful error messages</li>
-<li><strong>Logging</strong>: Track condition failures for analysis</li>
-</ul>
-
-<div class="notices success" ><p><strong>Data Integrity Mastery</strong>: You&rsquo;ve mastered conditional updates! Your applications can now handle concurrent access safely, prevent race conditions, and maintain data integrity at scale.</p>
-</div>
-
-<h2 id="exercise-summary">Exercise Summary</h2>
-<p>You&rsquo;ve implemented conditional update patterns:</p>
-<ul>
-<li>✅ <strong>Basic conditional updates</strong> with price and stock management</li>
-<li>✅ <strong>Inventory safety checks</strong> preventing overselling</li>
-<li>✅ <strong>Optimistic locking</strong> with version control</li>
-<li>✅ <strong>Attribute existence conditions</strong> for duplicate prevention</li>
-<li>✅ <strong>Complex conditional logic</strong> with multiple criteria</li>
-<li>✅ <strong>Production error handling</strong> for robust applications</li>
-</ul>
 <h2 id="next-steps">Next Steps</h2>
-<p>Continue to <a href="../6.3-advanced-query-techniques/">6.3 Advanced Query Techniques</a> to learn performance optimization strategies and advanced querying patterns.</p>
+<p>You&rsquo;ve learned essential conditional update patterns for production applications.</p>
 
 
 
@@ -1959,19 +1658,19 @@ WHERE current_status <span style="color:#f92672">=</span> :expected_status AND u
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755112296"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755099793"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755112296"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755112296"></script>
 
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755099793" rel="stylesheet" />
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755099793"></script>
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755112296" rel="stylesheet" />
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755112296"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
