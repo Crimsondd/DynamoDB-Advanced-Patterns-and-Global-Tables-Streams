@@ -8,75 +8,53 @@ pre : " <b> 6. </b> "
 
 # Advanced DynamoDB Patterns
 
-🚀 **Master enterprise-grade DynamoDB techniques for production-scale applications**
+🚀 **Learn key DynamoDB techniques for better performance**
 
 ## Module Overview
 
-This module focuses on advanced patterns that separate beginners from experts in DynamoDB development. You'll learn the sophisticated techniques used by companies like Netflix, Airbnb, and other organizations running at massive scale.
+Master essential DynamoDB patterns that improve performance and prevent common issues in your applications.
 
-### What You'll Master
+### What You'll Learn
 
-**Advanced Operations**:
-- **Batch Operations**: Process multiple items efficiently with single API calls
-- **Conditional Updates**: Implement data integrity and prevent race conditions
-- **Optimistic Locking**: Handle concurrent access with version control
-- **Advanced Queries**: Optimize performance and minimize costs
+- **Batch Operations**: Process multiple items efficiently
+- **Conditional Updates**: Prevent data conflicts and race conditions
+- **Query Optimization**: Get better performance from your queries
 
-**Enterprise Patterns**:
-- **Data Integrity**: Prevent overselling and data corruption
-- **Performance Optimization**: Reduce API calls and improve response times
-- **Cost Efficiency**: Maximize Free Tier usage with optimal patterns
-- **Production Readiness**: Implement robust, scalable solutions
+### Key Benefits
 
-## Key Concepts
+- **Better Performance**: Reduce API calls and latency
+- **Data Safety**: Prevent overselling and data corruption  
+- **Cost Efficiency**: Use fewer request units
+- **Free Tier Friendly**: Maximize value within limits
 
-### Efficiency Through Batching
+## Core Patterns
 
-**Single vs Batch Operations**:
-
-```
-❌ Inefficient (Single Operations):
-for item in items:
-    dynamodb.put_item(item)  # 100 API calls
-
-✅ Efficient (Batch Operations):
-dynamodb.batch_write_item(items)  # 4 API calls (25 items each)
+### 1. Batch Operations
+Process multiple items in single API calls:
+```text
+❌ Single: 100 separate API calls
+✅ Batch: 4 API calls (25 items each)
 ```
 
-**Benefits of batch operations**:
-- **Reduced API calls**: Up to 25 items per batch for writes
-- **Lower latency**: Fewer network round trips
-- **Cost savings**: Fewer request units consumed
-- **Free Tier optimization**: Maximize efficiency within limits
-
-### Data Integrity with Conditions
-
-**Problem: Race Conditions**
-```
-Scenario: Two users try to buy the last item
-
-User A reads: stock = 1
-User B reads: stock = 1
-User A updates: stock = 0  ✅
-User B updates: stock = 0  ❌ (Should fail!)
-
-Without conditions: Both succeed (oversold!)
-With conditions: Only first succeeds ✅
+### 2. Conditional Updates
+Prevent race conditions:
+```text
+❌ Without conditions: Two users buy last item
+✅ With conditions: Only first user succeeds
 ```
 
-**Conditional update types**:
-- **attribute_exists**: Ensure item exists before update
-- **attribute_not_exists**: Prevent duplicate creation
-- **Comparison operators**: Check values before modification
-- **Version checking**: Implement optimistic locking
+## Module Contents
 
-### Query Optimization Patterns
+1. **[Batch Operations](6.1-batch-operations/)** - Efficient multi-item processing
+2. **[Conditional Updates](6.2-conditional-updates/)** - Safe data modifications
 
-**Performance optimization techniques**:
-- **Projection Expressions**: Select only needed attributes to reduce RCU
-- **Filter Expressions**: Refine results with post-query filtering
-- **Pagination**: Handle large result sets efficiently
-- **Parallel Operations**: Process multiple segments concurrently
+{{% notice info %}}
+**Focus**: These patterns are essential for any production DynamoDB application.
+{{% /notice %}}
+
+{{% children %}}
+
+Let's implement advanced patterns for better DynamoDB applications.
 
 ## Learning Path
 

@@ -8,46 +8,51 @@ pre : " <b> 4.1 </b> "
 
 ## Enable DynamoDB Streams
 
-🔧 **Configure your DynamoDB table to capture every data change**
+🔧 **Turn on change tracking for your DynamoDB table**
 
 ### Overview
 
-DynamoDB Streams capture data modification events in your tables. When enabled, streams provide a time-ordered sequence of item-level modifications for up to 24 hours.
+DynamoDB Streams capture every change to your table items. This enables real-time processing with Lambda functions.
 
-### What Streams Capture
+### Stream View Types
 
-**Event Types**:
-- **INSERT**: New item added to table
-- **MODIFY**: Existing item updated
-- **REMOVE**: Item deleted from table
+Choose what data to capture:
+- **NEW_AND_OLD_IMAGES**: Complete before/after data (recommended for demo)
+- **NEW_IMAGE**: Only updated data
+- **OLD_IMAGE**: Only previous data
+- **KEYS_ONLY**: Just the keys
 
-**Stream View Types**:
-- **KEYS_ONLY**: Only key attributes of modified item
-- **NEW_IMAGE**: Entire item after modification
-- **OLD_IMAGE**: Entire item before modification  
-- **NEW_AND_OLD_IMAGES**: Both before and after images
+## Step-by-Step: Enable Streams
 
-## Exercise 1: Enable Streams on Existing Table
+### Step 1: Open DynamoDB Console
 
-### Step 1: Navigate to DynamoDB Console
+1. AWS Console → Search "DynamoDB"
+2. Tables → Click your table `demo-ecommerce-freetier`
+3. Click **"Exports and streams"** tab
 
-**Access your table**:
+### Step 2: Turn On Stream
 
-1. **AWS Console**: Search "DynamoDB"
-2. **Tables**: Click "Tables" in left sidebar
-3. **Select table**: Click `demo-ecommerce-freetier`
-4. **Exports and streams**: Click "Exports and streams" tab
+1. Find "DynamoDB stream" section
+2. Click **"Turn on"** button
+3. Select **"New and old images"**
+4. Click **"Turn on stream"**
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of DynamoDB console with Exports and streams tab highlighted
+### Step 3: Note Stream ARN
+
+Copy the Stream ARN - you'll need it for Lambda setup:
+```
+arn:aws:dynamodb:us-east-1:123456789012:table/demo-ecommerce-freetier/stream/2025-08-13T10:00:00.000
+```
+
+{{% notice success %}}
+**Stream Enabled!** Your table now captures all changes. Next, we'll create a Lambda function to process these events.
 {{% /notice %}}
 
-### Step 2: Configure DynamoDB Stream
+### Verification
 
-**Enable stream processing**:
-
-1. **DynamoDB stream section**: Scroll to "DynamoDB stream" section
-2. **Turn on stream**: Click "Turn on" button
+✅ Stream status shows "Enabled"  
+✅ Stream ARN is displayed  
+✅ View type is "New and old images"
 3. **View type selection**: Choose "New and old images"
 4. **Confirmation**: Click "Turn on stream"
 

@@ -73,9 +73,7 @@ Now that your Global Tables are verified, let's experience multi-region operatio
 3. **Wait**: For region switch to complete
 4. **Navigate**: DynamoDB → Tables → `demo-ecommerce-freetier`
 
-{{% notice info %}}
-**Screenshot Location**: Add screenshot of region selector with Europe (Ireland) selected
-{{% /notice %}}
+![Europe](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/Europe.png?featherlight=false&width=50pc)
 
 ### Step 4: Query for Replicated Data
 
@@ -285,10 +283,6 @@ This demonstrates **bi-directional replication** - you can write to any region!
   "test_purpose": "timing_analysis"
 }
 ```
-
-{{% notice info %}}
-**Screenshot Location**: Add screenshot showing timing test item creation with precise timestamps
-{{% /notice %}}
 
 ### Step 2: Document Results
 

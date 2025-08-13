@@ -56,7 +56,7 @@ Our template creates the following resources:[Download CloudFormation Template](
    - Click "Create stack" button
    - Select "With new resources (standard)"
 
-![create-stack](/images/1/create-stack.png?featherlight=false&width=90pc)
+![create-stack](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/1/create-stack.png?featherlight=false&width=90pc)
 
 ### Step 2: Upload Template
 

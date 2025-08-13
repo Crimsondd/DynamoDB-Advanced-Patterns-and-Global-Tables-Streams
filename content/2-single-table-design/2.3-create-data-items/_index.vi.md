@@ -244,19 +244,14 @@ Trong phần này, bạn sẽ tạo các entity cốt lõi cho nền tảng e-co
 
 Sau khi tạo tất cả items, table của bạn sẽ chứa:
 
-```text
-Items trong Table:
-┌─────────────────┬─────────────────┬──────────────────────────┐
-│ PK              │ SK              │ Entity Type              │
-├─────────────────┼─────────────────┼──────────────────────────┤
-│ USER#user001    │ PROFILE         │ User Profile             │
-│ USER#user001    │ ORDER#order001  │ Order (linked to user)   │
-│ PRODUCT#laptop1 │ DETAILS         │ Product (Electronics)    │
-│ PRODUCT#book001 │ DETAILS         │ Product (Books)          │
-│ ORDER#order001  │ ITEM#laptop001  │ Order Item (Laptop)      │
-│ ORDER#order001  │ ITEM#book001    │ Order Item (Book)        │
-└─────────────────┴─────────────────┴──────────────────────────┘
-```
+| PK | SK | Entity Type |
+|----|----|-------------|
+| USER#user001 | PROFILE | User Profile |
+| USER#user001 | ORDER#order001 | Order (linked to user) |
+| PRODUCT#laptop001 | DETAILS | Product (Electronics) |
+| PRODUCT#book001 | DETAILS | Product (Books) |
+| ORDER#order001 | ITEM#laptop001 | Order Item (Laptop) |
+| ORDER#order001 | ITEM#book001 | Order Item (Book) |
 
 ![all_created](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/all_created.png?featherlight=false&width=90pc)
 

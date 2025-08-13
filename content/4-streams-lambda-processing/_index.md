@@ -8,45 +8,45 @@ pre : " <b> 4. </b> "
 
 # DynamoDB Streams & Lambda Processing
 
-⚡ **Real-time event processing with DynamoDB Streams and AWS Lambda**
+⚡ **Set up real-time event processing for your DynamoDB table**
 
 ## Module Overview
 
-Transform your static database into a reactive, event-driven system that automatically responds to every data change in real-time.
+Learn how to capture and process data changes in real-time using DynamoDB Streams and AWS Lambda.
 
-#### What You'll Learn
+### What You'll Learn
 
-- **Stream Architecture**: Understand how DynamoDB captures and processes data changes
-- **Lambda Integration**: Configure serverless functions to respond to database events
-- **Event Processing**: Handle INSERT, MODIFY, and REMOVE events effectively
-- **Real-time Patterns**: Implement common event-driven architecture patterns
-- **Monitoring & Debugging**: Track performance and troubleshoot stream processing
+- **Enable Streams**: Turn on change tracking for your table
+- **Create Lambda**: Build a function to process events  
+- **Test Processing**: See events trigger in real-time
 
-#### Architecture Overview
+### Simple Architecture
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Application   │    │   DynamoDB      │    │ DynamoDB Streams│
-│                 │    │     Table       │    │                 │
-│  ┌───────────┐  │    │  ┌───────────┐  │    │  ┌───────────┐  │
-│  │   Write   │──┼───►│  │   Item    │──┼───►│  │  Stream   │  │
-│  │   Item    │  │    │  │  Created  │  │    │  │  Record   │  │
-│  └───────────┘  │    │  └───────────┘  │    │  └───────────┘  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                                        │
-                                                        ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│     Lambda      │    │   Event Source  │    │    Stream       │
-│   Function      │    │    Mapping      │    │   Shards        │
-│                 │    │                 │    │                 │
-│  ┌───────────┐  │    │  ┌───────────┐  │    │  ┌───────────┐  │
-│  │  Process  │◄─┼────│  │   Poll    │◄─┼────│  │  Records  │  │
-│  │  Records  │  │    │  │  Stream   │  │    │  │  Queue    │  │
-│  └───────────┘  │    │  └───────────┘  │    │  └───────────┘  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
+```text
+DynamoDB Table → DynamoDB Streams → Lambda Function
+     ↓                ↓                    ↓
+  Data Change    Capture Event        Process Event
 ```
 
-#### Key Benefits
+### Key Benefits
+
+- **Real-time**: Process changes instantly
+- **Automatic**: No polling required
+- **Scalable**: Lambda handles concurrency
+- **Cost-effective**: Pay only for usage
+
+## Module Contents
+
+1. **[Stream Configuration](4.1-stream-configuration/)** - Enable streams on your table
+2. **[Lambda Function Setup](4.2-lambda-function-setup/)** - Create and connect Lambda
+
+{{% notice info %}}
+**Free Tier**: Lambda provides 1 million free requests per month. This demo uses minimal resources.
+{{% /notice %}}
+
+{{% children %}}
+
+Let's add real-time processing to your DynamoDB table.
 
 **Real-time Processing**
 - Process data changes within 100-500 milliseconds

@@ -249,19 +249,6 @@
                 href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/3-global-tables-setup/3.3-multi-region-operations/"
                 />
   </url><url>
-    <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/3-global-tables-setup/3.4-replication-monitoring/</loc>
-    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/vi/3-global-tables-setup/3.4-replication-monitoring/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/3-global-tables-setup/3.4-replication-monitoring/"
-                />
-  </url><url>
     <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/4-streams-lambda-processing/4.1-stream-configuration/</loc>
     <lastmod>2025-08-11T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -288,32 +275,6 @@
                 href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/4-streams-lambda-processing/4.2-lambda-function-setup/"
                 />
   </url><url>
-    <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/4-streams-lambda-processing/4.3-event-processing-practice/</loc>
-    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/vi/4-streams-lambda-processing/4.3-event-processing-practice/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/4-streams-lambda-processing/4.3-event-processing-practice/"
-                />
-  </url><url>
-    <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/4-streams-lambda-processing/4.4-monitoring-debugging/</loc>
-    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/vi/4-streams-lambda-processing/4.4-monitoring-debugging/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/4-streams-lambda-processing/4.4-monitoring-debugging/"
-                />
-  </url><url>
     <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/</loc>
     <lastmod>2025-08-11T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -327,43 +288,17 @@
                 href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.1-cloudwatch-dashboards/"
                 />
   </url><url>
-    <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.2-alerting-notifications/</loc>
+    <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.2-cost-analysis-optimization/</loc>
     <lastmod>2025-08-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/vi/5-monitoring-optimization/5.2-alerting-notifications/"
+                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/vi/5-monitoring-optimization/5.2-cost-analysis-optimization/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.2-alerting-notifications/"
-                />
-  </url><url>
-    <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.3-cost-analysis-optimization/</loc>
-    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/vi/5-monitoring-optimization/5.3-cost-analysis-optimization/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.3-cost-analysis-optimization/"
-                />
-  </url><url>
-    <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.4-performance-tuning/</loc>
-    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/vi/5-monitoring-optimization/5.4-performance-tuning/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.4-performance-tuning/"
+                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/5-monitoring-optimization/5.2-cost-analysis-optimization/"
                 />
   </url><url>
     <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/6-advanced-patterns/6.1-batch-operations/</loc>
@@ -390,32 +325,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/6-advanced-patterns/6.2-conditional-updates/"
-                />
-  </url><url>
-    <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/6-advanced-patterns/6.3-advanced-query-techniques/</loc>
-    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/vi/6-advanced-patterns/6.3-advanced-query-techniques/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/6-advanced-patterns/6.3-advanced-query-techniques/"
-                />
-  </url><url>
-    <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/6-advanced-patterns/6.4-production-patterns/</loc>
-    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/vi/6-advanced-patterns/6.4-production-patterns/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/6-advanced-patterns/6.4-production-patterns/"
                 />
   </url><url>
     <loc>https://crimsondd.github.io/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/categories/</loc>

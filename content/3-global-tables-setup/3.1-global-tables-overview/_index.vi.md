@@ -31,30 +31,24 @@ Infrastructure của bạn đã bao gồm:
 
 ### Cách dữ liệu Flow giữa các Regions
 
-```text
-Write Operation Flow:
-┌─────────────────────────────────────────────────────────┐
-│ Bước 1: User writes to US-EAST-1                       │
-│ ├─ Item: USER#john, SK: PROFILE                        │
-│ ├─ Local write: Immediate success                      │
-│ └─ Stream record: Created                              │
-│                                                         │
-│ Bước 2: DynamoDB Streams captures change               │
-│ ├─ Stream record: NEW_AND_OLD_IMAGES                   │
-│ ├─ Timestamp: 2025-08-11T15:30:00.123Z                │
-│ └─ Event: INSERT                                       │
-│                                                         │
-│ Bước 3: Cross-region replication                       │
-│ ├─ Source: us-east-1 stream                            │
-│ ├─ Target: eu-west-1 table                             │
-│ └─ Latency: 500ms - 2 seconds                          │
-│                                                         │
-│ Bước 4: EU-WEST-1 receives update                      │
-│ ├─ Item appears: USER#john, SK: PROFILE                │
-│ ├─ Available for reads: Immediately                    │
-│ └─ Status: Replicated ✅                               │
-└─────────────────────────────────────────────────────────┘
-```
+| Step | Action | Details |
+|------|--------|---------|
+| **Bước 1** | **User writes to US-EAST-1** | |
+| | Item | `USER#john, SK: PROFILE` |
+| | Local write | Immediate success |
+| | Stream record | Created |
+| **Bước 2** | **DynamoDB Streams captures change** | |
+| | Stream record | `NEW_AND_OLD_IMAGES` |
+| | Timestamp | `2025-08-11T15:30:00.123Z` |
+| | Event | `INSERT` |
+| **Bước 3** | **Cross-region replication** | |
+| | Source | us-east-1 stream |
+| | Target | eu-west-1 table |
+| | Latency | 500ms - 2 seconds |
+| **Bước 4** | **EU-WEST-1 receives update** | |
+| | Item appears | `USER#john, SK: PROFILE` |
+| | Available for reads | Immediately |
+| | Status | Replicated ✅ |
 
 ## Consistency Model
 

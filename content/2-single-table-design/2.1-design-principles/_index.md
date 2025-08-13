@@ -17,29 +17,21 @@ pre : " <b> 2.1 </b> "
 Traditional relational databases organize data by **entities** (separate tables for Users, Products, Orders). DynamoDB organizes data by **access patterns** (how you'll query the data).
 
 **Relational Approach**:
-```text
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│    Users    │    │  Products   │    │   Orders    │
-├─────────────┤    ├─────────────┤    ├─────────────┤
-│ user_id     │    │ product_id  │    │ order_id    │
-│ name        │    │ name        │    │ user_id     │
-│ email       │    │ category    │    │ status      │
-└─────────────┘    └─────────────┘    └─────────────┘
-```
+
+| Table | Fields |
+|---|---|
+| **Users** | user_id, name, email |
+| **Products** | product_id, name, category |
+| **Orders** | order_id, user_id, status |
 
 **Single Table Approach**:
-```text
-┌───────────────────────────────────────────────────────────────┐
-│                    One EcommerceTable                         │
-├─────────────┬─────────────┬─────────────┬─────────────────────┤
-│     PK      │     SK      │   Entity    │    Additional Data  │
-├─────────────┼─────────────┼─────────────┼─────────────────────┤
-│ USER#user1  │ PROFILE     │ User        │ name, email, phone  │
-│ USER#user1  │ ORDER#ord1  │ Order       │ status, total, date │
-│ PRODUCT#p1  │ DETAILS     │ Product     │ name, price, stock  │
-│ ORDER#ord1  │ ITEM#p1     │ OrderItem   │ quantity, price     │
-└─────────────┴─────────────┴─────────────┴─────────────────────┘
-```
+
+| PK | SK | Entity | Additional Data |
+|---|---|---|---|
+| **USER#user1** | **PROFILE** | User | name, email, phone |
+| **USER#user1** | **ORDER#ord1** | Order | status, total, date |
+| **PRODUCT#p1** | **DETAILS** | Product | name, price, stock |
+| **ORDER#ord1** | **ITEM#p1** | OrderItem | quantity, price |
 
 ## Core Principles
 
@@ -84,18 +76,20 @@ Use GSIs when you need to query data by attributes other than the primary key:
 ### GSI Key Design
 
 **GSI1** - Category-based queries:
-```text
-GSI1PK: CATEGORY#electronics    GSI1SK: PRODUCT#prod1
-GSI1PK: CATEGORY#electronics    GSI1SK: PRODUCT#prod2
-GSI1PK: CATEGORY#books         GSI1SK: PRODUCT#prod3
-```
+
+| GSI1PK | GSI1SK |
+|---|---|
+| **CATEGORY#electronics** | **PRODUCT#prod1** |
+| **CATEGORY#electronics** | **PRODUCT#prod2** |
+| **CATEGORY#books** | **PRODUCT#prod3** |
 
 **GSI2** - Status/Price-based queries:
-```text
-GSI2PK: STATUS#pending         GSI2SK: ORDER#order1
-GSI2PK: STATUS#shipped         GSI2SK: ORDER#order2
-GSI2PK: PRICE#100-500         GSI2SK: PRODUCT#prod1
-```
+
+| GSI2PK | GSI2SK |
+|---|---|
+| **STATUS#pending** | **ORDER#order1** |
+| **STATUS#shipped** | **ORDER#order2** |
+| **PRICE#100-500** | **PRODUCT#prod1** |
 
 ## Benefits in Practice
 

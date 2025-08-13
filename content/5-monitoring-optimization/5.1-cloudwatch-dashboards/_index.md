@@ -286,18 +286,14 @@ Last Updated: [Date]
 
 **Effective dashboard design**:
 
-```
-Dashboard Layout Strategy:
-┌─────────────────────┬─────────────────────┐
-│ Critical Metrics    │ Performance Trends  │
-│ (Capacity, Errors)  │ (Latency, Success)  │
-├─────────────────────┼─────────────────────┤
-│ Resource Usage      │ Stream Processing   │
-│ (Storage, Items)    │ (Lambda, Events)    │
-├─────────────────────┴─────────────────────┤
-│ Global Tables & Replication (if applicable)│
-└─────────────────────────────────────────────┘
-```
+| Row | Left Widget | Right Widget |
+|-----|-------------|--------------|
+| **Top** | **Critical Metrics** | **Performance Trends** |
+| | (Capacity, Errors) | (Latency, Success) |
+| **Middle** | **Resource Usage** | **Stream Processing** |
+| | (Storage, Items) | (Lambda, Events) |
+| **Bottom** | **Global Tables & Replication** | |
+| | (if applicable) | |
 
 ### Color Coding Strategy
 

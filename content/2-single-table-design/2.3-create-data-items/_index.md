@@ -245,19 +245,14 @@ In this section, you'll create the core entities for our e-commerce platform: Us
 
 After creating all items, your table should contain:
 
-```text
-Items in Table:
-┌─────────────────┬─────────────────┬──────────────────────────┐
-│ PK              │ SK              │ Entity Type              │
-├─────────────────┼─────────────────┼──────────────────────────┤
-│ USER#user001    │ PROFILE         │ User Profile             │
-│ USER#user001    │ ORDER#order001  │ Order (linked to user)   │
-│ PRODUCT#laptop1 │ DETAILS         │ Product (Electronics)    │
-│ PRODUCT#book001 │ DETAILS         │ Product (Books)          │
-│ ORDER#order001  │ ITEM#laptop001  │ Order Item (Laptop)      │
-│ ORDER#order001  │ ITEM#book001    │ Order Item (Book)        │
-└─────────────────┴─────────────────┴──────────────────────────┘
-```
+| PK | SK | Entity Type |
+|----|----|-------------|
+| USER#user001 | PROFILE | User Profile |
+| USER#user001 | ORDER#order001 | Order (linked to user) |
+| PRODUCT#laptop001 | DETAILS | Product (Electronics) |
+| PRODUCT#book001 | DETAILS | Product (Books) |
+| ORDER#order001 | ITEM#laptop001 | Order Item (Laptop) |
+| ORDER#order001 | ITEM#book001 | Order Item (Book) |
 
 ![all_created](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/2/all_created.png?featherlight=false&width=90pc)
 

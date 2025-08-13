@@ -48,18 +48,12 @@ pre : " <b> 2. </b> "
 
 #### Chúng ta sẽ xây dựng một nền tảng e-commerce đơn giản với các entity này:
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│                    EcommerceTable                       │
-├─────────────┬─────────────┬─────────────┬─────────────┤
-│     PK      │     SK      │   Entity    │    Data     │
-├─────────────┼─────────────┼─────────────┼─────────────┤
-│ USER#user1  │ PROFILE     │ User        │ name, email │
-│ USER#user1  │ ORDER#ord1  │ Order       │ status, $   │
-│ PRODUCT#p1  │ DETAILS     │ Product     │ name, price │
-│ ORDER#ord1  │ ITEM#p1     │ OrderItem   │ qty, price  │
-└─────────────┴─────────────┴─────────────┴─────────────┘
-```
+| PK | SK | Entity | Data |
+|---|---|---|---|
+| **USER#user1** | **PROFILE** | User | name, email, phone |
+| **USER#user1** | **ORDER#ord1** | Order | status, total, date |
+| **PRODUCT#p1** | **DETAILS** | Product | name, price, category |
+| **ORDER#ord1** | **ITEM#p1** | OrderItem | quantity, price, product |
 
 ## Các Mẫu Truy cập Chúng ta sẽ Triển khai
 

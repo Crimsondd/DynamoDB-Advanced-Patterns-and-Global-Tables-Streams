@@ -17,29 +17,21 @@ pre : " <b> 2.1 </b> "
 Cơ sở dữ liệu quan hệ truyền thống tổ chức dữ liệu theo **entities** (các bảng riêng biệt cho Users, Products, Orders). DynamoDB tổ chức dữ liệu theo **access patterns** (cách bạn sẽ truy vấn dữ liệu).
 
 **Phương pháp Quan hệ**:
-```text
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│    Users    │    │  Products   │    │   Orders    │
-├─────────────┤    ├─────────────┤    ├─────────────┤
-│ user_id     │    │ product_id  │    │ order_id    │
-│ name        │    │ name        │    │ user_id     │
-│ email       │    │ category    │    │ status      │
-└─────────────┘    └─────────────┘    └─────────────┘
-```
+
+| Bảng | Trường |
+|---|---|
+| **Users** | user_id, name, email |
+| **Products** | product_id, name, category |
+| **Orders** | order_id, user_id, status |
 
 **Phương pháp Single Table**:
-```text
-┌───────────────────────────────────────────────────────────────┐
-│                    One EcommerceTable                         │
-├─────────────┬─────────────┬─────────────┬─────────────────────┤
-│     PK      │     SK      │   Entity    │    Additional Data  │
-├─────────────┼─────────────┼─────────────┼─────────────────────┤
-│ USER#user1  │ PROFILE     │ User        │ name, email, phone  │
-│ USER#user1  │ ORDER#ord1  │ Order       │ status, total, date │
-│ PRODUCT#p1  │ DETAILS     │ Product     │ name, price, stock  │
-│ ORDER#ord1  │ ITEM#p1     │ OrderItem   │ quantity, price     │
-└─────────────┴─────────────┴─────────────┴─────────────────────┘
-```
+
+| PK | SK | Entity | Additional Data |
+|---|---|---|---|
+| **USER#user1** | **PROFILE** | User | name, email, phone |
+| **USER#user1** | **ORDER#ord1** | Order | status, total, date |
+| **PRODUCT#p1** | **DETAILS** | Product | name, price, stock |
+| **ORDER#ord1** | **ITEM#p1** | OrderItem | quantity, price |
 
 ## Nguyên tắc Cốt lõi
 
@@ -84,18 +76,20 @@ Sử dụng GSIs khi bạn cần truy vấn dữ liệu theo attributes khác v�
 ### Thiết kế GSI Key
 
 **GSI1** - Category-based queries:
-```text
-GSI1PK: CATEGORY#electronics    GSI1SK: PRODUCT#prod1
-GSI1PK: CATEGORY#electronics    GSI1SK: PRODUCT#prod2
-GSI1PK: CATEGORY#books         GSI1SK: PRODUCT#prod3
-```
+
+| GSI1PK | GSI1SK |
+|---|---|
+| **CATEGORY#electronics** | **PRODUCT#prod1** |
+| **CATEGORY#electronics** | **PRODUCT#prod2** |
+| **CATEGORY#books** | **PRODUCT#prod3** |
 
 **GSI2** - Status/Price-based queries:
-```text
-GSI2PK: STATUS#pending         GSI2SK: ORDER#order1
-GSI2PK: STATUS#shipped         GSI2SK: ORDER#order2
-GSI2PK: PRICE#100-500         GSI2SK: PRODUCT#prod1
-```
+
+| GSI2PK | GSI2SK |
+|---|---|
+| **STATUS#pending** | **ORDER#order1** |
+| **STATUS#shipped** | **ORDER#order2** |
+| **PRICE#100-500** | **PRODUCT#prod1** |
 
 ## Lợi ích trong Thực tế
 

@@ -8,195 +8,64 @@ pre : " <b> 3. </b> "
 
 # Global Tables Multi-Region Setup
 
-🌍 **Implement DynamoDB Global Tables cho worldwide low-latency access và automatic multi-region replication**
+🌍 **Thiết lập DynamoDB đa vùng cho truy cập toàn cầu**
 
 ## Tổng quan
 
-Global Tables transforms single-region DynamoDB table của bạn thành globally distributed database serving users worldwide với single-digit millisecond latency. Module này demonstrates làm thế nào để leverage Global Tables setup từ CloudFormation deployment của bạn.
+Global Tables biến đổi DynamoDB table đơn vùng của bạn thành cơ sở dữ liệu phân tán toàn cầu phục vụ người dùng trên toàn thế giới với độ trễ thấp.
 
 ## Tại sao Global Tables?
 
-### The Global Challenge
+### Vấn đề
+- **Độ trễ cao**: Người dùng xa database phải chờ lâu
+- **Không có Disaster Recovery**: Điểm lỗi đơn
+- **Khả năng mở rộng hạn chế**: Tất cả traffic qua một vùng
 
-Modern applications serve users across continents. Traditional single-region databases create problems:
-
-- **High Latency**: Users xa database experience slow response times
-- **No Disaster Recovery**: Single point of failure nếu region goes down
-- **Limited Scale**: All traffic funneled through one region
-
-### Global Tables Solution
-
-DynamoDB Global Tables solves các challenges này:
-
+### Giải pháp
 ```text
-Before Global Tables:
-┌─────────────────┐
-│   US-EAST-1     │     Global Users
-│                 │     (High Latency)
-│ ┌─────────────┐ │          │
-│ │ DynamoDB    │ │◄─────────┼─── 🌎 All Traffic
-│ │ Table       │ │          │
-│ └─────────────┘ │     Single Point
-└─────────────────┘     of Failure
-
-After Global Tables:
-┌─────────────────┐              ┌─────────────────┐
-│   US-EAST-1     │              │   EU-WEST-1     │
-│   (Primary)     │◄────────────►│  (Replica)      │
-│                 │              │                 │
-│ ┌─────────────┐ │              │ ┌─────────────┐ │
-│ │ DynamoDB    │ │              │ │ DynamoDB    │ │
-│ │ Table       │ │              │ │ Replica     │ │
-│ └─────────────┘ │              │ └─────────────┘ │
-└─────────────────┘              └─────────────────┘
-         │                                │
-    🇺🇸 US Users                   🇪🇺 EU Users
-   (Low Latency)                  (Low Latency)
+Trước: Chỉ US-EAST-1 → Độ trễ cao cho người dùng EU
+Sau:   US-EAST-1 + EU-WEST-1 → Độ trễ thấp toàn cầu
 ```
 
-## Learning Objectives
+## Bạn sẽ học gì
 
-Sau khi hoàn thành module này, bạn sẽ:
+- **Xác minh Global Setup**: Kiểm tra cấu hình đa vùng
+- **Test Replication**: Ghi ở vùng này, đọc ở vùng khác
+- **Multi-Region Operations**: Xử lý dữ liệu toàn cầu
 
-- ✅ Understand Global Tables architecture và replication mechanics
-- ✅ Verify multi-region setup từ CloudFormation deployment
-- ✅ Test cross-region read/write operations through AWS Console
-- ✅ Experience eventual consistency và conflict resolution
-- ✅ Monitor replication performance và health metrics
-- ✅ Handle real-world global database scenarios
+## Lợi ích chính
 
-## Module Duration: 120 minutes
+- **Độ trễ dưới 10ms** cho người dùng toàn cầu
+- **Sao chép tự động** giữa các vùng (0.5-2 giây)
+- **Free Tier friendly**: Áp dụng cho mỗi vùng
+- **Disaster recovery tích hợp**
 
-- **Theory**: 25 minutes - Architecture và concepts
-- **Demo**: 35 minutes - Console navigation và verification
-- **Hands-on**: 50 minutes - Multi-region operations practice
-- **Review**: 10 minutes - Performance analysis và Q&A
+## Cơ bản về Global Tables
 
-## Global Tables Architecture
-
-### Replication Mechanics
-
-DynamoDB Global Tables uses **asynchronous replication** powered by DynamoDB Streams:
-
+### Luồng sao chép
 ```text
-Global Replication Flow:
-┌─────────────────────────────────────────────────────────┐
-│ 1. Write to US-EAST-1                                   │
-│    User creates order: ORDER#12345                     │
-│                                                         │
-│ 2. DynamoDB Streams captures change                     │
-│    Stream record: INSERT ORDER#12345                   │
-│                                                         │
-│ 3. Cross-region replication                             │
-│    Stream → EU-WEST-1 replica                          │
-│                                                         │
-│ 4. Write to EU-WEST-1                                   │
-│    ORDER#12345 now available in Europe                 │
-│                                                         │
-│ 5. Typical replication time: 0.5-2 seconds             │
-└─────────────────────────────────────────────────────────┘
+1. Ghi vào US-EAST-1 → ORDER#12345 được tạo
+2. DynamoDB Streams ghi nhận thay đổi
+3. Tự động sao chép sang EU-WEST-1
+4. ORDER#12345 có sẵn ở Europe (1-2 giây)
 ```
 
-### Key Characteristics
+### Tính năng chính
+- **Hai chiều**: Đọc/ghi từ bất kỳ vùng nào
+- **Eventually Consistent**: Thay đổi đồng bộ trong vài giây
+- **Conflict Resolution**: Last Writer Wins
+- **Zero downtime**: Chuyển đổi vùng tự động
 
-- **Bi-directional**: Có thể read và write từ any region
-- **Eventually Consistent**: Changes propagate within seconds
-- **Automatic**: Không manual intervention required
-- **Conflict Resolution**: Last Writer Wins based on timestamps
+## Nội dung Module
 
-## Real-World Benefits
+1. **[Global Tables Overview](3.1-global-tables-overview/)** - Hiểu kiến trúc
+2. **[Verify Global Setup](3.2-verify-global-setup/)** - Kiểm tra cấu hình
+3. **[Multi-Region Operations](3.3-multi-region-operations/)** - Test chức năng đa vùng
 
-### Performance Benefits
-
-- **Sub-10ms latency** cho users worldwide
-- **Regional failover** cho disaster recovery
-- **Horizontal scaling** across continents
-
-### Cost Benefits
-
-- **No cross-region data transfer charges** cho replication
-- **Free Tier applies per region** (2x the capacity!)
-- **No additional complexity** trong application code
-
-### Operational Benefits
-
-- **Zero downtime** cho regional outages
-- **Simplified global architecture**
-- **Built-in monitoring** và health checks
-
-## Workshop Setup
-
-CloudFormation template của chúng ta đã configured:
-
-| Region | Role | Status | Purpose |
-|--------|------|--------|---------|
-| **US-East-1** | Primary | ✅ Active | Main production region |
-| **EU-West-1** | Replica | ✅ Active | European users |
-
-## What You'll Experience
-
-### Multi-Region Operations
-
-1. **Create data in US** → Verify nó appears trong EU
-2. **Write from EU** → See reverse replication to US
-3. **Simultaneous updates** → Experience conflict resolution
-4. **Monitor replication** → Track performance metrics
-
-### Conflict Resolution Scenarios
-
-```text
-Conflict Example:
-Time: 10:00:00 - User updates profile trong US-EAST-1
-      name: "John Doe" → "John Smith"
-
-Time: 10:00:01 - Same user updates profile trong EU-WEST-1  
-      name: "John Doe" → "John D. Doe"
-
-Result: "Last Writer Wins" - EU update at 10:00:01 wins
-Final value trong both regions: "John D. Doe"
-```
-
-## Consistency Model
-
-### Eventually Consistent Reads
-
-- **Writes** are immediately consistent trong region where written
-- **Cross-region reads** có thể show stale data cho 0.5-2 seconds
-- **All regions** eventually have identical data
-
-### Application Design Implications
-
-- **Design for eventual consistency**
-- **Handle temporary inconsistencies gracefully**
-- **Use timestamps** cho conflict detection
-- **Consider strongly consistent reads** when needed (single region only)
-
-{{% notice tip %}}
-**Global Advantage**: Trong khi traditional databases require complex master-slave setups, DynamoDB Global Tables provides multi-master replication out of the box!
+{{% notice info %}}
+**Thiết lập**: CloudFormation deployment của bạn đã cấu hình Global Tables giữa US-East-1 và EU-West-1.
 {{% /notice %}}
 
-## Prerequisites
+{{% children %}}
 
-Trước khi starting module này, ensure bạn có:
-
-- [ ] Completed Module 1: Infrastructure Setup
-- [ ] Completed Module 2: Single Table Design
-- [ ] DynamoDB table `demo-ecommerce-freetier` is Active trong both regions
-- [ ] Understanding của eventual consistency concepts
-- [ ] Ability to switch giữa AWS regions trong console
-
-{{% notice warning %}}
-**Cost Safety**: Global Tables replication is included trong AWS Free Tier. Tất cả exercises stay within Free Tier limits across both regions.
-{{% /notice %}}
-
-## Success Metrics
-
-Sau module completion, bạn sẽ có:
-
-- ✅ **Verified Global Tables** configuration trong both regions
-- ✅ **Created data trong multiple regions** và observed replication
-- ✅ **Experienced conflict resolution** với Last Writer Wins
-- ✅ **Monitored replication performance** through CloudWatch
-- ✅ **Understood global consistency** trade-offs
-
-Ready to go global? Hãy explore làm thế nào local DynamoDB table của bạn becomes worldwide database!
+Hãy làm cho DynamoDB table của bạn có thể truy cập toàn cầu!

@@ -73,9 +73,7 @@ Bây giờ Global Tables của bạn đã được verified, hãy experience mul
 3. **Wait**: Cho region switch to complete
 4. **Navigate**: DynamoDB → Tables → `demo-ecommerce-freetier`
 
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot của region selector với Europe (Ireland) selected
-{{% /notice %}}
+![Europe](/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/images/3/Europe.png?featherlight=false&width=50pc)
 
 ### Bước 4: Query for Replicated Data
 
@@ -285,10 +283,6 @@ Bây giờ Global Tables của bạn đã được verified, hãy experience mul
   "test_purpose": "timing_analysis"
 }
 ```
-
-{{% notice info %}}
-**Vị trí Screenshot**: Thêm screenshot hiển thị timing test item creation với precise timestamps
-{{% /notice %}}
 
 ### Bước 2: Document Results
 
