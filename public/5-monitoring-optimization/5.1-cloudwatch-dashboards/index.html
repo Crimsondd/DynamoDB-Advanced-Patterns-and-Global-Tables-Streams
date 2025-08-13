@@ -12,21 +12,21 @@
     <title>5.1 CloudWatch Dashboards :: DynamoDB Advanced Patterns Workshop</title>
 
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755096097" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755096097" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755096097" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755096097" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755096097" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755096097" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755096097" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755096097" rel="stylesheet">
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755096097" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/nucleus.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/fontawesome-all.min.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hybrid.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/featherlight.min.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/perfect-scrollbar.min.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/auto-complete.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/atom-one-dark-reasonable.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme.css?1755099793" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/hugo-theme.css?1755099793" rel="stylesheet">
     
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755096097" rel="stylesheet">
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/css/theme-workshop.css?1755099793" rel="stylesheet">
     
     
 
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755096097"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery-3.3.1.min.js?1755099793"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755096097"></script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755096097"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/lunr.min.js?1755099793"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/auto-complete.js?1755099793"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/crimsondd.github.io\/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams\/";
     
 </script>
-<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755096097"></script>
+<script type="text/javascript" src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/search.js?1755099793"></script>
 
     
   </div>
@@ -962,64 +962,17 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#visual-monitoring-setup">Visual Monitoring Setup</a>
-      <ul>
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#dashboard-strategy">Dashboard Strategy</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-1-create-primary-monitoring-dashboard">Exercise 1: Create Primary Monitoring Dashboard</a>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#create-primary-monitoring-dashboard">Create Primary Monitoring Dashboard</a>
       <ul>
         <li><a href="#step-1-access-cloudwatch-console">Step 1: Access CloudWatch Console</a></li>
         <li><a href="#step-2-add-dynamodb-capacity-widget">Step 2: Add DynamoDB Capacity Widget</a></li>
         <li><a href="#step-3-add-performance-metrics-widget">Step 3: Add Performance Metrics Widget</a></li>
-        <li><a href="#step-4-add-storage-and-item-count-widget">Step 4: Add Storage and Item Count Widget</a></li>
-        <li><a href="#step-5-add-lambda-stream-processing-widget">Step 5: Add Lambda Stream Processing Widget</a></li>
+        <li><a href="#step-4-configure-dashboard">Step 4: Configure Dashboard</a></li>
       </ul>
     </li>
-    <li><a href="#exercise-2-global-tables-monitoring-if-applicable">Exercise 2: Global Tables Monitoring (if applicable)</a>
-      <ul>
-        <li><a href="#step-1-add-replication-metrics">Step 1: Add Replication Metrics</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-3-dashboard-customization">Exercise 3: Dashboard Customization</a>
-      <ul>
-        <li><a href="#step-1-organize-widget-layout">Step 1: Organize Widget Layout</a></li>
-        <li><a href="#step-2-configure-time-range-and-auto-refresh">Step 2: Configure Time Range and Auto-Refresh</a></li>
-        <li><a href="#step-3-add-dashboard-annotations">Step 3: Add Dashboard Annotations</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-4-specialized-dashboards">Exercise 4: Specialized Dashboards</a>
-      <ul>
-        <li><a href="#step-1-create-cost-monitoring-dashboard">Step 1: Create Cost Monitoring Dashboard</a></li>
-        <li><a href="#step-2-create-troubleshooting-dashboard">Step 2: Create Troubleshooting Dashboard</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-5-dashboard-sharing-and-access">Exercise 5: Dashboard Sharing and Access</a>
-      <ul>
-        <li><a href="#step-1-configure-dashboard-permissions">Step 1: Configure Dashboard Permissions</a></li>
-        <li><a href="#step-2-create-dashboard-urls">Step 2: Create Dashboard URLs</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-6-dashboard-maintenance">Exercise 6: Dashboard Maintenance</a>
-      <ul>
-        <li><a href="#step-1-set-up-dashboard-alerts">Step 1: Set Up Dashboard Alerts</a></li>
-        <li><a href="#step-2-regular-review-process">Step 2: Regular Review Process</a></li>
-      </ul>
-    </li>
-    <li><a href="#dashboard-best-practices">Dashboard Best Practices</a>
-      <ul>
-        <li><a href="#widget-organization">Widget Organization</a></li>
-        <li><a href="#color-coding-strategy">Color Coding Strategy</a></li>
-        <li><a href="#metric-selection-guidelines">Metric Selection Guidelines</a></li>
-      </ul>
-    </li>
-    <li><a href="#troubleshooting-dashboard-issues">Troubleshooting Dashboard Issues</a>
-      <ul>
-        <li><a href="#common-problems">Common Problems</a></li>
-      </ul>
-    </li>
-    <li><a href="#exercise-summary">Exercise Summary</a></li>
+    <li><a href="#key-metrics-to-monitor">Key Metrics to Monitor</a></li>
+    <li><a href="#dashboard-best-practices">Dashboard Best Practices</a></li>
     <li><a href="#next-steps">Next Steps</a></li>
   </ul>
 </nav>
@@ -1046,33 +999,21 @@
 
 
 
-	<h2 id="visual-monitoring-setup">Visual Monitoring Setup</h2>
-<p>📊 <strong>Create comprehensive CloudWatch dashboards for real-time DynamoDB monitoring</strong></p>
-<h3 id="overview">Overview</h3>
-<p>CloudWatch dashboards provide visual insights into your DynamoDB performance, capacity utilization, and system health. Build production-ready monitoring that helps you detect issues before they impact users.</p>
-<h3 id="dashboard-strategy">Dashboard Strategy</h3>
-<p><strong>Multi-layered monitoring approach</strong>:</p>
-<ul>
-<li><strong>Executive Dashboard</strong>: High-level health indicators</li>
-<li><strong>Operations Dashboard</strong>: Detailed metrics for daily monitoring</li>
-<li><strong>Troubleshooting Dashboard</strong>: Deep-dive analysis views</li>
-</ul>
-<h2 id="exercise-1-create-primary-monitoring-dashboard">Exercise 1: Create Primary Monitoring Dashboard</h2>
+	<h1 id="cloudwatch-dashboards">CloudWatch Dashboards</h1>
+<p>📊 <strong>Create essential CloudWatch dashboards for DynamoDB monitoring</strong></p>
+<h2 id="overview">Overview</h2>
+<p>CloudWatch dashboards provide visual insights into your DynamoDB performance, capacity utilization, and system health. We&rsquo;ll create a simple monitoring dashboard to track key metrics.</p>
+<h2 id="create-primary-monitoring-dashboard">Create Primary Monitoring Dashboard</h2>
 <h3 id="step-1-access-cloudwatch-console">Step 1: Access CloudWatch Console</h3>
-<p><strong>Navigate to dashboard creation</strong>:</p>
 <ol>
 <li><strong>AWS Console</strong>: Search &ldquo;CloudWatch&rdquo;</li>
 <li><strong>Dashboards</strong>: Click &ldquo;Dashboards&rdquo; in left sidebar</li>
 <li><strong>Create dashboard</strong>: Click &ldquo;Create dashboard&rdquo; button</li>
-<li><strong>Dashboard name</strong>: <code>DynamoDB-Production-Monitoring</code></li>
+<li><strong>Dashboard name</strong>: <code>DynamoDB-Demo-Monitoring</code></li>
 <li><strong>Create dashboard</strong>: Click to proceed</li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of CloudWatch console with Dashboards section highlighted</p>
-</div>
-
 <h3 id="step-2-add-dynamodb-capacity-widget">Step 2: Add DynamoDB Capacity Widget</h3>
-<p><strong>Create capacity utilization monitoring</strong>:</p>
+<p><strong>Monitor capacity utilization</strong>:</p>
 <ol>
 <li>
 <p><strong>Add widget</strong>: Click &ldquo;Add widget&rdquo; button</p>
@@ -1088,7 +1029,7 @@
 <ul>
 <li><strong>AWS/DynamoDB</strong> → <strong>Table Metrics</strong></li>
 <li><strong>Table</strong>: Select <code>demo-ecommerce-freetier</code></li>
-<li><strong>Metrics</strong>: Check all these:
+<li><strong>Metrics</strong>: Check these:
 <ul>
 <li><code>ConsumedReadCapacityUnits</code></li>
 <li><code>ConsumedWriteCapacityUnits</code></li>
@@ -1104,14 +1045,9 @@
 <li><strong>Title</strong>: &ldquo;DynamoDB Capacity Utilization&rdquo;</li>
 <li><strong>Period</strong>: 5 minutes</li>
 <li><strong>Statistic</strong>: Average</li>
-<li><strong>Y-axis range</strong>: Auto</li>
 </ul>
 </li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of widget configuration with DynamoDB capacity metrics selected</p>
-</div>
-
 <h3 id="step-3-add-performance-metrics-widget">Step 3: Add Performance Metrics Widget</h3>
 <p><strong>Monitor response times and errors</strong>:</p>
 <ol>
@@ -1129,9 +1065,7 @@
 <li><strong>Select metrics</strong>:
 <ul>
 <li><code>SuccessfulRequestLatency</code> (Query operations)</li>
-<li><code>SuccessfulRequestLatency</code> (GetItem operations)</li>
 <li><code>UserErrors</code></li>
-<li><code>SystemErrors</code></li>
 <li><code>ThrottledRequests</code></li>
 </ul>
 </li>
@@ -1142,364 +1076,70 @@
 <ul>
 <li><strong>Title</strong>: &ldquo;Performance &amp; Error Metrics&rdquo;</li>
 <li><strong>Period</strong>: 5 minutes</li>
-<li><strong>Y-axis</strong>: Split axis (latency vs errors)</li>
 </ul>
 </li>
 </ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of performance metrics widget configuration</p>
-</div>
-
-<h3 id="step-4-add-storage-and-item-count-widget">Step 4: Add Storage and Item Count Widget</h3>
-<p><strong>Track data growth and storage usage</strong>:</p>
-<ol>
-<li>
-<p><strong>Add widget</strong>: Third widget</p>
-</li>
-<li>
-<p><strong>Widget type</strong>: Line chart</p>
-</li>
-<li>
-<p><strong>Metrics</strong>:</p>
-<ul>
-<li><strong>AWS/DynamoDB</strong> → <strong>Table Metrics</strong></li>
-<li><strong>Table</strong>: <code>demo-ecommerce-freetier</code></li>
-<li><strong>Select</strong>:
-<ul>
-<li><code>ItemCount</code></li>
-<li><code>TableSizeBytes</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Configuration</strong>:</p>
-<ul>
-<li><strong>Title</strong>: &ldquo;Storage Utilization&rdquo;</li>
-<li><strong>Period</strong>: 1 hour (slower changing metrics)</li>
-<li><strong>Y-axis</strong>: Split axis (count vs bytes)</li>
-</ul>
-</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of storage metrics configuration showing ItemCount and TableSizeBytes</p>
-</div>
-
-<h3 id="step-5-add-lambda-stream-processing-widget">Step 5: Add Lambda Stream Processing Widget</h3>
-<p><strong>Monitor stream processing performance</strong>:</p>
-<ol>
-<li>
-<p><strong>Add widget</strong>: Fourth widget</p>
-</li>
-<li>
-<p><strong>Metrics</strong>:</p>
-<ul>
-<li><strong>AWS/Lambda</strong> → <strong>Function Metrics</strong></li>
-<li><strong>Function</strong>: <code>demo-dynamodb-stream-processor</code></li>
-<li><strong>Select</strong>:
-<ul>
-<li><code>Invocations</code></li>
-<li><code>Duration</code></li>
-<li><code>Errors</code></li>
-<li><code>Throttles</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Configuration</strong>:</p>
-<ul>
-<li><strong>Title</strong>: &ldquo;Stream Processing Health&rdquo;</li>
-<li><strong>Period</strong>: 5 minutes</li>
-</ul>
-</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Lambda metrics widget showing stream processing performance</p>
-</div>
-
-<h2 id="exercise-2-global-tables-monitoring-if-applicable">Exercise 2: Global Tables Monitoring (if applicable)</h2>
-<h3 id="step-1-add-replication-metrics">Step 1: Add Replication Metrics</h3>
-<p><strong>Monitor cross-region replication</strong>:</p>
-<ol>
-<li>
-<p><strong>Add widget</strong>: Fifth widget</p>
-</li>
-<li>
-<p><strong>Metrics</strong>:</p>
-<ul>
-<li><strong>AWS/DynamoDB</strong> → <strong>Global Table Metrics</strong></li>
-<li><strong>Source/Destination</strong>: Your regions</li>
-<li><strong>Select</strong>:
-<ul>
-<li><code>ReplicationLatency</code></li>
-<li><code>PendingReplicationCount</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Configuration</strong>:</p>
-<ul>
-<li><strong>Title</strong>: &ldquo;Global Tables Replication&rdquo;</li>
-<li><strong>Period</strong>: 5 minutes</li>
-</ul>
-</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of Global Tables replication metrics configuration</p>
-</div>
-
-<h2 id="exercise-3-dashboard-customization">Exercise 3: Dashboard Customization</h2>
-<h3 id="step-1-organize-widget-layout">Step 1: Organize Widget Layout</h3>
-<p><strong>Optimize dashboard layout</strong>:</p>
-<ol>
-<li><strong>Resize widgets</strong>: Drag corners to adjust size</li>
-<li><strong>Arrange layout</strong>:
-<ul>
-<li><strong>Top row</strong>: Capacity + Performance (most critical)</li>
-<li><strong>Second row</strong>: Storage + Lambda processing</li>
-<li><strong>Third row</strong>: Global Tables (if applicable)</li>
-</ul>
-</li>
-<li><strong>Widget spacing</strong>: Leave room for annotations</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of final dashboard layout with all widgets organized</p>
-</div>
-
-<h3 id="step-2-configure-time-range-and-auto-refresh">Step 2: Configure Time Range and Auto-Refresh</h3>
+<h3 id="step-4-configure-dashboard">Step 4: Configure Dashboard</h3>
 <p><strong>Set operational parameters</strong>:</p>
 <ol>
 <li><strong>Time range</strong>: Set to &ldquo;Last 3 hours&rdquo;</li>
 <li><strong>Auto-refresh</strong>: Enable 1-minute refresh</li>
-<li><strong>Time zone</strong>: Set to your local time zone</li>
 <li><strong>Save dashboard</strong>: Click &ldquo;Save dashboard&rdquo;</li>
 </ol>
-<h3 id="step-3-add-dashboard-annotations">Step 3: Add Dashboard Annotations</h3>
-<p><strong>Add context and documentation</strong>:</p>
-<ol>
-<li><strong>Add widget</strong>: Text widget</li>
-<li><strong>Widget content</strong>:</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"># DynamoDB Production Dashboard
-
-<span style="color:#75715e">## Key Metrics:
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> **Capacity**: Target &lt;<span style="color:#f92672">80</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#a6e22e">utilization</span>
-<span style="color:#66d9ef">-</span> <span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">Latency</span><span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">:</span> <span style="color:#a6e22e">Target</span> <span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#a6e22e">50ms</span> <span style="color:#a6e22e">average</span>
-<span style="color:#66d9ef">-</span> <span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">Errors</span><span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">:</span> <span style="color:#a6e22e">Target</span> <span style="color:#a6e22e">0</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#a6e22e">error</span> <span style="color:#a6e22e">rate</span>
-<span style="color:#66d9ef">-</span> <span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">Storage</span><span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">:</span> <span style="color:#a6e22e">Monitor</span> <span style="color:#a6e22e">25GB</span> <span style="color:#a6e22e">Free</span> <span style="color:#a6e22e">Tier</span> <span style="color:#a6e22e">limit</span>
-
-<span style="color:#75715e">## Alert Thresholds:
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> <span style="color:#a6e22e">High</span> <span style="color:#a6e22e">capacity:</span> &gt;4 RCU/WCU (80% of 5)
-<span style="color:#66d9ef">-</span> High latency: &gt;100ms sustained
-<span style="color:#66d9ef">-</span> Any errors: &gt;0 errors per period
-
-Last Updated: [Date]
-</code></pre></div>
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of text widget with dashboard documentation</p>
-</div>
-
-<h2 id="exercise-4-specialized-dashboards">Exercise 4: Specialized Dashboards</h2>
-<h3 id="step-1-create-cost-monitoring-dashboard">Step 1: Create Cost Monitoring Dashboard</h3>
-<p><strong>Track Free Tier usage</strong>:</p>
-<ol>
-<li><strong>New dashboard</strong>: &ldquo;DynamoDB-Cost-Analysis&rdquo;</li>
-<li><strong>Add widgets</strong>:
-<ul>
-<li><strong>Billing metrics</strong>: EstimatedCharges</li>
-<li><strong>Usage metrics</strong>: Free Tier consumption</li>
-<li><strong>Capacity trends</strong>: Weekly capacity usage</li>
-<li><strong>Storage growth</strong>: Data size over time</li>
-</ul>
-</li>
-</ol>
-<h3 id="step-2-create-troubleshooting-dashboard">Step 2: Create Troubleshooting Dashboard</h3>
-<p><strong>Deep-dive analysis dashboard</strong>:</p>
-<ol>
-<li><strong>Dashboard name</strong>: &ldquo;DynamoDB-Troubleshooting&rdquo;</li>
-<li><strong>Detailed metrics</strong>:
-<ul>
-<li><strong>Per-operation latency</strong>: Broken down by operation type</li>
-<li><strong>Hot partition detection</strong>: ConsumedCapacity by partition</li>
-<li><strong>Error analysis</strong>: Error types and frequencies</li>
-<li><strong>Throttling patterns</strong>: When and why throttling occurs</li>
-</ul>
-</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of troubleshooting dashboard with detailed operational metrics</p>
-</div>
-
-<h2 id="exercise-5-dashboard-sharing-and-access">Exercise 5: Dashboard Sharing and Access</h2>
-<h3 id="step-1-configure-dashboard-permissions">Step 1: Configure Dashboard Permissions</h3>
-<p><strong>Set up team access</strong>:</p>
-<ol>
-<li><strong>Dashboard actions</strong>: Click &ldquo;Actions&rdquo; menu</li>
-<li><strong>Share dashboard</strong>: Select sharing options</li>
-<li><strong>Access controls</strong>:
-<ul>
-<li><strong>Public</strong>: No (keep private)</li>
-<li><strong>Account access</strong>: Specific IAM users/roles</li>
-<li><strong>Read-only</strong>: Recommended for most users</li>
-</ul>
-</li>
-</ol>
-<h3 id="step-2-create-dashboard-urls">Step 2: Create Dashboard URLs</h3>
-<p><strong>Generate shareable links</strong>:</p>
-<ol>
-<li><strong>Get shareable URL</strong>: Copy dashboard URL</li>
-<li><strong>Embed options</strong>: For inclusion in other tools</li>
-<li><strong>Export options</strong>: PNG/PDF for reports</li>
-</ol>
-
-<div class="notices info" ><p><strong>Screenshot Location</strong>: Add screenshot of dashboard sharing configuration options</p>
-</div>
-
-<h2 id="exercise-6-dashboard-maintenance">Exercise 6: Dashboard Maintenance</h2>
-<h3 id="step-1-set-up-dashboard-alerts">Step 1: Set Up Dashboard Alerts</h3>
-<p><strong>Monitor dashboard health</strong>:</p>
-<ol>
-<li><strong>Missing data alerts</strong>: When metrics stop reporting</li>
-<li><strong>Dashboard access logs</strong>: Who is viewing dashboards</li>
-<li><strong>Widget performance</strong>: Load times and responsiveness</li>
-</ol>
-<h3 id="step-2-regular-review-process">Step 2: Regular Review Process</h3>
-<p><strong>Dashboard optimization schedule</strong>:</p>
-<ul>
-<li><strong>Daily</strong>: Quick health check of all dashboards</li>
-<li><strong>Weekly</strong>: Review metric relevance and thresholds</li>
-<li><strong>Monthly</strong>: Optimize layout and add new metrics</li>
-<li><strong>Quarterly</strong>: Archive unused dashboards</li>
-</ul>
-<h2 id="dashboard-best-practices">Dashboard Best Practices</h2>
-<h3 id="widget-organization">Widget Organization</h3>
-<p><strong>Effective dashboard design</strong>:</p>
+<h2 id="key-metrics-to-monitor">Key Metrics to Monitor</h2>
 <table>
 <thead>
 <tr>
-<th>Row</th>
-<th>Left Widget</th>
-<th>Right Widget</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Top</strong></td>
-<td><strong>Critical Metrics</strong></td>
-<td><strong>Performance Trends</strong></td>
-</tr>
-<tr>
-<td></td>
-<td>(Capacity, Errors)</td>
-<td>(Latency, Success)</td>
-</tr>
-<tr>
-<td><strong>Middle</strong></td>
-<td><strong>Resource Usage</strong></td>
-<td><strong>Stream Processing</strong></td>
-</tr>
-<tr>
-<td></td>
-<td>(Storage, Items)</td>
-<td>(Lambda, Events)</td>
-</tr>
-<tr>
-<td><strong>Bottom</strong></td>
-<td><strong>Global Tables &amp; Replication</strong></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>(if applicable)</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="color-coding-strategy">Color Coding Strategy</h3>
-<p><strong>Visual consistency</strong>:</p>
-<ul>
-<li><strong>Green</strong>: Normal/healthy metrics</li>
-<li><strong>Yellow</strong>: Warning thresholds approached</li>
-<li><strong>Red</strong>: Critical issues requiring attention</li>
-<li><strong>Blue</strong>: Informational/baseline metrics</li>
-</ul>
-<h3 id="metric-selection-guidelines">Metric Selection Guidelines</h3>
-<p><strong>Choose the right metrics</strong>:</p>
-<table>
-<thead>
-<tr>
+<th>Metric</th>
 <th>Purpose</th>
-<th>Primary Metrics</th>
-<th>Secondary Metrics</th>
+<th>Target</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Health</strong></td>
-<td>Errors, Throttles</td>
-<td>Success rate, Availability</td>
+<td><strong>ConsumedReadCapacityUnits</strong></td>
+<td>Monitor read usage</td>
+<td>&lt;4 units (80% of 5)</td>
 </tr>
 <tr>
-<td><strong>Performance</strong></td>
-<td>Latency, Duration</td>
-<td>Throughput, Concurrency</td>
+<td><strong>ConsumedWriteCapacityUnits</strong></td>
+<td>Monitor write usage</td>
+<td>&lt;4 units (80% of 5)</td>
 </tr>
 <tr>
-<td><strong>Capacity</strong></td>
-<td>Consumed vs Provisioned</td>
-<td>Utilization percentage</td>
+<td><strong>SuccessfulRequestLatency</strong></td>
+<td>Response time</td>
+<td>&lt;50ms average</td>
 </tr>
 <tr>
-<td><strong>Cost</strong></td>
-<td>Storage size, Operations</td>
-<td>Free Tier consumption</td>
+<td><strong>UserErrors</strong></td>
+<td>Application errors</td>
+<td>0 errors</td>
+</tr>
+<tr>
+<td><strong>ThrottledRequests</strong></td>
+<td>Capacity exceeded</td>
+<td>0 throttles</td>
 </tr>
 </tbody>
 </table>
-<h2 id="troubleshooting-dashboard-issues">Troubleshooting Dashboard Issues</h2>
-<h3 id="common-problems">Common Problems</h3>
-<p><strong>Dashboard not loading</strong>:</p>
-<ol>
-<li><strong>Check region</strong>: Verify correct AWS region</li>
-<li><strong>Permissions</strong>: Ensure CloudWatch read access</li>
-<li><strong>Browser cache</strong>: Clear cache and reload</li>
-<li><strong>Service status</strong>: Check AWS status page</li>
-</ol>
-<p><strong>Missing metrics data</strong>:</p>
-<ol>
-<li><strong>Time range</strong>: Adjust time window</li>
-<li><strong>Metric delay</strong>: Wait for data propagation</li>
-<li><strong>Resource activity</strong>: Generate activity to create metrics</li>
-<li><strong>Metric retention</strong>: Check data retention periods</li>
-</ol>
-<p><strong>Performance issues</strong>:</p>
-<ol>
-<li><strong>Too many widgets</strong>: Reduce widget count</li>
-<li><strong>Long time ranges</strong>: Shorten time periods</li>
-<li><strong>High resolution</strong>: Use lower resolution for overview</li>
-<li><strong>Auto-refresh</strong>: Reduce refresh frequency</li>
-</ol>
 
-<div class="notices warning" ><p><strong>Free Tier Note</strong>: CloudWatch provides 10 custom metrics and 3 dashboards free. Plan your dashboard strategy accordingly.</p>
+<div class="notices warning" ><p><strong>Free Tier Note</strong>: CloudWatch provides 10 custom metrics and 3 dashboards free. This basic dashboard fits within limits.</p>
 </div>
 
-<h2 id="exercise-summary">Exercise Summary</h2>
-<p>You&rsquo;ve created comprehensive monitoring dashboards:</p>
+<h2 id="dashboard-best-practices">Dashboard Best Practices</h2>
 <ul>
-<li>✅ <strong>Primary dashboard</strong> with essential DynamoDB metrics</li>
-<li>✅ <strong>Performance monitoring</strong> for latency and errors</li>
-<li>✅ <strong>Capacity tracking</strong> to prevent throttling</li>
-<li>✅ <strong>Storage monitoring</strong> for cost management</li>
-<li>✅ <strong>Stream processing</strong> health visibility</li>
-<li>✅ <strong>Specialized dashboards</strong> for cost and troubleshooting</li>
+<li><strong>Focus on key metrics</strong>: Capacity, latency, errors</li>
+<li><strong>Set appropriate time ranges</strong>: 3-24 hours for operational monitoring</li>
+<li><strong>Use auto-refresh</strong>: 1-5 minutes for real-time visibility</li>
+<li><strong>Monitor Free Tier limits</strong>: Stay within AWS Free Tier boundaries</li>
 </ul>
 
-<div class="notices success" ><p><strong>Dashboard Mastery</strong>: You now have production-grade visual monitoring that provides complete visibility into your DynamoDB system!</p>
+<div class="notices success" ><p><strong>Dashboard Created</strong>: You now have essential visual monitoring for your DynamoDB table!</p>
 </div>
 
 <h2 id="next-steps">Next Steps</h2>
-<p>With dashboards providing visual monitoring, the next step is setting up proactive alerting to detect issues before they impact users. We&rsquo;ll configure intelligent alarms and notification systems.</p>
+<p>With basic dashboard monitoring in place, you can expand monitoring as needed or move to the next workshop module.</p>
 
 
 
@@ -1961,19 +1601,19 @@ Last Updated: [Date]
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755096097"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755096097"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755096097"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755096097"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755096097"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755096097"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/clipboard.min.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.min.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/perfect-scrollbar.jquery.min.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/jquery.sticky.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/featherlight.min.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/highlight.pack.js?1755099793"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755096097"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755096097"></script>
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755096097"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/modernizr.custom-3.6.0.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/learn.js?1755099793"></script>
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/js/hugo-learn.js?1755099793"></script>
 
-    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755096097" rel="stylesheet" />
-    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755096097"></script>
+    <link href="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.css?1755099793" rel="stylesheet" />
+    <script src="/DynamoDB-Advanced-Patterns-and-Global-Tables-Streams/mermaid/mermaid.js?1755099793"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
